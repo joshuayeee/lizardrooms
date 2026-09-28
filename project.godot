@@ -67,6 +67,7 @@ quit={
 2d_physics/layer_7="BoxPiece"
 2d_physics/layer_8="Death"
 2d_physics/layer_9="Checkpoint"
+2d_physics/layer_10="FalseWall"
 
 [physics]
 
