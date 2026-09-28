@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://grdglvdkkcx"]
+
+[ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="1_mmpmu"]
+[ext_resource type="Script" uid="uid://dk880ol4qybis" path="res://Scripts/donut.gd" id="1_wflqx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+radius = 16.03122
+
+[sub_resource type="Animation" id="Animation_wflqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_swhsv"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_q7wu0"]
+resource_name = "move"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:offset:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -10.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5qsea"]
+_data = {
+&"RESET": SubResource("Animation_wflqx"),
+&"idle": SubResource("Animation_swhsv"),
+&"move": SubResource("Animation_q7wu0")
+}
+
+[node name="Donut" type="Area2D" unique_id=303505664]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_wflqx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=775931407]
+scale = Vector2(4, 4)
+texture = ExtResource("1_mmpmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1866005479]
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="MovePlayer" type="AnimationPlayer" parent="." unique_id=828891621]
+libraries/ = SubResource("AnimationLibrary_5qsea")
+autoplay = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]

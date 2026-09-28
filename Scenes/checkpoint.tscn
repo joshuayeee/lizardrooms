@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://475khr4qaep2"]
+
+[ext_resource type="Script" uid="uid://b135pheufi8nh" path="res://Scripts/checkpoint.gd" id="1_lbcco"]
+
+[node name="Checkpoint" type="Area2D" unique_id=2111264533]
+collision_layer = 128
+collision_mask = 3
+script = ExtResource("1_lbcco")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

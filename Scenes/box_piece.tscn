@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cga2t0yjrghiv"]
+
+[ext_resource type="Texture2D" uid="uid://br4y45vwmfo8w" path="res://Assets/Sprites/BoxPiece.png" id="1_0cgvi"]
+[ext_resource type="Script" uid="uid://bn4qxywrjor37" path="res://Scripts/box_piece.gd" id="1_a5wj4"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="2_uw1yc"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_a5wj4"]
+[ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="4_636rx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(16, 16)
+
+[node name="BoxPiece" type="CharacterBody2D" unique_id=1087020648]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("1_a5wj4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=712204022]
+scale = Vector2(4, 4)
+texture = ExtResource("1_0cgvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=118959602]
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=553955917]
+rect = Rect2(-8, -8, 16, 16)
+
+[node name="Components" type="Node" parent="." unique_id=778570040]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("2_uw1yc")]
+body = NodePath("../..")
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_a5wj4")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
+acc = 1.0
+dec = 1.0
+
+[node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("4_636rx")]
+body = NodePath("../..")
+jump_velocity = -400.0
+jump_release_dec = 1.0
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,13 @@
+extends CharacterBody2D
+
+class_name Sandwich
+
+@onready var gravity_com: GravityCom = $Components/GravityCom
+
+func _physics_process(delta: float) -> void:
+	gravity_com.handle_gravity(delta)
+	move_and_slide()
+
+func _on_player_check_body_entered(body: Player) -> void:
+	body.change_state("sandwich")
+	call_deferred("queue_free")

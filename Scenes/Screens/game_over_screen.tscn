@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://byybeqf6volel"]
+
+[ext_resource type="Script" uid="uid://cdghfltu3j7iy" path="res://Scripts/game_over_screen.gd" id="1_d7dpa"]
+[ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_f41m0"]
+
+[node name="GameOverScreen" type="Node2D" unique_id=1278120923]
+script = ExtResource("1_d7dpa")
+metadata/_custom_type_script = "uid://d4hnb6fqi68nx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1342215442]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=142412562]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=359437631]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_f41m0")
+text = "GAME OVER"
+
+[node name="Timer" type="Timer" parent="." unique_id=1357343672]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

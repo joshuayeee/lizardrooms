@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://k66fmkkvhcfw"]
+
+[ext_resource type="Script" uid="uid://dipe4q34qslsl" path="res://Scripts/title_screen.gd" id="1_w5mys"]
+[ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_w5mys"]
+
+[node name="TitleScreen" type="Node2D" unique_id=446905199]
+script = ExtResource("1_w5mys")
+metadata/_custom_type_script = "uid://d4hnb6fqi68nx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1242367675]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1631507840]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1142758323]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -11.5
+offset_right = 96.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_w5mys")
+text = "LIZARD ROOMS"
+
+[node name="StartButton" type="Button" parent="CanvasLayer" unique_id=772986655]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.66800004
+anchor_right = 0.5
+anchor_bottom = 0.66800004
+offset_left = -28.0
+offset_top = -15.480011
+offset_right = 28.0
+offset_bottom = 15.519989
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_w5mys")
+text = "START"
+
+[connection signal="pressed" from="CanvasLayer/StartButton" to="." method="_on_start_button_pressed"]

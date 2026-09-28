@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bvdjxn5x33uwa"]
+
+[ext_resource type="Texture2D" uid="uid://dugcx082dr5ba" path="res://Assets/Sprites/Sandwich.png" id="1_djf1a"]
+[ext_resource type="Script" uid="uid://fv5lhwsgwtli" path="res://Scripts/sandwich.gd" id="1_xgfno"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="2_xbpk7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(40, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(40, 36)
+
+[node name="Sandwich" type="CharacterBody2D" unique_id=149632937]
+collision_layer = 32
+collision_mask = 12
+script = ExtResource("1_xgfno")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571688134]
+scale = Vector2(4, 4)
+texture = ExtResource("1_djf1a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1622570584]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=400081086]
+collision_layer = 32
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1015956818]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="Components" type="Node" parent="." unique_id=1794247036]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("2_xbpk7")]
+body = NodePath("../..")
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b46ns1v8q6suu"]
+
+[ext_resource type="Texture2D" uid="uid://dctfuef7m6lpe" path="res://Assets/Sprites/EmptyBox.png" id="1_ktbf6"]
+[ext_resource type="Script" uid="uid://b8gg8wpo47c41" path="res://Scripts/empty_box.gd" id="1_p73lg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(32, 32)
+
+[node name="EmptyBox" type="StaticBody2D" unique_id=1477478737]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_p73lg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1769305113]
+scale = Vector2(4, 4)
+texture = ExtResource("1_ktbf6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=559167708]
+shape = SubResource("RectangleShape2D_jh5pk")

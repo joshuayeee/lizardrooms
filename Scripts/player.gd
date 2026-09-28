@@ -1,0 +1,87 @@
+extends CharacterBody2D
+
+class_name Player
+
+@onready var move_com: MoveCom = $Components/MoveCom
+@onready var jump_com: JumpCom = $Components/JumpCom
+@onready var gravity_com: GravityCom = $Components/GravityCom
+@onready var anim_com: AnimCom = $Components/AnimCom
+
+var level: Level = null
+var main: Main = null
+var state: String = "normal"
+var can_check_up: bool = true
+var is_alive: bool = true
+var is_changing: bool = false
+
+func _physics_process(delta: float) -> void:
+	var direction: float = Input.get_axis("left", "right")
+	if (Global.game_active):
+		gravity_com.handle_gravity(delta)
+		
+		jump_com.handle_jump(Input.is_action_just_pressed("jump") and is_on_floor())
+		jump_com.handle_jump_release(Input.is_action_just_released("jump") and velocity.y < 0)
+		
+		move_com.handle_speed_change(Input.is_action_pressed("run"))
+		
+		move_com.handle_move(direction)
+	else:
+		velocity = Vector2.ZERO
+	
+	if (not is_changing and is_alive):
+		anim_com.handle_animation(direction, 
+									not is_on_floor(), 
+									"%s_jump" % state, 
+									"%s_walk" % state, 
+									"%s_idle" % state)
+	
+	if (is_on_floor() and not can_check_up):
+		can_check_up = true
+	
+	move_and_slide()
+
+func change_state(new_state: String) -> void:
+	if (state != new_state):
+		is_changing = true
+		Global.game_active = false
+		anim_com.handle_anim_change(state,
+										new_state,
+										"normal_to_sandwich",
+										"sandwich_to_candy",
+										"normal_to_candy")
+		state = new_state
+
+func handle_death() -> void:
+	is_alive = false
+	Global.game_active = false
+	anim_com.handle_death_anim("death", "move")
+
+func reached_checkpoint(checkpoint_num: int) -> void:
+	if (checkpoint_num > main.checkpoint_num):
+		main.checkpoint_num = checkpoint_num
+
+func collect_donut() -> void:
+	main.donuts += 1
+	level.update_donuts_label()
+
+func _on_up_check_body_entered(body: Node2D) -> void:
+	if (can_check_up):
+		if (body.has_method("player_hit")):
+			body.player_hit(self)
+			can_check_up = false
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if (anim_name == "normal_to_sandwich" or
+		anim_name == "sandwich_to_candy" or 
+		anim_name == "normal_to_candy"):
+			is_changing = false
+			Global.game_active = true
+
+func _on_move_player_animation_finished(anim_name: StringName) -> void:
+	if (anim_name == "move"):
+		if (main.lives > 0):
+			main.lives -= 1
+			main.donuts = 0
+			level.respawn()
+		else:
+			level.game_over()

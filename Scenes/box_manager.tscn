@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://u3b752tjrg7o"]
+
+[ext_resource type="Script" uid="uid://duv88ichcu18p" path="res://Scripts/box_manager.gd" id="1_bfkav"]
+
+[node name="BoxManager" type="Node2D" unique_id=1117362628]
+z_index = -1
+script = ExtResource("1_bfkav")

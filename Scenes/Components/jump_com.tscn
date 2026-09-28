@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bric1hanqaxov"]
+
+[ext_resource type="Script" uid="uid://blpmkwe0aayxd" path="res://Scripts/Components/jump_com.gd" id="1_q3q37"]
+
+[node name="JumpCom" type="Node" unique_id=433840986]
+script = ExtResource("1_q3q37")
