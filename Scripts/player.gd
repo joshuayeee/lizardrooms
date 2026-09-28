@@ -2,13 +2,15 @@ extends CharacterBody2D
 
 class_name Player
 
+signal player_loses()
+signal collected_donut()
+signal reached_checkpoint(checkpoint_num: int)
+
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var jump_com: JumpCom = $Components/JumpCom
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var anim_com: AnimCom = $Components/AnimCom
 
-var level: Level = null
-var main: Main = null
 var state: String = "normal"
 var can_check_up: bool = true
 var is_alive: bool = true
@@ -56,13 +58,11 @@ func handle_death() -> void:
 	Global.game_active = false
 	anim_com.handle_death_anim("death", "move")
 
-func reached_checkpoint(checkpoint_num: int) -> void:
-	if (checkpoint_num > main.checkpoint_num):
-		main.checkpoint_num = checkpoint_num
+func reach_checkpoint(checkpoint_num: int) -> void:
+	reached_checkpoint.emit(checkpoint_num)
 
 func collect_donut() -> void:
-	main.donuts += 1
-	level.update_donuts_label()
+	collected_donut.emit()
 
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):
@@ -79,9 +79,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_move_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "move"):
-		if (main.lives > 0):
-			main.lives -= 1
-			main.donuts = 0
-			level.respawn()
-		else:
-			level.game_over()
+		player_loses.emit()

@@ -57,7 +57,8 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_8ckqi")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_jh5pk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2e4j"]
+size = Vector2(12657, 214)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(48, 632)
@@ -235,7 +236,8 @@ position = Vector2(2888, -104)
 position = Vector2(0, 320)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=1063298386]
-shape = SubResource("WorldBoundaryShape2D_jh5pk")
+position = Vector2(4328.5, 97)
+shape = SubResource("RectangleShape2D_m2e4j")
 
 [node name="CheckpointManager" parent="." unique_id=833493036 instance=ExtResource("12_6pj2d")]
 
@@ -327,7 +329,6 @@ vertical_alignment = 1
 
 [node name="BackLayer" type="CanvasLayer" parent="." unique_id=1698670166]
 layer = -2
-visible = false
 follow_viewport_enabled = true
 
 [node name="Background" type="TileMapLayer" parent="BackLayer" unique_id=472343877]

@@ -6,4 +6,4 @@ class_name Checkpoint
 var my_num: int = 0
 
 func _on_body_entered(body: Player) -> void:
-	body.reached_checkpoint(my_num)
+	body.reach_checkpoint(my_num)

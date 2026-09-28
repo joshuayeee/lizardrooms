@@ -21,7 +21,10 @@ func _ready() -> void:
 	var spawn_point: Marker2D = checkpoint.spawn_point
 	
 	var player: Player = spawn_player(spawn_point)
+	
 	spawn_cam(spawn_point, player)
+	main.connect_player_signals(player)
+	player.collected_donut.connect(update_donuts_label)
 	
 	update_lives_label()
 	update_donuts_label()
@@ -29,8 +32,6 @@ func _ready() -> void:
 func spawn_player(spawn_point: Marker2D) -> Player:
 	var player: Player = PLAYER.instantiate()
 	player.global_position = spawn_point.global_position
-	player.main = main
-	player.level = self
 	add_child(player)
 	return player
 

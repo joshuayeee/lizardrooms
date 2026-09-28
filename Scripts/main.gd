@@ -53,6 +53,28 @@ func reset_stats() -> void:
 	donuts = 0
 	checkpoint_num = 0
 
+func connect_player_signals(player: Player) -> void:
+	player.collected_donut.connect(player_collected_donut)
+	player.player_loses.connect(handle_player_loss)
+	player.reached_checkpoint.connect(player_reached_checkpoint)
+
+func player_collected_donut() -> void:
+	donuts += 1
+
+func handle_player_loss() -> void:
+	lives -= 1
+	
+	if (lives < 0):
+		screen.game_over()
+		reset_stats()
+	else:
+		screen.respawn()
+		donuts = 0
+
+func player_reached_checkpoint(my_num: int) -> void:
+	if (my_num > checkpoint_num):
+		checkpoint_num = my_num
+
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_pressed("quit")):
 		get_tree().quit()
