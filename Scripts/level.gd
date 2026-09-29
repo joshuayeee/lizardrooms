@@ -5,6 +5,10 @@ class_name Level
 const PLAYER = preload("uid://b7nu3em0ku77g")
 const CAM = preload("uid://caj7fxc0ctv5a")
 
+@export var front_layer: CanvasLayer = null
+@export var mid_layer: CanvasLayer = null
+@export var UI_layer: CanvasLayer = null
+@export var back_layer: CanvasLayer = null
 @export var checkpoint_manager: CheckpointManager = null
 @export var cam_point_manager: CamPointManager = null
 @export var lives_label: Label = null
@@ -26,6 +30,7 @@ func _ready() -> void:
 	player = spawn_player(spawn_point)
 	player.player_entered.connect(handle_player_enter)
 	player.player_returned.connect(handle_player_return)
+	player.request_layer_change.connect(change_player_layer)
 
 	cam = spawn_cam(spawn_point, player)
 	cam_point_manager.connect_points_to_cam(cam)
@@ -37,7 +42,7 @@ func _ready() -> void:
 func spawn_player(spawn_point: Marker2D) -> Player:
 	var new_player: Player = PLAYER.instantiate()
 	new_player.global_position = spawn_point.global_position
-	add_child(new_player)
+	front_layer.add_child(new_player)
 	return new_player
 
 func spawn_cam(spawn_point: Marker2D, target: Node2D) -> Cam:
@@ -45,7 +50,7 @@ func spawn_cam(spawn_point: Marker2D, target: Node2D) -> Cam:
 	new_cam.global_position.x = spawn_point.global_position.x
 	new_cam.global_position.y = 0.0
 	new_cam.target = target
-	add_child(new_cam)
+	front_layer.add_child(new_cam)
 	return new_cam
 
 func respawn() -> void:
@@ -66,7 +71,7 @@ func handle_player_enter(false_wall_exit: FalseWallExit,
 	cam.global_position = special_cam_point.global_position
 	cam.target = special_cam_point
 	player.is_entering = false
-	player.z_index = 0
+	change_player_layer("front")
 	Global.game_active = true
 
 func handle_player_return(false_wall_exit: FalseWallExit) -> void:
@@ -74,6 +79,15 @@ func handle_player_return(false_wall_exit: FalseWallExit) -> void:
 	cam.reset_y_pos()
 	cam.target = player
 	player.is_entering = false
-	player.z_index = 0
+	change_player_layer("front")
 	player.returning = false
 	Global.game_active = true
+
+func change_player_layer(layer_name: String) -> void:
+	match layer_name:
+		"front":
+			player.reparent(front_layer)
+		"mid":
+			player.reparent(mid_layer)
+		"back":
+			player.reparent(back_layer)

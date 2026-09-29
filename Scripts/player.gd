@@ -7,6 +7,7 @@ signal collected_donut()
 signal reached_checkpoint(checkpoint_num: int)
 signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: SpecialCamPoint)
 signal player_returned(false_wall_exit: FalseWallExit)
+signal request_layer_change(layer_name: String)
 
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var jump_com: JumpCom = $Components/JumpCom
@@ -23,6 +24,8 @@ var enter_dir: String = ""
 var false_wall_exit: FalseWallExit = null
 var special_cam_point: SpecialCamPoint = null
 var returning: bool = false
+var enter_pos_x: float = 0.0
+var enter_pos_y: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
@@ -88,15 +91,19 @@ func collect_donut() -> void:
 	collected_donut.emit()
 
 func enter_false_wall() -> void:
-	z_index = -2
+	request_layer_change.emit("back")
 	match enter_dir:
 		"right":
+			global_position.y = enter_pos_y
 			anim_com.handle_enter_anim("enter_right")
 		"left":
+			global_position.y = enter_pos_y
 			anim_com.handle_enter_anim("enter_left")
 		"up":
+			global_position.x = enter_pos_x
 			anim_com.handle_enter_anim("enter_up")
 		"down":
+			global_position.x = enter_pos_x
 			anim_com.handle_enter_anim("enter_down")
 	Global.game_active = false
 	is_entering = true

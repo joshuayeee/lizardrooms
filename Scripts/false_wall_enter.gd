@@ -12,6 +12,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.can_enter = true
 		body.enter_dir = enter_dir
 		body.false_wall_exit = my_exit
+		body.enter_pos_x = global_position.x
+		body.enter_pos_y = global_position.y
 		if (is_returning):
 			body.returning = true
 		else:
