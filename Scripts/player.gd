@@ -5,6 +5,8 @@ class_name Player
 signal player_loses()
 signal collected_donut()
 signal reached_checkpoint(checkpoint_num: int)
+signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: SpecialCamPoint)
+signal player_returned(false_wall_exit: FalseWallExit)
 
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var jump_com: JumpCom = $Components/JumpCom
@@ -15,6 +17,12 @@ var state: String = "normal"
 var can_check_up: bool = true
 var is_alive: bool = true
 var is_changing: bool = false
+var is_entering: bool = false
+var can_enter: bool = false
+var enter_dir: String = ""
+var false_wall_exit: FalseWallExit = null
+var special_cam_point: SpecialCamPoint = null
+var returning: bool = false
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
@@ -30,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity = Vector2.ZERO
 	
-	if (not is_changing and is_alive):
+	if (not is_changing and is_alive and not is_entering):
 		anim_com.handle_animation(direction, 
 									not is_on_floor(), 
 									"%s_jump" % state, 
@@ -39,6 +47,21 @@ func _physics_process(delta: float) -> void:
 	
 	if (is_on_floor() and not can_check_up):
 		can_check_up = true
+	
+	if (can_enter and not is_entering):
+		match enter_dir:
+			"up":
+				if (Input.is_action_just_pressed("up")):
+					enter_false_wall()
+			"down":
+				if (Input.is_action_just_pressed("down")):
+					enter_false_wall()
+			"left":
+				if (Input.is_action_just_pressed("left")):
+					enter_false_wall()
+			"right":
+				if (Input.is_action_just_pressed("right")):
+					enter_false_wall()
 	
 	move_and_slide()
 
@@ -56,13 +79,27 @@ func change_state(new_state: String) -> void:
 func handle_death() -> void:
 	is_alive = false
 	Global.game_active = false
-	anim_com.handle_death_anim("death", "move")
+	anim_com.handle_death_anim("death", "death_move")
 
 func reach_checkpoint(checkpoint_num: int) -> void:
 	reached_checkpoint.emit(checkpoint_num)
 
 func collect_donut() -> void:
 	collected_donut.emit()
+
+func enter_false_wall() -> void:
+	z_index = -2
+	match enter_dir:
+		"right":
+			anim_com.handle_enter_anim("enter_right")
+		"left":
+			anim_com.handle_enter_anim("enter_left")
+		"up":
+			anim_com.handle_enter_anim("enter_up")
+		"down":
+			anim_com.handle_enter_anim("enter_down")
+	Global.game_active = false
+	is_entering = true
 
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):
@@ -78,5 +115,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			Global.game_active = true
 
 func _on_move_player_animation_finished(anim_name: StringName) -> void:
-	if (anim_name == "move"):
+	if (anim_name == "death_move"):
 		player_loses.emit()
+	elif (anim_name == "enter_left" or anim_name == "enter_right" or anim_name == "enter_up" or anim_name == "enter_down"):
+		if (returning):
+			player_returned.emit(false_wall_exit)
+		else:
+			player_entered.emit(false_wall_exit, special_cam_point)
+		anim_com.reset_move_player("idle")

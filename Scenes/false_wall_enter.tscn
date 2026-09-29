@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://btd5imykfj1hi"]
+
+[ext_resource type="Script" uid="uid://c7valp83kgrxk" path="res://Scripts/false_wall_enter.gd" id="1_ctbt0"]
+
+[node name="FalseWallEnter" type="Area2D" unique_id=1498129463]
+collision_layer = 512
+collision_mask = 3
+script = ExtResource("1_ctbt0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

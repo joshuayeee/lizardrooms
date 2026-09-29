@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dmdioky32x80"]
+
+[ext_resource type="Script" uid="uid://jm8aaim5aye5" path="res://Scripts/special_cam_point.gd" id="1_teq85"]
+
+[node name="SpecialCamPoint" type="Node2D" unique_id=429818604]
+script = ExtResource("1_teq85")

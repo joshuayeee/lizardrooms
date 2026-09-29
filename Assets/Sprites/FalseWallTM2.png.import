@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbhx8n86yfpbg"
-path="res://.godot/imported/FalseWallTM.png-2f09a4b65eefcd0db9600ed51226cd40.ctex"
+uid="uid://b2uqrq2a3xkm"
+path="res://.godot/imported/FalseWallTM2.png-315c7643f09f69482e95f729f14dced2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/FalseWallTM.png"
-dest_files=["res://.godot/imported/FalseWallTM.png-2f09a4b65eefcd0db9600ed51226cd40.ctex"]
+source_file="res://Assets/Sprites/FalseWallTM2.png"
+dest_files=["res://.godot/imported/FalseWallTM2.png-315c7643f09f69482e95f729f14dced2.ctex"]
 
 [params]
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://w8y1c1amfjx"]
+
+[ext_resource type="Script" uid="uid://blqpspaq227qp" path="res://Scripts/false_wall_exit.gd" id="1_nmhss"]
+
+[node name="FalseWallExit" type="Node2D" unique_id=447624880]
+script = ExtResource("1_nmhss")

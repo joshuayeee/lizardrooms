@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://5hsfrellc33k"]
+
+[ext_resource type="Script" uid="uid://duxchxgyah65j" path="res://Scripts/cam_point.gd" id="1_0ujox"]
+
+[node name="CamPoint" type="Node2D" unique_id=502227513]
+script = ExtResource("1_0ujox")
