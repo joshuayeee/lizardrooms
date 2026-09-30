@@ -5,8 +5,9 @@ class_name SpecialBox
 const DONUT = preload("uid://grdglvdkkcx")
 const SANDWICH = preload("uid://bvdjxn5x33uwa")
 const CANDY = preload("uid://bqisoxfiesbp6")
+const HEART = preload("uid://cllnwd3ojlofg")
 
-enum Contains {DONUT, ITEM, CUPCAKE}
+enum Contains {DONUT, ITEM, HEART, CUPCAKE}
 @export var contains: Contains
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -35,6 +36,10 @@ func player_hit(player: Player) -> void:
 					var candy: Candy = CANDY.instantiate()
 					candy.global_position = spawn_point.global_position
 					item_manager.spawn_item_back(candy)
+			Contains.HEART:
+				var heart: Heart = HEART.instantiate()
+				heart.global_position = spawn_point.global_position
+				item_manager.spawn_item_back(heart)
 			Contains.CUPCAKE:
 				pass
 		move_player.play("move")

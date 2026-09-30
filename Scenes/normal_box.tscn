@@ -119,6 +119,7 @@ _data = {
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_aven3")
+contains = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1868328850]
 scale = Vector2(4, 4)
@@ -135,5 +136,8 @@ autoplay = &"normal"
 [node name="MovePlayer" type="AnimationPlayer" parent="." unique_id=583246783]
 libraries/ = SubResource("AnimationLibrary_f2gmg")
 autoplay = &"idle"
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=1674123611]
+position = Vector2(0, -36)
 
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]

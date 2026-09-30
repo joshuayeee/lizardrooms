@@ -658,6 +658,7 @@ item_manager = NodePath("../../FrontLayer/ItemManager")
 
 [node name="NormalBox" parent="MidLayer/BoxManager" unique_id=171369096 instance=ExtResource("6_2es5b")]
 position = Vector2(272, 0)
+contains = 0
 
 [node name="SpecialBox" parent="MidLayer/BoxManager" unique_id=1586926890 instance=ExtResource("7_su1xx")]
 position = Vector2(304, 0)
@@ -675,63 +676,83 @@ contains = 1
 
 [node name="NormalBox2" parent="MidLayer/BoxManager" unique_id=152387530 instance=ExtResource("6_2es5b")]
 position = Vector2(336, 0)
+contains = 0
 
 [node name="NormalBox3" parent="MidLayer/BoxManager" unique_id=1361764589 instance=ExtResource("6_2es5b")]
 position = Vector2(336, -80)
+contains = 0
 
 [node name="NormalBox4" parent="MidLayer/BoxManager" unique_id=944500328 instance=ExtResource("6_2es5b")]
 position = Vector2(400, -80)
+contains = 0
 
 [node name="NormalBox5" parent="MidLayer/BoxManager" unique_id=1259061766 instance=ExtResource("6_2es5b")]
 position = Vector2(464, 0)
+contains = 0
 
 [node name="NormalBox6" parent="MidLayer/BoxManager" unique_id=828969944 instance=ExtResource("6_2es5b")]
 position = Vector2(400, 0)
+contains = 0
 
 [node name="NormalBox7" parent="MidLayer/BoxManager" unique_id=248568207 instance=ExtResource("6_2es5b")]
 position = Vector2(2448, -64)
+contains = 0
 
 [node name="NormalBox8" parent="MidLayer/BoxManager" unique_id=251031032 instance=ExtResource("6_2es5b")]
 position = Vector2(2480, -64)
+contains = 0
 
 [node name="NormalBox9" parent="MidLayer/BoxManager" unique_id=670731689 instance=ExtResource("6_2es5b")]
 position = Vector2(2512, -64)
+contains = 0
 
 [node name="NormalBox10" parent="MidLayer/BoxManager" unique_id=1375164079 instance=ExtResource("6_2es5b")]
 position = Vector2(2544, -64)
+contains = 0
 
 [node name="NormalBox11" parent="MidLayer/BoxManager" unique_id=1776597092 instance=ExtResource("6_2es5b")]
 position = Vector2(2576, -64)
+contains = 0
 
 [node name="NormalBox12" parent="MidLayer/BoxManager" unique_id=1120132428 instance=ExtResource("6_2es5b")]
 position = Vector2(2608, -64)
+contains = 0
 
 [node name="NormalBox13" parent="MidLayer/BoxManager" unique_id=1682088294 instance=ExtResource("6_2es5b")]
 position = Vector2(2640, -64)
+contains = 0
 
 [node name="NormalBox14" parent="MidLayer/BoxManager" unique_id=1815030892 instance=ExtResource("6_2es5b")]
 position = Vector2(2672, -64)
+contains = 0
 
 [node name="NormalBox15" parent="MidLayer/BoxManager" unique_id=1761534719 instance=ExtResource("6_2es5b")]
 position = Vector2(2704, -64)
+contains = 0
 
 [node name="NormalBox16" parent="MidLayer/BoxManager" unique_id=279276428 instance=ExtResource("6_2es5b")]
 position = Vector2(2736, -64)
+contains = 0
 
 [node name="NormalBox17" parent="MidLayer/BoxManager" unique_id=554446086 instance=ExtResource("6_2es5b")]
 position = Vector2(2768, -64)
+contains = 0
 
 [node name="NormalBox18" parent="MidLayer/BoxManager" unique_id=1395036703 instance=ExtResource("6_2es5b")]
 position = Vector2(2800, -64)
+contains = 0
 
 [node name="NormalBox19" parent="MidLayer/BoxManager" unique_id=1540841805 instance=ExtResource("6_2es5b")]
 position = Vector2(2832, -64)
+contains = 0
 
 [node name="NormalBox20" parent="MidLayer/BoxManager" unique_id=1932673139 instance=ExtResource("6_2es5b")]
 position = Vector2(2864, -64)
+contains = 0
 
 [node name="NormalBox21" parent="MidLayer/BoxManager" unique_id=405114981 instance=ExtResource("6_2es5b")]
 position = Vector2(2896, -64)
+contains = 0
 
 [node name="EmptyBox" parent="MidLayer/BoxManager" unique_id=1477478737 instance=ExtResource("5_7qsxt")]
 position = Vector2(1424, 1008)
@@ -777,37 +798,46 @@ position = Vector2(1616, 976)
 
 [node name="NormalBox22" parent="MidLayer/BoxManager" unique_id=908852081 instance=ExtResource("6_2es5b")]
 position = Vector2(4224, -72)
+contains = 0
 
 [node name="NormalBox23" parent="MidLayer/BoxManager" unique_id=1874947189 instance=ExtResource("6_2es5b")]
 position = Vector2(4256, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox24" parent="MidLayer/BoxManager" unique_id=1035479153 instance=ExtResource("6_2es5b")]
 position = Vector2(4288, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox25" parent="MidLayer/BoxManager" unique_id=1812200804 instance=ExtResource("6_2es5b")]
 position = Vector2(4320, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox26" parent="MidLayer/BoxManager" unique_id=491629744 instance=ExtResource("6_2es5b")]
 position = Vector2(4352, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox27" parent="MidLayer/BoxManager" unique_id=47537278 instance=ExtResource("6_2es5b")]
 position = Vector2(4384, -72)
+contains = 3
 metadata/_scene_painted = true
 
 [node name="NormalBox28" parent="MidLayer/BoxManager" unique_id=1227430399 instance=ExtResource("6_2es5b")]
 position = Vector2(4416, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox29" parent="MidLayer/BoxManager" unique_id=1817616040 instance=ExtResource("6_2es5b")]
 position = Vector2(4448, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox30" parent="MidLayer/BoxManager" unique_id=1240893064 instance=ExtResource("6_2es5b")]
 position = Vector2(4480, -72)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="SpecialBox5" parent="MidLayer/BoxManager" unique_id=204022151 instance=ExtResource("7_su1xx")]
@@ -840,18 +870,22 @@ metadata/_scene_painted = true
 
 [node name="NormalBox31" parent="MidLayer/BoxManager" unique_id=601674262 instance=ExtResource("6_2es5b")]
 position = Vector2(3560, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox32" parent="MidLayer/BoxManager" unique_id=2022425479 instance=ExtResource("6_2es5b")]
 position = Vector2(3624, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox33" parent="MidLayer/BoxManager" unique_id=251858160 instance=ExtResource("6_2es5b")]
 position = Vector2(3792, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox34" parent="MidLayer/BoxManager" unique_id=340831640 instance=ExtResource("6_2es5b")]
 position = Vector2(3856, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="EmptyBox15" parent="MidLayer/BoxManager" unique_id=738478755 instance=ExtResource("5_7qsxt")]
@@ -1072,18 +1106,22 @@ metadata/_scene_painted = true
 
 [node name="NormalBox35" parent="MidLayer/BoxManager" unique_id=1449663776 instance=ExtResource("6_2es5b")]
 position = Vector2(8176, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox36" parent="MidLayer/BoxManager" unique_id=290763213 instance=ExtResource("6_2es5b")]
 position = Vector2(8208, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox37" parent="MidLayer/BoxManager" unique_id=1969167325 instance=ExtResource("6_2es5b")]
 position = Vector2(8240, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox38" parent="MidLayer/BoxManager" unique_id=1714257750 instance=ExtResource("6_2es5b")]
 position = Vector2(8272, -8)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="EmptyBox51" parent="MidLayer/BoxManager" unique_id=679400131 instance=ExtResource("5_7qsxt")]
@@ -1312,14 +1350,17 @@ metadata/_scene_painted = true
 
 [node name="NormalBox39" parent="MidLayer/BoxManager" unique_id=2114399621 instance=ExtResource("6_2es5b")]
 position = Vector2(4800, 48)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox40" parent="MidLayer/BoxManager" unique_id=810961779 instance=ExtResource("6_2es5b")]
 position = Vector2(4864, 48)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox41" parent="MidLayer/BoxManager" unique_id=1525533356 instance=ExtResource("6_2es5b")]
 position = Vector2(4928, 48)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="SpecialBox30" parent="MidLayer/BoxManager" unique_id=1561076578 instance=ExtResource("7_su1xx")]
@@ -1340,30 +1381,37 @@ metadata/_scene_painted = true
 
 [node name="NormalBox42" parent="MidLayer/BoxManager" unique_id=297494828 instance=ExtResource("6_2es5b")]
 position = Vector2(5440, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox43" parent="MidLayer/BoxManager" unique_id=342584676 instance=ExtResource("6_2es5b")]
 position = Vector2(5504, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox44" parent="MidLayer/BoxManager" unique_id=7800866 instance=ExtResource("6_2es5b")]
 position = Vector2(5568, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox45" parent="MidLayer/BoxManager" unique_id=1625512022 instance=ExtResource("6_2es5b")]
 position = Vector2(6368, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox46" parent="MidLayer/BoxManager" unique_id=1775134133 instance=ExtResource("6_2es5b")]
 position = Vector2(6400, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox47" parent="MidLayer/BoxManager" unique_id=1788084183 instance=ExtResource("6_2es5b")]
 position = Vector2(6432, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="NormalBox48" parent="MidLayer/BoxManager" unique_id=237270287 instance=ExtResource("6_2es5b")]
 position = Vector2(6464, 56)
+contains = 0
 metadata/_scene_painted = true
 
 [node name="EmptyBox111" parent="MidLayer/BoxManager" unique_id=867378330 instance=ExtResource("5_7qsxt")]

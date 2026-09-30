@@ -4,6 +4,7 @@ class_name Player
 
 signal player_loses()
 signal collected_donut()
+signal collected_heart()
 signal reached_checkpoint(checkpoint_num: int)
 signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: SpecialCamPoint)
 signal player_returned(false_wall_exit: FalseWallExit)
@@ -89,6 +90,9 @@ func reach_checkpoint(checkpoint_num: int) -> void:
 
 func collect_donut() -> void:
 	collected_donut.emit()
+
+func collect_heart() -> void:
+	collected_heart.emit()
 
 func enter_false_wall() -> void:
 	request_layer_change.emit("back")

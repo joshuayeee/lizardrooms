@@ -63,12 +63,17 @@ func reset_stats() -> void:
 
 func connect_player_signals(player: Player) -> void:
 	player.collected_donut.connect(player_collected_donut)
+	player.collected_heart.connect(player_collected_heart)
 	player.player_loses.connect(handle_player_loss)
 	player.reached_checkpoint.connect(player_reached_checkpoint)
 
 func player_collected_donut() -> void:
 	donuts += 1
 	screen.update_donuts_label(donuts)
+
+func player_collected_heart() -> void:
+	lives += 1
+	screen.update_lives_label(lives)
 
 func handle_player_loss() -> void:
 	lives -= 1

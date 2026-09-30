@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cllnwd3ojlofg"]
+
+[ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="1_452e1"]
+[ext_resource type="Script" uid="uid://x1xoo8cb4omu" path="res://Scripts/heart.gd" id="1_jgxw8"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="3_rycqq"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="4_6wkup"]
+[ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="5_t623b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(40, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(40, 36)
+
+[node name="Heart" type="CharacterBody2D" unique_id=311840098]
+collision_layer = 32
+collision_mask = 524
+script = ExtResource("1_jgxw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=670771545]
+scale = Vector2(4, 4)
+texture = ExtResource("1_452e1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901610857]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1587187518]
+collision_layer = 32
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=613738186]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="Components" type="Node" parent="." unique_id=1622553593]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("3_rycqq")]
+body = NodePath("../..")
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("4_6wkup")]
+body = NodePath("../..")
+walk_speed = 100.0
+run_speed = 100.0
+acc = 1.0
+dec = 1.0
+
+[node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("5_t623b")]
+body = NodePath("../..")
+jump_velocity = -500.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
