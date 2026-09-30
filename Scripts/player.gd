@@ -14,6 +14,8 @@ signal request_layer_change(layer_name: String)
 @onready var jump_com: JumpCom = $Components/JumpCom
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var anim_com: AnimCom = $Components/AnimCom
+@onready var hurt_timer: Timer = $HurtTimer
+@onready var blink_player: AnimationPlayer = $BlinkPlayer
 
 var state: String = "normal"
 var can_check_up: bool = true
@@ -27,6 +29,7 @@ var special_cam_point: SpecialCamPoint = null
 var returning: bool = false
 var enter_pos_x: float = 0.0
 var enter_pos_y: float = 0.0
+var was_hurt: bool = false
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
@@ -112,6 +115,24 @@ func enter_false_wall() -> void:
 	Global.game_active = false
 	is_entering = true
 
+func hurt() -> void:
+	if (state == "normal"):
+		handle_death()
+	else:
+		was_hurt = true
+		change_state("normal")
+
+func turn_on_hurt_invincible() -> void:
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(1, true)
+	blink_player.play("blink")
+	hurt_timer.start()
+
+func turn_off_invincible() -> void:
+	set_collision_layer_value(2, true)
+	set_collision_layer_value(1, false)
+	blink_player.play("normal")
+
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):
 		if (body.has_method("player_hit")):
@@ -124,6 +145,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		anim_name == "normal_to_candy"):
 			is_changing = false
 			Global.game_active = true
+			
+			if (was_hurt):
+				turn_on_hurt_invincible()
+				was_hurt = false
 
 func _on_move_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "death_move"):
@@ -134,3 +159,12 @@ func _on_move_player_animation_finished(anim_name: StringName) -> void:
 		else:
 			player_entered.emit(false_wall_exit, special_cam_point)
 		anim_com.reset_move_player("idle")
+
+func _on_down_check_body_entered(body: Node2D) -> void:
+	if (body is Enemy):
+		if (not is_on_floor() and velocity.y > 0):
+			jump_com.handle_jump(true)
+			body.hurt()
+
+func _on_hurt_timer_timeout() -> void:
+	turn_off_invincible()

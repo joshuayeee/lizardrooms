@@ -12,8 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dfvd6j0w4cv5o" path="res://Scenes/death_zone.tscn" id="11_8ckqi"]
 [ext_resource type="PackedScene" uid="uid://dplupq4ss4nl5" path="res://Scenes/checkpoint_manager.tscn" id="12_6pj2d"]
 [ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="12_lti81"]
+[ext_resource type="PackedScene" uid="uid://cuvexbipavqsp" path="res://Scenes/enemy_manager.tscn" id="12_nnq4h"]
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="13_6pj2d"]
 [ext_resource type="PackedScene" uid="uid://475khr4qaep2" path="res://Scenes/checkpoint.tscn" id="13_m2e4j"]
+[ext_resource type="PackedScene" uid="uid://c8v2f33j51nvl" path="res://Scenes/stubby.tscn" id="13_rv287"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="13_wq0x4"]
 [ext_resource type="Texture2D" uid="uid://b2uqrq2a3xkm" path="res://Assets/Sprites/FalseWallTM2.png" id="15_wq0x4"]
 [ext_resource type="PackedScene" uid="uid://btd5imykfj1hi" path="res://Scenes/false_wall_enter.tscn" id="16_0yvpb"]
@@ -573,6 +575,11 @@ metadata/_scene_painted = true
 [node name="Donut91" parent="FrontLayer/DonutManager" unique_id=1342334032 instance=ExtResource("8_2es5b")]
 position = Vector2(8600, -16)
 metadata/_scene_painted = true
+
+[node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("12_nnq4h")]
+
+[node name="Stubby" parent="FrontLayer/EnemyManager" unique_id=951115331 instance=ExtResource("13_rv287")]
+position = Vector2(992, 0)
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
 layer = 0

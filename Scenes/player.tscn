@@ -398,6 +398,61 @@ _data = {
 &"idle": SubResource("Animation_fd4e3")
 }
 
+[sub_resource type="Animation" id="Animation_wpjfl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_bi64h"]
+resource_name = "blink"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_2ijsl"]
+resource_name = "normal"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p1odr"]
+_data = {
+&"RESET": SubResource("Animation_wpjfl"),
+&"blink": SubResource("Animation_bi64h"),
+&"normal": SubResource("Animation_2ijsl")
+}
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
 radius = 7.0
 height = 40.0
@@ -429,6 +484,9 @@ autoplay = &"normal_idle"
 libraries/ = SubResource("AnimationLibrary_qqcod")
 autoplay = &"idle"
 
+[node name="BlinkPlayer" type="AnimationPlayer" parent="." unique_id=1412417555]
+libraries/ = SubResource("AnimationLibrary_p1odr")
+
 [node name="UpCheck" type="Area2D" parent="." unique_id=962002445]
 collision_layer = 2
 collision_mask = 8
@@ -439,11 +497,15 @@ shape = SubResource("CapsuleShape2D_ydotr")
 
 [node name="DownCheck" type="Area2D" parent="." unique_id=1922745485]
 collision_layer = 2
-collision_mask = 0
+collision_mask = 1024
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DownCheck" unique_id=1881785168]
 position = Vector2(0, 13)
 shape = SubResource("CapsuleShape2D_3gji2")
+
+[node name="HurtTimer" type="Timer" parent="." unique_id=58607749]
+wait_time = 10.0
+one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=1656433539]
 
@@ -470,3 +532,5 @@ move_player = NodePath("../../MovePlayer")
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]
 [connection signal="body_entered" from="UpCheck" to="." method="_on_up_check_body_entered"]
+[connection signal="body_entered" from="DownCheck" to="." method="_on_down_check_body_entered"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
