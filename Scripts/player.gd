@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Player
 
+const JAWBREAKER = preload("uid://bcln7bcxc0shr")
+
 signal player_loses()
 signal collected_donut()
 signal collected_heart()
@@ -10,6 +12,7 @@ signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: Special
 signal player_returned(false_wall_exit: FalseWallExit)
 signal request_layer_change(layer_name: String)
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var jump_com: JumpCom = $Components/JumpCom
 @onready var gravity_com: GravityCom = $Components/GravityCom
@@ -30,6 +33,8 @@ var returning: bool = false
 var enter_pos_x: float = 0.0
 var enter_pos_y: float = 0.0
 var was_hurt: bool = false
+var jawbreaker_manager: JawbreakerManager = null
+var can_shoot: bool = true
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
@@ -41,7 +46,11 @@ func _physics_process(delta: float) -> void:
 		
 		move_com.handle_speed_change(Input.is_action_pressed("run"))
 		
-		move_com.handle_move(direction)
+		move_com.handle_hori_move(direction)
+		
+		if (state == "candy"):
+			if (Input.is_action_just_pressed("run") and can_shoot):
+				shoot_jawbreaker()
 	else:
 		velocity = Vector2.ZERO
 	
@@ -132,6 +141,23 @@ func turn_off_invincible() -> void:
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(1, false)
 	blink_player.play("normal")
+
+func shoot_jawbreaker() -> void:
+	if (jawbreaker_manager != null):
+		var jawbreaker: Jawbreaker = JAWBREAKER.instantiate()
+		jawbreaker.global_position = global_position
+		
+		if (sprite_2d.flip_h):
+			jawbreaker.x_dir = -1.0
+		else:
+			jawbreaker.x_dir = 1.0
+			
+		jawbreaker.destroyed.connect(jawbreaker_destroyed)
+		jawbreaker_manager.add_child(jawbreaker)
+		can_shoot = false
+
+func jawbreaker_destroyed() -> void:
+	can_shoot = true
 
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):

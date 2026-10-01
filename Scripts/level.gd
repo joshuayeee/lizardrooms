@@ -11,6 +11,7 @@ const CAM = preload("uid://caj7fxc0ctv5a")
 @export var back_layer: CanvasLayer = null
 @export var checkpoint_manager: CheckpointManager = null
 @export var cam_point_manager: CamPointManager = null
+@export var jawbreaker_manager: JawbreakerManager = null
 @export var lives_label: Label = null
 @export var donuts_label: Label = null
 
@@ -42,6 +43,7 @@ func _ready() -> void:
 func spawn_player(spawn_point: Marker2D) -> Player:
 	var new_player: Player = PLAYER.instantiate()
 	new_player.global_position = spawn_point.global_position
+	new_player.jawbreaker_manager = jawbreaker_manager
 	front_layer.add_child(new_player)
 	return new_player
 

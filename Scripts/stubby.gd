@@ -13,7 +13,7 @@ var is_active: bool = false
 func _physics_process(delta: float) -> void:
 	if (Global.game_active and is_active):
 		gravity_com.handle_gravity(delta)
-		move_com.handle_move(direction)
+		move_com.handle_hori_move(direction)
 		anim_com.handle_animation(direction,
 							not is_on_floor(),
 							"idle",
@@ -27,6 +27,9 @@ func _physics_process(delta: float) -> void:
 func hurt() -> void:
 	is_active = false
 	animation_player.play("death")
+
+func hit_by_jawbreaker() -> void:
+	queue_free()
 
 func _on_left_check_body_entered(_body: Node2D) -> void:
 	if (direction < 0):

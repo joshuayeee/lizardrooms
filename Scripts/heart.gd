@@ -10,7 +10,7 @@ var direction: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	gravity_com.handle_gravity(delta)
-	move_com.handle_move(direction)
+	move_com.handle_hori_move(direction)
 	jump_com.handle_jump(is_on_floor())
 	move_and_slide()
 

@@ -10,11 +10,17 @@ class_name MoveCom
 
 @onready var speed: float = walk_speed
 
-func handle_move(direction: float) -> void:
-	if direction:
-		body.velocity.x = move_toward(body.velocity.x, direction * speed, speed * acc)
+func handle_hori_move(x_dir: float) -> void:
+	if x_dir:
+		body.velocity.x = move_toward(body.velocity.x, x_dir * speed, speed * acc)
 	else:
 		body.velocity.x = move_toward(body.velocity.x, 0, speed * dec)
+
+func handle_vert_move(y_dir: float) -> void:
+	if y_dir:
+		body.velocity.y = move_toward(body.velocity.y, y_dir * speed, speed * acc)
+	else:
+		body.velocity.y = move_toward(body.velocity.y, 0, speed * dec)
 
 func handle_speed_change(query: bool) -> void:
 	if (query):

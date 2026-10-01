@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://wsvmq4k5ym0b"]
+
+[ext_resource type="Script" uid="uid://ccxl4toggyp3f" path="res://Scripts/jawbreaker_manager.gd" id="1_epadt"]
+
+[node name="JawbreakerManager" type="Node2D" unique_id=1158831527]
+script = ExtResource("1_epadt")

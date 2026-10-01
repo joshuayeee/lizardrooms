@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://bcln7bcxc0shr"]
+
+[ext_resource type="Texture2D" uid="uid://qj0tf3v542xs" path="res://Assets/Sprites/Jawbreaker.png" id="1_4k6by"]
+[ext_resource type="Script" uid="uid://cq1am7ovhrpgp" path="res://Scripts/jawbreaker.gd" id="1_vw3hw"]
+[ext_resource type="Script" uid="uid://bclth0n42rvjc" path="res://Scripts/Components/move_com.gd" id="3_6ebk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
+size = Vector2(22, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
+size = Vector2(22, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbytq"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5iox7"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3m8r"]
+size = Vector2(24, 24)
+
+[node name="Jawbreaker" type="CharacterBody2D" unique_id=964811372]
+collision_layer = 2048
+collision_mask = 524
+script = ExtResource("1_vw3hw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=126615400]
+scale = Vector2(4, 4)
+texture = ExtResource("1_4k6by")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=850961937]
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="CheckUp" type="Area2D" parent="." unique_id=1585417302]
+collision_layer = 2048
+collision_mask = 524
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp" unique_id=317247295]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="CheckDown" type="Area2D" parent="." unique_id=327944744]
+collision_layer = 2048
+collision_mask = 524
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown" unique_id=668749136]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_gsddi")
+
+[node name="CheckLeft" type="Area2D" parent="." unique_id=1793434159]
+collision_layer = 2048
+collision_mask = 524
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft" unique_id=117773727]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_mbytq")
+
+[node name="CheckRight" type="Area2D" parent="." unique_id=437567377]
+collision_layer = 2048
+collision_mask = 524
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight" unique_id=93838924]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_5iox7")
+
+[node name="EnemyCheck" type="Area2D" parent="." unique_id=381134144]
+collision_layer = 2048
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyCheck" unique_id=1167999034]
+shape = SubResource("RectangleShape2D_d3m8r")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1568880641]
+rect = Rect2(-12, -12, 24, 24)
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=150792194]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="Components" type="Node" parent="." unique_id=1696143604]
+
+[node name="MoveCom" type="Node" parent="Components" unique_id=1377890379 node_paths=PackedStringArray("body")]
+script = ExtResource("3_6ebk5")
+body = NodePath("../..")
+walk_speed = 400.0
+run_speed = 400.0
+acc = 1.0
+dec = 1.0
+metadata/_custom_type_script = "uid://bclth0n42rvjc"
+
+[connection signal="body_entered" from="CheckUp" to="." method="_on_check_up_body_entered"]
+[connection signal="body_entered" from="CheckDown" to="." method="_on_check_down_body_entered"]
+[connection signal="body_entered" from="CheckLeft" to="." method="_on_check_left_body_entered"]
+[connection signal="body_entered" from="CheckRight" to="." method="_on_check_right_body_entered"]
+[connection signal="body_entered" from="EnemyCheck" to="." method="_on_enemy_check_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

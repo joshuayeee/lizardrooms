@@ -10,7 +10,6 @@ var lives: int = 2
 var donuts: int = 0
 var checkpoint_num: int = 0
 
-
 func _ready() -> void:
 	load_screen("title_screen")
 

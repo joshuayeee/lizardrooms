@@ -79,6 +79,7 @@ down={
 2d_physics/layer_9="Checkpoint"
 2d_physics/layer_10="FalseWall"
 2d_physics/layer_11="Enemy"
+2d_physics/layer_12="Jawbreaker"
 
 [physics]
 
