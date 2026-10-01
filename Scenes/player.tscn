@@ -507,6 +507,10 @@ shape = SubResource("CapsuleShape2D_3gji2")
 wait_time = 2.0
 one_shot = true
 
+[node name="CupcakeTimer" type="Timer" parent="." unique_id=1500767845]
+wait_time = 10.0
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1656433539]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_6t5aa")]
@@ -534,3 +538,4 @@ move_player = NodePath("../../MovePlayer")
 [connection signal="body_entered" from="UpCheck" to="." method="_on_up_check_body_entered"]
 [connection signal="body_entered" from="DownCheck" to="." method="_on_down_check_body_entered"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="CupcakeTimer" to="." method="_on_cupcake_timer_timeout"]

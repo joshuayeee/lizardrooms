@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://kp1omc8ktlfw"]
+
+[ext_resource type="Texture2D" uid="uid://dodqw1nngiguv" path="res://Assets/Sprites/Cupcake.png" id="1_1cnv5"]
+[ext_resource type="Script" uid="uid://8gm2x6417peo" path="res://Scripts/cupcake.gd" id="1_32spg"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="2_d0kdr"]
+[ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="3_32spg"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="4_ixs78"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(36, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(36, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d0kdr"]
+size = Vector2(36, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32spg"]
+size = Vector2(36, 42)
+
+[node name="Cupcake" type="CharacterBody2D" unique_id=657141079]
+collision_layer = 32
+collision_mask = 524
+script = ExtResource("1_32spg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1832841765]
+scale = Vector2(4, 4)
+texture = ExtResource("1_1cnv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=259847434]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1566770803]
+collision_layer = 32
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=925724362]
+position = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=1911020788]
+collision_layer = 32
+collision_mask = 524
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=734498880]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_d0kdr")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=2116680406]
+collision_layer = 32
+collision_mask = 524
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=2008956745]
+position = Vector2(4, 2)
+shape = SubResource("RectangleShape2D_32spg")
+
+[node name="Components" type="Node" parent="." unique_id=432428682]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("2_d0kdr")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
+acc = 1.0
+dec = 1.0
+
+[node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("3_32spg")]
+body = NodePath("../..")
+jump_velocity = -400.0
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_ixs78")]
+body = NodePath("../..")
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
+[connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]

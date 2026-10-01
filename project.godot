@@ -23,7 +23,6 @@ Global="*uid://ckg5v6dihwtae"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
@@ -80,6 +79,7 @@ down={
 2d_physics/layer_10="FalseWall"
 2d_physics/layer_11="Enemy"
 2d_physics/layer_12="Jawbreaker"
+2d_physics/layer_13="CupcakePower"
 
 [physics]
 

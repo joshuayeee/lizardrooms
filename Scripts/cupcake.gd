@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
-class_name Heart
+class_name Cupcake
 
-@onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var jump_com: JumpCom = $Components/JumpCom
+@onready var gravity_com: GravityCom = $Components/GravityCom
 
 var direction: float = 1.0
 
@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
-		body.collect_heart()
+		body.collected_cupcake()
 		queue_free()
 
 func _on_left_check_body_entered(_body: Node2D) -> void:

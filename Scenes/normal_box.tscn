@@ -119,7 +119,6 @@ _data = {
 collision_layer = 8
 collision_mask = 3
 script = ExtResource("1_aven3")
-contains = null
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1868328850]
 scale = Vector2(4, 4)

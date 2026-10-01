@@ -6,6 +6,7 @@ const DONUT = preload("uid://grdglvdkkcx")
 const SANDWICH = preload("uid://bvdjxn5x33uwa")
 const CANDY = preload("uid://bqisoxfiesbp6")
 const HEART = preload("uid://cllnwd3ojlofg")
+const CUPCAKE = preload("uid://kp1omc8ktlfw")
 
 enum Contains {DONUT, ITEM, HEART, CUPCAKE}
 @export var contains: Contains
@@ -41,7 +42,9 @@ func player_hit(player: Player) -> void:
 				heart.global_position = spawn_point.global_position
 				item_manager.spawn_item_back(heart)
 			Contains.CUPCAKE:
-				pass
+				var cupcake: Cupcake = CUPCAKE.instantiate()
+				cupcake.global_position = spawn_point.global_position
+				item_manager.spawn_item_back(cupcake)
 		move_player.play("move")
 		animation_player.play("empty")
 		is_empty = true

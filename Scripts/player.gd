@@ -19,6 +19,7 @@ signal request_layer_change(layer_name: String)
 @onready var anim_com: AnimCom = $Components/AnimCom
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var blink_player: AnimationPlayer = $BlinkPlayer
+@onready var cupcake_timer: Timer = $CupcakeTimer
 
 var state: String = "normal"
 var can_check_up: bool = true
@@ -35,6 +36,7 @@ var enter_pos_y: float = 0.0
 var was_hurt: bool = false
 var jawbreaker_manager: JawbreakerManager = null
 var can_shoot: bool = true
+var has_cupcake: bool = false
 
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
@@ -106,6 +108,9 @@ func collect_donut() -> void:
 func collect_heart() -> void:
 	collected_heart.emit()
 
+func collected_cupcake() -> void:
+	turn_on_cupcake_invincible()
+
 func enter_false_wall() -> void:
 	request_layer_change.emit("back")
 	match enter_dir:
@@ -137,9 +142,18 @@ func turn_on_hurt_invincible() -> void:
 	blink_player.play("blink")
 	hurt_timer.start()
 
+func turn_on_cupcake_invincible() -> void:
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(1, true)
+	set_collision_layer_value(13, true)
+	blink_player.play("blink")
+	has_cupcake = true
+	cupcake_timer.start()
+
 func turn_off_invincible() -> void:
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(1, false)
+	set_collision_layer_value(13, false)
 	blink_player.play("normal")
 
 func shoot_jawbreaker() -> void:
@@ -194,3 +208,7 @@ func _on_down_check_body_entered(body: Node2D) -> void:
 
 func _on_hurt_timer_timeout() -> void:
 	turn_off_invincible()
+
+func _on_cupcake_timer_timeout() -> void:
+	turn_off_invincible()
+	has_cupcake = false
