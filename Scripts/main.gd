@@ -2,11 +2,14 @@ extends Node
 
 class_name Main
 
+const MAX_DONUTS: int = 100
+
 var screen: Screen = null
 
 var lives: int = 2
 var donuts: int = 0
 var checkpoint_num: int = 0
+
 
 func _ready() -> void:
 	load_screen("title_screen")
@@ -70,6 +73,7 @@ func connect_player_signals(player: Player) -> void:
 func player_collected_donut() -> void:
 	donuts += 1
 	screen.update_donuts_label(donuts)
+	check_max_donuts()
 
 func player_collected_heart() -> void:
 	lives += 1
@@ -92,6 +96,12 @@ func player_reached_checkpoint(my_num: int) -> void:
 func update_level_labels() -> void:
 	screen.update_donuts_label(donuts)
 	screen.update_lives_label(lives)
+
+func check_max_donuts() -> void:
+	if (donuts >= MAX_DONUTS):
+		donuts = 0
+		lives += 1
+		update_level_labels()
 
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_pressed("quit")):

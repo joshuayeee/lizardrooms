@@ -415,7 +415,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_bi64h"]
 resource_name = "blink"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -458,7 +458,7 @@ radius = 7.0
 height = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gji2"]
-radius = 7.0
+radius = 8.0
 height = 40.0
 
 [node name="Player" type="CharacterBody2D" unique_id=1791348002]
@@ -504,7 +504,7 @@ position = Vector2(0, 13)
 shape = SubResource("CapsuleShape2D_3gji2")
 
 [node name="HurtTimer" type="Timer" parent="." unique_id=58607749]
-wait_time = 10.0
+wait_time = 2.0
 one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=1656433539]

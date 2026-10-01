@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_24a0x"]
 resource_name = "death"
-length = 0.1
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,7 +59,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_p3wyi"]
 resource_name = "walk"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -101,6 +101,7 @@ metadata/_custom_type_script = "uid://dokg8u03i7u00"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=391510589]
 scale = Vector2(4, 4)
 texture = ExtResource("1_2gfja")
+flip_h = true
 hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1051296065]
@@ -135,6 +136,10 @@ collision_mask = 524
 position = Vector2(8, 16)
 shape = SubResource("RectangleShape2D_jh5pk")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1654755183]
+position = Vector2(-8, 8)
+rect = Rect2(-16, -16, 56, 48)
+
 [node name="Components" type="Node" parent="." unique_id=348088868]
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("3_p3wyi")]
@@ -142,8 +147,8 @@ body = NodePath("../..")
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("4_p3wyi")]
 body = NodePath("../..")
-walk_speed = 150.0
-run_speed = 150.0
+walk_speed = 100.0
+run_speed = 100.0
 acc = 1.0
 dec = 1.0
 
@@ -151,6 +156,8 @@ dec = 1.0
 sprite = NodePath("../../Sprite2D")
 anim_player = NodePath("../../AnimationPlayer")
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -231,7 +231,7 @@ shape = SubResource("RectangleShape2D_jh5pk")
 position = Vector2(0, 32)
 
 [node name="Checkpoint3" parent="FrontLayer/CheckpointManager" unique_id=1917430700 node_paths=PackedStringArray("spawn_point") instance=ExtResource("13_m2e4j")]
-position = Vector2(3424, -56)
+position = Vector2(3232, -56)
 spawn_point = NodePath("Marker2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint3" unique_id=1568365840]
@@ -239,7 +239,7 @@ position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_cp0ws")
 
 [node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint3" unique_id=1313216597]
-position = Vector2(0, 88)
+position = Vector2(0, 24)
 
 [node name="DeathZone" parent="FrontLayer" unique_id=291712876 instance=ExtResource("11_8ckqi")]
 position = Vector2(0, 320)
@@ -417,15 +417,15 @@ position = Vector2(4248, -112)
 metadata/_scene_painted = true
 
 [node name="Donut51" parent="FrontLayer/DonutManager" unique_id=369830691 instance=ExtResource("8_2es5b")]
-position = Vector2(5168, -16)
+position = Vector2(5168, -48)
 metadata/_scene_painted = true
 
 [node name="Donut52" parent="FrontLayer/DonutManager" unique_id=1639361108 instance=ExtResource("8_2es5b")]
-position = Vector2(5200, -16)
+position = Vector2(5200, -48)
 metadata/_scene_painted = true
 
 [node name="Donut53" parent="FrontLayer/DonutManager" unique_id=802892753 instance=ExtResource("8_2es5b")]
-position = Vector2(5232, -16)
+position = Vector2(5232, -48)
 metadata/_scene_painted = true
 
 [node name="Donut54" parent="FrontLayer/DonutManager" unique_id=717799580 instance=ExtResource("8_2es5b")]
@@ -579,7 +579,71 @@ metadata/_scene_painted = true
 [node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("12_nnq4h")]
 
 [node name="Stubby" parent="FrontLayer/EnemyManager" unique_id=951115331 instance=ExtResource("13_rv287")]
-position = Vector2(992, 0)
+position = Vector2(1120, 32)
+
+[node name="Stubby2" parent="FrontLayer/EnemyManager" unique_id=632371933 instance=ExtResource("13_rv287")]
+position = Vector2(1512, 32)
+metadata/_scene_painted = true
+
+[node name="Stubby3" parent="FrontLayer/EnemyManager" unique_id=1051996763 instance=ExtResource("13_rv287")]
+position = Vector2(736, 32)
+metadata/_scene_painted = true
+
+[node name="Stubby4" parent="FrontLayer/EnemyManager" unique_id=2101300990 instance=ExtResource("13_rv287")]
+position = Vector2(2576, -112)
+metadata/_scene_painted = true
+
+[node name="Stubby5" parent="FrontLayer/EnemyManager" unique_id=890919831 instance=ExtResource("13_rv287")]
+position = Vector2(2440, 64)
+metadata/_scene_painted = true
+
+[node name="Stubby6" parent="FrontLayer/EnemyManager" unique_id=1734295073 instance=ExtResource("13_rv287")]
+position = Vector2(3968, 32)
+metadata/_scene_painted = true
+
+[node name="Stubby7" parent="FrontLayer/EnemyManager" unique_id=1707834650 instance=ExtResource("13_rv287")]
+position = Vector2(3712, 32)
+metadata/_scene_painted = true
+
+[node name="Stubby8" parent="FrontLayer/EnemyManager" unique_id=944816093 instance=ExtResource("13_rv287")]
+position = Vector2(3464, 32)
+metadata/_scene_painted = true
+
+[node name="Stubby9" parent="FrontLayer/EnemyManager" unique_id=1211953219 instance=ExtResource("13_rv287")]
+position = Vector2(5024, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby10" parent="FrontLayer/EnemyManager" unique_id=2073479093 instance=ExtResource("13_rv287")]
+position = Vector2(5648, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby11" parent="FrontLayer/EnemyManager" unique_id=2121372326 instance=ExtResource("13_rv287")]
+position = Vector2(5920, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby12" parent="FrontLayer/EnemyManager" unique_id=64683087 instance=ExtResource("13_rv287")]
+position = Vector2(6208, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby13" parent="FrontLayer/EnemyManager" unique_id=575326765 instance=ExtResource("13_rv287")]
+position = Vector2(7560, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby14" parent="FrontLayer/EnemyManager" unique_id=1648294308 instance=ExtResource("13_rv287")]
+position = Vector2(7520, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby15" parent="FrontLayer/EnemyManager" unique_id=940693844 instance=ExtResource("13_rv287")]
+position = Vector2(7480, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby16" parent="FrontLayer/EnemyManager" unique_id=716843566 instance=ExtResource("13_rv287")]
+position = Vector2(9024, 96)
+metadata/_scene_painted = true
+
+[node name="Stubby17" parent="FrontLayer/EnemyManager" unique_id=347725152 instance=ExtResource("13_rv287")]
+position = Vector2(9216, 96)
+metadata/_scene_painted = true
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
 layer = 0
@@ -873,6 +937,7 @@ metadata/_scene_painted = true
 
 [node name="SpecialBox11" parent="MidLayer/BoxManager" unique_id=793841254 instance=ExtResource("7_su1xx")]
 position = Vector2(3888, -8)
+contains = 1
 metadata/_scene_painted = true
 
 [node name="NormalBox31" parent="MidLayer/BoxManager" unique_id=601674262 instance=ExtResource("6_2es5b")]
@@ -1128,7 +1193,7 @@ metadata/_scene_painted = true
 
 [node name="NormalBox38" parent="MidLayer/BoxManager" unique_id=1714257750 instance=ExtResource("6_2es5b")]
 position = Vector2(8272, -8)
-contains = 0
+contains = 2
 metadata/_scene_painted = true
 
 [node name="EmptyBox51" parent="MidLayer/BoxManager" unique_id=679400131 instance=ExtResource("5_7qsxt")]
@@ -1418,7 +1483,7 @@ metadata/_scene_painted = true
 
 [node name="NormalBox48" parent="MidLayer/BoxManager" unique_id=237270287 instance=ExtResource("6_2es5b")]
 position = Vector2(6464, 56)
-contains = 0
+contains = 2
 metadata/_scene_painted = true
 
 [node name="EmptyBox111" parent="MidLayer/BoxManager" unique_id=867378330 instance=ExtResource("5_7qsxt")]

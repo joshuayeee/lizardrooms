@@ -162,7 +162,7 @@ func _on_move_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_down_check_body_entered(body: Node2D) -> void:
 	if (body is Enemy):
-		if (not is_on_floor() and velocity.y > 0):
+		if (not is_on_floor() and velocity.y > 0 and body.is_active):
 			jump_com.handle_jump(true)
 			body.hurt()
 

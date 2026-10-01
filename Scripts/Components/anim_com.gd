@@ -54,5 +54,8 @@ func handle_death_anim(death_anim: String, move_anim: String) -> void:
 func handle_enter_anim(move_anim: String) -> void:
 	move_player.play(move_anim)
 
-func reset_move_player(move_anim) -> void:
+func reset_move_player(move_anim: String) -> void:
 	move_player.play(move_anim)
+
+func play_idle(move_anim: String) -> void:
+	anim_player.play(move_anim)
