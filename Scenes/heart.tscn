@@ -33,7 +33,7 @@ shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="PlayerCheck" type="Area2D" parent="." unique_id=1587187518]
 collision_layer = 32
-collision_mask = 3
+collision_mask = 4099
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=613738186]
 position = Vector2(0, 2)

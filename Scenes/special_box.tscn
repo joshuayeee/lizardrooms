@@ -116,7 +116,7 @@ _data = {
 
 [node name="SpecialBox" type="StaticBody2D" unique_id=1586926890]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 4099
 script = ExtResource("1_vppg6")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=262395323]

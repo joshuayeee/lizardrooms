@@ -14,6 +14,7 @@ func _on_move_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "move"):
 		call_deferred("queue_free")
 
-func _on_body_entered(body: Player) -> void:
-	body.collect_donut()
-	call_deferred("queue_free")
+func _on_body_entered(body: Node2D) -> void:
+	if (body is Player):
+		body.collect_donut()
+		call_deferred("queue_free")

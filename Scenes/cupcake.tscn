@@ -13,10 +13,10 @@ size = Vector2(36, 44)
 size = Vector2(36, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0kdr"]
-size = Vector2(36, 42)
+size = Vector2(36, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32spg"]
-size = Vector2(36, 42)
+size = Vector2(36, 40)
 
 [node name="Cupcake" type="CharacterBody2D" unique_id=657141079]
 collision_layer = 32
@@ -33,7 +33,7 @@ shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="PlayerCheck" type="Area2D" parent="." unique_id=1566770803]
 collision_layer = 32
-collision_mask = 3
+collision_mask = 4099
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=925724362]
 position = Vector2(2, 2)

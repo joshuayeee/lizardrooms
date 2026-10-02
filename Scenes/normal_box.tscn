@@ -117,7 +117,7 @@ _data = {
 
 [node name="NormalBox" type="StaticBody2D" unique_id=171369096]
 collision_layer = 8
-collision_mask = 3
+collision_mask = 4099
 script = ExtResource("1_aven3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1868328850]

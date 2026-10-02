@@ -11,6 +11,7 @@ signal reached_checkpoint(checkpoint_num: int)
 signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: SpecialCamPoint)
 signal player_returned(false_wall_exit: FalseWallExit)
 signal request_layer_change(layer_name: String)
+signal reached_door(next_wl: String, next_wt: String, next_name: String, is_bonus: bool)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var move_com: MoveCom = $Components/MoveCom
@@ -20,6 +21,7 @@ signal request_layer_change(layer_name: String)
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var blink_player: AnimationPlayer = $BlinkPlayer
 @onready var cupcake_timer: Timer = $CupcakeTimer
+@onready var end_timer: Timer = $EndTimer
 
 var state: String = "normal"
 var can_check_up: bool = true
@@ -50,18 +52,19 @@ func _physics_process(delta: float) -> void:
 		
 		move_com.handle_hori_move(direction)
 		
+		anim_com.handle_animation(direction, 
+									not is_on_floor(), 
+									"%s_jump" % state, 
+									"%s_walk" % state, 
+									"%s_idle" % state)
+		
 		if (state == "candy"):
 			if (Input.is_action_just_pressed("run") and can_shoot):
 				shoot_jawbreaker()
 	else:
 		velocity = Vector2.ZERO
 	
-	if (not is_changing and is_alive and not is_entering):
-		anim_com.handle_animation(direction, 
-									not is_on_floor(), 
-									"%s_jump" % state, 
-									"%s_walk" % state, 
-									"%s_idle" % state)
+	
 	
 	if (is_on_floor() and not can_check_up):
 		can_check_up = true
@@ -109,7 +112,7 @@ func collect_heart() -> void:
 	collected_heart.emit()
 
 func collected_cupcake() -> void:
-	turn_on_cupcake_invincible()
+	turn_on_cupcake_power()
 
 func enter_false_wall() -> void:
 	request_layer_change.emit("back")
@@ -142,19 +145,23 @@ func turn_on_hurt_invincible() -> void:
 	blink_player.play("blink")
 	hurt_timer.start()
 
-func turn_on_cupcake_invincible() -> void:
+func turn_on_cupcake_power() -> void:
 	set_collision_layer_value(2, false)
-	set_collision_layer_value(1, true)
 	set_collision_layer_value(13, true)
 	blink_player.play("blink")
 	has_cupcake = true
 	cupcake_timer.start()
 
-func turn_off_invincible() -> void:
+func turn_off_hurt_invincible() -> void:
 	set_collision_layer_value(2, true)
 	set_collision_layer_value(1, false)
+	blink_player.play("normal")
+
+func turn_off_cupcake_power() -> void:
+	set_collision_layer_value(2, true)
 	set_collision_layer_value(13, false)
 	blink_player.play("normal")
+	has_cupcake = false
 
 func shoot_jawbreaker() -> void:
 	if (jawbreaker_manager != null):
@@ -172,6 +179,15 @@ func shoot_jawbreaker() -> void:
 
 func jawbreaker_destroyed() -> void:
 	can_shoot = true
+
+func got_to_door(next_wl: String,
+					next_wt: String,
+					next_name: String,
+					is_bonus: bool) -> void:
+	Global.game_active = false
+	end_timer.start()
+	await end_timer.timeout
+	reached_door.emit(next_wl, next_wt, next_name, is_bonus)
 
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):
@@ -207,8 +223,7 @@ func _on_down_check_body_entered(body: Node2D) -> void:
 			body.hurt()
 
 func _on_hurt_timer_timeout() -> void:
-	turn_off_invincible()
+	turn_off_hurt_invincible()
 
 func _on_cupcake_timer_timeout() -> void:
-	turn_off_invincible()
-	has_cupcake = false
+	turn_off_cupcake_power()

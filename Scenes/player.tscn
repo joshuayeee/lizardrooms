@@ -511,6 +511,10 @@ one_shot = true
 wait_time = 10.0
 one_shot = true
 
+[node name="EndTimer" type="Timer" parent="." unique_id=1119127795]
+wait_time = 2.0
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1656433539]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_6t5aa")]

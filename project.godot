@@ -80,6 +80,7 @@ down={
 2d_physics/layer_11="Enemy"
 2d_physics/layer_12="Jawbreaker"
 2d_physics/layer_13="CupcakePower"
+2d_physics/layer_14="Door"
 
 [physics]
 

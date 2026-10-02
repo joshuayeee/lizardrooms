@@ -68,6 +68,7 @@ func connect_player_signals(player: Player) -> void:
 	player.collected_heart.connect(player_collected_heart)
 	player.player_loses.connect(handle_player_loss)
 	player.reached_checkpoint.connect(player_reached_checkpoint)
+	player.reached_door.connect(player_reached_door)
 
 func player_collected_donut() -> void:
 	donuts += 1
@@ -91,6 +92,17 @@ func handle_player_loss() -> void:
 func player_reached_checkpoint(my_num: int) -> void:
 	if (my_num > checkpoint_num):
 		checkpoint_num = my_num
+
+func player_reached_door(next_wl: String,
+							next_wt: String,
+							next_name: String,
+							is_bonus: bool) -> void:
+	checkpoint_num = 0
+	
+	if (is_bonus):
+		print("got bonus (TODO)")
+	
+	load_transition(next_wl, next_wt, next_name)
 
 func update_level_labels() -> void:
 	screen.update_donuts_label(donuts)
