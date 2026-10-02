@@ -12,7 +12,7 @@ size = Vector2(40, 36)
 
 [node name="Sandwich" type="CharacterBody2D" unique_id=149632937]
 collision_layer = 32
-collision_mask = 12
+collision_mask = 16908
 script = ExtResource("1_xgfno")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571688134]
@@ -25,7 +25,7 @@ shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="PlayerCheck" type="Area2D" parent="." unique_id=400081086]
 collision_layer = 32
-collision_mask = 3
+collision_mask = 4099
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1015956818]
 position = Vector2(0, 2)

@@ -9,6 +9,7 @@ var screen: Screen = null
 var lives: int = 2
 var donuts: int = 0
 var checkpoint_num: int = 0
+var player_state: String = "normal"
 
 func _ready() -> void:
 	load_screen("title_screen")
@@ -57,6 +58,7 @@ func connect_screen_signals() -> void:
 	screen.reset_request.connect(reset_stats)
 	screen.connect_player_request.connect(connect_player_signals)
 	screen.update_labels_request.connect(update_level_labels)
+	screen.request_player_state.connect(get_player_state)
 
 func reset_stats() -> void:
 	lives = 2
@@ -80,6 +82,7 @@ func player_collected_heart() -> void:
 	screen.update_lives_label(lives)
 
 func handle_player_loss() -> void:
+	player_state = "normal"
 	lives -= 1
 	
 	if (lives < 0):
@@ -96,8 +99,10 @@ func player_reached_checkpoint(my_num: int) -> void:
 func player_reached_door(next_wl: String,
 							next_wt: String,
 							next_name: String,
+							my_state: String,
 							is_bonus: bool) -> void:
 	checkpoint_num = 0
+	player_state = my_state
 	
 	if (is_bonus):
 		print("got bonus (TODO)")
@@ -113,6 +118,9 @@ func check_max_donuts() -> void:
 		donuts = 0
 		lives += 1
 		update_level_labels()
+
+func get_player_state() -> void:
+	screen.player_state = player_state
 
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_pressed("quit")):

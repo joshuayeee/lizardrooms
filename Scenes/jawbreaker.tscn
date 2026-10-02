@@ -24,7 +24,7 @@ size = Vector2(24, 24)
 
 [node name="Jawbreaker" type="CharacterBody2D" unique_id=964811372]
 collision_layer = 2048
-collision_mask = 524
+collision_mask = 16908
 script = ExtResource("1_vw3hw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=126615400]
@@ -36,7 +36,7 @@ shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="CheckUp" type="Area2D" parent="." unique_id=1585417302]
 collision_layer = 2048
-collision_mask = 524
+collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp" unique_id=317247295]
 position = Vector2(0, -1)
@@ -44,7 +44,7 @@ shape = SubResource("RectangleShape2D_cp0ws")
 
 [node name="CheckDown" type="Area2D" parent="." unique_id=327944744]
 collision_layer = 2048
-collision_mask = 524
+collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown" unique_id=668749136]
 position = Vector2(0, 1)
@@ -52,7 +52,7 @@ shape = SubResource("RectangleShape2D_gsddi")
 
 [node name="CheckLeft" type="Area2D" parent="." unique_id=1793434159]
 collision_layer = 2048
-collision_mask = 524
+collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft" unique_id=117773727]
 position = Vector2(-1, 0)
@@ -60,7 +60,7 @@ shape = SubResource("RectangleShape2D_mbytq")
 
 [node name="CheckRight" type="Area2D" parent="." unique_id=437567377]
 collision_layer = 2048
-collision_mask = 524
+collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight" unique_id=93838924]
 position = Vector2(1, 0)

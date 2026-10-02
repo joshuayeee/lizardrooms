@@ -8,12 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="5_1w81i"]
 [ext_resource type="PackedScene" uid="uid://5hsfrellc33k" path="res://Scenes/cam_point.tscn" id="5_n0e5b"]
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="6_7vyws"]
+[ext_resource type="PackedScene" uid="uid://dfvd6j0w4cv5o" path="res://Scenes/death_zone.tscn" id="7_n0e5b"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="7_nccde"]
 [ext_resource type="Texture2D" uid="uid://udga0qm4mods" path="res://Assets/Sprites/WorldOneTM2.png" id="8_vg4ek"]
 [ext_resource type="Texture2D" uid="uid://b2e3af8dp7ey2" path="res://Assets/Sprites/WorldOneBG.png" id="12_72ncj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(64, 704)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(2960, 138)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0kmaj"]
 texture = ExtResource("8_vg4ek")
@@ -101,6 +105,13 @@ cam_enter_left = true
 cam_leave_right = true
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("4_3d2hb")]
+
+[node name="DeathZone" parent="FrontLayer" unique_id=291712876 instance=ExtResource("7_n0e5b")]
+position = Vector2(0, 384)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/DeathZone" unique_id=1828618388]
+position = Vector2(608, 59)
+shape = SubResource("RectangleShape2D_ydotr")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=781861792]
 layer = 0

@@ -6,7 +6,7 @@ class_name Cupcake
 @onready var jump_com: JumpCom = $Components/JumpCom
 @onready var gravity_com: GravityCom = $Components/GravityCom
 
-var direction: float = -1.0
+var direction: float = 1.0
 
 func _physics_process(delta: float) -> void:
 	gravity_com.handle_gravity(delta)

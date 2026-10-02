@@ -8,3 +8,6 @@ signal load_transition_request(world_level_text: String, world_title_text: Strin
 signal reset_request()
 signal connect_player_request(player: Player)
 signal update_labels_request()
+signal request_player_state()
+
+var player_state: String = "normal"

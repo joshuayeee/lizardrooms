@@ -28,7 +28,9 @@ func _ready() -> void:
 	var checkpoint: Checkpoint = checkpoint_manager.get_child(checkpoint_num)
 	var spawn_point: Marker2D = checkpoint.spawn_point
 	
+	request_player_state.emit()
 	player = spawn_player(spawn_point)
+	player.state = player_state
 	player.player_entered.connect(handle_player_enter)
 	player.player_returned.connect(handle_player_return)
 	player.request_layer_change.connect(change_player_layer)

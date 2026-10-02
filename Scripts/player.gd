@@ -11,7 +11,7 @@ signal reached_checkpoint(checkpoint_num: int)
 signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: SpecialCamPoint)
 signal player_returned(false_wall_exit: FalseWallExit)
 signal request_layer_change(layer_name: String)
-signal reached_door(next_wl: String, next_wt: String, next_name: String, is_bonus: bool)
+signal reached_door(next_wl: String, next_wt: String, next_name: String, my_state: String, is_bonus: bool)
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var move_com: MoveCom = $Components/MoveCom
@@ -187,7 +187,7 @@ func got_to_door(next_wl: String,
 	Global.game_active = false
 	end_timer.start()
 	await end_timer.timeout
-	reached_door.emit(next_wl, next_wt, next_name, is_bonus)
+	reached_door.emit(next_wl, next_wt, next_name, state, is_bonus)
 
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):

@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://dulf3rop5ipgj" path="res://Assets/Sprites/Game Boy _ GBC - Super Mario Land - Stages - World 1-1.png" id="21_7qsxt"]
 [ext_resource type="PackedScene" uid="uid://w8y1c1amfjx" path="res://Scenes/false_wall_exit.tscn" id="22_mvoif"]
 [ext_resource type="PackedScene" uid="uid://e1uhlkhin5yk" path="res://Scenes/door.tscn" id="25_b2sa4"]
+[ext_resource type="PackedScene" uid="uid://k6eghro3lp8i" path="res://Scenes/moving_platform.tscn" id="26_k3xx2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
 size = Vector2(48, 50)
@@ -135,6 +136,81 @@ texture = ExtResource("15_wq0x4")
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 35
 sources/1 = SubResource("TileSetAtlasSource_bd3j1")
+
+[sub_resource type="Animation" id="Animation_qqo3v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9848, 56)]
+}
+
+[sub_resource type="Animation" id="Animation_ktgyv"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(9848, 96), Vector2(9848, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v1xp2"]
+_data = {
+&"RESET": SubResource("Animation_qqo3v"),
+&"move": SubResource("Animation_ktgyv")
+}
+
+[sub_resource type="Animation" id="Animation_ohpif"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10176, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_3h7jo"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10176, -48), Vector2(9984, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jxwn2"]
+_data = {
+&"RESET": SubResource("Animation_ohpif"),
+&"move": SubResource("Animation_3h7jo")
+}
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lti81"]
 texture = ExtResource("9_8ckqi")
@@ -1519,14 +1595,6 @@ metadata/_scene_painted = true
 position = Vector2(10336, -80)
 metadata/_scene_painted = true
 
-[node name="EmptyBox126" parent="MidLayer/BoxManager" unique_id=1442373577 instance=ExtResource("5_7qsxt")]
-position = Vector2(10144, 56)
-metadata/_scene_painted = true
-
-[node name="EmptyBox127" parent="MidLayer/BoxManager" unique_id=1103122886 instance=ExtResource("5_7qsxt")]
-position = Vector2(10184, 0)
-metadata/_scene_painted = true
-
 [node name="GameBoyGbcSuperMarioLandStagesWorld11" type="Sprite2D" parent="MidLayer" unique_id=1237717927]
 position = Vector2(3120, -1640)
 texture = ExtResource("21_7qsxt")
@@ -1543,6 +1611,22 @@ is_bonus = true
 next_world_level = "1-2"
 next_world_title = "THE LOBBY"
 next_level_name = "world_1_level_2"
+
+[node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]
+
+[node name="MovingPlatform" parent="MidLayer/MovingPlatformManager" unique_id=1445135230 instance=ExtResource("26_k3xx2")]
+position = Vector2(9848, 56)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform" unique_id=564928218]
+libraries/ = SubResource("AnimationLibrary_v1xp2")
+autoplay = &"move"
+
+[node name="MovingPlatform2" parent="MidLayer/MovingPlatformManager" unique_id=771241396 instance=ExtResource("26_k3xx2")]
+position = Vector2(10176, -48)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform2" unique_id=350590426]
+libraries/ = SubResource("AnimationLibrary_jxwn2")
+autoplay = &"move"
 
 [node name="BackLayer" type="CanvasLayer" parent="." unique_id=1698670166]
 layer = -2

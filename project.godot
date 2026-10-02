@@ -81,6 +81,7 @@ down={
 2d_physics/layer_12="Jawbreaker"
 2d_physics/layer_13="CupcakePower"
 2d_physics/layer_14="Door"
+2d_physics/layer_15="MovingPlatform"
 
 [physics]
 

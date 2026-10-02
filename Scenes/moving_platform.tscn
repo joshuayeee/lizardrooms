@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://k6eghro3lp8i"]
+
+[ext_resource type="Texture2D" uid="uid://b8olon1xy0ybp" path="res://Assets/Sprites/MovingPlatform.png" id="1_vvyo4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(96, 32)
+
+[node name="MovingPlatform" type="AnimatableBody2D" unique_id=1445135230]
+collision_layer = 16384
+collision_mask = 4099
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383333125]
+scale = Vector2(4, 4)
+texture = ExtResource("1_vvyo4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=46222618]
+shape = SubResource("RectangleShape2D_jh5pk")
+one_way_collision = true
