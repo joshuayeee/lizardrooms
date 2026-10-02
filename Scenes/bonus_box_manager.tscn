@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cebe01g12lqvu"]
+
+[ext_resource type="Script" uid="uid://ued1fa7e3kku" path="res://Scripts/bonus_box_manager.gd" id="1_1r2ui"]
+
+[node name="BonusBoxManager" type="Node2D" unique_id=1982858240]
+script = ExtResource("1_1r2ui")

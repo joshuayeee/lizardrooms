@@ -13,10 +13,10 @@ size = Vector2(36, 44)
 size = Vector2(36, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0kdr"]
-size = Vector2(36, 36)
+size = Vector2(36, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_32spg"]
-size = Vector2(36, 36)
+size = Vector2(36, 28)
 
 [node name="Cupcake" type="CharacterBody2D" unique_id=657141079]
 collision_layer = 32

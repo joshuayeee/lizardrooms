@@ -37,6 +37,7 @@ func load_level(world_level_text: String,
 	screen.world_level_text = world_level_text
 	screen.world_title_text = world_title_text
 	screen.level_name = level_name
+	screen.player_state = player_state
 	add_child(screen)
 
 func load_transition(world_level_text: String, 
@@ -51,14 +52,41 @@ func load_transition(world_level_text: String,
 	screen.level_name = level_name
 	add_child(screen)
 
+func load_bonus_transition(world_level_text: String, 
+						world_title_text: String,
+						level_name: String) -> void:
+	unload_screen()
+	var screen_path: String = "res://Scenes/Screens/bonus_transition_screen.tscn"
+	screen = load(screen_path).instantiate()
+	connect_screen_signals()
+	screen.world_level_text = world_level_text
+	screen.world_title_text = world_title_text
+	screen.level_name = level_name
+	add_child(screen)
+
+func load_bonus(world_level_text: String, 
+					world_title_text: String, 
+					level_name: String) -> void:
+	unload_screen()
+	var level_path: String = "res://Scenes/Levels/bonus_level.tscn"
+	screen = load(level_path).instantiate()
+	connect_screen_signals()
+	screen.checkpoint_num = checkpoint_num
+	screen.world_level_text = world_level_text
+	screen.world_title_text = world_title_text
+	screen.level_name = level_name
+	screen.player_state = player_state
+	add_child(screen)
+
 func connect_screen_signals() -> void:
 	screen.load_screen_request.connect(load_screen)
 	screen.load_level_request.connect(load_level)
 	screen.load_transition_request.connect(load_transition)
+	screen.load_bonus_request.connect(load_bonus)
+	screen.load_bonus_transition_request.connect(load_bonus_transition)
 	screen.reset_request.connect(reset_stats)
 	screen.connect_player_request.connect(connect_player_signals)
 	screen.update_labels_request.connect(update_level_labels)
-	screen.request_player_state.connect(get_player_state)
 
 func reset_stats() -> void:
 	lives = 2
@@ -77,8 +105,8 @@ func player_collected_donut() -> void:
 	screen.update_donuts_label(donuts)
 	check_max_donuts()
 
-func player_collected_heart() -> void:
-	lives += 1
+func player_collected_heart(lives_amount: int) -> void:
+	lives += lives_amount
 	screen.update_lives_label(lives)
 
 func handle_player_loss() -> void:
@@ -105,9 +133,9 @@ func player_reached_door(next_wl: String,
 	player_state = my_state
 	
 	if (is_bonus):
-		print("got bonus (TODO)")
-	
-	load_transition(next_wl, next_wt, next_name)
+		load_bonus_transition(next_wl, next_wt, next_name)
+	else:
+		load_transition(next_wl, next_wt, next_name)
 
 func update_level_labels() -> void:
 	screen.update_donuts_label(donuts)
@@ -118,9 +146,6 @@ func check_max_donuts() -> void:
 		donuts = 0
 		lives += 1
 		update_level_labels()
-
-func get_player_state() -> void:
-	screen.player_state = player_state
 
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_pressed("quit")):

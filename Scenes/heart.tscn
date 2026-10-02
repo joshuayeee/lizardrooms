@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="1_452e1"]
 [ext_resource type="Script" uid="uid://x1xoo8cb4omu" path="res://Scripts/heart.gd" id="1_jgxw8"]
+[ext_resource type="Texture2D" uid="uid://bqbqbkcbucviq" path="res://Assets/Sprites/Heart3.png" id="3_4obt7"]
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="3_rycqq"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="4_6wkup"]
+[ext_resource type="Texture2D" uid="uid://dl336h4tal6ro" path="res://Assets/Sprites/Heart2.png" id="4_atbr1"]
 [ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="5_t623b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
@@ -17,6 +19,77 @@ size = Vector2(40, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
 size = Vector2(40, 34)
+
+[sub_resource type="Animation" id="Animation_rhnby"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_452e1")]
+}
+
+[sub_resource type="Animation" id="Animation_gdh3h"]
+resource_name = "one_life"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_452e1")]
+}
+
+[sub_resource type="Animation" id="Animation_hyv53"]
+resource_name = "three_lives"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_4obt7")]
+}
+
+[sub_resource type="Animation" id="Animation_3aedr"]
+resource_name = "two_lives"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_atbr1")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eekui"]
+_data = {
+&"RESET": SubResource("Animation_rhnby"),
+&"one_life": SubResource("Animation_gdh3h"),
+&"three_lives": SubResource("Animation_hyv53"),
+&"two_lives": SubResource("Animation_3aedr")
+}
 
 [node name="Heart" type="CharacterBody2D" unique_id=311840098]
 collision_layer = 32
@@ -54,6 +127,10 @@ collision_mask = 16908
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=424700588]
 position = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=284801978]
+libraries/ = SubResource("AnimationLibrary_eekui")
+autoplay = &"one_life"
 
 [node name="Components" type="Node" parent="." unique_id=1622553593]
 

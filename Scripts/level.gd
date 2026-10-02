@@ -28,9 +28,7 @@ func _ready() -> void:
 	var checkpoint: Checkpoint = checkpoint_manager.get_child(checkpoint_num)
 	var spawn_point: Marker2D = checkpoint.spawn_point
 	
-	request_player_state.emit()
 	player = spawn_player(spawn_point)
-	player.state = player_state
 	player.player_entered.connect(handle_player_enter)
 	player.player_returned.connect(handle_player_return)
 	player.request_layer_change.connect(change_player_layer)
@@ -45,6 +43,7 @@ func _ready() -> void:
 func spawn_player(spawn_point: Marker2D) -> Player:
 	var new_player: Player = PLAYER.instantiate()
 	new_player.global_position = spawn_point.global_position
+	new_player.state = player_state
 	new_player.jawbreaker_manager = jawbreaker_manager
 	front_layer.add_child(new_player)
 	return new_player

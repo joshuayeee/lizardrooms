@@ -6,7 +6,7 @@ const JAWBREAKER = preload("uid://bcln7bcxc0shr")
 
 signal player_loses()
 signal collected_donut()
-signal collected_heart()
+signal collected_heart(lives_amount: int)
 signal reached_checkpoint(checkpoint_num: int)
 signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: SpecialCamPoint)
 signal player_returned(false_wall_exit: FalseWallExit)
@@ -108,8 +108,8 @@ func reach_checkpoint(checkpoint_num: int) -> void:
 func collect_donut() -> void:
 	collected_donut.emit()
 
-func collect_heart() -> void:
-	collected_heart.emit()
+func collect_heart(lives_amount: int) -> void:
+	collected_heart.emit(lives_amount)
 
 func collected_cupcake() -> void:
 	turn_on_cupcake_power()
