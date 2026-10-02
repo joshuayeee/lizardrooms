@@ -25,9 +25,6 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 
 var state: String = "normal"
 var can_check_up: bool = true
-var is_alive: bool = true
-var is_changing: bool = false
-var is_entering: bool = false
 var can_enter: bool = false
 var enter_dir: String = ""
 var false_wall_exit: FalseWallExit = null
@@ -61,34 +58,31 @@ func _physics_process(delta: float) -> void:
 		if (state == "candy"):
 			if (Input.is_action_just_pressed("run") and can_shoot):
 				shoot_jawbreaker()
+		
+		if (can_enter):
+			match enter_dir:
+				"up":
+					if (Input.is_action_just_pressed("up")):
+						enter_false_wall()
+				"down":
+					if (Input.is_action_just_pressed("down")):
+						enter_false_wall()
+				"left":
+					if (Input.is_action_just_pressed("left")):
+						enter_false_wall()
+				"right":
+					if (Input.is_action_just_pressed("right")):
+						enter_false_wall()
 	else:
 		velocity = Vector2.ZERO
 	
-	
-	
 	if (is_on_floor() and not can_check_up):
 		can_check_up = true
-	
-	if (can_enter and not is_entering):
-		match enter_dir:
-			"up":
-				if (Input.is_action_just_pressed("up")):
-					enter_false_wall()
-			"down":
-				if (Input.is_action_just_pressed("down")):
-					enter_false_wall()
-			"left":
-				if (Input.is_action_just_pressed("left")):
-					enter_false_wall()
-			"right":
-				if (Input.is_action_just_pressed("right")):
-					enter_false_wall()
 	
 	move_and_slide()
 
 func change_state(new_state: String) -> void:
 	if (state != new_state):
-		is_changing = true
 		Global.game_active = false
 		anim_com.handle_anim_change(state,
 										new_state,
@@ -98,7 +92,6 @@ func change_state(new_state: String) -> void:
 		state = new_state
 
 func handle_death() -> void:
-	is_alive = false
 	Global.game_active = false
 	anim_com.handle_death_anim("death", "death_move")
 
@@ -130,7 +123,6 @@ func enter_false_wall() -> void:
 			global_position.x = enter_pos_x
 			anim_com.handle_enter_anim("enter_down")
 	Global.game_active = false
-	is_entering = true
 
 func hurt() -> void:
 	if (state == "normal"):
@@ -199,7 +191,6 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "normal_to_sandwich" or
 		anim_name == "sandwich_to_candy" or 
 		anim_name == "normal_to_candy"):
-			is_changing = false
 			Global.game_active = true
 			
 			if (was_hurt):

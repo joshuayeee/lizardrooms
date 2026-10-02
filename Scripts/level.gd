@@ -73,7 +73,6 @@ func handle_player_enter(false_wall_exit: FalseWallExit,
 	player.global_position = false_wall_exit.global_position
 	cam.global_position = special_cam_point.global_position
 	cam.target = special_cam_point
-	player.is_entering = false
 	change_player_layer("front")
 	Global.game_active = true
 
@@ -81,7 +80,6 @@ func handle_player_return(false_wall_exit: FalseWallExit) -> void:
 	player.global_position = false_wall_exit.global_position
 	cam.reset_y_pos()
 	cam.target = player
-	player.is_entering = false
 	change_player_layer("front")
 	player.returning = false
 	Global.game_active = true
