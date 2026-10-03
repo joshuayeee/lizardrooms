@@ -9,7 +9,13 @@ signal created_poof(poof: Poof)
 @export var poof_point: Node2D = null
 
 func hurt() -> void:
-	pass
+	var poof: Poof = POOF.instantiate()
+	poof.global_position = poof_point.global_position
+	created_poof.emit(poof)
+	queue_free()
 
 func hit_by_jawbreaker() -> void:
-	pass
+	var poof: Poof = POOF.instantiate()
+	poof.global_position = poof_point.global_position
+	created_poof.emit(poof)
+	queue_free()

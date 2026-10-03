@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://da1l7vxdp3iru"]
+
+[ext_resource type="Script" uid="uid://dnd03jcg681uu" path="res://Scripts/explosion.gd" id="1_a801j"]
+[ext_resource type="Texture2D" uid="uid://ccy3jrxwuyy6q" path="res://Assets/Sprites/Explosion.png" id="1_aayv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(32, 36)
+
+[sub_resource type="Animation" id="Animation_aayv4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_a801j"]
+resource_name = "explosion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4okmj"]
+_data = {
+&"RESET": SubResource("Animation_aayv4"),
+&"explosion": SubResource("Animation_a801j")
+}
+
+[node name="Explosion" type="Area2D" unique_id=1531494842]
+collision_layer = 32768
+collision_mask = 2
+script = ExtResource("1_a801j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2119020293]
+scale = Vector2(4, 4)
+texture = ExtResource("1_aayv4")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745208360]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=508483766]
+libraries/ = SubResource("AnimationLibrary_4okmj")
+autoplay = &"explosion"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

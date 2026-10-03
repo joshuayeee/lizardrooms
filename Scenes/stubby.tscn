@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="3_p3wyi"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="4_p3wyi"]
 [ext_resource type="PackedScene" uid="uid://c2v66c3ej22aj" path="res://Scenes/Components/anim_com.tscn" id="5_4p6hk"]
-[ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="7_virqj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
 radius = 8.0
@@ -144,11 +143,6 @@ dec = 1.0
 sprite = NodePath("../../Sprite2D")
 anim_player = NodePath("../../AnimationPlayer")
 
-[node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("7_virqj")]
-body = NodePath("../..")
-jump_velocity = -400.0
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]

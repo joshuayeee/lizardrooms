@@ -1,12 +1,18 @@
 extends Enemy
 
-class_name Stubby
+class_name Kaboom
+
+const EXPLOSION = preload("uid://da1l7vxdp3iru")
+
+signal created_explosion(explosion: Explosion)
 
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var anim_com: AnimCom = $Components/AnimCom
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var direction: float = -1.0
+var has_activated: bool = false
 var is_active: bool = false
 
 func _physics_process(delta: float) -> void:
@@ -27,6 +33,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
+func hurt() -> void:
+	is_active = false
+	animation_player.play("self_destruct")
+
 func _on_left_check_body_entered(_body: Node2D) -> void:
 	if (direction < 0):
 		direction = 1.0
@@ -43,4 +53,13 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 			queue_free()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	is_active = true
+	if (not has_activated):
+		is_active = true
+		has_activated = true
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if (anim_name == "self_destruct"):
+		var explosion: Explosion = EXPLOSION.instantiate()
+		explosion.global_position = poof_point.global_position
+		created_explosion.emit(explosion)
+		queue_free()

@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://bptikr8blocel"]
+
+[ext_resource type="Script" uid="uid://kgjtqww60ykk" path="res://Scripts/kaboom.gd" id="1_bfvg1"]
+[ext_resource type="Texture2D" uid="uid://df0a7fnvy6sr7" path="res://Assets/Sprites/Kaboom.png" id="2_2ilx1"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_mw7pq"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="4_bfvg1"]
+[ext_resource type="PackedScene" uid="uid://c2v66c3ej22aj" path="res://Scenes/Components/anim_com.tscn" id="5_hbydx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+radius = 8.0
+height = 44.0
+
+[sub_resource type="Animation" id="Animation_mw7pq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_bfvg1"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hbydx"]
+resource_name = "self_destruct"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 3, 4, 3, 4, 3, 4, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_y5hlm"]
+resource_name = "walk"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k7v0i"]
+_data = {
+&"RESET": SubResource("Animation_mw7pq"),
+&"idle": SubResource("Animation_bfvg1"),
+&"self_destruct": SubResource("Animation_hbydx"),
+&"walk": SubResource("Animation_y5hlm")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
+radius = 8.0
+height = 44.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(20, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
+size = Vector2(20, 28)
+
+[node name="Kaboom" type="CharacterBody2D" unique_id=1865198512 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 16908
+script = ExtResource("1_bfvg1")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=859611691]
+scale = Vector2(4, 4)
+texture = ExtResource("2_2ilx1")
+flip_h = true
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1386803271]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=497989695]
+libraries/ = SubResource("AnimationLibrary_k7v0i")
+autoplay = &"idle"
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=42490084]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=504407402]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_jh5pk")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=598224538]
+collision_layer = 1024
+collision_mask = 16908
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=802806037]
+position = Vector2(-2, 10)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=2052354015]
+collision_layer = 1024
+collision_mask = 16908
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=457923326]
+position = Vector2(2, 10)
+shape = SubResource("RectangleShape2D_3gji2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1313198943]
+rect = Rect2(-24, -16, 48, 52)
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1901118835]
+position = Vector2(0, 12)
+
+[node name="Components" type="Node" parent="." unique_id=1598228390]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_mw7pq")]
+body = NodePath("../..")
+walk_speed = 100.0
+run_speed = 100.0
+acc = 1.0
+dec = 1.0
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_bfvg1")]
+body = NodePath("../..")
+
+[node name="AnimCom" parent="Components" unique_id=1687221079 node_paths=PackedStringArray("sprite", "anim_player") instance=ExtResource("5_hbydx")]
+sprite = NodePath("../../Sprite2D")
+anim_player = NodePath("../../AnimationPlayer")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
+[connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
