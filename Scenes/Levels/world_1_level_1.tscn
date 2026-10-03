@@ -321,6 +321,39 @@ shape = SubResource("RectangleShape2D_cp0ws")
 [node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint3" unique_id=1313216597]
 position = Vector2(0, 24)
 
+[node name="Checkpoint4" parent="FrontLayer/CheckpointManager" unique_id=899962182 node_paths=PackedStringArray("spawn_point") instance=ExtResource("13_m2e4j")]
+position = Vector2(4192, -56)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint4" unique_id=946352251]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint4" unique_id=1705947493]
+position = Vector2(0, 160)
+
+[node name="Checkpoint5" parent="FrontLayer/CheckpointManager" unique_id=1890887322 node_paths=PackedStringArray("spawn_point") instance=ExtResource("13_m2e4j")]
+position = Vector2(6760, -56)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint5" unique_id=383513286]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint5" unique_id=2031147966]
+position = Vector2(0, 160)
+
+[node name="Checkpoint6" parent="FrontLayer/CheckpointManager" unique_id=760276121 node_paths=PackedStringArray("spawn_point") instance=ExtResource("13_m2e4j")]
+position = Vector2(8576, -56)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint6" unique_id=282983289]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint6" unique_id=773963211]
+position = Vector2(0, 80)
+
 [node name="DeathZone" parent="FrontLayer" unique_id=291712876 instance=ExtResource("11_8ckqi")]
 position = Vector2(0, 320)
 
@@ -673,16 +706,8 @@ metadata/_scene_painted = true
 position = Vector2(3968, 32)
 metadata/_scene_painted = true
 
-[node name="Stubby7" parent="FrontLayer/EnemyManager" unique_id=1707834650 instance=ExtResource("13_rv287")]
-position = Vector2(3712, 32)
-metadata/_scene_painted = true
-
 [node name="Stubby8" parent="FrontLayer/EnemyManager" unique_id=944816093 instance=ExtResource("13_rv287")]
 position = Vector2(3464, 32)
-metadata/_scene_painted = true
-
-[node name="Stubby9" parent="FrontLayer/EnemyManager" unique_id=1211953219 instance=ExtResource("13_rv287")]
-position = Vector2(5024, 96)
 metadata/_scene_painted = true
 
 [node name="Stubby10" parent="FrontLayer/EnemyManager" unique_id=2073479093 instance=ExtResource("13_rv287")]
@@ -691,10 +716,6 @@ metadata/_scene_painted = true
 
 [node name="Stubby11" parent="FrontLayer/EnemyManager" unique_id=2121372326 instance=ExtResource("13_rv287")]
 position = Vector2(5920, 96)
-metadata/_scene_painted = true
-
-[node name="Stubby12" parent="FrontLayer/EnemyManager" unique_id=64683087 instance=ExtResource("13_rv287")]
-position = Vector2(6208, 96)
 metadata/_scene_painted = true
 
 [node name="Stubby13" parent="FrontLayer/EnemyManager" unique_id=575326765 instance=ExtResource("13_rv287")]
@@ -722,6 +743,15 @@ position = Vector2(2440, 64)
 
 [node name="Kaboom2" parent="FrontLayer/EnemyManager" unique_id=213015890 instance=ExtResource("14_qqo3v")]
 position = Vector2(2576, -112)
+
+[node name="Kaboom3" parent="FrontLayer/EnemyManager" unique_id=475258619 instance=ExtResource("14_qqo3v")]
+position = Vector2(3712, 32)
+
+[node name="Kaboom4" parent="FrontLayer/EnemyManager" unique_id=590775577 instance=ExtResource("14_qqo3v")]
+position = Vector2(6208, 96)
+
+[node name="Kaboom5" parent="FrontLayer/EnemyManager" unique_id=2097856361 instance=ExtResource("14_qqo3v")]
+position = Vector2(5024, 96)
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("14_rv287")]
 

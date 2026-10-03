@@ -40,7 +40,7 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 		if (is_active and Global.game_active and not body.has_cupcake):
 			body.hurt()
 		elif (body.has_cupcake):
-			queue_free()
+			poof_death()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	is_active = true
