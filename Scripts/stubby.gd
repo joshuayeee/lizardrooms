@@ -30,10 +30,15 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func hurt() -> void:
-	is_active = false
-	animation_player.play("death")
+	var poof: Poof = POOF.instantiate()
+	poof.global_position = poof_point.global_position
+	created_poof.emit(poof)
+	queue_free()
 
 func hit_by_jawbreaker() -> void:
+	var poof: Poof = POOF.instantiate()
+	poof.global_position = poof_point.global_position
+	created_poof.emit(poof)
 	queue_free()
 
 func _on_left_check_body_entered(_body: Node2D) -> void:
