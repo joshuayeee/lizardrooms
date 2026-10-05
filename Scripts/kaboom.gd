@@ -10,6 +10,8 @@ signal created_explosion(explosion: Explosion)
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var anim_com: AnimCom = $Components/AnimCom
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var ground_left_check: Area2D = $GroundLeftCheck
+@onready var ground_right_check: Area2D = $GroundRightCheck
 
 var direction: float = -1.0
 var has_activated: bool = false
@@ -65,9 +67,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		queue_free()
 
 func _on_ground_left_check_body_exited(_body: Node2D) -> void:
-	if (direction < 0):
-		direction = 1.0
+	if (not ground_left_check.has_overlapping_bodies()):
+		if (direction < 0):
+			direction = 1.0
 
 func _on_ground_right_check_body_exited(_body: Node2D) -> void:
-	if (direction > 0):
-		direction = -1.0
+	if (not ground_right_check.has_overlapping_bodies()):
+		if (direction > 0):
+			direction = -1.0

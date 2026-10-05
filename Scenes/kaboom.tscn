@@ -92,8 +92,10 @@ size = Vector2(20, 28)
 size = Vector2(20, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(4, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
+size = Vector2(4, 4)
 
 [node name="Kaboom" type="CharacterBody2D" unique_id=1865198512 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
@@ -151,7 +153,7 @@ collision_layer = 1024
 collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundLeftCheck" unique_id=1605169075]
-position = Vector2(-18, 42)
+position = Vector2(-10, 34)
 shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="GroundRightCheck" type="Area2D" parent="." unique_id=96051554]
@@ -159,7 +161,7 @@ collision_layer = 1024
 collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRightCheck" unique_id=521657707]
-position = Vector2(18, 42)
+position = Vector2(10, 34)
 shape = SubResource("RectangleShape2D_cp0ws")
 
 [node name="Components" type="Node" parent="." unique_id=1598228390]
