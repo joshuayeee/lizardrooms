@@ -27,7 +27,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qvr7p"]
 resource_name = "bounce"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -44,7 +44,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5wue2"]
 resource_name = "crawl"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
