@@ -8,6 +8,8 @@ signal created_poof(poof: Poof)
 
 @export var poof_point: Node2D = null
 
+var is_active = false
+
 func hurt() -> void:
 	poof_death()
 

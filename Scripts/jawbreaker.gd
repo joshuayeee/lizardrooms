@@ -42,5 +42,6 @@ func _on_life_timer_timeout() -> void:
 
 func _on_enemy_check_body_entered(body: Node2D) -> void:
 	if (body is Enemy):
-		body.hit_by_jawbreaker()
-		handle_destroy()
+		if (body.is_active):
+			body.hit_by_jawbreaker()
+			handle_destroy()

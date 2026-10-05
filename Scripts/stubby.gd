@@ -7,7 +7,6 @@ class_name Stubby
 @onready var anim_com: AnimCom = $Components/AnimCom
 
 var direction: float = -1.0
-var is_active: bool = false
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):

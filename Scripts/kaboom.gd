@@ -15,7 +15,6 @@ signal created_explosion(explosion: Explosion)
 
 var direction: float = -1.0
 var has_activated: bool = false
-var is_active: bool = false
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
