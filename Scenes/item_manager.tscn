@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://kw5cxqi44pq5" path="res://Scripts/item_manager.gd" id="1_u33us"]
 
 [node name="ItemManager" type="Node2D" unique_id=256143669]
+z_index = 2
 script = ExtResource("1_u33us")
 
 [node name="Foreground" type="Node2D" parent="." unique_id=710435581]
