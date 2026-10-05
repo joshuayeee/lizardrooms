@@ -58,7 +58,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_y5hlm"]
 resource_name = "walk"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -90,6 +90,10 @@ size = Vector2(20, 28)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
 size = Vector2(20, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
 
 [node name="Kaboom" type="CharacterBody2D" unique_id=1865198512 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
@@ -142,6 +146,22 @@ rect = Rect2(-24, -16, 48, 52)
 [node name="PoofPoint" type="Node2D" parent="." unique_id=1901118835]
 position = Vector2(0, 12)
 
+[node name="GroundLeftCheck" type="Area2D" parent="." unique_id=1313067505]
+collision_layer = 1024
+collision_mask = 16908
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundLeftCheck" unique_id=1605169075]
+position = Vector2(-18, 42)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="GroundRightCheck" type="Area2D" parent="." unique_id=96051554]
+collision_layer = 1024
+collision_mask = 16908
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundRightCheck" unique_id=521657707]
+position = Vector2(18, 42)
+shape = SubResource("RectangleShape2D_cp0ws")
+
 [node name="Components" type="Node" parent="." unique_id=1598228390]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_mw7pq")]
@@ -163,3 +183,5 @@ anim_player = NodePath("../../AnimationPlayer")
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="body_exited" from="GroundLeftCheck" to="." method="_on_ground_left_check_body_exited"]
+[connection signal="body_exited" from="GroundRightCheck" to="." method="_on_ground_right_check_body_exited"]

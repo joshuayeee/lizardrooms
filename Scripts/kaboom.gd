@@ -63,3 +63,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		explosion.global_position = poof_point.global_position
 		created_explosion.emit(explosion)
 		queue_free()
+
+func _on_ground_left_check_body_exited(_body: Node2D) -> void:
+	if (direction < 0):
+		direction = 1.0
+
+func _on_ground_right_check_body_exited(_body: Node2D) -> void:
+	if (direction > 0):
+		direction = -1.0
