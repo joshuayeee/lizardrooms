@@ -1199,6 +1199,7 @@ metadata/_scene_painted = true
 
 [node name="SpecialBox29" parent="MidLayer/BoxManager" unique_id=1437130271 instance=ExtResource("7_su1xx")]
 position = Vector2(7520, 48)
+contains = 4
 metadata/_scene_painted = true
 
 [node name="EmptyBox38" parent="MidLayer/BoxManager" unique_id=687290214 instance=ExtResource("5_7qsxt")]

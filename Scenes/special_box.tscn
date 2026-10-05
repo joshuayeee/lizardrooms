@@ -37,6 +37,22 @@ tracks/0/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_evs4w"]
+resource_name = "multi"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
 [sub_resource type="Animation" id="Animation_26pfr"]
 resource_name = "normal"
 length = 0.001
@@ -57,6 +73,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_7bkrm"),
 &"empty": SubResource("Animation_vppg6"),
+&"multi": SubResource("Animation_evs4w"),
 &"normal": SubResource("Animation_26pfr")
 }
 
@@ -138,4 +155,9 @@ autoplay = &"idle"
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=654969953]
 position = Vector2(0, -36)
 
+[node name="MultiTimer" type="Timer" parent="." unique_id=451228088]
+wait_time = 7.0
+one_shot = true
+
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]
+[connection signal="timeout" from="MultiTimer" to="." method="_on_multi_timer_timeout"]
