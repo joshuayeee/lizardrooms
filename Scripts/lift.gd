@@ -13,7 +13,7 @@ var direction: float = -1.0
 enum States {BOUNCING, CRAWLING}
 var state: States = States.BOUNCING
 
-var can_hurt: bool = true
+var can_hurt_player: bool = true
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func hurt() -> void:
-	can_hurt = false
+	can_hurt_player = false
 	hurt_timer.start()
 	if (state == States.BOUNCING):
 		state = States.CRAWLING
@@ -56,7 +56,7 @@ func _on_right_check_body_entered(_body: Node2D) -> void:
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
-		if (Global.game_active and is_active and not body.has_cupcake and can_hurt):
+		if (Global.game_active and is_active and not body.has_cupcake and can_hurt_player):
 			body.hurt()
 		elif (body.has_cupcake):
 			poof_death()
@@ -65,4 +65,4 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	is_active = true
 
 func _on_hurt_timer_timeout() -> void:
-	can_hurt = true
+	can_hurt_player = true

@@ -131,6 +131,9 @@ _data = {
 &"move": SubResource("Animation_f2gmg")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(32, 32)
+
 [node name="SpecialBox" type="StaticBody2D" unique_id=1586926890]
 collision_layer = 8
 collision_mask = 4099
@@ -159,5 +162,15 @@ position = Vector2(0, -36)
 wait_time = 7.0
 one_shot = true
 
+[node name="UpCheck" type="Area2D" parent="." unique_id=653037646]
+collision_layer = 8
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpCheck" unique_id=1195315826]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ydotr")
+
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]
 [connection signal="timeout" from="MultiTimer" to="." method="_on_multi_timer_timeout"]
+[connection signal="body_entered" from="UpCheck" to="." method="_on_up_check_body_entered"]
+[connection signal="body_exited" from="UpCheck" to="." method="_on_up_check_body_exited"]

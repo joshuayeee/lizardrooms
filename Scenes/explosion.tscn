@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://da1l7vxdp3iru"]
 
 [ext_resource type="Script" uid="uid://dnd03jcg681uu" path="res://Scripts/explosion.gd" id="1_a801j"]
-[ext_resource type="Texture2D" uid="uid://ccy3jrxwuyy6q" path="res://Assets/Sprites/Explosion.png" id="1_aayv4"]
+[ext_resource type="Texture2D" uid="uid://ctr7b3gcyaam" path="res://Assets/Sprites/Explosion2.png" id="2_a801j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
-size = Vector2(32, 36)
+size = Vector2(32, 32)
 
 [sub_resource type="Animation" id="Animation_aayv4"]
 length = 0.001
@@ -48,12 +48,12 @@ collision_mask = 2
 script = ExtResource("1_a801j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2119020293]
+position = Vector2(0, -16)
 scale = Vector2(4, 4)
-texture = ExtResource("1_aayv4")
+texture = ExtResource("2_a801j")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1745208360]
-position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ydotr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=508483766]

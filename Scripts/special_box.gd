@@ -19,9 +19,15 @@ enum Contains {DONUT, ITEM, HEART, CUPCAKE, MULTI_DONUT}
 var item_manager: ItemManager = null
 var is_empty: bool = false
 var last_donut: bool = false
+var my_enemy: Enemy = null
 
 func player_hit(player: Player) -> void:
 	var state: String = player.state
+	
+	if (my_enemy != null):
+		my_enemy.poof_death()
+		my_enemy = null
+	
 	if (not is_empty):
 		if (contains != Contains.MULTI_DONUT):
 			match contains:
@@ -67,10 +73,17 @@ func player_hit(player: Player) -> void:
 				if (multi_timer.is_stopped()):
 					multi_timer.start()
 
-
 func _on_move_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "move"):
 		move_player.play("idle")
 
 func _on_multi_timer_timeout() -> void:
 	last_donut = true
+
+func _on_up_check_body_entered(body: Node2D) -> void:
+	if (body is Enemy):
+		my_enemy = body
+
+func _on_up_check_body_exited(body: Node2D) -> void:
+	if (body is Enemy):
+		my_enemy = null
