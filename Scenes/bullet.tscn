@@ -8,6 +8,44 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6afsh"]
 
+[sub_resource type="Animation" id="Animation_ycag2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_6afsh"]
+resource_name = "move"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_odot3"]
+_data = {
+&"RESET": SubResource("Animation_ycag2"),
+&"move": SubResource("Animation_6afsh")
+}
+
 [node name="Bullet" type="CharacterBody2D" unique_id=770135349 node_paths=PackedStringArray("poof_point")]
 z_index = -1
 collision_layer = 1024
@@ -36,20 +74,22 @@ collision_mask = 4098
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_6afsh")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2089649503]
+position = Vector2(-10, 2)
+rect = Rect2(-10, -10, 44, 20)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1311997940]
+libraries/ = SubResource("AnimationLibrary_odot3")
+autoplay = &"move"
+
 [node name="Components" type="Node" parent="." unique_id=1727428943]
 
 [node name="MoveCom" type="Node" parent="Components" unique_id=1025196829 node_paths=PackedStringArray("body")]
 script = ExtResource("3_ycag2")
 body = NodePath("../..")
-walk_speed = 100.0
-run_speed = 100.0
-acc = 1.0
-dec = 1.0
+walk_speed = 450.0
+run_speed = 450.0
 metadata/_custom_type_script = "uid://bclth0n42rvjc"
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2089649503]
-position = Vector2(-10, 2)
-rect = Rect2(-10, -10, 44, 20)
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

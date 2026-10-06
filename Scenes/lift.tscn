@@ -128,6 +128,7 @@ rect = Rect2(-19, -14, 64, 48)
 position = Vector2(0, 18)
 
 [node name="HurtTimer" type="Timer" parent="." unique_id=512026857]
+wait_time = 0.009999999999999998
 one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=741693019]
@@ -136,8 +137,6 @@ one_shot = true
 body = NodePath("../..")
 walk_speed = 100.0
 run_speed = 100.0
-acc = 1.0
-dec = 1.0
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_5xepn")]
 body = NodePath("../..")

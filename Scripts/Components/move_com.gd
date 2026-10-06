@@ -5,10 +5,9 @@ class_name MoveCom
 @export var body: CharacterBody2D
 @export var walk_speed: float = 0.0
 @export var run_speed: float = 0.0
-@export_range(0.0, 1.0, 0.1) var acc: float = 0.0
-@export_range(0.0, 1.0, 0.1) var dec: float = 0.0
-@export_range(0.0, 1.0, 0.01) var max_acc: float = 0.0
-@export_range(0.0, 1.0, 0.01) var max_dec: float = 0.0
+@export_range(0.0, 1.0, 0.1) var acc: float = 1.0
+@export_range(0.0, 1.0, 0.1) var dec: float = 1.0
+@export_range(0.0, 1.0, 0.01) var max_acc: float = 1.0
 
 @onready var speed: float = walk_speed
 
@@ -35,6 +34,3 @@ func handle_speed_change(query: bool) -> void:
 		speed = run_speed
 	else:
 		speed = walk_speed
-
-func handle_quick_turn(x_dir: float) -> void:
-	pass

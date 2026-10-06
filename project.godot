@@ -90,6 +90,7 @@ debug={
 2d_physics/layer_15="MovingPlatform"
 2d_physics/layer_16="Explosion"
 2d_physics/layer_17="Canny"
+2d_physics/layer_18="EnemyProjectile"
 
 [physics]
 

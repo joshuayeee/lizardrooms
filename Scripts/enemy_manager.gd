@@ -9,6 +9,8 @@ func _ready() -> void:
 			
 			if (child is Kaboom):
 				connect_explosion(child)
+			elif (child is Twister):
+				connect_head(child)
 
 func connect_poof(my_enemy: Enemy) -> void:
 	my_enemy.created_poof.connect(add_poof)
@@ -16,8 +18,14 @@ func connect_poof(my_enemy: Enemy) -> void:
 func connect_explosion(my_kaboom: Kaboom) -> void:
 	my_kaboom.created_explosion.connect(add_explosion)
 
+func connect_head(my_twister: Twister) -> void:
+	my_twister.created_head.connect(add_head)
+
 func add_poof(poof: Poof) -> void:
 	add_child(poof)
 
 func add_explosion(explosion: Explosion) -> void:
 	add_child(explosion)
+
+func add_head(head: TwisterHead) -> void:
+	add_child(head)

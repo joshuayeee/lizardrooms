@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bknuxevadx2oj"]
+
+[ext_resource type="Texture2D" uid="uid://cx6bx8xqsd5f1" path="res://Assets/Sprites/TwisterHead.png" id="1_txc8v"]
+[ext_resource type="Script" uid="uid://bu0dm6hvnm1c1" path="res://Scripts/twister_head.gd" id="1_ulk3w"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_3ol1f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(28, 28)
+
+[node name="TwisterHead" type="CharacterBody2D" unique_id=208930422]
+z_index = 1
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource("1_ulk3w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=443815522]
+scale = Vector2(4, 4)
+texture = ExtResource("1_txc8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1454216916]
+position = Vector2(2, 6)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=610742053]
+collision_layer = 131072
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=427900005]
+position = Vector2(2, 6)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=1555596996]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="Components" type="Node" parent="." unique_id=984168268]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_3ol1f")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
