@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b7nu3em0ku77g"]
 
 [ext_resource type="Script" uid="uid://cmamkh1obi5h5" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://cisa283nrht4j" path="res://Assets/Sprites/Waffle.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://bd0mw526glito" path="res://Assets/Sprites/Waffle.png" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="5_fkybt"]
@@ -56,6 +56,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_p1odr"]
+resource_name = "candy_turn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
 }
 
 [sub_resource type="Animation" id="Animation_vgqql"]
@@ -153,6 +169,22 @@ tracks/0/keys = {
 "values": [13, 14, 13, 14, 13, 14, 13, 14, 13, 14, 13]
 }
 
+[sub_resource type="Animation" id="Animation_0gysh"]
+resource_name = "normal_turn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
 [sub_resource type="Animation" id="Animation_8erm5"]
 resource_name = "normal_walk"
 length = 0.4
@@ -217,6 +249,22 @@ tracks/0/keys = {
 "values": [14, 15, 14, 15, 14, 15, 14, 15, 14, 15, 14]
 }
 
+[sub_resource type="Animation" id="Animation_vfarp"]
+resource_name = "sandwich_turn"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+
 [sub_resource type="Animation" id="Animation_gymyn"]
 resource_name = "sandwich_walk"
 length = 0.4
@@ -239,16 +287,19 @@ _data = {
 &"RESET": SubResource("Animation_v0iea"),
 &"candy_idle": SubResource("Animation_cvnsp"),
 &"candy_jump": SubResource("Animation_6t5aa"),
+&"candy_turn": SubResource("Animation_p1odr"),
 &"candy_walk": SubResource("Animation_vgqql"),
 &"death": SubResource("Animation_fkybt"),
 &"normal_idle": SubResource("Animation_x3wgy"),
 &"normal_jump": SubResource("Animation_3smsa"),
 &"normal_to_candy": SubResource("Animation_ukyrk"),
 &"normal_to_sandwich": SubResource("Animation_pu2lt"),
+&"normal_turn": SubResource("Animation_0gysh"),
 &"normal_walk": SubResource("Animation_8erm5"),
 &"sandwich_idle": SubResource("Animation_f1ek2"),
 &"sandwich_jump": SubResource("Animation_tx1dd"),
 &"sandwich_to_candy": SubResource("Animation_7dp3o"),
+&"sandwich_turn": SubResource("Animation_vfarp"),
 &"sandwich_walk": SubResource("Animation_gymyn")
 }
 
@@ -472,7 +523,7 @@ script = ExtResource("1_cvnsp")
 scale = Vector2(4, 4)
 texture = ExtResource("1_v0iea")
 hframes = 4
-vframes = 4
+vframes = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1976793151]
 position = Vector2(0, 12)
@@ -525,6 +576,8 @@ walk_speed = 200.0
 run_speed = 300.0
 acc = 0.07
 dec = 0.07
+max_acc = 0.11
+max_dec = 0.2
 
 [node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("4_vgqql")]
 body = NodePath("../..")

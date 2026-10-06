@@ -7,12 +7,20 @@ class_name MoveCom
 @export var run_speed: float = 0.0
 @export_range(0.0, 1.0, 0.1) var acc: float = 0.0
 @export_range(0.0, 1.0, 0.1) var dec: float = 0.0
+@export_range(0.0, 1.0, 0.01) var max_acc: float = 0.0
+@export_range(0.0, 1.0, 0.01) var max_dec: float = 0.0
 
 @onready var speed: float = walk_speed
 
 func handle_hori_move(x_dir: float) -> void:
 	if x_dir:
-		body.velocity.x = move_toward(body.velocity.x, x_dir * speed, speed * acc)
+		if (body.is_on_floor()):
+			if ((x_dir < 0 and body.velocity.x > 0) or (x_dir > 0 and body.velocity.x < 0)):
+				body.velocity.x = move_toward(body.velocity.x, x_dir * speed, speed * max_acc)
+			else:
+				body.velocity.x = move_toward(body.velocity.x, x_dir * speed, speed * acc)
+		else:
+			body.velocity.x = move_toward(body.velocity.x, x_dir * speed, speed * acc)
 	else:
 		body.velocity.x = move_toward(body.velocity.x, 0, speed * dec)
 
@@ -27,3 +35,6 @@ func handle_speed_change(query: bool) -> void:
 		speed = run_speed
 	else:
 		speed = walk_speed
+
+func handle_quick_turn(x_dir: float) -> void:
+	pass

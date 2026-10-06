@@ -22,6 +22,27 @@ func handle_animation(direction: float,
 		else:
 			anim_player.play(idle_anim)
 
+func handle_player_animation(direction: float,
+								velo: Vector2,
+								in_air: bool,
+								jump_anim: String,
+								walk_anim: String,
+								turn_anim: String,
+								idle_anim: String) -> void:
+	if (direction):
+		sprite.flip_h = (direction < 0)
+	
+	if (in_air):
+		anim_player.play(jump_anim)
+	else:
+		if (direction):
+			if ((direction < 0 and velo.x > 0) or (direction > 0 and velo.x < 0)):
+				anim_player.play(turn_anim)
+			else:
+				anim_player.play(walk_anim)
+		else:
+			anim_player.play(idle_anim)
+
 func handle_anim_change(old_state, 
 							new_state, 
 							norm_sand, 

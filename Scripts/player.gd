@@ -49,10 +49,12 @@ func _physics_process(delta: float) -> void:
 		
 		move_com.handle_hori_move(direction)
 		
-		anim_com.handle_animation(direction, 
+		anim_com.handle_player_animation(direction, 
+									velocity,
 									not is_on_floor(), 
 									"%s_jump" % state, 
-									"%s_walk" % state, 
+									"%s_walk" % state,
+									"%s_turn" % state, 
 									"%s_idle" % state)
 		
 		if (state == "candy"):
