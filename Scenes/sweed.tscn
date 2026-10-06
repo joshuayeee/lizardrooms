@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dhwyiiap2w1f8"]
+
+[ext_resource type="Script" uid="uid://clwb7q64fyjmo" path="res://Scripts/sweed.gd" id="1_ipq27"]
+[ext_resource type="Texture2D" uid="uid://cxrrob4n0qr6v" path="res://Assets/Sprites/Sweed.png" id="2_ipq27"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_ipq27"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
+radius = 7.0
+height = 52.0
+
+[sub_resource type="Animation" id="Animation_mtijh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xix2e"]
+resource_name = "normal"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3xavh"]
+_data = {
+&"RESET": SubResource("Animation_mtijh"),
+&"normal": SubResource("Animation_xix2e")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+radius = 7.0
+height = 52.0
+
+[node name="Sweed" type="CharacterBody2D" unique_id=1135693950 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("1_ipq27")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=286237383]
+position = Vector2(0, -1)
+scale = Vector2(4, 4)
+texture = ExtResource("2_ipq27")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=776454530]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_jh5pk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=209707080]
+libraries/ = SubResource("AnimationLibrary_3xavh")
+autoplay = &"normal"
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1415930911]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=951350163]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2022459696]
+rect = Rect2(-24, -600, 48, 700)
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1902550957]
+
+[node name="GoUpTimer" type="Timer" parent="." unique_id=2086128301]
+one_shot = true
+
+[node name="GoDownTimer" type="Timer" parent="." unique_id=1036630305]
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=2004717523]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_ipq27")]
+body = NodePath("../..")
+walk_speed = 300.0
+run_speed = 300.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="timeout" from="GoUpTimer" to="." method="_on_go_up_timer_timeout"]
+[connection signal="timeout" from="GoDownTimer" to="." method="_on_go_down_timer_timeout"]

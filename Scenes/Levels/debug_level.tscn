@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://udga0qm4mods" path="res://Assets/Sprites/WorldOneTM2.png" id="13_2la43"]
 [ext_resource type="PackedScene" uid="uid://dyvq6ti7a0cyf" path="res://Scenes/puddle.tscn" id="13_o3shq"]
 [ext_resource type="PackedScene" uid="uid://c1lr5trcnyd0e" path="res://Scenes/fishy.tscn" id="14_6l4dy"]
+[ext_resource type="PackedScene" uid="uid://dhwyiiap2w1f8" path="res://Scenes/sweed.tscn" id="15_w1gb2"]
 [ext_resource type="Texture2D" uid="uid://b2uqrq2a3xkm" path="res://Assets/Sprites/FalseWallTM2.png" id="17_dffts"]
 [ext_resource type="PackedScene" uid="uid://nvl5vrsru0ag" path="res://Scenes/special_box.tscn" id="18_1yeil"]
 [ext_resource type="PackedScene" uid="uid://dxgnoy3dt6xa3" path="res://Scenes/normal_box.tscn" id="19_5hupk"]
@@ -352,6 +353,13 @@ stop_point = NodePath("StopPoint")
 
 [node name="StopPoint" type="Node2D" parent="FrontLayer/EnemyManager/Fishy2" unique_id=760822320]
 position = Vector2(0, -320)
+
+[node name="Sweed" parent="FrontLayer/EnemyManager" unique_id=1135693950 node_paths=PackedStringArray("stop_point") instance=ExtResource("15_w1gb2")]
+position = Vector2(9168, 264)
+stop_point = NodePath("StopPoint")
+
+[node name="StopPoint" type="Node2D" parent="FrontLayer/EnemyManager/Sweed" unique_id=324149667]
+position = Vector2(0, -328)
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("5_cw15a")]
 
