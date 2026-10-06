@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4uk4qu8fcgse"
-path="res://.godot/imported/Lift.png-72b11fb975f5b8121e76c9eb90d421de.ctex"
+uid="uid://b6rf137dwmjif"
+path="res://.godot/imported/Canny2.png-dd8076feda2f644c02c49b41d827d1ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Lift.png"
-dest_files=["res://.godot/imported/Lift.png-72b11fb975f5b8121e76c9eb90d421de.ctex"]
+source_file="res://Assets/Sprites/Canny2.png"
+dest_files=["res://.godot/imported/Canny2.png-dd8076feda2f644c02c49b41d827d1ca.ctex"]
 
 [params]
 

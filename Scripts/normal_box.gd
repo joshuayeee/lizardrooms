@@ -25,11 +25,12 @@ var my_enemy: Enemy = null
 func player_hit(player: Player) -> void:
 	var state: String = player.state
 	
-	if (my_enemy != null):
-		my_enemy.poof_death()
-		my_enemy = null
-	
 	if (contains == Contains.NOTHING):
+		
+		if (my_enemy != null):
+			my_enemy.poof_death()
+			my_enemy = null
+		
 		if (state == "sandwich" or state == "candy"):
 			var piece_1: BoxPiece = BOX_PIECE.instantiate()
 			piece_1.global_position = global_position
@@ -46,6 +47,11 @@ func player_hit(player: Player) -> void:
 		move_player.play("move")
 	else:
 		if (not is_empty):
+			
+			if (my_enemy != null):
+				my_enemy.poof_death()
+				my_enemy = null
+			
 			if (contains != Contains.MULTI_DONUT):
 				match contains:
 					Contains.DONUT:

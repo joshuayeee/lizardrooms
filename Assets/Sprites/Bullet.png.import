@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4uk4qu8fcgse"
-path="res://.godot/imported/Lift.png-72b11fb975f5b8121e76c9eb90d421de.ctex"
+uid="uid://co4torahj7of7"
+path="res://.godot/imported/Bullet.png-19916a6bc6813834b54920a56acd4b9e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Lift.png"
-dest_files=["res://.godot/imported/Lift.png-72b11fb975f5b8121e76c9eb90d421de.ctex"]
+source_file="res://Assets/Sprites/Bullet.png"
+dest_files=["res://.godot/imported/Bullet.png-19916a6bc6813834b54920a56acd4b9e.ctex"]
 
 [params]
 

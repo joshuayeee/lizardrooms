@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dplupq4ss4nl5" path="res://Scenes/checkpoint_manager.tscn" id="8_e1tbu"]
 [ext_resource type="PackedScene" uid="uid://dfvd6j0w4cv5o" path="res://Scenes/death_zone.tscn" id="10_fwp4i"]
 [ext_resource type="PackedScene" uid="uid://cuvexbipavqsp" path="res://Scenes/enemy_manager.tscn" id="12_sl4tb"]
+[ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/canny_manager.tscn" id="14_3o7cg"]
 [ext_resource type="PackedScene" uid="uid://wsvmq4k5ym0b" path="res://Scenes/jawbreaker_manager.tscn" id="15_oh7ei"]
 [ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="16_ke6kr"]
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="17_8or26"]
@@ -29,7 +30,7 @@ physics_layer_0/collision_mask = 7203
 
 [sub_resource type="TileSet" id="TileSet_3o7cg"]
 
-[node name="BaseLevel" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "lives_label", "donuts_label")]
+[node name="BaseLevel" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label")]
 script = ExtResource("1_vk7aq")
 front_layer = NodePath("FrontLayer")
 mid_layer = NodePath("MidLayer")
@@ -38,6 +39,7 @@ back_layer = NodePath("BackLayer")
 checkpoint_manager = NodePath("FrontLayer/CheckpointManager")
 cam_point_manager = NodePath("FrontLayer/CamPointManager")
 jawbreaker_manager = NodePath("FrontLayer/JawbreakerManager")
+canny_manager = NodePath("BackLayer/CannyManager")
 lives_label = NodePath("UILayer/LivesLabel")
 donuts_label = NodePath("UILayer/DonutsLabel")
 metadata/_custom_type_script = "uid://chtkpxe6gmto8"
@@ -169,3 +171,8 @@ follow_viewport_enabled = true
 z_index = -2
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_3o7cg")
+
+[node name="BackEnemyManager" parent="BackLayer" unique_id=1282240525 instance=ExtResource("12_sl4tb")]
+
+[node name="CannyManager" parent="BackLayer" unique_id=1726914308 node_paths=PackedStringArray("enemy_manager") instance=ExtResource("14_3o7cg")]
+enemy_manager = NodePath("../BackEnemyManager")

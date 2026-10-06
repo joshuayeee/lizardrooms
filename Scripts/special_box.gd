@@ -24,11 +24,12 @@ var my_enemy: Enemy = null
 func player_hit(player: Player) -> void:
 	var state: String = player.state
 	
-	if (my_enemy != null):
-		my_enemy.poof_death()
-		my_enemy = null
-	
 	if (not is_empty):
+		
+		if (my_enemy != null):
+			my_enemy.poof_death()
+			my_enemy = null
+		
 		if (contains != Contains.MULTI_DONUT):
 			match contains:
 				Contains.DONUT:

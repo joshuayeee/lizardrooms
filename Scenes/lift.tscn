@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cj60aawqx3lqe"]
 
 [ext_resource type="Script" uid="uid://bv7vqtv4dpm2a" path="res://Scripts/lift.gd" id="1_5wue2"]
-[ext_resource type="Texture2D" uid="uid://cdlyh6nwxwx1s" path="res://Assets/Sprites/Lift.png" id="2_ct4xn"]
+[ext_resource type="Texture2D" uid="uid://4uk4qu8fcgse" path="res://Assets/Sprites/Lift.png" id="2_ct4xn"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_qvr7p"]
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="4_5xepn"]
 [ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="5_sw40n"]
@@ -77,7 +77,7 @@ size = Vector2(40, 28)
 
 [node name="Lift" type="CharacterBody2D" unique_id=29704582 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
-collision_mask = 16908
+collision_mask = 82444
 script = ExtResource("1_5wue2")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dokg8u03i7u00"
@@ -106,7 +106,7 @@ shape = SubResource("RectangleShape2D_ydotr")
 
 [node name="LeftCheck" type="Area2D" parent="." unique_id=1061146252]
 collision_layer = 1024
-collision_mask = 16908
+collision_mask = 82444
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=85148622]
 position = Vector2(-2, 18)
@@ -114,7 +114,7 @@ shape = SubResource("RectangleShape2D_5wue2")
 
 [node name="RightCheck" type="Area2D" parent="." unique_id=432967655]
 collision_layer = 1024
-collision_mask = 16908
+collision_mask = 82444
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=1314574615]
 position = Vector2(2, 18)

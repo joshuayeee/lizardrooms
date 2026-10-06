@@ -12,6 +12,7 @@ const CAM = preload("uid://caj7fxc0ctv5a")
 @export var checkpoint_manager: CheckpointManager = null
 @export var cam_point_manager: CamPointManager = null
 @export var jawbreaker_manager: JawbreakerManager = null
+@export var canny_manager: CannyManager = null
 @export var lives_label: Label = null
 @export var donuts_label: Label = null
 
@@ -32,7 +33,8 @@ func _ready() -> void:
 	player.player_entered.connect(handle_player_enter)
 	player.player_returned.connect(handle_player_return)
 	player.request_layer_change.connect(change_player_layer)
-
+	canny_manager.inject_player(player)
+	
 	cam = spawn_cam(spawn_point, player)
 	cam_point_manager.connect_points_to_cam(cam)
 	

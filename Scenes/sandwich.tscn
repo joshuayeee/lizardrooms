@@ -67,7 +67,7 @@ _data = {
 
 [node name="Sandwich" type="CharacterBody2D" unique_id=149632937]
 collision_layer = 32
-collision_mask = 16908
+collision_mask = 82444
 script = ExtResource("1_xgfno")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1571688134]

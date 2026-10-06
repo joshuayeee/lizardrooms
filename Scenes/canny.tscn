@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dhwllct0rb7by"]
+
+[ext_resource type="Texture2D" uid="uid://b6rf137dwmjif" path="res://Assets/Sprites/Canny2.png" id="1_efagp"]
+[ext_resource type="Script" uid="uid://mg3jspel8tgs" path="res://Scripts/canny.gd" id="1_qopxj"]
+[ext_resource type="Script" uid="uid://bclth0n42rvjc" path="res://Scripts/Components/move_com.gd" id="3_e16p5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(48, 60)
+
+[node name="Canny" type="CharacterBody2D" unique_id=1606976630]
+collision_layer = 65536
+collision_mask = 0
+script = ExtResource("1_qopxj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=48933540]
+scale = Vector2(4, 4)
+texture = ExtResource("1_efagp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=862658699]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="StopPoint" type="Node2D" parent="." unique_id=621606520]
+position = Vector2(-1, -28)
+
+[node name="GoUpTimer" type="Timer" parent="." unique_id=1301717585]
+wait_time = 2.0
+one_shot = true
+
+[node name="GoDownTimer" type="Timer" parent="." unique_id=2107172536]
+wait_time = 2.0
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1032129180]
+rect = Rect2(-40, -40, 80, 80)
+
+[node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=2062232342]
+position = Vector2(0, -4)
+
+[node name="Components" type="Node" parent="." unique_id=302245814]
+
+[node name="MoveCom" type="Node" parent="Components" unique_id=347989979 node_paths=PackedStringArray("body")]
+script = ExtResource("3_e16p5")
+body = NodePath("../..")
+walk_speed = 75.0
+run_speed = 75.0
+acc = 1.0
+dec = 1.0
+metadata/_custom_type_script = "uid://bclth0n42rvjc"
+
+[connection signal="timeout" from="GoUpTimer" to="." method="_on_go_up_timer_timeout"]
+[connection signal="timeout" from="GoDownTimer" to="." method="_on_go_down_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

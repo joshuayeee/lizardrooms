@@ -11,9 +11,13 @@ class_name Cupcake
 var direction: float = 1.0
 
 func _physics_process(delta: float) -> void:
-	gravity_com.handle_gravity(delta)
-	move_com.handle_hori_move(direction)
-	jump_com.handle_jump(is_on_floor())
+	if (Global.game_active):
+		gravity_com.handle_gravity(delta)
+		move_com.handle_hori_move(direction)
+		jump_com.handle_jump(is_on_floor())
+	else:
+		velocity = Vector2.ZERO
+	
 	move_and_slide()
 
 func _on_player_check_body_entered(body: Node2D) -> void:

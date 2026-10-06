@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b4qltgag5er64"]
+
+[ext_resource type="Script" uid="uid://bj8fnjth6ix78" path="res://Scripts/bullet.gd" id="1_ycag2"]
+[ext_resource type="Texture2D" uid="uid://co4torahj7of7" path="res://Assets/Sprites/Bullet.png" id="2_ycag2"]
+[ext_resource type="Script" uid="uid://bclth0n42rvjc" path="res://Scripts/Components/move_com.gd" id="3_ycag2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6afsh"]
+
+[node name="Bullet" type="CharacterBody2D" unique_id=770135349 node_paths=PackedStringArray("poof_point")]
+z_index = -1
+collision_layer = 1024
+collision_mask = 16908
+script = ExtResource("1_ycag2")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2065638010]
+scale = Vector2(4, 4)
+texture = ExtResource("2_ycag2")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1606607649]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1577791021]
+position = Vector2(0, 2)
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=967008323]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=919576871]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_6afsh")
+
+[node name="Components" type="Node" parent="." unique_id=1727428943]
+
+[node name="MoveCom" type="Node" parent="Components" unique_id=1025196829 node_paths=PackedStringArray("body")]
+script = ExtResource("3_ycag2")
+body = NodePath("../..")
+walk_speed = 100.0
+run_speed = 100.0
+acc = 1.0
+dec = 1.0
+metadata/_custom_type_script = "uid://bclth0n42rvjc"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2089649503]
+position = Vector2(-10, 2)
+rect = Rect2(-10, -10, 44, 20)
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

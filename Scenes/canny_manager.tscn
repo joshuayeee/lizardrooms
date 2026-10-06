@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brqkuxujrqyep"]
+
+[ext_resource type="Script" uid="uid://cfbvs4kmkh50t" path="res://Scripts/canny_manager.gd" id="1_y1yon"]
+
+[node name="CannyManager" type="Node2D" unique_id=1726914308]
+script = ExtResource("1_y1yon")

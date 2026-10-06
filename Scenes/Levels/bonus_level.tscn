@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://e1uhlkhin5yk" path="res://Scenes/door.tscn" id="10_rb0x3"]
 [ext_resource type="PackedScene" uid="uid://cebe01g12lqvu" path="res://Scenes/bonus_box_manager.tscn" id="13_n7n7s"]
 [ext_resource type="PackedScene" uid="uid://coafakbyi7g0f" path="res://Scenes/bonus_box.tscn" id="14_sfimd"]
+[ext_resource type="PackedScene" uid="uid://cuvexbipavqsp" path="res://Scenes/enemy_manager.tscn" id="15_xfe1b"]
+[ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/canny_manager.tscn" id="16_owkbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(112, 576)
@@ -30,7 +32,7 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 4099
 sources/1 = SubResource("TileSetAtlasSource_stscu")
 
-[node name="BonusLevel" type="Node2D" unique_id=1266045883 node_paths=PackedStringArray("bonus_door", "front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "lives_label", "donuts_label")]
+[node name="BonusLevel" type="Node2D" unique_id=1266045883 node_paths=PackedStringArray("bonus_door", "front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label")]
 script = ExtResource("1_fncns")
 bonus_door = NodePath("MidLayer/Door")
 front_layer = NodePath("FrontLayer")
@@ -40,6 +42,7 @@ back_layer = NodePath("BackLayer")
 checkpoint_manager = NodePath("FrontLayer/CheckpointManager")
 cam_point_manager = NodePath("FrontLayer/CamPointManager")
 jawbreaker_manager = NodePath("FrontLayer/JawbreakerManager")
+canny_manager = NodePath("BackLayer/CannyManager")
 lives_label = NodePath("UILayer/LivesLabel")
 donuts_label = NodePath("UILayer/DonutsLabel")
 metadata/_custom_type_script = "uid://chtkpxe6gmto8"
@@ -189,3 +192,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="BackEnemyManager" parent="BackLayer" unique_id=1877206157 instance=ExtResource("15_xfe1b")]
+
+[node name="CannyManager" parent="BackLayer" unique_id=1726914308 node_paths=PackedStringArray("enemy_manager") instance=ExtResource("16_owkbf")]
+enemy_manager = NodePath("../BackEnemyManager")
