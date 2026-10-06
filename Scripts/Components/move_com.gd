@@ -34,3 +34,6 @@ func handle_speed_change(query: bool) -> void:
 		speed = run_speed
 	else:
 		speed = walk_speed
+
+func handle_move_towards(direction: Vector2) -> void:
+	body.velocity = direction * speed

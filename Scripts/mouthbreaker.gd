@@ -4,13 +4,11 @@ class_name Mouthbreaker
 
 @onready var move_com: MoveCom = $Components/MoveCom
 
-var x_dir: float = -1.0
-var y_dir: float = 1.0
+var direction: Vector2 = Vector2.ZERO 
 
 func _physics_process(_delta: float) -> void:
 	if (Global.game_active):
-		move_com.handle_hori_move(x_dir)
-		move_com.handle_vert_move(y_dir)
+		move_com.handle_move_towards(direction)
 	else:
 		velocity = Vector2.ZERO
 	

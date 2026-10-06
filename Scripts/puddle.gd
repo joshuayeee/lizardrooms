@@ -34,16 +34,7 @@ func shoot_mouthbreaker() -> void:
 	if (player != null):
 		var mouthbreaker: Mouthbreaker = MOUTHBREAKER.instantiate()
 		mouthbreaker.global_position = poof_point.global_position
-		
-		match direction:
-			Directions.RIGHT:
-				mouthbreaker.x_dir = 1.0
-			Directions.LEFT:
-				mouthbreaker.x_dir = -1.0
-		
-		var y_dist: float = (player.global_position.y - global_position.y)
-		mouthbreaker.y_dir = y_dist / (100)
-		
+		mouthbreaker.direction = (player.global_position - global_position).normalized()
 		created_mouthbreaker.emit(mouthbreaker)
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
