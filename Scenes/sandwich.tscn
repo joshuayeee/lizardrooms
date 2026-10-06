@@ -10,6 +10,61 @@ size = Vector2(40, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
 size = Vector2(40, 36)
 
+[sub_resource type="Animation" id="Animation_xgfno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_yjxuq"]
+resource_name = "blink"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_wnfye"]
+resource_name = "normal"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s4eia"]
+_data = {
+&"RESET": SubResource("Animation_xgfno"),
+&"blink": SubResource("Animation_yjxuq"),
+&"normal": SubResource("Animation_wnfye")
+}
+
 [node name="Sandwich" type="CharacterBody2D" unique_id=149632937]
 collision_layer = 32
 collision_mask = 16908
@@ -31,9 +86,23 @@ collision_mask = 4099
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_ydotr")
 
+[node name="BlinkPlayer" type="AnimationPlayer" parent="." unique_id=153990585]
+libraries/ = SubResource("AnimationLibrary_s4eia")
+autoplay = &"normal"
+
+[node name="StartBlinkTimer" type="Timer" parent="." unique_id=1132530214]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="EndTimer" type="Timer" parent="." unique_id=622365293]
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1794247036]
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("2_xbpk7")]
 body = NodePath("../..")
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="timeout" from="StartBlinkTimer" to="." method="_on_start_blink_timer_timeout"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]

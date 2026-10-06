@@ -6,6 +6,8 @@ class_name Heart
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var jump_com: JumpCom = $Components/JumpCom
+@onready var blink_player: AnimationPlayer = $BlinkPlayer
+@onready var end_timer: Timer = $EndTimer
 
 var direction: float = 1.0
 var can_move: bool = true
@@ -41,3 +43,10 @@ func _on_left_check_body_entered(_body: Node2D) -> void:
 func _on_right_check_body_entered(_body: Node2D) -> void:
 	if (direction > 0):
 		direction = -1.0
+
+func _on_start_blink_timer_timeout() -> void:
+	blink_player.play("blink")
+	end_timer.start()
+
+func _on_end_timer_timeout() -> void:
+	call_deferred("queue_free")

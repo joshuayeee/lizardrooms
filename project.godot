@@ -89,6 +89,7 @@ debug={
 2d_physics/layer_14="Door"
 2d_physics/layer_15="MovingPlatform"
 2d_physics/layer_16="Explosion"
+2d_physics/layer_17="Canny"
 
 [physics]
 

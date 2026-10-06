@@ -91,6 +91,61 @@ _data = {
 &"two_lives": SubResource("Animation_3aedr")
 }
 
+[sub_resource type="Animation" id="Animation_4obt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_atbr1"]
+resource_name = "blink"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_eekui"]
+resource_name = "normal"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wuhaj"]
+_data = {
+&"RESET": SubResource("Animation_4obt7"),
+&"blink": SubResource("Animation_atbr1"),
+&"normal": SubResource("Animation_eekui")
+}
+
 [node name="Heart" type="CharacterBody2D" unique_id=311840098]
 collision_layer = 32
 collision_mask = 16908
@@ -132,6 +187,18 @@ shape = SubResource("RectangleShape2D_cp0ws")
 libraries/ = SubResource("AnimationLibrary_eekui")
 autoplay = &"one_life"
 
+[node name="BlinkPlayer" type="AnimationPlayer" parent="." unique_id=270012048]
+libraries/ = SubResource("AnimationLibrary_wuhaj")
+autoplay = &"normal"
+
+[node name="StartBlinkTimer" type="Timer" parent="." unique_id=713691116]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="EndTimer" type="Timer" parent="." unique_id=1279189513]
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1622553593]
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("3_rycqq")]
@@ -151,3 +218,5 @@ jump_velocity = -500.0
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="timeout" from="StartBlinkTimer" to="." method="_on_start_blink_timer_timeout"]
+[connection signal="timeout" from="EndTimer" to="." method="_on_end_timer_timeout"]
