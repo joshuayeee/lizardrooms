@@ -224,7 +224,7 @@ texture = ExtResource("9_8ckqi")
 [sub_resource type="TileSet" id="TileSet_su1xx"]
 sources/0 = SubResource("TileSetAtlasSource_lti81")
 
-[node name="World1Level1" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label")]
+[node name="World1Level1" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "enemy_managers")]
 script = ExtResource("1_7qcv7")
 front_layer = NodePath("FrontLayer")
 mid_layer = NodePath("MidLayer")
@@ -236,6 +236,7 @@ jawbreaker_manager = NodePath("FrontLayer/JawbreakerManager")
 canny_manager = NodePath("BackLayer/CannyManager")
 lives_label = NodePath("UILayer/LivesLabel")
 donuts_label = NodePath("UILayer/DonutsLabel")
+enemy_managers = [NodePath("FrontLayer/EnemyManager"), NodePath("BackLayer/BackEnemyManager")]
 metadata/_custom_type_script = "uid://chtkpxe6gmto8"
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2140184272]

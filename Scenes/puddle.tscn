@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dyvq6ti7a0cyf"]
+
+[ext_resource type="Script" uid="uid://3iggsx4bgaph" path="res://Scripts/puddle.gd" id="1_xhiyn"]
+[ext_resource type="Texture2D" uid="uid://o05jfb07u5n0" path="res://Assets/Sprites/Puddle.png" id="2_xhiyn"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="3_xhiyn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(32, 12)
+
+[sub_resource type="Animation" id="Animation_gqr74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gv3bn"]
+resource_name = "idle"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5j6py"]
+_data = {
+&"RESET": SubResource("Animation_gqr74"),
+&"idle": SubResource("Animation_gv3bn")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(32, 12)
+
+[node name="Puddle" type="CharacterBody2D" unique_id=2121585081 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 82444
+script = ExtResource("1_xhiyn")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1851641178]
+scale = Vector2(4, 4)
+texture = ExtResource("2_xhiyn")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1060724436]
+position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1525132886]
+libraries/ = SubResource("AnimationLibrary_5j6py")
+autoplay = &"idle"
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=735433653]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=489301894]
+position = Vector2(0, 26)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1866734549]
+wait_time = 2.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=396299328]
+position = Vector2(-18, 10)
+rect = Rect2(-22, -26, 72, 64)
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1781481835]
+position = Vector2(0, 24)
+
+[node name="Components" type="Node" parent="." unique_id=1677696553]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("3_xhiyn")]
+body = NodePath("../..")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

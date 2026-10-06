@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="6_7vyws"]
 [ext_resource type="PackedScene" uid="uid://dfvd6j0w4cv5o" path="res://Scenes/death_zone.tscn" id="7_n0e5b"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="7_nccde"]
+[ext_resource type="PackedScene" uid="uid://cuvexbipavqsp" path="res://Scenes/enemy_manager.tscn" id="8_72ncj"]
 [ext_resource type="Texture2D" uid="uid://udga0qm4mods" path="res://Assets/Sprites/WorldOneTM2.png" id="8_vg4ek"]
 [ext_resource type="Texture2D" uid="uid://b2e3af8dp7ey2" path="res://Assets/Sprites/WorldOneBG.png" id="12_72ncj"]
 [ext_resource type="Script" uid="uid://clpre1n4oojie" path="res://Scripts/enemy_manager.gd" id="13_ehobu"]
@@ -73,7 +74,7 @@ texture = ExtResource("12_72ncj")
 [sub_resource type="TileSet" id="TileSet_3gji2"]
 sources/0 = SubResource("TileSetAtlasSource_acgjk")
 
-[node name="World1Level2" type="Node2D" unique_id=1223203629 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label")]
+[node name="World1Level2" type="Node2D" unique_id=1223203629 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "enemy_managers")]
 script = ExtResource("1_u3743")
 front_layer = NodePath("FrontLayer")
 mid_layer = NodePath("MidLayer")
@@ -85,6 +86,7 @@ jawbreaker_manager = NodePath("FrontLayer/JawbreakerManager")
 canny_manager = NodePath("BackLayer/CannyManager")
 lives_label = NodePath("UILayer/LivesLabel")
 donuts_label = NodePath("UILayer/DonutsLabel")
+enemy_managers = [NodePath("FrontLayer/EnemyManager"), NodePath("BackLayer/BackEnemyManager")]
 metadata/_custom_type_script = "uid://chtkpxe6gmto8"
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=81344873]
@@ -115,6 +117,8 @@ position = Vector2(0, 384)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/DeathZone" unique_id=1828618388]
 position = Vector2(608, 59)
 shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("8_72ncj")]
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=781861792]
 layer = 0

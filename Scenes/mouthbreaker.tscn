@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dasp4lmbyhkdn"]
+
+[ext_resource type="Script" uid="uid://bxxryyg3l56k1" path="res://Scripts/mouthbreaker.gd" id="1_fcacn"]
+[ext_resource type="Texture2D" uid="uid://85iq0t1yp0bb" path="res://Assets/Sprites/Mouthbreaker.png" id="1_iy2xy"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="2_fcacn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+radius = 11.045361
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
+radius = 11.0
+
+[node name="Mouthbreaker" type="CharacterBody2D" unique_id=1431194547]
+z_index = 1
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource("1_fcacn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=131865220]
+scale = Vector2(4, 4)
+texture = ExtResource("1_iy2xy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=49942650]
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=165589001]
+collision_layer = 131072
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1058952269]
+shape = SubResource("CircleShape2D_ydotr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1029907208]
+rect = Rect2(-12, -12, 24, 24)
+
+[node name="Components" type="Node" parent="." unique_id=1852653097]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("2_fcacn")]
+body = NodePath("../..")
+walk_speed = 300.0
+run_speed = 300.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]

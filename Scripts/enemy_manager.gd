@@ -11,6 +11,13 @@ func _ready() -> void:
 				connect_explosion(child)
 			elif (child is Twister):
 				connect_head(child)
+			elif (child is Puddle):
+				connect_mouthbreaker(child)
+
+func inject_player(player: Player) -> void:
+	for child in get_children():
+		if (child is Puddle):
+			child.player = player
 
 func connect_poof(my_enemy: Enemy) -> void:
 	my_enemy.created_poof.connect(add_poof)
@@ -21,6 +28,9 @@ func connect_explosion(my_kaboom: Kaboom) -> void:
 func connect_head(my_twister: Twister) -> void:
 	my_twister.created_head.connect(add_head)
 
+func connect_mouthbreaker(my_puddle: Puddle) -> void:
+	my_puddle.created_mouthbreaker.connect(add_mouthbreaker)
+
 func add_poof(poof: Poof) -> void:
 	add_child(poof)
 
@@ -29,3 +39,6 @@ func add_explosion(explosion: Explosion) -> void:
 
 func add_head(head: TwisterHead) -> void:
 	add_child(head)
+
+func add_mouthbreaker(mouthbreaker: Mouthbreaker) -> void:
+	add_child(mouthbreaker)

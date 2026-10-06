@@ -128,7 +128,7 @@ rect = Rect2(-19, -14, 64, 48)
 position = Vector2(0, 18)
 
 [node name="HurtTimer" type="Timer" parent="." unique_id=512026857]
-wait_time = 0.009999999999999998
+wait_time = 0.05
 one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=741693019]

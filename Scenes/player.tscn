@@ -539,6 +539,7 @@ autoplay = &"idle"
 
 [node name="BlinkPlayer" type="AnimationPlayer" parent="." unique_id=1412417555]
 libraries/ = SubResource("AnimationLibrary_p1odr")
+autoplay = &"normal"
 
 [node name="UpCheck" type="Area2D" parent="." unique_id=962002445]
 collision_layer = 2
