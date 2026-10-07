@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://bwjyi3y7vaqqb"]
+
+[ext_resource type="Script" uid="uid://dspgox0dugsaj" path="res://Scripts/threebie_head.gd" id="1_w76m2"]
+[ext_resource type="Texture2D" uid="uid://bjobrgloqpscv" path="res://Assets/Sprites/ThreebieHead.png" id="2_w76m2"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_ox75h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
+
+[node name="ThreebieHead" type="CharacterBody2D" unique_id=538312017 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("1_w76m2")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1208740629]
+scale = Vector2(4, 4)
+texture = ExtResource("2_w76m2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1958328873]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=124924898]
+position = Vector2(-2, 2)
+
+[node name="LeftPoint1" type="Node2D" parent="." unique_id=1420341178]
+position = Vector2(-64, -32)
+
+[node name="LeftPoint2" type="Node2D" parent="." unique_id=1131974115]
+position = Vector2(-192, -32)
+
+[node name="LeftPoint3" type="Node2D" parent="." unique_id=1274835514]
+position = Vector2(-256, 0)
+
+[node name="RightPoint1" type="Node2D" parent="." unique_id=167832699]
+position = Vector2(64, -32)
+
+[node name="RightPoint2" type="Node2D" parent="." unique_id=754607014]
+position = Vector2(192, -32)
+
+[node name="RightPoint3" type="Node2D" parent="." unique_id=1843266610]
+position = Vector2(256, 0)
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=741449607]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=791688589]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_ydotr")
+
+[node name="Components" type="Node" parent="." unique_id=1098298687]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_ox75h")]
+body = NodePath("../..")
+walk_speed = 100.0
+run_speed = 100.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]

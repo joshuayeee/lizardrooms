@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func shoot_mouthbreaker() -> void:
-	if (player != null):
+	if (player != null and is_active):
 		var mouthbreaker: Mouthbreaker = MOUTHBREAKER.instantiate()
 		mouthbreaker.global_position = poof_point.global_position
 		mouthbreaker.direction = (player.global_position - global_position).normalized()
@@ -50,3 +50,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 func _on_shoot_timer_timeout() -> void:
 	shoot_mouthbreaker()
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	is_active = false

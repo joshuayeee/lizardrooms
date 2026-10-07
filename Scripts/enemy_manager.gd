@@ -13,6 +13,8 @@ func _ready() -> void:
 				connect_head(child)
 			elif (child is Puddle or child is Sweed):
 				connect_mouthbreaker(child)
+			elif (child is Threebie):
+				connect_threebie_head(child)
 
 func inject_player(player: Player) -> void:
 	for child in get_children():
@@ -31,6 +33,9 @@ func connect_head(my_twister: Twister) -> void:
 func connect_mouthbreaker(my_puddle: Enemy) -> void:
 	my_puddle.created_mouthbreaker.connect(add_mouthbreaker)
 
+func connect_threebie_head(my_threebie: Threebie) -> void:
+	my_threebie.created_head.connect(add_threebie_head)
+
 func add_poof(poof: Poof) -> void:
 	add_child(poof)
 
@@ -42,3 +47,7 @@ func add_head(head: TwisterHead) -> void:
 
 func add_mouthbreaker(mouthbreaker: Mouthbreaker) -> void:
 	add_child(mouthbreaker)
+
+func add_threebie_head(head: ThreebieHead) -> void:
+	connect_poof(head)
+	add_child(head)

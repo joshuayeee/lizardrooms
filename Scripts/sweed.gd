@@ -73,3 +73,6 @@ func _on_go_down_timer_timeout() -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	is_active = true
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	is_active = false
