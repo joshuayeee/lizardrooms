@@ -37,6 +37,8 @@ var jawbreaker_manager: JawbreakerManager = null
 var can_shoot: bool = true
 var has_cupcake: bool = false
 
+var inf_cupcake_on: bool = false
+
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
 	if (Global.game_active):
@@ -220,3 +222,18 @@ func _on_hurt_timer_timeout() -> void:
 
 func _on_cupcake_timer_timeout() -> void:
 	turn_off_cupcake_power()
+
+func turn_on_inf_cupcake_power() -> void:
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(13, true)
+	blink_player.play("blink")
+	has_cupcake = true
+
+func _input(_event: InputEvent) -> void:
+	if (Input.is_action_just_pressed("debug_cupcake")):
+		if (inf_cupcake_on):
+			turn_off_cupcake_power()
+			inf_cupcake_on = false
+		else:
+			turn_on_inf_cupcake_power()
+			inf_cupcake_on = true

@@ -12,8 +12,8 @@ signal created_head(head: ThreebieHead)
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var normal_col: CollisionShape2D = $NormalCol
 @onready var headless_col: CollisionShape2D = $HeadlessCol
-@onready var player_normal_check: CollisionShape2D = $PlayerCheck/PlayerNormalCheck
-@onready var player_headless_check: CollisionShape2D = $PlayerCheck/PlayerHeadlessCheck
+@onready var normal_check_col: CollisionShape2D = $NormalPlayerCheck/NormalCheckCol
+@onready var headless_check_col: CollisionShape2D = $HeadlessPlayerCheck/HeadlessCheckCol
 @onready var head_start_point: Node2D = $HeadStartPoint
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
@@ -83,9 +83,9 @@ func get_head_back() -> void:
 
 func set_collisions(norm_dis: bool, headless_dis: bool) -> void:
 	normal_col.disabled = norm_dis
-	player_normal_check.disabled = norm_dis
+	normal_check_col.disabled = norm_dis
 	headless_col.disabled = headless_dis
-	player_headless_check.disabled = headless_dis
+	headless_check_col.disabled = headless_dis
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	if (not has_activated):
@@ -97,13 +97,6 @@ func _on_move_timer_timeout() -> void:
 	state = States.HEADLESS
 	launch_head()
 
-func _on_player_check_body_entered(body: Node2D) -> void:
-	if (body is Player):
-		if (Global.game_active and is_active and not body.has_cupcake):
-			body.hurt()
-		elif (body.has_cupcake):
-			poof_death()
-
 func _on_left_check_body_entered(_body: Node2D) -> void:
 	if (direction == Directions.LEFT):
 		direction = Directions.RIGHT
@@ -111,3 +104,17 @@ func _on_left_check_body_entered(_body: Node2D) -> void:
 func _on_right_check_body_entered(_body: Node2D) -> void:
 	if (direction == Directions.RIGHT):
 		direction = Directions.LEFT
+
+func _on_normal_player_check_body_entered(body: Node2D) -> void:
+	if (body is Player):
+		if (Global.game_active and is_active and not body.has_cupcake):
+			body.hurt()
+		elif (body.has_cupcake):
+			poof_death()
+
+func _on_headless_player_check_body_entered(body: Node2D) -> void:
+	if (body is Player):
+		if (Global.game_active and is_active and not body.has_cupcake):
+			body.hurt()
+		elif (body.has_cupcake):
+			poof_death()

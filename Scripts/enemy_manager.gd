@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func inject_player(player: Player) -> void:
 	for child in get_children():
-		if (child is Puddle or child is Sweed or child is Threebie):
+		if (child is Puddle or child is Sweed or child is Threebie or child is Legs):
 			child.player = player
 
 func connect_poof(my_enemy: Enemy) -> void:
