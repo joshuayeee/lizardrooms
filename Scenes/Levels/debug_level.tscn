@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://b2uqrq2a3xkm" path="res://Assets/Sprites/FalseWallTM2.png" id="17_dffts"]
 [ext_resource type="PackedScene" uid="uid://bjm2beoqppb81" path="res://Scenes/happy.tscn" id="17_hvu65"]
 [ext_resource type="PackedScene" uid="uid://nvl5vrsru0ag" path="res://Scenes/special_box.tscn" id="18_1yeil"]
+[ext_resource type="PackedScene" uid="uid://bj0au6b3rli7a" path="res://Scenes/slant.tscn" id="18_xwnmq"]
 [ext_resource type="PackedScene" uid="uid://dxgnoy3dt6xa3" path="res://Scenes/normal_box.tscn" id="19_5hupk"]
 [ext_resource type="PackedScene" uid="uid://ch8jhusf3twmu" path="res://Scenes/eater.tscn" id="21_4tytp"]
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/canny_manager.tscn" id="22_51dh8"]
@@ -368,6 +369,9 @@ position = Vector2(10528, 32)
 
 [node name="Happy" parent="FrontLayer/EnemyManager" unique_id=1027631908 instance=ExtResource("17_hvu65")]
 position = Vector2(11864, 32)
+
+[node name="Slant" parent="FrontLayer/EnemyManager" unique_id=1618549213 instance=ExtResource("18_xwnmq")]
+position = Vector2(12760, -128)
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("5_cw15a")]
 
