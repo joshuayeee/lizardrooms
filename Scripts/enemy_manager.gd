@@ -11,12 +11,12 @@ func _ready() -> void:
 				connect_explosion(child)
 			elif (child is Twister):
 				connect_head(child)
-			elif (child is Puddle):
+			elif (child is Puddle or child is Sweed):
 				connect_mouthbreaker(child)
 
 func inject_player(player: Player) -> void:
 	for child in get_children():
-		if (child is Puddle):
+		if (child is Puddle or child is Sweed):
 			child.player = player
 
 func connect_poof(my_enemy: Enemy) -> void:
@@ -28,7 +28,7 @@ func connect_explosion(my_kaboom: Kaboom) -> void:
 func connect_head(my_twister: Twister) -> void:
 	my_twister.created_head.connect(add_head)
 
-func connect_mouthbreaker(my_puddle: Puddle) -> void:
+func connect_mouthbreaker(my_puddle: Enemy) -> void:
 	my_puddle.created_mouthbreaker.connect(add_mouthbreaker)
 
 func add_poof(poof: Poof) -> void:
