@@ -30,19 +30,19 @@ position = Vector2(-2, 2)
 position = Vector2(-64, -32)
 
 [node name="LeftPoint2" type="Node2D" parent="." unique_id=1131974115]
-position = Vector2(-192, -32)
+position = Vector2(-128, -32)
 
 [node name="LeftPoint3" type="Node2D" parent="." unique_id=1274835514]
-position = Vector2(-256, 0)
+position = Vector2(-192, 0)
 
 [node name="RightPoint1" type="Node2D" parent="." unique_id=167832699]
 position = Vector2(64, -32)
 
 [node name="RightPoint2" type="Node2D" parent="." unique_id=754607014]
-position = Vector2(192, -32)
+position = Vector2(128, -32)
 
 [node name="RightPoint3" type="Node2D" parent="." unique_id=1843266610]
-position = Vector2(256, 0)
+position = Vector2(192, 0)
 
 [node name="PlayerCheck" type="Area2D" parent="." unique_id=741449607]
 collision_layer = 1024
@@ -52,11 +52,15 @@ collision_mask = 4098
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_ydotr")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1337871057]
+rect = Rect2(-24, -16, 48, 40)
+
 [node name="Components" type="Node" parent="." unique_id=1098298687]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_ox75h")]
 body = NodePath("../..")
-walk_speed = 100.0
-run_speed = 100.0
+walk_speed = 250.0
+run_speed = 250.0
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

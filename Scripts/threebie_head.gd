@@ -2,6 +2,9 @@ extends Enemy
 
 class_name ThreebieHead
 
+signal reached_final_point(head: ThreebieHead)
+signal head_destroyed()
+
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var left_point_1: Node2D = $LeftPoint1
 @onready var left_point_2: Node2D = $LeftPoint2
@@ -20,21 +23,13 @@ class_name ThreebieHead
 @onready var rp_2_pos: Vector2 = right_point_2.global_position
 @onready var rp_3_pos: Vector2 = right_point_3.global_position
 
-@onready var lp_1_dir: Vector2 = (lp_1_pos - final_point).normalized()
-@onready var lp_2_dir: Vector2 = (lp_2_pos - lp_1_pos).normalized()
-@onready var lp_3_dir: Vector2 = (lp_3_pos - lp_2_pos).normalized()
-@onready var rp_1_dir: Vector2 = (rp_1_pos - final_point).normalized()
-@onready var rp_2_dir: Vector2 = (rp_2_pos - rp_1_pos).normalized()
-@onready var rp_3_dir: Vector2 = (rp_3_pos - rp_2_pos).normalized()
-
-@onready var final_dir_right: Vector2 = (final_point - rp_3_pos).normalized()
-@onready var final_dir_left: Vector2 = (final_point - lp_3_pos).normalized()
-
 enum Directions {LEFT, RIGHT}
 var direction: Directions = Directions.LEFT
 
-enum Points {ONE, TWO, THREE, FINAL}
+enum Points {ONE, TWO, THREE, FINAL, NONE}
 var point: Points = Points.ONE
+
+var host_still_alive: bool = true
 
 func _ready() -> void:
 	is_active = true
@@ -48,41 +43,53 @@ func _physics_process(_delta: float) -> void:
 				Directions.LEFT:
 					match point:
 						Points.ONE:
-							move_com.handle_move_towards(lp_1_dir)
+							move_com.handle_move_to(lp_1_pos)
 							
 							if (within_range(global_position, lp_1_pos)):
 								point = Points.TWO
 						Points.TWO:
-							move_com.handle_move_towards(lp_2_dir)
+							move_com.handle_move_to(lp_2_pos)
 							
 							if (within_range(global_position, lp_2_pos)):
 								point = Points.THREE
 						Points.THREE:
-							move_com.handle_move_towards(lp_3_dir)
+							move_com.handle_move_to(lp_3_pos)
 							
 							if (within_range(global_position, lp_3_pos)):
 								point = Points.FINAL
 						Points.FINAL:
-							move_com.handle_move_towards(final_dir_left)
+							move_com.handle_move_to(final_point)
+							
+							if (within_range(global_position, final_point)):
+								reached_final_point.emit(self)
+								point = Points.NONE
+						Points.NONE:
+							move_com.handle_hori_move(1.0)
 				Directions.RIGHT:
 					match point:
 						Points.ONE:
-							move_com.handle_move_towards(rp_1_dir)
+							move_com.handle_move_to(rp_1_pos)
 							
 							if (within_range(global_position, rp_1_pos)):
 								point = Points.TWO
 						Points.TWO:
-							move_com.handle_move_towards(rp_2_dir)
+							move_com.handle_move_to(rp_2_pos)
 							
 							if (within_range(global_position, rp_2_pos)):
 								point = Points.THREE
 						Points.THREE:
-							move_com.handle_move_towards(rp_3_dir)
+							move_com.handle_move_to(rp_3_pos)
 							
 							if (within_range(global_position, rp_3_pos)):
 								point = Points.FINAL
 						Points.FINAL:
-							move_com.handle_move_towards(final_dir_right)
+							move_com.handle_move_to(final_point)
+							
+							if (within_range(global_position, final_point)):
+								reached_final_point.emit(self)
+								point = Points.NONE
+						Points.NONE:
+							move_com.handle_hori_move(1.0)
 		else:
 			velocity = Vector2.ZERO
 	else:
@@ -90,8 +97,15 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 
+func poof_death() -> void:
+	head_destroyed.emit()
+	super()
+
 func within_range(point_1: Vector2, point_2: Vector2) -> bool:
-	return abs(point_1.distance_to(point_2)) < 1.0
+	return (point_1.distance_to(point_2) < 2.0)
+
+func destroy() -> void:
+	call_deferred("queue_free")
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
@@ -99,3 +113,8 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 			body.hurt()
 		elif (body.has_cupcake):
 			poof_death()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	head_destroyed.emit()
+	destroy()

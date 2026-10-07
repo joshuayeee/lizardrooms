@@ -20,4 +20,4 @@ func poof_death() -> void:
 	var poof: Poof = POOF.instantiate()
 	poof.global_position = poof_point.global_position
 	created_poof.emit(poof)
-	queue_free()
+	call_deferred("queue_free")

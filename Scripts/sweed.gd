@@ -14,7 +14,7 @@ signal created_mouthbreaker (mouthbreaker: Mouthbreaker)
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 @onready var stop_point_y: float = stop_point.global_position.y
-@onready var init_point_y: float = position.y
+@onready var init_point_y: float = global_position.y
 
 enum States {MOVING_UP, MOVING_DOWN, STOP}
 var state: States = States.MOVING_UP

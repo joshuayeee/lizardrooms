@@ -15,6 +15,7 @@ signal created_head(head: ThreebieHead)
 @onready var player_normal_check: CollisionShape2D = $PlayerCheck/PlayerNormalCheck
 @onready var player_headless_check: CollisionShape2D = $PlayerCheck/PlayerHeadlessCheck
 @onready var head_start_point: Node2D = $HeadStartPoint
+@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var has_activated: bool = false
 
@@ -24,10 +25,21 @@ var state: States = States.MOVE
 enum Directions {RIGHT, LEFT}
 var direction: Directions = Directions.LEFT
 
+var player: Player = null
+
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		gravity_com.handle_gravity(delta)
 		if (is_active):
+			
+			if (player != null):
+				if (player.global_position.x > global_position.x):
+					direction = Directions.RIGHT
+				else:
+					direction = Directions.LEFT
+			
+			sprite_2d.flip_h = (direction == Directions.RIGHT)
+			
 			match state:
 				States.MOVE:
 					match direction:
@@ -45,10 +57,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func launch_head() -> void:
-	normal_col.disabled = true
-	player_normal_check.disabled = true
-	headless_col.disabled = false
-	player_headless_check.disabled = false
+	call_deferred("set_collisions", true, false)
 	animation_player.play("headless")
 	
 	var head: ThreebieHead = THREEBIE_HEAD.instantiate()
@@ -58,16 +67,25 @@ func launch_head() -> void:
 			head.direction = head.Directions.RIGHT
 		Directions.LEFT:
 			head.direction = head.Directions.LEFT
+	head.reached_final_point.connect(handle_head_return)
+	head.head_destroyed.connect(get_head_back)
 	created_head.emit(head)
 
-func handle_head_return() -> void:
-	normal_col.disabled = false
-	player_normal_check.disabled = false
-	headless_col.disabled = true
-	player_headless_check.disabled = true
+func handle_head_return(head: ThreebieHead) -> void:
+	get_head_back()
+	head.destroy()
+
+func get_head_back() -> void:
+	call_deferred("set_collisions", false, true)
 	animation_player.play("move")
 	state = States.MOVE
 	move_timer.start()
+
+func set_collisions(norm_dis: bool, headless_dis: bool) -> void:
+	normal_col.disabled = norm_dis
+	player_normal_check.disabled = norm_dis
+	headless_col.disabled = headless_dis
+	player_headless_check.disabled = headless_dis
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	if (not has_activated):
@@ -93,10 +111,3 @@ func _on_left_check_body_entered(_body: Node2D) -> void:
 func _on_right_check_body_entered(_body: Node2D) -> void:
 	if (direction == Directions.RIGHT):
 		direction = Directions.LEFT
-
-
-func _on_head_check_body_entered(body: Node2D) -> void:
-	if (body is ThreebieHead):
-		if (body.point == body.Points.FINAL):
-			body.call_deferred("queue_free")
-			handle_head_return()

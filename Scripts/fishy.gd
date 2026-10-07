@@ -8,7 +8,7 @@ class_name Fishy
 @onready var move_timer: Timer = $MoveTimer
 
 @onready var stop_point_y: float = stop_point.global_position.y
-@onready var init_point_y: float = position.y
+@onready var init_point_y: float = global_position.y
 
 enum States {MOVE_UP, MOVE_DOWN, STOP}
 var state: States = States.MOVE_UP

@@ -38,7 +38,5 @@ func handle_speed_change(query: bool) -> void:
 func handle_move_towards(direction: Vector2) -> void:
 	body.velocity = direction * speed
 
-func handle_move_to(pos: Vector2, delta: float) -> bool:
-	body.position.move_toward(pos, speed * delta)
-	
-	return body.position == pos
+func handle_move_to(pos: Vector2) -> void:
+	body.velocity = (pos - body.global_position).normalized() * speed

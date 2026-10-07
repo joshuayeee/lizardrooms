@@ -21,10 +21,6 @@ height = 40.0
 radius = 8.0
 height = 20.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_523b3"]
-radius = 8.0
-height = 40.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
 size = Vector2(20, 24)
 
@@ -121,14 +117,6 @@ position = Vector2(0, 22)
 shape = SubResource("CapsuleShape2D_cp0ws")
 disabled = true
 
-[node name="HeadCheck" type="Area2D" parent="." unique_id=1698592765]
-collision_layer = 1024
-collision_mask = 1024
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCheck" unique_id=993938436]
-position = Vector2(0, 12)
-shape = SubResource("CapsuleShape2D_523b3")
-
 [node name="LeftCheck" type="Area2D" parent="." unique_id=1082683029]
 collision_layer = 1024
 collision_mask = 82444
@@ -171,7 +159,6 @@ run_speed = 100.0
 body = NodePath("../..")
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
-[connection signal="body_entered" from="HeadCheck" to="." method="_on_head_check_body_entered"]
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
