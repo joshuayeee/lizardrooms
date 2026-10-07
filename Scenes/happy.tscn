@@ -1,0 +1,149 @@
+[gd_scene format=3 uid="uid://bjm2beoqppb81"]
+
+[ext_resource type="Script" uid="uid://br42gfmvtrkx1" path="res://Scripts/happy.gd" id="1_2kb01"]
+[ext_resource type="Texture2D" uid="uid://blo6e74647t7u" path="res://Assets/Sprites/Happy.png" id="2_3yc2k"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_2kb01"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="4_l1rcc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3gji2"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
+size = Vector2(24, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
+size = Vector2(24, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbytq"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5iox7"]
+size = Vector2(4, 4)
+
+[sub_resource type="Animation" id="Animation_l1rcc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_vwjlw"]
+resource_name = "move"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tnuwf"]
+_data = {
+&"RESET": SubResource("Animation_l1rcc"),
+&"move": SubResource("Animation_vwjlw")
+}
+
+[node name="Happy" type="CharacterBody2D" unique_id=1027631908 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 82444
+script = ExtResource("1_2kb01")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=626303676]
+scale = Vector2(4, 4)
+texture = ExtResource("2_3yc2k")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1894815164]
+position = Vector2(0, 14)
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1666147644]
+position = Vector2(0, 20)
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1034864755]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=709298596]
+position = Vector2(0, 14)
+shape = SubResource("CapsuleShape2D_3gji2")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=123576431]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=1715761550]
+position = Vector2(-4, 14)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=1372559401]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=332084035]
+position = Vector2(4, 14)
+shape = SubResource("RectangleShape2D_gsddi")
+
+[node name="LeftGroundCheck" type="Area2D" parent="." unique_id=59399428]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGroundCheck" unique_id=359216431]
+position = Vector2(-14, 34)
+shape = SubResource("RectangleShape2D_mbytq")
+
+[node name="RightGroundCheck" type="Area2D" parent="." unique_id=515136413]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGroundCheck" unique_id=583279809]
+position = Vector2(14, 34)
+shape = SubResource("RectangleShape2D_5iox7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1209802459]
+position = Vector2(-10, 6)
+rect = Rect2(-22, -22, 64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=95443879]
+libraries/ = SubResource("AnimationLibrary_tnuwf")
+autoplay = &"move"
+
+[node name="Components" type="Node" parent="." unique_id=47577039]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_2kb01")]
+body = NodePath("../..")
+walk_speed = 300.0
+run_speed = 300.0
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_l1rcc")]
+body = NodePath("../..")
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
+[connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="body_exited" from="LeftGroundCheck" to="." method="_on_left_ground_check_body_exited"]
+[connection signal="body_exited" from="RightGroundCheck" to="." method="_on_right_ground_check_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
