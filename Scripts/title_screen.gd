@@ -8,5 +8,7 @@ func _on_start_button_pressed() -> void:
 
 #debug
 func _input(_event: InputEvent) -> void:
-	if (Input.is_action_pressed("debug")):
-		load_transition_request.emit("DEBUG", "", "debug_level")
+	if (Input.is_action_pressed("debug_num_1")):
+		load_transition_request.emit("ENEMIES", "", "debug_level")
+	elif (Input.is_action_pressed("debug_num_2")):
+		load_transition_request.emit("FLUORES", "", "fluores_debug_level")
