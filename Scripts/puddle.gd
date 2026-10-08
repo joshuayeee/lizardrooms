@@ -1,10 +1,6 @@
-extends SmartEnemy
+extends CandyEnemy
 
 class_name Puddle
-
-const MOUTHBREAKER = preload("uid://dasp4lmbyhkdn")
-
-signal created_mouthbreaker(mouthbreaker: Mouthbreaker)
 
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var shoot_timer: Timer = $ShootTimer

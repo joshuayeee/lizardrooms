@@ -50,12 +50,12 @@ _data = {
 radius = 7.0
 height = 52.0
 
-[node name="Sweed" type="CharacterBody2D" unique_id=796807331 node_paths=PackedStringArray("poof_point")]
+[node name="Sweed" type="CharacterBody2D" unique_id=1523501237 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
 collision_mask = 0
 script = ExtResource("1_ipq27")
 poof_point = NodePath("PoofPoint")
-metadata/_custom_type_script = "uid://dxiq71auk7vby"
+metadata/_custom_type_script = "uid://ccsxiihty065w"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=286237383]
 position = Vector2(0, -1)

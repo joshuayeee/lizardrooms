@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://c7lobwkba2ymp"]
+
+[ext_resource type="Script" uid="uid://bcu228xdglrfm" path="res://Scripts/rip.gd" id="1_7gpx8"]
+[ext_resource type="Texture2D" uid="uid://2pgbvgymacv3" path="res://Assets/Sprites/Rip.png" id="2_y473v"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_p82ck"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="4_nk8wb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
+radius = 12.0
+height = 44.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+radius = 12.0
+height = 44.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
+size = Vector2(4, 4)
+
+[sub_resource type="Animation" id="Animation_jbh50"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_xv2tf"]
+resource_name = "move"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_qm3mk"]
+resource_name = "shoot"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3ypj"]
+_data = {
+&"RESET": SubResource("Animation_jbh50"),
+&"move": SubResource("Animation_xv2tf"),
+&"shoot": SubResource("Animation_qm3mk")
+}
+
+[node name="Rip" type="CharacterBody2D" unique_id=755039988 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 82444
+script = ExtResource("1_7gpx8")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://ccsxiihty065w"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1646710911]
+scale = Vector2(4, 4)
+texture = ExtResource("2_y473v")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2095100694]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_jh5pk")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1552315578]
+position = Vector2(0, 10)
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1213508288]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1603698380]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=235043781]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=1580202799]
+position = Vector2(-6, 10)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=820994854]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=71440766]
+position = Vector2(6, 10)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="LeftGroundCheck" type="Area2D" parent="." unique_id=727375114]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGroundCheck" unique_id=1791577125]
+position = Vector2(-14, 34)
+shape = SubResource("RectangleShape2D_3gji2")
+
+[node name="RightGroundCheck" type="Area2D" parent="." unique_id=411876928]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGroundCheck" unique_id=481741136]
+position = Vector2(14, 34)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1239272724]
+rect = Rect2(-32, -24, 64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=658159145]
+libraries/ = SubResource("AnimationLibrary_p3ypj")
+autoplay = &"move"
+
+[node name="MouthbreakerPoint" type="Node2D" parent="." unique_id=1999395118]
+position = Vector2(-4, 0)
+
+[node name="MoveTimer" type="Timer" parent="." unique_id=422658590]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=1291552037]
+wait_time = 0.5
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=414238188]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_p82ck")]
+body = NodePath("../..")
+walk_speed = 150.0
+run_speed = 150.0
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_nk8wb")]
+body = NodePath("../..")
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
+[connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="body_exited" from="LeftGroundCheck" to="." method="_on_left_ground_check_body_exited"]
+[connection signal="body_exited" from="RightGroundCheck" to="." method="_on_right_ground_check_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

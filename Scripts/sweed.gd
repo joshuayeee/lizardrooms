@@ -1,10 +1,6 @@
-extends SmartEnemy
+extends CandyEnemy
 
 class_name Sweed
-
-const MOUTHBREAKER = preload("uid://dasp4lmbyhkdn")
-
-signal created_mouthbreaker (mouthbreaker: Mouthbreaker)
 
 @export var stop_point: Node2D = null
 
