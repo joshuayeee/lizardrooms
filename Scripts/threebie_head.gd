@@ -29,8 +29,6 @@ var direction: Directions = Directions.LEFT
 enum Points {ONE, TWO, THREE, FINAL, NONE}
 var point: Points = Points.ONE
 
-var host_still_alive: bool = true
-
 func _ready() -> void:
 	is_active = true
 	

@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://c0gf30ymvsbxm"]
+
+[ext_resource type="Script" uid="uid://dnyt21gicq3g8" path="res://Scripts/friend.gd" id="1_f701x"]
+[ext_resource type="Texture2D" uid="uid://c77kin5na2043" path="res://Assets/Sprites/Friend.png" id="2_ywfag"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_f701x"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="4_ju5hq"]
+[ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="5_3147x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_2vlin"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ywfag"]
+resource_name = "fake_death"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_m8v56"]
+resource_name = "idle"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_f701x"]
+resource_name = "jump"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ju5hq"]
+_data = {
+&"RESET": SubResource("Animation_2vlin"),
+&"fake_death": SubResource("Animation_ywfag"),
+&"idle": SubResource("Animation_m8v56"),
+&"jump": SubResource("Animation_f701x")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+height = 48.0
+
+[node name="Friend" type="CharacterBody2D" unique_id=859334994 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 82444
+script = ExtResource("1_f701x")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dxiq71auk7vby"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=806592405]
+scale = Vector2(4, 4)
+texture = ExtResource("2_ywfag")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1393296223]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_jh5pk")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=1314423823]
+position = Vector2(0, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1506593281]
+libraries/ = SubResource("AnimationLibrary_ju5hq")
+autoplay = &"idle"
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=52260533]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=157701251]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1002135079]
+rect = Rect2(-32, -32, 64, 80)
+
+[node name="WaitTimer" type="Timer" parent="." unique_id=919387983]
+wait_time = 1.5
+one_shot = true
+
+[node name="FakeDeathTimer" type="Timer" parent="." unique_id=1991398071]
+wait_time = 1.5
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=1117672444]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_f701x")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_ju5hq")]
+body = NodePath("../..")
+
+[node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("5_3147x")]
+body = NodePath("../..")
+jump_velocity = -300.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_exited" from="PlayerCheck" to="." method="_on_player_check_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="FakeDeathTimer" to="." method="_on_fake_death_timer_timeout"]
