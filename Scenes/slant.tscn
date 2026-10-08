@@ -17,7 +17,7 @@ radius = 8.0
 height = 52.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
-size = Vector2(28, 789)
+size = Vector2(94, 789)
 
 [sub_resource type="Animation" id="Animation_dae72"]
 length = 0.001
@@ -96,7 +96,7 @@ collision_layer = 1024
 collision_mask = 4099
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeCheck" unique_id=1463799464]
-position = Vector2(2, 361.5)
+position = Vector2(0, 361.5)
 shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1677503327]

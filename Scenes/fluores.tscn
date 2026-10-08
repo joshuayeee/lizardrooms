@@ -1,0 +1,253 @@
+[gd_scene format=3 uid="uid://bhdqg8tr5pky4"]
+
+[ext_resource type="Script" uid="uid://mesnyrhcqlva" path="res://Scripts/fluores.gd" id="1_hypwn"]
+[ext_resource type="Texture2D" uid="uid://rgj2ixuvx34f" path="res://Assets/Sprites/Fluores.png" id="2_qojnm"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="3_y3864"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="4_bg0sa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
+radius = 12.0
+height = 64.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+radius = 12.0
+height = 64.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(20, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(20, 40)
+
+[sub_resource type="Animation" id="Animation_qojnm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y3864"]
+resource_name = "appear"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_2wm4d"]
+resource_name = "death"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_bg0sa"]
+resource_name = "electric_move"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 3, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_uxai2"]
+resource_name = "hurt"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_hypwn"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_27xnh"]
+resource_name = "move"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 0, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_wuse8"]
+resource_name = "shock"
+length = 0.19999999999999998
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 6]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qojnm"]
+_data = {
+&"RESET": SubResource("Animation_qojnm"),
+&"appear": SubResource("Animation_y3864"),
+&"death": SubResource("Animation_2wm4d"),
+&"electric_move": SubResource("Animation_bg0sa"),
+&"hurt": SubResource("Animation_uxai2"),
+&"idle": SubResource("Animation_hypwn"),
+&"move": SubResource("Animation_27xnh"),
+&"shock": SubResource("Animation_wuse8")
+}
+
+[node name="Fluores" type="CharacterBody2D" unique_id=532413899]
+collision_layer = 262144
+collision_mask = 82444
+script = ExtResource("1_hypwn")
+metadata/_custom_type_script = "uid://b88qpkg7nm35q"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=242971584]
+visible = false
+scale = Vector2(4, 4)
+texture = ExtResource("2_qojnm")
+hframes = 3
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1229946309]
+shape = SubResource("CapsuleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1730826320]
+collision_layer = 262144
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1492692716]
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=1744563897]
+collision_layer = 262144
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=892163208]
+position = Vector2(-6, 0)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=1677522064]
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=1187017315]
+position = Vector2(6, 0)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1457713936]
+libraries/ = SubResource("AnimationLibrary_qojnm")
+autoplay = &"idle"
+
+[node name="Timers" type="Node" parent="." unique_id=1550583717]
+
+[node name="InitDisappearTimer" type="Timer" parent="Timers" unique_id=571423235]
+one_shot = true
+
+[node name="DisappearTimer" type="Timer" parent="Timers" unique_id=651171760]
+wait_time = 2.0
+one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="Timers" unique_id=506961825]
+wait_time = 5.0
+one_shot = true
+
+[node name="AppearTimer" type="Timer" parent="Timers" unique_id=1937317320]
+one_shot = true
+
+[node name="ShockTimer" type="Timer" parent="Timers" unique_id=91421551]
+wait_time = 3.0
+one_shot = true
+
+[node name="HurtTimer" type="Timer" parent="Timers" unique_id=479715159]
+wait_time = 0.5
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="Timers" unique_id=1559662394]
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=106856590]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("3_y3864")]
+body = NodePath("../..")
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("4_bg0sa")]
+body = NodePath("../..")
+walk_speed = 300.0
+run_speed = 300.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
+[connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="timeout" from="Timers/InitDisappearTimer" to="." method="_on_init_disappear_timer_timeout"]
+[connection signal="timeout" from="Timers/DisappearTimer" to="." method="_on_disappear_timer_timeout"]
+[connection signal="timeout" from="Timers/MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="Timers/AppearTimer" to="." method="_on_appear_timer_timeout"]
+[connection signal="timeout" from="Timers/ShockTimer" to="." method="_on_shock_timer_timeout"]
+[connection signal="timeout" from="Timers/HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]

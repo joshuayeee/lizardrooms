@@ -45,3 +45,9 @@ func _on_enemy_check_body_entered(body: Node2D) -> void:
 		if (body.is_active):
 			body.hit_by_jawbreaker()
 			handle_destroy()
+
+func _on_boss_check_body_entered(body: Node2D) -> void:
+	if (body is Boss):
+		if (body.is_active):
+			if (body.handle_hit("jawbreaker")):
+				handle_destroy()

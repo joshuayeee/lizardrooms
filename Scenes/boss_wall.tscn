@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bqrtki3jnhpq0"]
+
+[ext_resource type="Script" uid="uid://b2khch5u7osre" path="res://Scripts/boss_wall.gd" id="1_sta43"]
+
+[node name="BossWall" type="StaticBody2D" unique_id=1567553985]
+collision_layer = 4
+collision_mask = 4099
+script = ExtResource("1_sta43")

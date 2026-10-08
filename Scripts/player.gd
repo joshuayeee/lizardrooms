@@ -222,6 +222,10 @@ func _on_down_check_body_entered(body: Node2D) -> void:
 			if (not is_on_floor() and velocity.y > 0 and body.is_active):
 				jump_com.handle_jump(true)
 				body.hurt()
+	elif (body is Boss):
+		if (not is_on_floor() and velocity.y > 0 and body.is_active):
+			if (body.handle_hit("stomp")):
+				jump_com.handle_jump(true)
 
 func _on_hurt_timer_timeout() -> void:
 	turn_off_hurt_invincible()
@@ -232,14 +236,15 @@ func _on_cupcake_timer_timeout() -> void:
 func turn_on_inf_cupcake_power() -> void:
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(13, true)
-	blink_player.play("blink")
 	has_cupcake = true
 
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_just_pressed("debug_cupcake")):
 		if (inf_cupcake_on):
 			turn_off_cupcake_power()
+			print("inf off")
 			inf_cupcake_on = false
 		else:
 			turn_on_inf_cupcake_power()
+			print("inf on")
 			inf_cupcake_on = true

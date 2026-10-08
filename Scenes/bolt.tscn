@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://bufqwdlisucju"]
+
+[ext_resource type="Texture2D" uid="uid://lgyfm2hlpi6q" path="res://Assets/Sprites/Bolt.png" id="1_1q8yf"]
+[ext_resource type="Script" uid="uid://dkobiivpqlqpi" path="res://Scripts/bolt.gd" id="1_periq"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_noxje"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
+radius = 8.0
+
+[node name="Bolt" type="CharacterBody2D" unique_id=412044413]
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource("1_periq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=791109555]
+position = Vector2(2, -2)
+scale = Vector2(4, 4)
+texture = ExtResource("1_1q8yf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=535211028]
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=307026271]
+collision_layer = 131072
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=921116817]
+shape = SubResource("CircleShape2D_ydotr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=201179009]
+
+[node name="Components" type="Node" parent="." unique_id=572909548]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_noxje")]
+body = NodePath("../..")
+walk_speed = 400.0
+run_speed = 400.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

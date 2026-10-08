@@ -107,6 +107,7 @@ debug_cupcake={
 2d_physics/layer_16="Explosion"
 2d_physics/layer_17="Canny"
 2d_physics/layer_18="EnemyProjectile"
+2d_physics/layer_19="Boss"
 
 [physics]
 

@@ -2,6 +2,8 @@ extends Node2D
 
 class_name CamPoint
 
+signal player_reached()
+
 @export var cam_enter_right: bool = false
 @export var cam_enter_left: bool = false
 @export var cam_leave_right: bool = false
@@ -19,11 +21,13 @@ func _process(_delta: float) -> void:
 						if (cam.target is Player):
 							player = cam.target
 						cam.target = self
+						player_reached.emit()
 				elif (cam_enter_left):
 					if (cam.position.x <= position.x):
 						if (cam.target is Player):
 							player = cam.target
 						cam.target = self
+						player_reached.emit()
 			else:
 				if (player != null):
 					if (cam_leave_left):
