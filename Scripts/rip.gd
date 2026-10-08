@@ -47,7 +47,7 @@ func shoot_mouthbreaker() -> void:
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
-		if (Global.game_active and is_active and not body.has_cupcake()):
+		if (Global.game_active and is_active and not body.has_cupcake):
 			body.hurt()
 		elif (body.has_cupcake):
 			poof_death()
