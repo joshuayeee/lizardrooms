@@ -48,12 +48,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
 size = Vector2(32, 12)
 
-[node name="Puddle" type="CharacterBody2D" unique_id=2121585081 node_paths=PackedStringArray("poof_point")]
+[node name="Puddle" type="CharacterBody2D" unique_id=631680452 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
 collision_mask = 82444
 script = ExtResource("1_xhiyn")
 poof_point = NodePath("PoofPoint")
-metadata/_custom_type_script = "uid://dokg8u03i7u00"
+metadata/_custom_type_script = "uid://dxiq71auk7vby"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1851641178]
 scale = Vector2(4, 4)

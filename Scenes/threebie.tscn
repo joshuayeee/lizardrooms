@@ -82,12 +82,12 @@ _data = {
 &"move": SubResource("Animation_wqi70")
 }
 
-[node name="Threebie" type="CharacterBody2D" unique_id=1001216883 node_paths=PackedStringArray("poof_point")]
+[node name="Threebie" type="CharacterBody2D" unique_id=1536149982 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
 collision_mask = 82444
 script = ExtResource("1_523b3")
 poof_point = NodePath("PoofPoint")
-metadata/_custom_type_script = "uid://dokg8u03i7u00"
+metadata/_custom_type_script = "uid://dxiq71auk7vby"
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2054492178]
 scale = Vector2(4, 4)

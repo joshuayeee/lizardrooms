@@ -89,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 								reached_final_point.emit(self)
 								point = Points.NONE
 						Points.NONE:
-							move_com.handle_hori_move(1.0)
+							move_com.handle_hori_move(-1.0)
 		else:
 			velocity = Vector2.ZERO
 	else:

@@ -1,4 +1,4 @@
-extends Enemy
+extends SmartEnemy
 
 class_name Puddle
 
@@ -9,8 +9,6 @@ signal created_mouthbreaker(mouthbreaker: Mouthbreaker)
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var shoot_timer: Timer = $ShootTimer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
-var player: Player = null
 
 enum Directions {RIGHT, LEFT}
 var direction: Directions = Directions.LEFT

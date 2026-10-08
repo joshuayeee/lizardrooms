@@ -1,4 +1,4 @@
-extends Enemy
+extends SmartEnemy
 
 class_name Threebie
 
@@ -24,8 +24,6 @@ var state: States = States.MOVE
 
 enum Directions {RIGHT, LEFT}
 var direction: Directions = Directions.LEFT
-
-var player: Player = null
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):

@@ -1,4 +1,4 @@
-extends Enemy
+extends SmartEnemy
 
 class_name Legs
 
@@ -14,8 +14,6 @@ var can_jump: bool = false
 
 enum Directions {LEFT, RIGHT}
 var direction: Directions = Directions.LEFT
-
-var player: Player = null
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):

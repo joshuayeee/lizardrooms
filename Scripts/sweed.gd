@@ -1,4 +1,4 @@
-extends Enemy
+extends SmartEnemy
 
 class_name Sweed
 
@@ -18,8 +18,6 @@ signal created_mouthbreaker (mouthbreaker: Mouthbreaker)
 
 enum States {MOVING_UP, MOVING_DOWN, STOP}
 var state: States = States.MOVING_UP
-
-var player: Player = null
 
 func _physics_process(_delta: float) -> void:
 	if (Global.game_active):

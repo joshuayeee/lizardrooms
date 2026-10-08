@@ -18,7 +18,7 @@ func _ready() -> void:
 
 func inject_player(player: Player) -> void:
 	for child in get_children():
-		if (child is Puddle or child is Sweed or child is Threebie or child is Legs):
+		if (child is SmartEnemy):
 			child.player = player
 
 func connect_poof(my_enemy: Enemy) -> void:
@@ -30,8 +30,8 @@ func connect_explosion(my_kaboom: Kaboom) -> void:
 func connect_head(my_twister: Twister) -> void:
 	my_twister.created_head.connect(add_head)
 
-func connect_mouthbreaker(my_puddle: Enemy) -> void:
-	my_puddle.created_mouthbreaker.connect(add_mouthbreaker)
+func connect_mouthbreaker(my_enemy: Enemy) -> void:
+	my_enemy.created_mouthbreaker.connect(add_mouthbreaker)
 
 func connect_threebie_head(my_threebie: Threebie) -> void:
 	my_threebie.created_head.connect(add_threebie_head)
