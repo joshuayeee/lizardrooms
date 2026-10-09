@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cowpjn45esq5u"]
+
+[ext_resource type="Script" uid="uid://bv8ybbnixqtln" path="res://Scripts/arch_minion.gd" id="1_ihbmf"]
+[ext_resource type="Texture2D" uid="uid://bcy5pjudc4261" path="res://Assets/Sprites/ArchMinion.png" id="2_86j4v"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_1m34a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+radius = 16.0
+
+[sub_resource type="Animation" id="Animation_j0080"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yb4uf"]
+resource_name = "move"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4q6a"]
+_data = {
+&"RESET": SubResource("Animation_j0080"),
+&"move": SubResource("Animation_yb4uf")
+}
+
+[node name="ArchMinion" type="CharacterBody2D" unique_id=507448780 node_paths=PackedStringArray("poof_point")]
+position = Vector2(0, -64)
+script = ExtResource("1_ihbmf")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dokg8u03i7u00"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1641808541]
+scale = Vector2(4, 4)
+texture = ExtResource("2_86j4v")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=715668777]
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=242876665]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=997493398]
+libraries/ = SubResource("AnimationLibrary_g4q6a")
+autoplay = &"move"
+
+[node name="Components" type="Node" parent="." unique_id=142720648]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_1m34a")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
+angular_speed = 2.0

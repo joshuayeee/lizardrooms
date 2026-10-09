@@ -5,11 +5,14 @@ class_name MoveCom
 @export var body: CharacterBody2D
 @export var walk_speed: float = 0.0
 @export var run_speed: float = 0.0
+@export var angular_speed: float = 0.0
 @export_range(0.0, 1.0, 0.1) var acc: float = 1.0
 @export_range(0.0, 1.0, 0.1) var dec: float = 1.0
 @export_range(0.0, 1.0, 0.01) var max_acc: float = 1.0
 
 @onready var speed: float = walk_speed
+
+var angle: float = 0.0
 
 func handle_hori_move(x_dir: float) -> void:
 	if x_dir:
@@ -47,3 +50,12 @@ func handle_move_to(pos: Vector2, delta: float) -> bool:
 	else:
 		body.velocity = (pos - body.global_position).normalized() * speed
 		return false
+
+
+func handle_orbit_move(center: Node2D, radius: float, delta: float) -> void:
+	_handle_angle_calc(delta)
+	var offset: Vector2 = Vector2.RIGHT.rotated(angle) * radius
+	body.global_position = center.global_position + offset
+	
+func _handle_angle_calc(delta: float)  -> void:
+	angle = fposmod(angle + (angular_speed * delta), TAU)

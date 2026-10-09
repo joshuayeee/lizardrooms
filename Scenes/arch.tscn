@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://tyjh4oa00o2a"]
+
+[ext_resource type="Script" uid="uid://b5cum2v3bbfuv" path="res://Scripts/arch.gd" id="1_w6v1f"]
+[ext_resource type="Texture2D" uid="uid://dy5hn417lndkn" path="res://Assets/Sprites/Arch.png" id="2_01wn0"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_w6v1f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+radius = 32.01562
+
+[sub_resource type="Animation" id="Animation_w6v1f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_djc3t"]
+resource_name = "charge"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_01wn0"]
+resource_name = "death"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_yk6vs"]
+resource_name = "hurt"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_1wdqn"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qomo3"]
+_data = {
+&"RESET": SubResource("Animation_w6v1f"),
+&"charge": SubResource("Animation_djc3t"),
+&"death": SubResource("Animation_01wn0"),
+&"hurt": SubResource("Animation_yk6vs"),
+&"idle": SubResource("Animation_1wdqn")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
+radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
+
+[node name="Arch" type="CharacterBody2D" unique_id=145356678]
+script = ExtResource("1_w6v1f")
+metadata/_custom_type_script = "uid://b88qpkg7nm35q"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=645100455]
+scale = Vector2(4, 4)
+texture = ExtResource("2_01wn0")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=22367371]
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=410916335]
+libraries/ = SubResource("AnimationLibrary_qomo3")
+autoplay = &"idle"
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1606831512]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1100407679]
+shape = SubResource("CircleShape2D_ydotr")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=1186399109]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=843344284]
+position = Vector2(-32, 0)
+shape = SubResource("RectangleShape2D_3gji2")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=1969134857]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=90885568]
+position = Vector2(31, 0)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="LaunchTimer" type="Timer" parent="." unique_id=1583599018]
+one_shot = true
+
+[node name="Timers" type="Node" parent="." unique_id=1134191788]
+
+[node name="HurtTimer" type="Timer" parent="Timers" unique_id=1769511294]
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="Timers" unique_id=1915622200]
+one_shot = true
+
+[node name="ShootTimer" type="Timer" parent="Timers" unique_id=1071349553]
+one_shot = true
+
+[node name="PreSwoopTimer" type="Timer" parent="Timers" unique_id=518155906]
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=1468712320]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_w6v1f")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
