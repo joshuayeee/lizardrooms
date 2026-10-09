@@ -1,0 +1,320 @@
+[gd_scene format=4 uid="uid://dp1qa7rmu6how"]
+
+[ext_resource type="Script" uid="uid://chtkpxe6gmto8" path="res://Scripts/level.gd" id="1_twt28"]
+[ext_resource type="PackedScene" uid="uid://cylyi3qu4kvp8" path="res://Scenes/item_manager.tscn" id="2_abc50"]
+[ext_resource type="PackedScene" uid="uid://bbyn7idhdpxwu" path="res://Scenes/cam_point_manager.tscn" id="3_i7k17"]
+[ext_resource type="PackedScene" uid="uid://5hsfrellc33k" path="res://Scenes/cam_point.tscn" id="4_dfxp2"]
+[ext_resource type="PackedScene" uid="uid://dplupq4ss4nl5" path="res://Scenes/checkpoint_manager.tscn" id="5_x00ry"]
+[ext_resource type="PackedScene" uid="uid://475khr4qaep2" path="res://Scenes/checkpoint.tscn" id="6_dykfx"]
+[ext_resource type="PackedScene" uid="uid://dfvd6j0w4cv5o" path="res://Scenes/death_zone.tscn" id="7_8xmag"]
+[ext_resource type="PackedScene" uid="uid://cuvexbipavqsp" path="res://Scenes/enemy_manager.tscn" id="8_tda7g"]
+[ext_resource type="PackedScene" uid="uid://wsvmq4k5ym0b" path="res://Scenes/jawbreaker_manager.tscn" id="9_jfken"]
+[ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="10_cc81j"]
+[ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="11_1a5uh"]
+[ext_resource type="PackedScene" uid="uid://cs5j2ruynaag6" path="res://Scenes/boss_manager.tscn" id="11_dykfx"]
+[ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="12_4ex6f"]
+[ext_resource type="PackedScene" uid="uid://ccchrwekcs5fo" path="res://Scenes/lessie.tscn" id="12_8xmag"]
+[ext_resource type="PackedScene" uid="uid://u3b752tjrg7o" path="res://Scenes/box_manager.tscn" id="13_60vve"]
+[ext_resource type="PackedScene" uid="uid://bqrtki3jnhpq0" path="res://Scenes/boss_wall.tscn" id="13_tda7g"]
+[ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/canny_manager.tscn" id="14_bogkg"]
+[ext_resource type="Texture2D" uid="uid://udga0qm4mods" path="res://Assets/Sprites/WorldOneTM2.png" id="14_dfxp2"]
+[ext_resource type="PackedScene" uid="uid://dwv3oiprkicns" path="res://Scenes/long_fall_box.tscn" id="18_dykfx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2a4j4"]
+size = Vector2(50, 522)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(6160, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(26, 416)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
+size = Vector2(26, 384)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x00ry"]
+texture = ExtResource("14_dfxp2")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:0/0 = 0
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+
+[sub_resource type="TileSet" id="TileSet_thp7f"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 7203
+sources/0 = SubResource("TileSetAtlasSource_x00ry")
+
+[sub_resource type="TileSet" id="TileSet_7ik2y"]
+tile_size = Vector2i(8, 8)
+physics_layer_0/collision_layer = 512
+physics_layer_0/collision_mask = 7203
+
+[sub_resource type="TileSet" id="TileSet_3o7cg"]
+
+[node name="BaseLevel" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "enemy_managers")]
+script = ExtResource("1_twt28")
+front_layer = NodePath("FrontLayer")
+mid_layer = NodePath("MidLayer")
+UI_layer = NodePath("UILayer")
+back_layer = NodePath("BackLayer")
+checkpoint_manager = NodePath("FrontLayer/CheckpointManager")
+cam_point_manager = NodePath("FrontLayer/CamPointManager")
+jawbreaker_manager = NodePath("FrontLayer/JawbreakerManager")
+canny_manager = NodePath("BackLayer/CannyManager")
+lives_label = NodePath("UILayer/LivesLabel")
+donuts_label = NodePath("UILayer/DonutsLabel")
+enemy_managers = [NodePath("FrontLayer/EnemyManager"), NodePath("BackLayer/BackEnemyManager")]
+metadata/_custom_type_script = "uid://chtkpxe6gmto8"
+
+[node name="FrontLayer" type="CanvasLayer" parent="." unique_id=2140184272]
+follow_viewport_enabled = true
+
+[node name="ItemManager" parent="FrontLayer" unique_id=256143669 instance=ExtResource("2_abc50")]
+
+[node name="FalseWallEnterManager" type="Node2D" parent="FrontLayer" unique_id=1300678468]
+
+[node name="FalseWallExitManager" type="Node2D" parent="FrontLayer" unique_id=30863800]
+
+[node name="SpecialCamPointManager" type="Node2D" parent="FrontLayer" unique_id=1629957831]
+
+[node name="CamPointManager" parent="FrontLayer" unique_id=1705908980 instance=ExtResource("3_i7k17")]
+
+[node name="CamPoint" parent="FrontLayer/CamPointManager" unique_id=502227513 instance=ExtResource("4_dfxp2")]
+cam_enter_left = true
+cam_leave_right = true
+
+[node name="CamPoint2" parent="FrontLayer/CamPointManager" unique_id=448552351 instance=ExtResource("4_dfxp2")]
+position = Vector2(1664, 0)
+cam_enter_right = true
+
+[node name="CheckpointManager" parent="FrontLayer" unique_id=833493036 instance=ExtResource("5_x00ry")]
+
+[node name="Checkpoint" parent="FrontLayer/CheckpointManager" unique_id=2111264533 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_dykfx")]
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint" unique_id=492460046]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2a4j4")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint" unique_id=1662536646]
+
+[node name="DeathZone" parent="FrontLayer" unique_id=291712876 instance=ExtResource("7_8xmag")]
+position = Vector2(0, 320)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/DeathZone" unique_id=536021658]
+position = Vector2(2504, 20)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="DonutManager" type="Node2D" parent="FrontLayer" unique_id=2024499696]
+
+[node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("8_tda7g")]
+
+[node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("9_jfken")]
+
+[node name="BossManager" parent="FrontLayer" unique_id=10119429 node_paths=PackedStringArray("boss", "cam_point", "left_boss_wall", "right_boss_wall", "enemy_manager") instance=ExtResource("11_dykfx")]
+boss = NodePath("Lessie")
+cam_point = NodePath("../CamPointManager/CamPoint2")
+left_boss_wall = NodePath("../LeftBossWall")
+right_boss_wall = NodePath("../RightBossWall")
+enemy_manager = NodePath("../EnemyManager")
+
+[node name="Lessie" parent="FrontLayer/BossManager" unique_id=1697992039 node_paths=PackedStringArray("left_top_point", "left_mid_point", "left_bot_point", "right_top_point", "right_mid_point", "right_bot_point", "left_min_bot_point", "left_min_top_point", "mid_min_bot_point", "mid_min_top_point", "right_min_bot_point", "right_min_top_point") instance=ExtResource("12_8xmag")]
+position = Vector2(1600, 224)
+left_top_point = NodePath("../LeftTopPoint")
+left_mid_point = NodePath("../LeftMidPoint")
+left_bot_point = NodePath("../LeftBotPoint")
+right_top_point = NodePath("../RightTopPoint")
+right_mid_point = NodePath("../RightMidPoint")
+right_bot_point = NodePath("../RightBotPoint")
+left_min_bot_point = NodePath("../LeftMinBotPoint")
+left_min_top_point = NodePath("../LeftMinTopPoint")
+mid_min_bot_point = NodePath("../MidMinBotPoint")
+mid_min_top_point = NodePath("../MidMinTopPoint")
+right_min_bot_point = NodePath("../RightMinBotPoint")
+right_min_top_point = NodePath("../RightMinTopPoint")
+
+[node name="RightBotPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=179851815]
+position = Vector2(1728, 224)
+
+[node name="RightMidPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=664991259]
+position = Vector2(1728, 64)
+
+[node name="RightTopPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1348912994]
+position = Vector2(1728, -128)
+
+[node name="LeftBotPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1021652698]
+position = Vector2(1600, 224)
+
+[node name="LeftMidPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1391200894]
+position = Vector2(1600, 64)
+
+[node name="LeftTopPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=2013321985]
+position = Vector2(1600, -128)
+
+[node name="LeftMinBotPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=406430877]
+position = Vector2(1600, 224)
+
+[node name="LeftMinTopPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1004899797]
+position = Vector2(1600, 128)
+
+[node name="MidMinBotPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1270936820]
+position = Vector2(1664, 224)
+
+[node name="MidMinTopPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=291656375]
+position = Vector2(1664, 96)
+
+[node name="RightMinBotPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1702847732]
+position = Vector2(1728, 224)
+
+[node name="RightMinTopPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1938992929]
+position = Vector2(1728, 128)
+
+[node name="LeftBossWall" parent="FrontLayer" unique_id=1567553985 node_paths=PackedStringArray("my_col") instance=ExtResource("13_tda7g")]
+position = Vector2(1344, 0)
+my_col = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/LeftBossWall" unique_id=1705674456]
+position = Vector2(-11, 0)
+shape = SubResource("RectangleShape2D_ydotr")
+disabled = true
+
+[node name="RightBossWall" parent="FrontLayer" unique_id=1173856888 node_paths=PackedStringArray("my_col") instance=ExtResource("13_tda7g")]
+position = Vector2(1984, 0)
+my_col = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/RightBossWall" unique_id=577920044]
+position = Vector2(11, 0)
+shape = SubResource("RectangleShape2D_3gji2")
+disabled = true
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
+layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="UILayer" unique_id=257718068]
+z_index = -1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UILayer" unique_id=580163629]
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.056
+anchor_right = 0.032
+anchor_bottom = 0.056
+offset_left = -20.480001
+offset_top = -20.16
+offset_right = 20.519999
+offset_bottom = 19.84
+texture = ExtResource("10_cc81j")
+stretch_mode = 5
+
+[node name="LivesLabel" type="Label" parent="UILayer" unique_id=555937373]
+anchors_preset = -1
+anchor_left = 0.08400001
+anchor_top = 0.061000004
+anchor_right = 0.08400001
+anchor_bottom = 0.061000004
+offset_left = -15.760002
+offset_top = -18.960001
+offset_right = 15.239998
+offset_bottom = 19.039999
+theme_override_fonts/font = ExtResource("11_1a5uh")
+text = "2"
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UILayer" unique_id=1360496539]
+anchors_preset = -1
+anchor_left = 0.185
+anchor_top = 0.058000002
+anchor_right = 0.185
+anchor_bottom = 0.058000002
+offset_left = -24.400002
+offset_top = -23.880001
+offset_right = 24.599998
+offset_bottom = 24.119999
+texture = ExtResource("12_4ex6f")
+stretch_mode = 5
+
+[node name="DonutsLabel" type="Label" parent="UILayer" unique_id=1882358742]
+anchors_preset = -1
+anchor_left = 0.24400002
+anchor_top = 0.061000004
+anchor_right = 0.24400002
+anchor_bottom = 0.061000004
+offset_left = -20.160004
+offset_top = -19.960001
+offset_right = 19.839996
+offset_bottom = 20.039999
+theme_override_fonts/font = ExtResource("11_1a5uh")
+text = "0"
+vertical_alignment = 1
+
+[node name="MidLayer" type="CanvasLayer" parent="." unique_id=281643907]
+layer = -1
+follow_viewport_enabled = true
+
+[node name="LevelLayer" type="TileMapLayer" parent="MidLayer" unique_id=1072098981]
+scale = Vector2(4, 4)
+tile_map_data = PackedByteArray("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AAAdAAYAAAABAAEAAAAeAAUAAAABAAEAAAAeAAYAAAABAAEAAAAfAAUAAAABAAEAAAAfAAYAAAABAAEAAAAgAAUAAAABAAEAAAAgAAYAAAABAAEAAAAhAAUAAAABAAEAAAAhAAYAAAABAAEAAAAiAAUAAAABAAEAAAAiAAYAAAABAAEAAAAjAAUAAAABAAEAAAAjAAYAAAABAAEAAAAkAAUAAAABAAEAAAAkAAYAAAABAAEAAAAlAAUAAAABAAEAAAAlAAYAAAABAAEAAAAmAAUAAAABAAEAAAAmAAYAAAABAAEAAAAnAAUAAAABAAEAAAAnAAYAAAABAAEAAAAoAAUAAAABAAEAAAAoAAYAAAABAAEAAAApAAUAAAABAAEAAAApAAYAAAABAAEAAAAqAAUAAAABAAEAAAAqAAYAAAABAAEAAAArAAUAAAABAAEAAAArAAYAAAABAAEAAAAsAAUAAAABAAEAAAAsAAYAAAABAAEAAAAtAAUAAAABAAEAAAAtAAYAAAABAAEAAAAuAAUAAAABAAEAAAAuAAYAAAABAAEAAAAvAAUAAAACAAEAAAAvAAYAAAACAAEAAAA4AAQAAAAAAAAAAAA4AAUAAAAAAAEAAAA4AAYAAAAAAAEAAAA5AAQAAAABAAAAAAA5AAUAAAABAAEAAAA5AAYAAAABAAEAAAA6AAQAAAABAAAAAAA6AAUAAAABAAEAAAA6AAYAAAABAAEAAAA7AAQAAAABAAAAAAA7AAUAAAABAAEAAAA7AAYAAAABAAEAAAA8AAQAAAABAAAAAAA8AAUAAAABAAEAAAA8AAYAAAABAAEAAAA9AAQAAAABAAAAAAA9AAUAAAABAAEAAAA9AAYAAAABAAEAAAA+AAQAAAABAAAAAAA+AAUAAAABAAEAAAA+AAYAAAABAAEAAAA/AAQAAAABAAAAAAA/AAUAAAABAAEAAAA/AAYAAAABAAEAAABAAAQAAAABAAAAAABAAAUAAAABAAEAAABAAAYAAAABAAEAAABBAAQAAAABAAAAAABBAAUAAAABAAEAAABBAAYAAAABAAEAAABCAAQAAAABAAAAAABCAAUAAAABAAEAAABCAAYAAAABAAEAAABDAAQAAAABAAAAAABDAAUAAAABAAEAAABDAAYAAAABAAEAAABEAAQAAAABAAAAAABEAAUAAAABAAEAAABEAAYAAAABAAEAAABFAAQAAAABAAAAAABFAAUAAAABAAEAAABFAAYAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_thp7f")
+
+[node name="FalseWallLayer" type="TileMapLayer" parent="MidLayer" unique_id=1918559482]
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_7ik2y")
+
+[node name="BoxManager" parent="MidLayer" unique_id=1117362628 node_paths=PackedStringArray("item_manager") instance=ExtResource("13_60vve")]
+item_manager = NodePath("../../FrontLayer/ItemManager")
+
+[node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]
+
+[node name="FallBoxes" type="Node2D" parent="MidLayer" unique_id=1350846674]
+
+[node name="LongFallBox" parent="MidLayer/FallBoxes" unique_id=545304765 instance=ExtResource("18_dykfx")]
+position = Vector2(1656, 144)
+
+[node name="BackLayer" type="CanvasLayer" parent="." unique_id=1698670166]
+layer = -2
+follow_viewport_enabled = true
+
+[node name="Background" type="TileMapLayer" parent="BackLayer" unique_id=472343877]
+z_index = -2
+scale = Vector2(4, 4)
+tile_set = SubResource("TileSet_3o7cg")
+
+[node name="BackEnemyManager" parent="BackLayer" unique_id=1282240525 instance=ExtResource("8_tda7g")]
+
+[node name="CannyManager" parent="BackLayer" unique_id=1726914308 node_paths=PackedStringArray("enemy_manager") instance=ExtResource("14_bogkg")]
+enemy_manager = NodePath("../BackEnemyManager")

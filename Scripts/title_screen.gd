@@ -12,3 +12,5 @@ func _input(_event: InputEvent) -> void:
 		load_transition_request.emit("ENEMIES", "", "debug_level")
 	elif (Input.is_action_pressed("debug_num_2")):
 		load_transition_request.emit("FLUORES", "", "fluores_debug_level")
+	elif (Input.is_action_pressed("debug_num_3")):
+		load_transition_request.emit("LESSIE", "", "lessie_debug_level")

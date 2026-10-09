@@ -34,31 +34,23 @@ func _ready() -> void:
 	
 	sprite_2d.flip_h = (direction == Directions.RIGHT)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		if (is_active):
 			match direction:
 				Directions.LEFT:
 					match point:
 						Points.ONE:
-							move_com.handle_move_to(lp_1_pos)
-							
-							if (within_range(global_position, lp_1_pos)):
+							if (move_com.handle_move_to(lp_1_pos, delta)):
 								point = Points.TWO
 						Points.TWO:
-							move_com.handle_move_to(lp_2_pos)
-							
-							if (within_range(global_position, lp_2_pos)):
+							if (move_com.handle_move_to(lp_2_pos, delta)):
 								point = Points.THREE
 						Points.THREE:
-							move_com.handle_move_to(lp_3_pos)
-							
-							if (within_range(global_position, lp_3_pos)):
+							if (move_com.handle_move_to(lp_3_pos, delta)):
 								point = Points.FINAL
 						Points.FINAL:
-							move_com.handle_move_to(final_point)
-							
-							if (within_range(global_position, final_point)):
+							if (move_com.handle_move_to(final_point, delta)):
 								reached_final_point.emit(self)
 								point = Points.NONE
 						Points.NONE:
@@ -66,24 +58,16 @@ func _physics_process(_delta: float) -> void:
 				Directions.RIGHT:
 					match point:
 						Points.ONE:
-							move_com.handle_move_to(rp_1_pos)
-							
-							if (within_range(global_position, rp_1_pos)):
+							if (move_com.handle_move_to(rp_1_pos, delta)):
 								point = Points.TWO
 						Points.TWO:
-							move_com.handle_move_to(rp_2_pos)
-							
-							if (within_range(global_position, rp_2_pos)):
+							if (move_com.handle_move_to(rp_2_pos, delta)):
 								point = Points.THREE
 						Points.THREE:
-							move_com.handle_move_to(rp_3_pos)
-							
-							if (within_range(global_position, rp_3_pos)):
+							if (move_com.handle_move_to(rp_3_pos, delta)):
 								point = Points.FINAL
 						Points.FINAL:
-							move_com.handle_move_to(final_point)
-							
-							if (within_range(global_position, final_point)):
+							if (move_com.handle_move_to(final_point, delta)):
 								reached_final_point.emit(self)
 								point = Points.NONE
 						Points.NONE:
@@ -98,9 +82,6 @@ func _physics_process(_delta: float) -> void:
 func poof_death() -> void:
 	head_destroyed.emit()
 	super()
-
-func within_range(point_1: Vector2, point_2: Vector2) -> bool:
-	return (point_1.distance_to(point_2) < 2.0)
 
 func destroy() -> void:
 	call_deferred("queue_free")

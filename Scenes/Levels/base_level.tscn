@@ -164,6 +164,8 @@ item_manager = NodePath("../../FrontLayer/ItemManager")
 
 [node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]
 
+[node name="FallBoxes" type="Node2D" parent="MidLayer" unique_id=917750783]
+
 [node name="BackLayer" type="CanvasLayer" parent="." unique_id=1698670166]
 layer = -2
 follow_viewport_enabled = true

@@ -51,3 +51,10 @@ func add_mouthbreaker(mouthbreaker: Mouthbreaker) -> void:
 func add_threebie_head(head: ThreebieHead) -> void:
 	connect_poof(head)
 	add_child(head)
+
+func connect_boss(boss_sig: Signal) -> void:
+	boss_sig.connect(spawn_enemy)
+
+func spawn_enemy(my_enemy: Enemy) -> void:
+	connect_poof(my_enemy)
+	add_child(my_enemy)

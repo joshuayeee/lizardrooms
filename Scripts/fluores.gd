@@ -27,9 +27,6 @@ var direction: Directions = Directions.LEFT
 
 enum ShockDirections {LEFT, RIGHT, UP, UP_RIGHT, UP_LEFT}
 
-var is_vulnerable: bool = false
-var can_attack: bool = false
-
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		gravity_com.handle_gravity(delta)
@@ -59,7 +56,7 @@ func handle_hit(attack_type: String) -> bool:
 		success = true
 		match attack_type:
 			"stomp":
-				handle_hurt(4)
+				handle_hurt(2)
 			"jawbreaker":
 				handle_jawbreaker_hurt(1)
 	return success

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dwv3oiprkicns"]
+
+[ext_resource type="Script" uid="uid://dpare66l36nj" path="res://Scripts/long_fall_box.gd" id="1_87nu3"]
+[ext_resource type="Texture2D" uid="uid://d05n8tjap2bko" path="res://Assets/Sprites/LongFallBox.png" id="1_gvulk"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_87nu3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(96, 32)
+
+[node name="LongFallBox" type="CharacterBody2D" unique_id=545304765]
+collision_layer = 524288
+collision_mask = 0
+script = ExtResource("1_87nu3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1143043646]
+scale = Vector2(4, 4)
+texture = ExtResource("1_gvulk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=853745687]
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="DropTimer" type="Timer" parent="." unique_id=1523811304]
+wait_time = 0.5
+one_shot = true
+
+[node name="LifeTimer" type="Timer" parent="." unique_id=2065602234]
+wait_time = 10.0
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=1438551752]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_87nu3")]
+body = NodePath("../..")
+walk_speed = 200.0
+run_speed = 200.0
+
+[connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
