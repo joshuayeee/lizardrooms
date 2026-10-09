@@ -50,9 +50,10 @@ func _physics_process(delta: float) -> void:
 func handle_destroy() -> void:
 	call_deferred("queue_free")
 
-func handle_connections(lessie_fired: Signal, lessie_stopped: Signal) -> void:
+func handle_connections(lessie_fired: Signal, lessie_stopped: Signal, lessie_hit: Signal) -> void:
 	lessie_fired.connect(handle_fire)
 	lessie_stopped.connect(handle_stop_fire)
+	lessie_hit.connect(poof_death)
 
 func handle_fire() -> void:
 	animation_player.play("fire")

@@ -6,6 +6,7 @@ const LESSIE_MINION = preload("uid://cclqgavtswpaa")
 
 signal shot_fire()
 signal stop_fire()
+signal got_hit()
 
 @export var left_top_point: Node2D = null
 @export var left_mid_point: Node2D = null
@@ -99,7 +100,7 @@ func spawn_minions() -> void:
 	mid_min.global_position = mid_min_bot_point.global_position
 	mid_min.bot_point = mid_min_bot_point
 	mid_min.top_point = mid_min_top_point
-	mid_min.handle_connections(shot_fire, stop_fire)
+	mid_min.handle_connections(shot_fire, stop_fire, got_hit)
 	
 	match side:
 		Sides.LEFT:
@@ -107,7 +108,7 @@ func spawn_minions() -> void:
 			right_min.bot_point = right_min_bot_point
 			right_min.top_point = right_min_top_point
 			right_min.global_position = right_min_bot_point.global_position
-			right_min.handle_connections(shot_fire, stop_fire)
+			right_min.handle_connections(shot_fire, stop_fire, got_hit)
 			right_min.direction = right_min.Directions.RIGHT
 			
 			mid_min.direction = mid_min.Directions.RIGHT
@@ -118,7 +119,7 @@ func spawn_minions() -> void:
 			left_min.bot_point = left_min_bot_point
 			left_min.top_point = left_min_top_point
 			left_min.global_position = left_min_bot_point.global_position
-			left_min.handle_connections(shot_fire, stop_fire)
+			left_min.handle_connections(shot_fire, stop_fire, got_hit)
 			left_min.direction = left_min.Directions.LEFT
 			
 			mid_min.direction = mid_min.Directions.LEFT
@@ -172,6 +173,7 @@ func handle_hit(attack_type: String) -> bool:
 
 func handle_hurt(lives_amount: int) -> void:
 	stop_timers()
+	got_hit.emit()
 	lives -= lives_amount
 	
 	if (lives > 0):
@@ -220,6 +222,7 @@ func handle_long_charge() -> void:
 
 func handle_death() -> void:
 	stop_timers()
+	got_hit.emit()
 	state = States.DEAD
 	is_vulnerable = false
 	can_attack = false
