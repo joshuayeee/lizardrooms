@@ -17,6 +17,8 @@ func _ready() -> void:
 		
 		if (boss is Fluores):
 			boss.created_bolt.connect(add_bolt)
+		elif (boss is Lessie):
+			boss.connect_fire_sig.connect(handle_fire_connect)
 	
 	if (cam_point != null):
 		cam_point.player_reached.connect(handle_start_fight)
@@ -34,3 +36,9 @@ func handle_lost_fight() -> void:
 
 func add_bolt(bolt: Bolt) -> void:
 	add_child(bolt)
+
+func handle_fire_connect(fire_sig: Signal) -> void:
+	fire_sig.connect(add_drop)
+
+func add_drop(drop: FireDrop) -> void:
+	add_child(drop)

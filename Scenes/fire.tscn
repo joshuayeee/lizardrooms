@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://da5db7w0c728u"]
+
+[ext_resource type="Texture2D" uid="uid://121l84dfm05l" path="res://Assets/Sprites/LessieFire.png" id="1_6cgax"]
+[ext_resource type="Script" uid="uid://7vd14bmo8lkw" path="res://Scripts/fire.gd" id="1_yr3ur"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(384, 20)
+
+[node name="Fire" type="Area2D" unique_id=1629424633]
+collision_layer = 131072
+collision_mask = 2
+script = ExtResource("1_yr3ur")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=973104415]
+scale = Vector2(4, 4)
+texture = ExtResource("1_6cgax")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=462176019]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="DropTimer" type="Timer" parent="." unique_id=641719018]
+wait_time = 0.5
+
+[node name="RightMinPoint" type="Node2D" parent="." unique_id=1991215752]
+position = Vector2(10, 0)
+
+[node name="RightMaxPoint" type="Node2D" parent="." unique_id=1422877626]
+position = Vector2(192, 0)
+
+[node name="LeftMinPoint" type="Node2D" parent="." unique_id=1418420820]
+position = Vector2(-10, 0)
+
+[node name="LeftMaxPoint" type="Node2D" parent="." unique_id=588224043]
+position = Vector2(-192, 0)
+
+[connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

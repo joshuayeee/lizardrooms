@@ -3,10 +3,12 @@ extends Boss
 class_name Lessie
 
 const LESSIE_MINION = preload("uid://cclqgavtswpaa")
+const FIRE = preload("uid://da5db7w0c728u")
 
 signal shot_fire()
 signal stop_fire()
 signal got_hit()
+signal connect_fire_sig(fire_sig: Signal)
 
 @export var left_top_point: Node2D = null
 @export var left_mid_point: Node2D = null
@@ -32,12 +34,16 @@ signal got_hit()
 @onready var death_timer: Timer = $Timers/DeathTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var right_fire_point: Node2D = $RightFirePoint
+@onready var left_fire_point: Node2D = $LeftFirePoint
 
 enum States {MOVE_TOP, MOVE_MID, MOVE_BOT, HURT, WEAK_FIRE, STRONG_FIRE, SHORT_CHARGE, LONG_CHARGE, DEAD, SWITCH}
 var state: States = States.MOVE_TOP
 
 enum Sides {LEFT, RIGHT}
 var side: Sides = Sides.LEFT
+
+var fire: Fire = null
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
@@ -128,28 +134,50 @@ func spawn_minions() -> void:
 	created_enemy.emit(mid_min)
 
 func shoot_weak_fire() -> void:
-	pass
+	fire = FIRE.instantiate()
+	match side:
+		Sides.LEFT:
+			fire.position = right_fire_point.position
+			fire.direction = fire.Directions.RIGHT
+		Sides.RIGHT:
+			fire.position = left_fire_point.position
+	fire.use_drop_attack = true
+	connect_fire_sig.emit(fire.created_drop)
+	add_child(fire)
 
 func shoot_strong_fire() -> void:
-	pass
+	fire = FIRE.instantiate()
+	match side:
+		Sides.LEFT:
+			fire.position = right_fire_point.position
+			fire.direction = fire.Directions.RIGHT
+		Sides.RIGHT:
+			fire.position = left_fire_point.position
+	add_child(fire)
 
 func handle_move_top() -> void:
 	state = States.MOVE_TOP
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	animation_player.play("move")
 
 func handle_move_mid() -> void:
 	state = States.MOVE_MID
+	if (fire != null):
+		fire.call_deferred("queue_free")
+		fire = null
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	spawn_minions()
 	animation_player.play("move")
 
 func handle_move_bot() -> void:
 	state = States.MOVE_BOT
+	if (fire != null):
+		fire.call_deferred("queue_free")
+		fire = null
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	stop_fire.emit()
 	animation_player.play("move")
 
@@ -194,35 +222,36 @@ func handle_jawbreaker_hurt(lives_amount: int) -> void:
 func handle_weak_fire() -> void:
 	state = States.WEAK_FIRE
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	animation_player.play("fire")
+	shoot_weak_fire()
 	weak_fire_timer.start()
 
 func handle_strong_fire() -> void:
 	state = States.STRONG_FIRE
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	animation_player.play("fire")
+	shoot_strong_fire()
 	shot_fire.emit()
 	strong_fire_timer.start()
 
 func handle_short_charge() -> void:
 	state = States.SHORT_CHARGE
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	animation_player.play("charge")
 	short_charge_timer.start()
 
 func handle_long_charge() -> void:
 	state = States.LONG_CHARGE
 	is_vulnerable = true
-	can_attack = true
+	can_attack = false
 	animation_player.play("charge")
 	long_charge_timer.start()
 
 func handle_death() -> void:
 	stop_timers()
-	got_hit.emit()
 	state = States.DEAD
 	is_vulnerable = false
 	can_attack = false
@@ -231,6 +260,7 @@ func handle_death() -> void:
 
 func end_fight() -> void:
 	lost_fight.emit()
+	call_deferred("queue_free")
 
 func stop_timers() -> void:
 	for timer in timers.get_children():
@@ -265,6 +295,8 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
 		if (Global.game_active and is_active):
 			if (not body.has_cupcake):
-				body.hurt()
+				if (can_attack):
+					body.hurt()
 			else:
 				handle_death()
+				got_hit.emit()
