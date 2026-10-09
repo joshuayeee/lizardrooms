@@ -72,11 +72,12 @@ func _on_wait_timer_timeout() -> void:
 	can_jump = true
 
 func handle_player_check() -> void:
-	if (Global.game_active and is_active and not my_body.has_cupcake):
-		my_body.hurt()
-		my_body = null
-	elif (my_body.has_cupcake):
-		poof_death()
+	if (Global.game_active and is_active):
+		if (not my_body.has_cupcake):
+			my_body.hurt()
+			my_body = null
+		else:
+			poof_death()
 
 func _on_fake_death_timer_timeout() -> void:
 	is_fake_dead = false

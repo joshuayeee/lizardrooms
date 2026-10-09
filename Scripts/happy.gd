@@ -50,10 +50,11 @@ func _on_right_ground_check_body_exited(_body: Node2D) -> void:
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
-		if (Global.game_active and is_active and not body.has_cupcake):
-			body.hurt()
-		elif (body.has_cupcake):
-			poof_death()
+		if (Global.game_active and is_active):
+			if (not body.has_cupcake):
+				body.hurt()
+			else:
+				poof_death()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	is_active = true

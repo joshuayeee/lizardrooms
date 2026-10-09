@@ -34,4 +34,5 @@ position = Vector2(-10, 0)
 [node name="LeftMaxPoint" type="Node2D" parent="." unique_id=588224043]
 position = Vector2(-192, 0)
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]

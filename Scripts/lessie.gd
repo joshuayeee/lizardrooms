@@ -158,7 +158,7 @@ func shoot_strong_fire() -> void:
 func handle_move_top() -> void:
 	state = States.MOVE_TOP
 	is_vulnerable = false
-	can_attack = false
+	can_attack = true
 	animation_player.play("move")
 
 func handle_move_mid() -> void:
@@ -167,7 +167,7 @@ func handle_move_mid() -> void:
 		fire.call_deferred("queue_free")
 		fire = null
 	is_vulnerable = false
-	can_attack = false
+	can_attack = true
 	spawn_minions()
 	animation_player.play("move")
 
@@ -177,7 +177,7 @@ func handle_move_bot() -> void:
 		fire.call_deferred("queue_free")
 		fire = null
 	is_vulnerable = false
-	can_attack = false
+	can_attack = true
 	stop_fire.emit()
 	animation_player.play("move")
 
@@ -217,12 +217,13 @@ func handle_jawbreaker_hurt(lives_amount: int) -> void:
 	lives -= lives_amount
 	
 	if (lives <= 0):
+		got_hit.emit()
 		handle_death()
 
 func handle_weak_fire() -> void:
 	state = States.WEAK_FIRE
 	is_vulnerable = false
-	can_attack = false
+	can_attack = true
 	animation_player.play("fire")
 	shoot_weak_fire()
 	weak_fire_timer.start()
@@ -230,7 +231,7 @@ func handle_weak_fire() -> void:
 func handle_strong_fire() -> void:
 	state = States.STRONG_FIRE
 	is_vulnerable = false
-	can_attack = false
+	can_attack = true
 	animation_player.play("fire")
 	shoot_strong_fire()
 	shot_fire.emit()
@@ -239,7 +240,7 @@ func handle_strong_fire() -> void:
 func handle_short_charge() -> void:
 	state = States.SHORT_CHARGE
 	is_vulnerable = false
-	can_attack = false
+	can_attack = true
 	animation_player.play("charge")
 	short_charge_timer.start()
 

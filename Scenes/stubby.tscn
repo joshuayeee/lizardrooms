@@ -136,8 +136,6 @@ body = NodePath("../..")
 body = NodePath("../..")
 walk_speed = 100.0
 run_speed = 100.0
-acc = 1.0
-dec = 1.0
 
 [node name="AnimCom" parent="Components" unique_id=1687221079 node_paths=PackedStringArray("sprite", "anim_player") instance=ExtResource("5_4p6hk")]
 sprite = NodePath("../../Sprite2D")

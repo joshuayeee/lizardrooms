@@ -38,3 +38,8 @@ func create_fire_drop() -> void:
 func _on_drop_timer_timeout() -> void:
 	if (Global.game_active):
 		create_fire_drop()
+
+func _on_body_entered(body: Node2D) -> void:
+	if (body is Player):
+		if (Global.game_active):
+			body.hurt()

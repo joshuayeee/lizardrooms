@@ -170,8 +170,6 @@ shape = SubResource("RectangleShape2D_cp0ws")
 body = NodePath("../..")
 walk_speed = 100.0
 run_speed = 100.0
-acc = 1.0
-dec = 1.0
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_bfvg1")]
 body = NodePath("../..")
