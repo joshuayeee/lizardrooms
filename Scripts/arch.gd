@@ -2,34 +2,58 @@ extends Boss
 
 class_name Arch
 
+const ARCH_MINION = preload("uid://cowpjn45esq5u")
+
 @export var left_point: Node2D = null
 @export var right_point: Node2D = null
+@export var top_up_point: Node2D = null
+@export var bot_up_point: Node2D = null
+@export var top_left_minion_point: Node2D = null
+@export var bot_left_minion_point: Node2D = null
+@export var top_right_minion_point: Node2D = null
+@export var bot_right_minion_point: Node2D = null
+@export var enemy_manager: EnemyManager = null
 
 @onready var move_com: MoveCom = $Components/MoveCom
+@onready var launch_timer: Timer = $LaunchTimer
 @onready var timers: Node = $Timers
+@onready var roam_timer: Timer = $Timers/RoamTimer
+@onready var charge_timer: Timer = $Timers/ChargeTimer
 @onready var hurt_timer: Timer = $Timers/HurtTimer
 @onready var death_timer: Timer = $Timers/DeathTimer
-@onready var shoot_timer: Timer = $Timers/ShootTimer
-@onready var launch_timer: Timer = $Timers/LaunchTimer
 @onready var pre_swoop_timer: Timer = $Timers/PreSwoopTimer
+@onready var shoot_timer: Timer = $Timers/ShootTimer
+@onready var reset_timer: Timer = $Timers/ResetTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-enum States {MOVE, CHARGE, SHOOT, SWOOP, PRE_SWOOP, MOVE_TO, MOVE_UP, HURT, DEAD}
-var state: States = States.MOVE
+enum States {ROAM, CHARGE, SHOOT, SWOOP, PRE_SWOOP, MOVE_TO, MOVE_UP, RESET, MOVE_DOWN, HURT, DEAD}
+var state: States = States.RESET
 
 enum Directions {LEFT, RIGHT}
 var direction: Directions = Directions.LEFT
+
+var swoop_amount: int = 3
+
+var minions: Array[ArchMinion] = []
+var minion_amount: int = 9
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		if (is_active):
 			match state:
-				States.MOVE or States.CHARGE:
+				States.ROAM or States.CHARGE or States.SHOOT:
+					var reached_point: bool = false
 					match direction:
 						Directions.LEFT:
-							move_com.handle_hori_move(-1.0)
+							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							
+							if (reached_point):
+								direction = Directions.RIGHT
 						Directions.RIGHT:
-							move_com.handle_hori_move(1.0)
+							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							
+							if (reached_point):
+								direction = Directions.LEFT
 				States.MOVE_TO:
 					var reached_point: bool = false
 					match direction:
@@ -38,11 +62,40 @@ func _physics_process(delta: float) -> void:
 						Directions.RIGHT:
 							reached_point = move_com.handle_move_to(right_point.global_position, delta)
 					if (reached_point):
-						pass
+						handle_pre_swoop()
 				States.MOVE_UP:
-					pass
+					var reached_point: bool = false
+					var pos: Vector2 = Vector2(global_position.x, top_up_point.global_position.y)
+					reached_point = move_com.handle_move_to(pos, delta)
+					if (reached_point):
+						handle_reset()
+				States.MOVE_DOWN:
+					var reached_point: bool = false
+					var pos: Vector2 = Vector2(global_position.x, bot_up_point.global_position.y)
+					reached_point = move_com.handle_move_to(pos, delta)
+					if (reached_point):
+						handle_roam()
 				States.SWOOP:
-					pass
+					var reached_point: bool = false
+					match direction:
+						Directions.RIGHT:
+							reached_point = move_com.handle_orbit_move_to(bot_up_point, 64.0, delta, 0.0)
+							
+							if (reached_point):
+								swoop_amount -= 1
+								if (swoop_amount > 0):
+									direction = Directions.LEFT
+								else:
+									handle_move_up()
+						Directions.LEFT:
+							reached_point = move_com.handle_orbit_move_to(bot_up_point, 64.0, delta, 180.0)
+							
+							if (reached_point):
+								swoop_amount -= 1
+								if (swoop_amount > 0):
+									direction = Directions.RIGHT
+								else:
+									handle_move_up()
 				_:
 					velocity = Vector2.ZERO
 		else:
@@ -54,31 +107,97 @@ func _physics_process(delta: float) -> void:
 
 func start_fight() -> void:
 	is_active = true
-	handle_move()
+	handle_reset()
+
+func create_minions() -> void:
+	var start_angle: float = 0.0
+	for i: int in range(minion_amount):
+		var minion: ArchMinion = ARCH_MINION.instantiate()
+		minion.position = position
+		minion.center = self
+		minion.angle = start_angle
+		minion.top_left_point = top_left_minion_point.global_position
+		minion.bot_left_point = bot_left_minion_point.global_position
+		minion.top_right_point = top_right_minion_point.global_position
+		minion.bot_right_point = bot_right_minion_point.global_position
+		start_angle += 45.0
+		created_enemy.emit(minion)
+		minions.append(minion)
 
 func launch_minion() -> void:
+	if (len(minions) > 0):
+		var rand_num: int = randi_range(0, len(minions))
+		var minion: ArchMinion = minions.pop_at(rand_num)
+		if (minion != null):
+			minion.start_launch(global_position)
+		launch_timer.start()
+	else:
+		stop_timers()
+		handle_move_to()
+
+func end_fight() -> void:
 	pass
 
-func handle_move() -> void:
-	state = States.MOVE
+func handle_roam() -> void:
+	state = States.ROAM
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
+	launch_timer.start()
+	roam_timer.start()
  
 func handle_charge() -> void:
 	state = States.CHARGE
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("charge")
+	charge_timer.start()
 
 func handle_shoot() -> void:
 	state = States.SHOOT
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
+	shoot_timer.start()
 
 func handle_move_to() -> void:
 	state = States.MOVE_TO
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
 
 func handle_pre_swoop() -> void:
 	state = States.PRE_SWOOP
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
+	pre_swoop_timer.start()
 
 func handle_swoop() -> void:
 	state = States.SWOOP
+	is_vulnerable = true
+	can_attack = true
+	animation_player.play("idle")
 
 func handle_move_up() -> void:
 	state = States.MOVE_UP
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
+
+func handle_reset() -> void:
+	state = States.RESET
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
+	create_minions()
+	reset_timer.start()
+
+func handle_move_down() -> void:
+	state = States.MOVE_DOWN
+	is_vulnerable = false
+	can_attack = true
+	animation_player.play("idle")
 
 func handle_hit(attack_type: String) -> bool:
 	var success: bool = false
@@ -99,10 +218,53 @@ func handle_hit(attack_type: String) -> bool:
 	return success
 
 func handle_hurt(life_amount: int) -> void:
-	state = States.HURT
+	lives -= life_amount
+	
+	if (lives > 0):
+		state = States.HURT
+		is_vulnerable = false
+		can_attack = false
+		animation_player.play("hurt")
+	else:
+		handle_death()
 
 func handle_jawbreaker_hurt(life_amount: int) -> void:
-	pass
+	lives -= life_amount
+	
+	if (lives <= 0):
+		handle_death()
 
 func handle_death() -> void:
 	state = States.DEAD
+	is_vulnerable = false
+	can_attack = false
+	animation_player.play("death")
+
+func stop_timers() -> void:
+	for child in timers.get_children():
+		if (child is Timer):
+			child.stop()
+
+func _on_launch_timer_timeout() -> void:
+	launch_minion()
+
+func _on_hurt_timer_timeout() -> void:
+	handle_move_up()
+
+func _on_death_timer_timeout() -> void:
+	end_fight()
+
+func _on_shoot_timer_timeout() -> void:
+	handle_roam()
+
+func _on_pre_swoop_timer_timeout() -> void:
+	handle_swoop()
+
+func _on_roam_timer_timeout() -> void:
+	handle_charge()
+
+func _on_charge_timer_timeout() -> void:
+	handle_shoot()
+
+func _on_reset_timer_timeout() -> void:
+	handle_move_down()

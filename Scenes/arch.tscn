@@ -24,7 +24,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_djc3t"]
 resource_name = "charge"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -41,7 +41,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_01wn0"]
 resource_name = "death"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -100,10 +100,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
 radius = 32.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
-
 [node name="Arch" type="CharacterBody2D" unique_id=145356678]
 script = ExtResource("1_w6v1f")
 metadata/_custom_type_script = "uid://b88qpkg7nm35q"
@@ -125,22 +121,19 @@ autoplay = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1100407679]
 shape = SubResource("CircleShape2D_ydotr")
 
-[node name="LeftCheck" type="Area2D" parent="." unique_id=1186399109]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=843344284]
-position = Vector2(-32, 0)
-shape = SubResource("RectangleShape2D_3gji2")
-
-[node name="RightCheck" type="Area2D" parent="." unique_id=1969134857]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=90885568]
-position = Vector2(31, 0)
-shape = SubResource("RectangleShape2D_cp0ws")
-
 [node name="LaunchTimer" type="Timer" parent="." unique_id=1583599018]
+wait_time = 5.0
 one_shot = true
 
 [node name="Timers" type="Node" parent="." unique_id=1134191788]
+
+[node name="RoamTimer" type="Timer" parent="Timers" unique_id=1940721653]
+wait_time = 3.0
+one_shot = true
+
+[node name="ChargeTimer" type="Timer" parent="Timers" unique_id=1184792290]
+wait_time = 2.0
+one_shot = true
 
 [node name="HurtTimer" type="Timer" parent="Timers" unique_id=1769511294]
 one_shot = true
@@ -154,9 +147,22 @@ one_shot = true
 [node name="PreSwoopTimer" type="Timer" parent="Timers" unique_id=518155906]
 one_shot = true
 
+[node name="ResetTimer" type="Timer" parent="Timers" unique_id=2028918931]
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1468712320]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_w6v1f")]
 body = NodePath("../..")
 walk_speed = 200.0
 run_speed = 200.0
+angular_speed = 2.0
+
+[connection signal="timeout" from="LaunchTimer" to="." method="_on_launch_timer_timeout"]
+[connection signal="timeout" from="Timers/RoamTimer" to="." method="_on_roam_timer_timeout"]
+[connection signal="timeout" from="Timers/ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="Timers/HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="timeout" from="Timers/DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="Timers/ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Timers/PreSwoopTimer" to="." method="_on_pre_swoop_timer_timeout"]
+[connection signal="timeout" from="Timers/ResetTimer" to="." method="_on_reset_timer_timeout"]

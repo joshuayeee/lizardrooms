@@ -45,8 +45,12 @@ _data = {
 &"move": SubResource("Animation_yb4uf")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
+radius = 16.0
+
 [node name="ArchMinion" type="CharacterBody2D" unique_id=507448780 node_paths=PackedStringArray("poof_point")]
-position = Vector2(0, -64)
+collision_layer = 1024
+collision_mask = 0
 script = ExtResource("1_ihbmf")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dokg8u03i7u00"
@@ -65,6 +69,16 @@ shape = SubResource("CircleShape2D_jh5pk")
 libraries/ = SubResource("AnimationLibrary_g4q6a")
 autoplay = &"move"
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1788510464]
+rect = Rect2(-32, -24, 64, 48)
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=504922240]
+collision_layer = 1024
+collision_mask = 4098
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1007363552]
+shape = SubResource("CircleShape2D_ydotr")
+
 [node name="Components" type="Node" parent="." unique_id=142720648]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_1m34a")]
@@ -72,3 +86,6 @@ body = NodePath("../..")
 walk_speed = 200.0
 run_speed = 200.0
 angular_speed = 2.0
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]

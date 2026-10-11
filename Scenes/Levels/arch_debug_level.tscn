@@ -10,10 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://cuvexbipavqsp" path="res://Scenes/enemy_manager.tscn" id="8_4j6lf"]
 [ext_resource type="PackedScene" uid="uid://wsvmq4k5ym0b" path="res://Scenes/jawbreaker_manager.tscn" id="9_u87jk"]
 [ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="10_e3ldh"]
+[ext_resource type="PackedScene" uid="uid://cs5j2ruynaag6" path="res://Scenes/boss_manager.tscn" id="10_lkhpy"]
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="11_d5qgw"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="12_430c5"]
+[ext_resource type="PackedScene" uid="uid://tyjh4oa00o2a" path="res://Scenes/arch.tscn" id="12_o3fps"]
 [ext_resource type="PackedScene" uid="uid://u3b752tjrg7o" path="res://Scenes/box_manager.tscn" id="13_50ow0"]
 [ext_resource type="Texture2D" uid="uid://udga0qm4mods" path="res://Assets/Sprites/WorldOneTM2.png" id="13_b17ar"]
+[ext_resource type="PackedScene" uid="uid://bqrtki3jnhpq0" path="res://Scenes/boss_wall.tscn" id="13_o3fps"]
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/canny_manager.tscn" id="14_pfe7a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a4j4"]
@@ -21,6 +24,12 @@ size = Vector2(50, 522)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(6358, 68)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(24, 368)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
+size = Vector2(24, 368)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lkhpy"]
 texture = ExtResource("13_b17ar")
@@ -103,6 +112,10 @@ follow_viewport_enabled = true
 cam_enter_left = true
 cam_leave_right = true
 
+[node name="CamPoint2" parent="FrontLayer/CamPointManager" unique_id=95628147 instance=ExtResource("4_0fyff")]
+position = Vector2(1728, 0)
+cam_enter_right = true
+
 [node name="CheckpointManager" parent="FrontLayer" unique_id=833493036 instance=ExtResource("5_wjs4p")]
 
 [node name="Checkpoint" parent="FrontLayer/CheckpointManager" unique_id=2111264533 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_o3fps")]
@@ -126,6 +139,67 @@ shape = SubResource("RectangleShape2D_jh5pk")
 [node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("8_4j6lf")]
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("9_u87jk")]
+
+[node name="BossManager" parent="FrontLayer" unique_id=10119429 node_paths=PackedStringArray("boss", "cam_point", "left_boss_wall", "right_boss_wall", "enemy_manager") instance=ExtResource("10_lkhpy")]
+boss = NodePath("Arch")
+cam_point = NodePath("../CamPointManager/CamPoint2")
+left_boss_wall = NodePath("../LeftBossWall")
+right_boss_wall = NodePath("../RightBossWall")
+enemy_manager = NodePath("../EnemyManager")
+
+[node name="Arch" parent="FrontLayer/BossManager" unique_id=145356678 node_paths=PackedStringArray("left_point", "right_point", "top_up_point", "bot_up_point", "top_left_minion_point", "bot_left_minion_point", "top_right_minion_point", "bot_right_minion_point", "enemy_manager") instance=ExtResource("12_o3fps")]
+position = Vector2(1728, -264)
+left_point = NodePath("../LeftPoint")
+right_point = NodePath("../RightPoint")
+top_up_point = NodePath("../TopUpPoint")
+bot_up_point = NodePath("../BotUpPoint")
+top_left_minion_point = NodePath("../TopLeftMinionPoint")
+bot_left_minion_point = NodePath("../BotLeftMinionPoint")
+top_right_minion_point = NodePath("../TopRightMinionPoint")
+bot_right_minion_point = NodePath("../BotRightMinionPoint")
+enemy_manager = NodePath("../../EnemyManager")
+
+[node name="BotUpPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1816331537]
+position = Vector2(1728, -144)
+
+[node name="TopUpPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1580383823]
+position = Vector2(1728, -264)
+
+[node name="RightPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=2086872309]
+position = Vector2(1984, -144)
+
+[node name="TopRightMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=440992886]
+position = Vector2(2024, -144)
+
+[node name="BotRightMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=826323268]
+position = Vector2(2024, 80)
+
+[node name="LeftPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1752936939]
+position = Vector2(1472, -144)
+
+[node name="TopLeftMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1744287082]
+position = Vector2(1432, -144)
+
+[node name="BotLeftMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1590332818]
+position = Vector2(1432, 80)
+
+[node name="LeftBossWall" parent="FrontLayer" unique_id=1567553985 node_paths=PackedStringArray("my_col") instance=ExtResource("13_o3fps")]
+position = Vector2(1408, 0)
+my_col = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/LeftBossWall" unique_id=967713165]
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_ydotr")
+disabled = true
+
+[node name="RightBossWall" parent="FrontLayer" unique_id=1328506586 node_paths=PackedStringArray("my_col") instance=ExtResource("13_o3fps")]
+position = Vector2(2048, 0)
+my_col = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/RightBossWall" unique_id=1852397256]
+position = Vector2(12, 0)
+shape = SubResource("RectangleShape2D_3gji2")
+disabled = true
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
 layer = 0
