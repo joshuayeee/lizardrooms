@@ -2,6 +2,8 @@ extends Enemy
 
 class_name ArchMinion
 
+signal destroyed(arch_minion: ArchMinion)
+
 @export var center: Node2D = null
 @export var radius: float = 64.0
 
@@ -63,13 +65,26 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	move_and_slide()
 
-func start_launch(start_pos: Vector2) -> void:
+func start_launch(start_pos: Vector2, dir: String) -> void:
 	global_position = start_pos
+	
+	match dir:
+		"right":
+			direction = Directions.RIGHT
+		_:
+			direction = Directions.LEFT
+	
 	state = States.LAUNCH
+
+func hurt() -> void:
+	destroyed.emit(self)
+
+func hit_by_jawbreaker() -> void:
+	destroyed.emit(self)
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	if (state == States.LAUNCH and launch_state == LaunchStates.MOVE_HORI):
-		call_deferred("queue_free")
+		destroyed.emit(self)
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):

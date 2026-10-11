@@ -12,7 +12,6 @@ const ARCH_MINION = preload("uid://cowpjn45esq5u")
 @export var bot_left_minion_point: Node2D = null
 @export var top_right_minion_point: Node2D = null
 @export var bot_right_minion_point: Node2D = null
-@export var enemy_manager: EnemyManager = null
 
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var launch_timer: Timer = $LaunchTimer
@@ -32,6 +31,7 @@ var state: States = States.RESET
 enum Directions {LEFT, RIGHT}
 var direction: Directions = Directions.LEFT
 
+var swoop_radius: float = 128.0
 var swoop_amount: int = 3
 
 var minions: Array[ArchMinion] = []
@@ -41,7 +41,33 @@ func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		if (is_active):
 			match state:
-				States.ROAM or States.CHARGE or States.SHOOT:
+				States.ROAM:
+					var reached_point: bool = false
+					match direction:
+						Directions.LEFT:
+							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							
+							if (reached_point):
+								direction = Directions.RIGHT
+						Directions.RIGHT:
+							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							
+							if (reached_point):
+								direction = Directions.LEFT
+				States.CHARGE:
+					var reached_point: bool = false
+					match direction:
+						Directions.LEFT:
+							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							
+							if (reached_point):
+								direction = Directions.RIGHT
+						Directions.RIGHT:
+							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							
+							if (reached_point):
+								direction = Directions.LEFT
+				States.SHOOT:
 					var reached_point: bool = false
 					match direction:
 						Directions.LEFT:
@@ -79,21 +105,23 @@ func _physics_process(delta: float) -> void:
 					var reached_point: bool = false
 					match direction:
 						Directions.RIGHT:
-							reached_point = move_com.handle_orbit_move_to(bot_up_point, 64.0, delta, 0.0)
+							reached_point = move_com.handle_orbit_move_to(bot_up_point, global_position.distance_to(bot_up_point.global_position), delta, PI, 1.0)
 							
 							if (reached_point):
 								swoop_amount -= 1
 								if (swoop_amount > 0):
 									direction = Directions.LEFT
+									handle_pre_swoop()
 								else:
 									handle_move_up()
 						Directions.LEFT:
-							reached_point = move_com.handle_orbit_move_to(bot_up_point, 64.0, delta, 180.0)
+							reached_point = move_com.handle_orbit_move_to(bot_up_point, global_position.distance_to(bot_up_point.global_position), delta, 0, -1.0)
 							
 							if (reached_point):
 								swoop_amount -= 1
 								if (swoop_amount > 0):
 									direction = Directions.RIGHT
+									handle_pre_swoop()
 								else:
 									handle_move_up()
 				_:
@@ -110,33 +138,45 @@ func start_fight() -> void:
 	handle_reset()
 
 func create_minions() -> void:
-	var start_angle: float = 0.0
 	for i: int in range(minion_amount):
 		var minion: ArchMinion = ARCH_MINION.instantiate()
-		minion.position = position
+		minion.destroyed.connect(remove_minion)
 		minion.center = self
-		minion.angle = start_angle
+		minion.angle = TAU * float(i) / float(minion_amount)
 		minion.top_left_point = top_left_minion_point.global_position
 		minion.bot_left_point = bot_left_minion_point.global_position
 		minion.top_right_point = top_right_minion_point.global_position
 		minion.bot_right_point = bot_right_minion_point.global_position
-		start_angle += 45.0
 		created_enemy.emit(minion)
 		minions.append(minion)
 
 func launch_minion() -> void:
-	if (len(minions) > 0):
-		var rand_num: int = randi_range(0, len(minions))
-		var minion: ArchMinion = minions.pop_at(rand_num)
-		if (minion != null):
-			minion.start_launch(global_position)
+	if (not minions.is_empty()):
+		var rand_num: int = randi_range(0, len(minions) - 1)
+		var minion: ArchMinion = minions[rand_num]
+		if (minion.state == minion.States.ORBIT):
+			match direction:
+				Directions.LEFT:
+					minion.start_launch(global_position, "right")
+				Directions.RIGHT:
+					minion.start_launch(global_position, "left")
 		launch_timer.start()
 	else:
 		stop_timers()
 		handle_move_to()
 
+func remove_all_minions() -> void:
+	for minion in minions:
+		remove_minion(minion)
+
+func remove_minion(minion: ArchMinion) -> void:
+	var i: int = minions.find(minion)
+	minions.pop_at(i)
+	minion.poof_death()
+
 func end_fight() -> void:
-	pass
+	lost_fight.emit()
+	call_deferred("queue_free")
 
 func handle_roam() -> void:
 	state = States.ROAM
@@ -178,6 +218,12 @@ func handle_swoop() -> void:
 	is_vulnerable = true
 	can_attack = true
 	animation_player.play("idle")
+	
+	match direction:
+		Directions.LEFT:
+			move_com.set_angle(PI)
+		Directions.RIGHT:
+			move_com.set_angle(0)
 
 func handle_move_up() -> void:
 	state = States.MOVE_UP
@@ -190,6 +236,7 @@ func handle_reset() -> void:
 	is_vulnerable = false
 	can_attack = true
 	animation_player.play("idle")
+	swoop_amount = 3
 	create_minions()
 	reset_timer.start()
 
@@ -222,9 +269,11 @@ func handle_hurt(life_amount: int) -> void:
 	
 	if (lives > 0):
 		state = States.HURT
+		remove_all_minions()
 		is_vulnerable = false
 		can_attack = false
 		animation_player.play("hurt")
+		hurt_timer.start()
 	else:
 		handle_death()
 
@@ -235,10 +284,13 @@ func handle_jawbreaker_hurt(life_amount: int) -> void:
 		handle_death()
 
 func handle_death() -> void:
+	stop_timers()
 	state = States.DEAD
+	remove_all_minions()
 	is_vulnerable = false
 	can_attack = false
 	animation_player.play("death")
+	death_timer.start()
 
 func stop_timers() -> void:
 	for child in timers.get_children():
@@ -268,3 +320,11 @@ func _on_charge_timer_timeout() -> void:
 
 func _on_reset_timer_timeout() -> void:
 	handle_move_down()
+
+func _on_player_check_body_entered(body: Node2D) -> void:
+	if (body is Player):
+		if (Global.game_active and is_active):
+			if (not body.has_cupcake):
+				body.hurt()
+			else:
+				handle_death()

@@ -83,8 +83,8 @@ shape = SubResource("CircleShape2D_ydotr")
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_1m34a")]
 body = NodePath("../..")
-walk_speed = 200.0
-run_speed = 200.0
+walk_speed = 400.0
+run_speed = 400.0
 angular_speed = 2.0
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

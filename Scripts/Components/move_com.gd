@@ -59,13 +59,23 @@ func handle_orbit_move(center: Node2D, radius: float, delta: float) -> void:
 	var offset: Vector2 = Vector2.RIGHT.rotated(angle) * radius
 	body.global_position = center.global_position + offset
 
-func handle_orbit_move_to(center: Node2D, radius: float, delta: float, end_angle: float) -> bool:
-	_handle_angle_calc(delta)
-	if (angle == end_angle):
+func handle_orbit_move_to(center: Node2D, radius: float, delta: float, end_angle: float, direction: float) -> bool:
+	var remaining: float = 0.0
+	
+	if direction > 1.0:
+		remaining = fposmod(end_angle - angle, TAU)
+	else:
+		remaining = fposmod(angle - end_angle, TAU)
+	
+	var angle_step: float = angular_speed * delta
+	
+	if remaining <= angle_step:
+		angle = end_angle
+		body.global_position = center.global_position + Vector2.RIGHT.rotated(angle) * radius
 		return true
 	else:
-		var offset: Vector2 = Vector2.RIGHT.rotated(angle) * radius
-		body.global_position = center.global_position + offset
+		angle = fposmod(angle + direction * angle_step, TAU)
+		body.global_position = center.global_position + Vector2.RIGHT.rotated(angle) * radius
 		return false
 
 func _handle_angle_calc(delta: float)  -> void:

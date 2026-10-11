@@ -101,6 +101,8 @@ _data = {
 radius = 32.0
 
 [node name="Arch" type="CharacterBody2D" unique_id=145356678]
+collision_layer = 262144
+collision_mask = 0
 script = ExtResource("1_w6v1f")
 metadata/_custom_type_script = "uid://b88qpkg7nm35q"
 
@@ -117,6 +119,8 @@ libraries/ = SubResource("AnimationLibrary_qomo3")
 autoplay = &"idle"
 
 [node name="PlayerCheck" type="Area2D" parent="." unique_id=1606831512]
+collision_layer = 1024
+collision_mask = 4098
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1100407679]
 shape = SubResource("CircleShape2D_ydotr")
@@ -158,6 +162,7 @@ walk_speed = 200.0
 run_speed = 200.0
 angular_speed = 2.0
 
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="timeout" from="LaunchTimer" to="." method="_on_launch_timer_timeout"]
 [connection signal="timeout" from="Timers/RoamTimer" to="." method="_on_roam_timer_timeout"]
 [connection signal="timeout" from="Timers/ChargeTimer" to="." method="_on_charge_timer_timeout"]
