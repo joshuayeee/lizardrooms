@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://udga0qm4mods" path="res://Assets/Sprites/WorldOneTM2.png" id="13_b17ar"]
 [ext_resource type="PackedScene" uid="uid://bqrtki3jnhpq0" path="res://Scenes/boss_wall.tscn" id="13_o3fps"]
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/canny_manager.tscn" id="14_pfe7a"]
+[ext_resource type="PackedScene" uid="uid://nvl5vrsru0ag" path="res://Scenes/special_box.tscn" id="18_o3fps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a4j4"]
 size = Vector2(50, 522)
@@ -289,6 +290,18 @@ tile_set = SubResource("TileSet_7ik2y")
 
 [node name="BoxManager" parent="MidLayer" unique_id=1117362628 node_paths=PackedStringArray("item_manager") instance=ExtResource("13_50ow0")]
 item_manager = NodePath("../../FrontLayer/ItemManager")
+
+[node name="SpecialBox" parent="MidLayer/BoxManager" unique_id=1586926890 instance=ExtResource("18_o3fps")]
+position = Vector2(128, 32)
+contains = 1
+
+[node name="SpecialBox2" parent="MidLayer/BoxManager" unique_id=1785375363 instance=ExtResource("18_o3fps")]
+position = Vector2(256, 32)
+contains = 1
+
+[node name="SpecialBox3" parent="MidLayer/BoxManager" unique_id=148766613 instance=ExtResource("18_o3fps")]
+position = Vector2(384, 32)
+contains = 2
 
 [node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]
 

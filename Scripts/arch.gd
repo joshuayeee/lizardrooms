@@ -18,6 +18,8 @@ signal created_bullet(bullet: ArchBullet)
 @export var bot_left_minion_point: Node2D = null
 @export var top_right_minion_point: Node2D = null
 @export var bot_right_minion_point: Node2D = null
+@export var min_roam_time: float = 1.0
+@export var max_roam_time: float = 3.0
 
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var launch_timer: Timer = $LaunchTimer
@@ -40,7 +42,7 @@ var direction: Directions = Directions.LEFT
 var swoop_amount: int = 3
 
 var minions: Array[ArchMinion] = []
-var minion_amount: int = 1
+var minion_amount: int = 9
 
 var beam: ArchBeam = null
 
@@ -191,33 +193,22 @@ func remove_beam() -> void:
 		beam.call_deferred("queue_free")
 
 func fire_spreadshot() -> void:
-	var bullet_1: ArchBullet = ARCH_BULLET.instantiate()
-	bullet_1.global_position = global_position
-	bullet_1.direction = (player.global_position - global_position).normalized()
-	created_bullet.emit(bullet_1)
+	var dir: Vector2 = (player.global_position - global_position).normalized()
 	
-	match direction:
-		Directions.LEFT:
-			pass
-		Directions.RIGHT:
-			pass
-	var bullet_2: ArchBullet = ARCH_BULLET.instantiate()
-	bullet_2.global_position = global_position
+	var spread_angle: float = deg_to_rad(20.0)
 	
-	var bullet_3: ArchBullet = ARCH_BULLET.instantiate()
-	bullet_3.global_position = global_position
+	var angles: Array[float] = [
+		-spread_angle,
+		0.0,
+		spread_angle
+	]
 	
-	match direction:
-		Directions.LEFT:
-			bullet_2.direction = (player.global_position - global_position).normalized() + Vector2(0.2, -0.1)
-			bullet_3.direction = (player.global_position - global_position).normalized() - Vector2(0.2, -0.1)
-		Directions.RIGHT:
-			bullet_2.direction = (player.global_position - global_position).normalized() + Vector2(-0.2, 0.1)
-			bullet_3.direction = (player.global_position - global_position).normalized() - Vector2(-0.2, 0.1)
+	for angle in angles:
+		var bullet: ArchBullet = ARCH_BULLET.instantiate()
+		bullet.global_position = global_position
+		bullet.direction = dir.rotated(angle)
+		created_bullet.emit(bullet)
 	
-	created_bullet.emit(bullet_2)
-
-	created_bullet.emit(bullet_3)
 
 func end_fight() -> void:
 	lost_fight.emit()
@@ -230,6 +221,9 @@ func handle_roam() -> void:
 	animation_player.play("idle")
 	remove_beam()
 	launch_timer.start()
+	
+	roam_timer.wait_time = randf_range(min_roam_time, max_roam_time)
+	
 	roam_timer.start()
  
 func handle_charge() -> void:
