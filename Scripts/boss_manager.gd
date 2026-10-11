@@ -19,6 +19,8 @@ func _ready() -> void:
 			boss.created_bolt.connect(add_bolt)
 		elif (boss is Lessie):
 			boss.connect_fire_sig.connect(handle_fire_connect)
+		elif (boss is Arch):
+			boss.created_bullet.connect(add_arch_bullet)
 	
 	if (cam_point != null):
 		cam_point.player_reached.connect(handle_start_fight)
@@ -42,3 +44,6 @@ func handle_fire_connect(fire_sig: Signal) -> void:
 
 func add_drop(drop: FireDrop) -> void:
 	add_child(drop)
+
+func add_arch_bullet(bullet: ArchBullet) -> void:
+	add_child(bullet)

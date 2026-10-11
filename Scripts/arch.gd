@@ -3,9 +3,15 @@ extends Boss
 class_name Arch
 
 const ARCH_MINION = preload("uid://cowpjn45esq5u")
+const ARCH_BEAM = preload("uid://b7658yoqmpnem")
+const ARCH_BULLET = preload("uid://dimy6hpey178v")
 
-@export var left_point: Node2D = null
-@export var right_point: Node2D = null
+signal created_bullet(bullet: ArchBullet)
+
+@export var far_left_point: Node2D = null
+@export var far_right_point: Node2D = null
+@export var mid_right_point: Node2D = null
+@export var mid_left_point: Node2D
 @export var top_up_point: Node2D = null
 @export var bot_up_point: Node2D = null
 @export var top_left_minion_point: Node2D = null
@@ -31,11 +37,12 @@ var state: States = States.RESET
 enum Directions {LEFT, RIGHT}
 var direction: Directions = Directions.LEFT
 
-var swoop_radius: float = 128.0
 var swoop_amount: int = 3
 
 var minions: Array[ArchMinion] = []
-var minion_amount: int = 9
+var minion_amount: int = 1
+
+var beam: ArchBeam = null
 
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
@@ -45,12 +52,12 @@ func _physics_process(delta: float) -> void:
 					var reached_point: bool = false
 					match direction:
 						Directions.LEFT:
-							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							reached_point = move_com.handle_move_to(far_left_point.global_position, delta)
 							
 							if (reached_point):
 								direction = Directions.RIGHT
 						Directions.RIGHT:
-							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							reached_point = move_com.handle_move_to(far_right_point.global_position, delta)
 							
 							if (reached_point):
 								direction = Directions.LEFT
@@ -58,12 +65,12 @@ func _physics_process(delta: float) -> void:
 					var reached_point: bool = false
 					match direction:
 						Directions.LEFT:
-							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							reached_point = move_com.handle_move_to(far_left_point.global_position, delta)
 							
 							if (reached_point):
 								direction = Directions.RIGHT
 						Directions.RIGHT:
-							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							reached_point = move_com.handle_move_to(far_right_point.global_position, delta)
 							
 							if (reached_point):
 								direction = Directions.LEFT
@@ -71,12 +78,12 @@ func _physics_process(delta: float) -> void:
 					var reached_point: bool = false
 					match direction:
 						Directions.LEFT:
-							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							reached_point = move_com.handle_move_to(far_left_point.global_position, delta)
 							
 							if (reached_point):
 								direction = Directions.RIGHT
 						Directions.RIGHT:
-							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							reached_point = move_com.handle_move_to(far_right_point.global_position, delta)
 							
 							if (reached_point):
 								direction = Directions.LEFT
@@ -84,9 +91,9 @@ func _physics_process(delta: float) -> void:
 					var reached_point: bool = false
 					match direction:
 						Directions.LEFT:
-							reached_point = move_com.handle_move_to(left_point.global_position, delta)
+							reached_point = move_com.handle_move_to(mid_left_point.global_position, delta)
 						Directions.RIGHT:
-							reached_point = move_com.handle_move_to(right_point.global_position, delta)
+							reached_point = move_com.handle_move_to(mid_right_point.global_position, delta)
 					if (reached_point):
 						handle_pre_swoop()
 				States.MOVE_UP:
@@ -151,15 +158,16 @@ func create_minions() -> void:
 		minions.append(minion)
 
 func launch_minion() -> void:
+	randomize()
 	if (not minions.is_empty()):
 		var rand_num: int = randi_range(0, len(minions) - 1)
 		var minion: ArchMinion = minions[rand_num]
 		if (minion.state == minion.States.ORBIT):
-			match direction:
-				Directions.LEFT:
-					minion.start_launch(global_position, "right")
-				Directions.RIGHT:
-					minion.start_launch(global_position, "left")
+			var num: int = randi_range(0, 100)
+			if (num <= 50):
+				minion.start_launch(global_position, "right")
+			else:
+				minion.start_launch(global_position, "left")
 		launch_timer.start()
 	else:
 		stop_timers()
@@ -174,6 +182,43 @@ func remove_minion(minion: ArchMinion) -> void:
 	minions.pop_at(i)
 	minion.poof_death()
 
+func shoot_beam() -> void:
+	beam = ARCH_BEAM.instantiate()
+	add_child(beam)
+
+func remove_beam() -> void:
+	if (beam != null):
+		beam.call_deferred("queue_free")
+
+func fire_spreadshot() -> void:
+	var bullet_1: ArchBullet = ARCH_BULLET.instantiate()
+	bullet_1.global_position = global_position
+	bullet_1.direction = (player.global_position - global_position).normalized()
+	created_bullet.emit(bullet_1)
+	
+	match direction:
+		Directions.LEFT:
+			pass
+		Directions.RIGHT:
+			pass
+	var bullet_2: ArchBullet = ARCH_BULLET.instantiate()
+	bullet_2.global_position = global_position
+	
+	var bullet_3: ArchBullet = ARCH_BULLET.instantiate()
+	bullet_3.global_position = global_position
+	
+	match direction:
+		Directions.LEFT:
+			bullet_2.direction = (player.global_position - global_position).normalized() + Vector2(0.2, -0.1)
+			bullet_3.direction = (player.global_position - global_position).normalized() - Vector2(0.2, -0.1)
+		Directions.RIGHT:
+			bullet_2.direction = (player.global_position - global_position).normalized() + Vector2(-0.2, 0.1)
+			bullet_3.direction = (player.global_position - global_position).normalized() - Vector2(-0.2, 0.1)
+	
+	created_bullet.emit(bullet_2)
+
+	created_bullet.emit(bullet_3)
+
 func end_fight() -> void:
 	lost_fight.emit()
 	call_deferred("queue_free")
@@ -183,6 +228,7 @@ func handle_roam() -> void:
 	is_vulnerable = false
 	can_attack = true
 	animation_player.play("idle")
+	remove_beam()
 	launch_timer.start()
 	roam_timer.start()
  
@@ -198,12 +244,14 @@ func handle_shoot() -> void:
 	is_vulnerable = false
 	can_attack = true
 	animation_player.play("idle")
+	shoot_beam()
 	shoot_timer.start()
 
 func handle_move_to() -> void:
 	state = States.MOVE_TO
 	is_vulnerable = false
 	can_attack = true
+	remove_beam()
 	animation_player.play("idle")
 
 func handle_pre_swoop() -> void:
@@ -211,6 +259,7 @@ func handle_pre_swoop() -> void:
 	is_vulnerable = false
 	can_attack = true
 	animation_player.play("idle")
+	fire_spreadshot()
 	pre_swoop_timer.start()
 
 func handle_swoop() -> void:

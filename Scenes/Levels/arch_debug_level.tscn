@@ -80,7 +80,7 @@ physics_layer_0/collision_mask = 7203
 
 [sub_resource type="TileSet" id="TileSet_3o7cg"]
 
-[node name="BaseLevel" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "enemy_managers")]
+[node name="ArchDebugLevel" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "boss_manager", "enemy_managers")]
 script = ExtResource("1_52gci")
 front_layer = NodePath("FrontLayer")
 mid_layer = NodePath("MidLayer")
@@ -92,6 +92,7 @@ jawbreaker_manager = NodePath("FrontLayer/JawbreakerManager")
 canny_manager = NodePath("BackLayer/CannyManager")
 lives_label = NodePath("UILayer/LivesLabel")
 donuts_label = NodePath("UILayer/DonutsLabel")
+boss_manager = NodePath("FrontLayer/BossManager")
 enemy_managers = [NodePath("FrontLayer/EnemyManager"), NodePath("BackLayer/BackEnemyManager")]
 metadata/_custom_type_script = "uid://chtkpxe6gmto8"
 
@@ -147,10 +148,12 @@ left_boss_wall = NodePath("../LeftBossWall")
 right_boss_wall = NodePath("../RightBossWall")
 enemy_manager = NodePath("../EnemyManager")
 
-[node name="Arch" parent="FrontLayer/BossManager" unique_id=145356678 node_paths=PackedStringArray("left_point", "right_point", "top_up_point", "bot_up_point", "top_left_minion_point", "bot_left_minion_point", "top_right_minion_point", "bot_right_minion_point") instance=ExtResource("12_o3fps")]
+[node name="Arch" parent="FrontLayer/BossManager" unique_id=145356678 node_paths=PackedStringArray("far_left_point", "far_right_point", "mid_right_point", "mid_left_point", "top_up_point", "bot_up_point", "top_left_minion_point", "bot_left_minion_point", "top_right_minion_point", "bot_right_minion_point") instance=ExtResource("12_o3fps")]
 position = Vector2(1728, -264)
-left_point = NodePath("../LeftPoint")
-right_point = NodePath("../RightPoint")
+far_left_point = NodePath("../FarLeftPoint")
+far_right_point = NodePath("../FarRightPoint")
+mid_right_point = NodePath("../MidRightPoint")
+mid_left_point = NodePath("../MidLeftPoint")
 top_up_point = NodePath("../TopUpPoint")
 bot_up_point = NodePath("../BotUpPoint")
 top_left_minion_point = NodePath("../TopLeftMinionPoint")
@@ -164,7 +167,10 @@ position = Vector2(1728, -96)
 [node name="TopUpPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1580383823]
 position = Vector2(1728, -264)
 
-[node name="RightPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=2086872309]
+[node name="FarRightPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=2086872309]
+position = Vector2(2024, -96)
+
+[node name="MidRightPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=993613186]
 position = Vector2(1984, -96)
 
 [node name="TopRightMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=440992886]
@@ -173,7 +179,10 @@ position = Vector2(2024, -96)
 [node name="BotRightMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=826323268]
 position = Vector2(2024, 144)
 
-[node name="LeftPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1752936939]
+[node name="FarLeftPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1752936939]
+position = Vector2(1432, -96)
+
+[node name="MidLeftPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=948396567]
 position = Vector2(1472, -96)
 
 [node name="TopLeftMinionPoint" type="Node2D" parent="FrontLayer/BossManager" unique_id=1744287082]

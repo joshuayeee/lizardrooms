@@ -49,6 +49,7 @@ _data = {
 radius = 16.0
 
 [node name="ArchMinion" type="CharacterBody2D" unique_id=507448780 node_paths=PackedStringArray("poof_point")]
+z_index = 1
 collision_layer = 1024
 collision_mask = 0
 script = ExtResource("1_ihbmf")

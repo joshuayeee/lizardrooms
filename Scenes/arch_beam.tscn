@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b7658yoqmpnem"]
+
+[ext_resource type="Texture2D" uid="uid://dox2cp8fkk4cb" path="res://Assets/Sprites/ArchBeam.png" id="1_5f4xg"]
+[ext_resource type="Script" uid="uid://b2hi7mxjtp77a" path="res://Scripts/arch_beam.gd" id="1_hg5cn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(64, 448)
+
+[node name="ArchBeam" type="Area2D" unique_id=1399966212]
+collision_layer = 131072
+collision_mask = 2
+script = ExtResource("1_hg5cn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=681645339]
+position = Vector2(0, 220)
+scale = Vector2(4, 4)
+texture = ExtResource("1_5f4xg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1068106019]
+position = Vector2(0, 220)
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
