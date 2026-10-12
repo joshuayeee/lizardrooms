@@ -12,6 +12,7 @@ signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: Special
 signal player_returned(false_wall_exit: FalseWallExit)
 signal request_layer_change(layer_name: String)
 signal reached_door(next_wl: String, next_wt: String, next_name: String, my_state: String, is_bonus: bool)
+@onready var hit_invin_timer: Timer = $HitInvinTimer
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var move_com: MoveCom = $Components/MoveCom
@@ -36,6 +37,7 @@ var was_hurt: bool = false
 var jawbreaker_manager: JawbreakerManager = null
 var can_shoot: bool = true
 var has_cupcake: bool = false
+var hit_invin: bool = false
 
 var inf_cupcake_on: bool = false
 
@@ -217,14 +219,20 @@ func _on_down_check_body_entered(body: Node2D) -> void:
 			if (not is_on_floor() and velocity.y > 0 and body.is_active):
 				if (not body.is_fake_dead):
 					jump_com.handle_jump(true)
+				hit_invin = true
+				hit_invin_timer.start()
 				body.hurt()
 		else:
 			if (not is_on_floor() and velocity.y > 0 and body.is_active):
 				jump_com.handle_jump(true)
+				hit_invin = true
+				hit_invin_timer.start()
 				body.hurt()
 	elif (body is Boss):
 		if (not is_on_floor() and velocity.y > 0 and body.is_active):
 			if (body.handle_hit("stomp")):
+				hit_invin = true
+				hit_invin_timer.start()
 				jump_com.handle_jump(true)
 	elif (body is FallBox):
 		body.start_drop_timer()
@@ -250,3 +258,6 @@ func _input(_event: InputEvent) -> void:
 			turn_on_inf_cupcake_power()
 			print("inf on")
 			inf_cupcake_on = true
+
+func _on_hit_invin_timer_timeout() -> void:
+	hit_invin = false

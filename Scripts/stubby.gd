@@ -38,7 +38,8 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
 		if (is_active and Global.game_active):
 			if (not body.has_cupcake):
-				body.hurt()
+				if (not body.hit_invin):
+					body.hurt()
 			else:
 				poof_death()
 

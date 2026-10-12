@@ -74,8 +74,9 @@ func _on_wait_timer_timeout() -> void:
 func handle_player_check() -> void:
 	if (Global.game_active and is_active):
 		if (not my_body.has_cupcake):
-			my_body.hurt()
-			my_body = null
+			if (not my_body.hit_invin):
+				my_body.hurt()
+				my_body = null
 		else:
 			poof_death()
 
