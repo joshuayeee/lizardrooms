@@ -125,10 +125,6 @@ collision_mask = 4098
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1100407679]
 shape = SubResource("CircleShape2D_ydotr")
 
-[node name="LaunchTimer" type="Timer" parent="." unique_id=1583599018]
-wait_time = 5.0
-one_shot = true
-
 [node name="Timers" type="Node" parent="." unique_id=1134191788]
 
 [node name="RoamTimer" type="Timer" parent="Timers" unique_id=1940721653]
@@ -154,6 +150,10 @@ one_shot = true
 [node name="ResetTimer" type="Timer" parent="Timers" unique_id=2028918931]
 one_shot = true
 
+[node name="LaunchTimer" type="Timer" parent="Timers" unique_id=1583599018]
+wait_time = 5.0
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1468712320]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_w6v1f")]
@@ -163,7 +163,6 @@ run_speed = 200.0
 angular_speed = 2.0
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
-[connection signal="timeout" from="LaunchTimer" to="." method="_on_launch_timer_timeout"]
 [connection signal="timeout" from="Timers/RoamTimer" to="." method="_on_roam_timer_timeout"]
 [connection signal="timeout" from="Timers/ChargeTimer" to="." method="_on_charge_timer_timeout"]
 [connection signal="timeout" from="Timers/HurtTimer" to="." method="_on_hurt_timer_timeout"]
@@ -171,3 +170,4 @@ angular_speed = 2.0
 [connection signal="timeout" from="Timers/ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="timeout" from="Timers/PreSwoopTimer" to="." method="_on_pre_swoop_timer_timeout"]
 [connection signal="timeout" from="Timers/ResetTimer" to="." method="_on_reset_timer_timeout"]
+[connection signal="timeout" from="Timers/LaunchTimer" to="." method="_on_launch_timer_timeout"]

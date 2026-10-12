@@ -22,7 +22,6 @@ signal created_bullet(bullet: ArchBullet)
 @export var max_roam_time: float = 3.0
 
 @onready var move_com: MoveCom = $Components/MoveCom
-@onready var launch_timer: Timer = $LaunchTimer
 @onready var timers: Node = $Timers
 @onready var roam_timer: Timer = $Timers/RoamTimer
 @onready var charge_timer: Timer = $Timers/ChargeTimer
@@ -31,6 +30,7 @@ signal created_bullet(bullet: ArchBullet)
 @onready var pre_swoop_timer: Timer = $Timers/PreSwoopTimer
 @onready var shoot_timer: Timer = $Timers/ShootTimer
 @onready var reset_timer: Timer = $Timers/ResetTimer
+@onready var launch_timer: Timer = $Timers/LaunchTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 enum States {ROAM, CHARGE, SHOOT, SWOOP, PRE_SWOOP, MOVE_TO, MOVE_UP, RESET, MOVE_DOWN, HURT, DEAD}
@@ -176,13 +176,14 @@ func launch_minion() -> void:
 		handle_move_to()
 
 func remove_all_minions() -> void:
-	for minion in minions:
+	for minion in minions.duplicate():
 		remove_minion(minion)
 
 func remove_minion(minion: ArchMinion) -> void:
 	var i: int = minions.find(minion)
-	minions.pop_at(i)
-	minion.poof_death()
+	if (i != -1):
+		minions.pop_at(i)
+		minion.poof_death()
 
 func shoot_beam() -> void:
 	beam = ARCH_BEAM.instantiate()
@@ -216,7 +217,7 @@ func end_fight() -> void:
 
 func handle_roam() -> void:
 	state = States.ROAM
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("idle")
 	remove_beam()
@@ -228,14 +229,14 @@ func handle_roam() -> void:
  
 func handle_charge() -> void:
 	state = States.CHARGE
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("charge")
 	charge_timer.start()
 
 func handle_shoot() -> void:
 	state = States.SHOOT
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("idle")
 	shoot_beam()
@@ -243,14 +244,14 @@ func handle_shoot() -> void:
 
 func handle_move_to() -> void:
 	state = States.MOVE_TO
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	remove_beam()
 	animation_player.play("idle")
 
 func handle_pre_swoop() -> void:
 	state = States.PRE_SWOOP
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("idle")
 	fire_spreadshot()
@@ -271,13 +272,13 @@ func handle_swoop() -> void:
 func handle_move_up() -> void:
 	state = States.MOVE_UP
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	animation_player.play("idle")
 
 func handle_reset() -> void:
 	state = States.RESET
 	is_vulnerable = false
-	can_attack = true
+	can_attack = false
 	animation_player.play("idle")
 	swoop_amount = 3
 	create_minions()

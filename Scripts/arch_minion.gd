@@ -93,4 +93,4 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 				if (not body.hit_invin):
 					body.hurt()
 			else:
-				poof_death()
+				destroyed.emit(self)
