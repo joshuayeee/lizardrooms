@@ -85,7 +85,7 @@ func handle_continue() -> void:
 	pass
 
 func handle_level_select() -> void:
-	pass
+	load_screen_request.emit("level_select_screen")
 
 func handle_settings() -> void:
 	pass

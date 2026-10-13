@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://csjfcdpmhktoy"]
+
+[ext_resource type="Script" uid="uid://da3a3gbfpbjl7" path="res://Scripts/level_select_screen.gd" id="1_cbste"]
+[ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="2_a5ia7"]
+
+[node name="LevelSelectScreen" type="Node2D" unique_id=687156828]
+script = ExtResource("1_cbste")
+metadata/_custom_type_script = "uid://d4hnb6fqi68nx"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2026632556]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1945512489]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1996665397]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -96.0
+offset_top = 30.0
+offset_right = 96.0
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "LEVEL SELECT"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1988998173]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=2140233989]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="OneOneLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=627513590]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = ">1-1"
+
+[node name="OneTwoLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=954475626]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "1-2"
+
+[node name="OneThreeLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer" unique_id=384916098]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "1-3"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=1650662655]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="TwoOneLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=952788262]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "2-1"
+
+[node name="TwoTwoLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=1283026966]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "2-2"
+
+[node name="TwoThreeLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2" unique_id=1359591605]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "2-3"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=896358538]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ThreeOneLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3" unique_id=158575199]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "3-1"
+
+[node name="ThreeTwoLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3" unique_id=527449641]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "3-2"
+
+[node name="ThreeThreeLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer3" unique_id=827649870]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "3-3"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/VBoxContainer" unique_id=229545319]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="FourOneLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer4" unique_id=1754781870]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "4-1"
+
+[node name="FourTwoLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer4" unique_id=1687087137]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "4-2"
+
+[node name="FourThreeLabel" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer4" unique_id=775018963]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "4-3"
+
+[node name="BackLabel" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=399765890]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.33333334, 0.33333334, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_a5ia7")
+text = "BACK"
+horizontal_alignment = 1
