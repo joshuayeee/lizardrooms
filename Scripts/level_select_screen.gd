@@ -97,6 +97,19 @@ func _input(_event: InputEvent) -> void:
 		
 		set_unselected(all_labels[old_world_num][old_level_num])
 		set_selected(all_labels[world_num][level_num])
+	
+	if (Input.is_action_pressed("jump")):
+		match world_num:
+			0:
+				load_transition_request.emit("%s-%s" % [world_num + 1, level_num + 1], "THE LOBBY", "world_%s_level_%s" % [world_num + 1, level_num + 1])
+			1:
+				load_transition_request.emit("%s-%s" % [world_num + 1, level_num + 1], "THE POOLROOMS", "world_%s_level_%s" % [world_num + 1, level_num + 1])
+			2:
+				load_transition_request.emit("%s-%s" % [world_num + 1, level_num + 1], "THE NEIGHBORHOOD", "world_%s_level_%s" % [world_num + 1, level_num + 1])
+			3:
+				load_transition_request.emit("%s-%s" % [world_num + 1, level_num + 1], "THE END", "world_%s_level_%s" % [world_num + 1, level_num + 1])
+			4:
+				load_screen_request.emit("title_screen")
 
 func set_selected(my_label: Label) -> void:
 	my_label.set("theme_override_colors/font_color", Color.WHITE)
