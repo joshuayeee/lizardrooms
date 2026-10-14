@@ -123,7 +123,6 @@ cam_leave_right = true
 [node name="CamPoint2" parent="FrontLayer/CamPointManager" unique_id=1243896917 instance=ExtResource("4_kfgv7")]
 position = Vector2(10000, 0)
 cam_enter_right = true
-cam_leave_left = true
 
 [node name="CheckpointManager" parent="FrontLayer" unique_id=833493036 instance=ExtResource("5_8k2fw")]
 
@@ -247,4 +246,5 @@ tile_set = SubResource("TileSet_3o7cg")
 [node name="BackEnemyManager" parent="BackLayer" unique_id=1282240525 instance=ExtResource("8_nceia")]
 
 [node name="CannyManager" parent="BackLayer" unique_id=1726914308 node_paths=PackedStringArray("enemy_manager") instance=ExtResource("14_cdy7i")]
+position = Vector2(0, 120)
 enemy_manager = NodePath("../BackEnemyManager")

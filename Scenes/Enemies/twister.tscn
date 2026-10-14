@@ -78,7 +78,7 @@ shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=206061198]
 position = Vector2(-484, 0)
-rect = Rect2(-500, -10, 1000, 30)
+rect = Rect2(1, -10, 499, 30)
 
 [node name="PoofPoint" type="Node2D" parent="." unique_id=766313158]
 position = Vector2(2, 5)
