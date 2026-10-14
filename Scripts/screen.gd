@@ -10,5 +10,6 @@ signal load_bonus_transition_request(world_level_text: String, world_title_text:
 signal reset_request()
 signal connect_player_request(player: Player)
 signal update_labels_request()
+signal connect_end_manager_request(end_manager: EndManager)
 
 var player_state: String = "normal"

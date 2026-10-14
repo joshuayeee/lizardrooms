@@ -87,18 +87,22 @@ func connect_screen_signals() -> void:
 	screen.reset_request.connect(reset_stats)
 	screen.connect_player_request.connect(connect_player_signals)
 	screen.update_labels_request.connect(update_level_labels)
+	screen.connect_end_manager_request.connect(connect_end_manager)
 
 func reset_stats() -> void:
 	lives = 2
 	donuts = 0
 	checkpoint_num = 0
 
+func connect_end_manager(end_manager: EndManager) -> void:
+	end_manager.request_next_level.connect(go_to_next_level)
+
 func connect_player_signals(player: Player) -> void:
 	player.collected_donut.connect(player_collected_donut)
 	player.collected_heart.connect(player_collected_heart)
 	player.player_loses.connect(handle_player_loss)
 	player.reached_checkpoint.connect(player_reached_checkpoint)
-	player.reached_door.connect(player_reached_door)
+	player.reached_door.connect(go_to_next_level)
 
 func player_collected_donut() -> void:
 	donuts += 1
@@ -124,7 +128,7 @@ func player_reached_checkpoint(my_num: int) -> void:
 	if (my_num > checkpoint_num):
 		checkpoint_num = my_num
 
-func player_reached_door(next_wl: String,
+func go_to_next_level(next_wl: String,
 							next_wt: String,
 							next_name: String,
 							my_state: String,
@@ -147,6 +151,7 @@ func check_max_donuts() -> void:
 		lives += 1
 		update_level_labels()
 
+#debug
 func _input(_event: InputEvent) -> void:
 	if (Input.is_action_pressed("quit")):
 		get_tree().quit()

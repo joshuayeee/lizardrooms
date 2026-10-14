@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://t3ri4py8ms78"]
+
+[ext_resource type="Script" uid="uid://uwo1hopodsds" path="res://Scripts/cutscene_text_manager.gd" id="1_7stxc"]
+
+[node name="CutsceneTextManager" type="Control" unique_id=493276780]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7stxc")
+
+[node name="WriteTimer" type="Timer" parent="." unique_id=2123574466]
+wait_time = 0.2
+one_shot = true

@@ -187,6 +187,9 @@ func got_to_door(next_wl: String,
 	await end_timer.timeout
 	reached_door.emit(next_wl, next_wt, next_name, state, is_bonus)
 
+func got_to_end() -> void:
+	anim_com.play_idle("%s_idle" % state)
+
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):
 		if (body.has_method("player_hit")):

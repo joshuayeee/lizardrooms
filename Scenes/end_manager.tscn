@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://drfgxrqxk61ci"]
+
+[ext_resource type="Script" uid="uid://cssjwdbstsehs" path="res://Scripts/end_manager.gd" id="1_0tbmu"]
+
+[node name="EndManager" type="Node2D" unique_id=282688039]
+script = ExtResource("1_0tbmu")

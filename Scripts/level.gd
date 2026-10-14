@@ -16,6 +16,7 @@ const CAM = preload("uid://caj7fxc0ctv5a")
 @export var lives_label: Label = null
 @export var donuts_label: Label = null
 @export var boss_manager: BossManager = null
+@export var end_manager: EndManager = null
 @export var enemy_managers: Array[EnemyManager] = []
 
 var checkpoint_num: int = 0
@@ -44,6 +45,10 @@ func _ready() -> void:
 	
 	if (boss_manager != null):
 		boss_manager.inject_player(player)
+	
+	if (end_manager != null):
+		end_manager.player = player
+		connect_end_manager_request.emit(end_manager)
 	
 	cam = spawn_cam(spawn_point, player)
 	cam_point_manager.connect_points_to_cam(cam)

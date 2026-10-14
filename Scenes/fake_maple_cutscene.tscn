@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://t5rgcqv53kgn"]
+
+[ext_resource type="Texture2D" uid="uid://st2mamul4sd5" path="res://Assets/Sprites/FakeMaple.png" id="1_g7j8s"]
+[ext_resource type="Script" uid="uid://b1q41jxan2yts" path="res://Scripts/fake_maple_cutscene.gd" id="2_qohut"]
+
+[sub_resource type="Animation" id="Animation_qohut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hf7v0"]
+resource_name = "maple_idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_duqdf"]
+resource_name = "mark_idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_qsxjy"]
+resource_name = "mark_laugh"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ttj63"]
+resource_name = "mark_move"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 3, 6, 3]
+}
+
+[sub_resource type="Animation" id="Animation_22d2o"]
+resource_name = "transition"
+length = 0.19999999999999998
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhb6k"]
+_data = {
+&"RESET": SubResource("Animation_qohut"),
+&"maple_idle": SubResource("Animation_hf7v0"),
+&"mark_idle": SubResource("Animation_duqdf"),
+&"mark_laugh": SubResource("Animation_qsxjy"),
+&"mark_move": SubResource("Animation_ttj63"),
+&"transition": SubResource("Animation_22d2o")
+}
+
+[sub_resource type="Animation" id="Animation_yhb6k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_n8xr7"]
+resource_name = "idle"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1h7yr"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgn0x"]
+_data = {
+&"RESET": SubResource("Animation_yhb6k"),
+&"idle": SubResource("Animation_n8xr7"),
+&"move": SubResource("Animation_1h7yr")
+}
+
+[node name="FakeMapleCutscene" type="Sprite2D" unique_id=531849571]
+scale = Vector2(4, 4)
+texture = ExtResource("1_g7j8s")
+hframes = 7
+script = ExtResource("2_qohut")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1463845682]
+libraries/ = SubResource("AnimationLibrary_yhb6k")
+autoplay = &"maple_idle"
+
+[node name="MovePlayer" type="AnimationPlayer" parent="." unique_id=1239207801]
+libraries/ = SubResource("AnimationLibrary_dgn0x")
+autoplay = &"idle"

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://r5qo4vjek25v"]
+
+[ext_resource type="Script" uid="uid://cpc23dvnih6re" path="res://Scripts/end_cutscene_manager.gd" id="1_vr2ph"]
+
+[node name="EndCutsceneManager" type="Node2D" unique_id=1362572506]
+script = ExtResource("1_vr2ph")
+
+[node name="TransitionTimer" type="Timer" parent="." unique_id=775659681]
+one_shot = true
+
+[node name="MarkIdleTimer" type="Timer" parent="." unique_id=202467223]
+one_shot = true
+
+[node name="MarkLaughTimer" type="Timer" parent="." unique_id=1096180573]
+one_shot = true
+
+[node name="MarkRunTimer" type="Timer" parent="." unique_id=786051587]
+one_shot = true
+
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
+[connection signal="timeout" from="MarkIdleTimer" to="." method="_on_mark_idle_timer_timeout"]
+[connection signal="timeout" from="MarkLaughTimer" to="." method="_on_mark_laugh_timer_timeout"]
+[connection signal="timeout" from="MarkRunTimer" to="." method="_on_mark_run_timer_timeout"]
