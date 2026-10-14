@@ -5,8 +5,8 @@ extends Enemy
 @onready var go_down_timer: Timer = $GoDownTimer
 @onready var go_up_timer: Timer = $GoUpTimer
 
-@onready var stop_point_y: float = stop_point.position.y
-@onready var init_point_y: float = position.y
+@onready var stop_point_y: float = stop_point.global_position.y
+@onready var init_point_y: float = global_position.y
 
 enum States {MOVE_UP, STOP, MOVE_DOWN}
 var state: States = States.MOVE_UP

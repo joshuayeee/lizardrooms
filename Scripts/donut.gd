@@ -18,3 +18,6 @@ func _on_body_entered(body: Node2D) -> void:
 	if (body is Player):
 		body.collect_donut()
 		call_deferred("queue_free")
+	elif (body is Jawbreaker):
+		body.handle_hit_donut()
+		call_deferred("queue_free")

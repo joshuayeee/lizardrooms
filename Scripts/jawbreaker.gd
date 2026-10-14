@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Jawbreaker
 
 signal destroyed()
+signal hit_donut()
 
 @onready var move_com: MoveCom = $Components/MoveCom
 
@@ -17,6 +18,9 @@ func _physics_process(_delta: float) -> void:
 func handle_destroy() -> void:
 	destroyed.emit()
 	queue_free()
+
+func handle_hit_donut() -> void:
+	hit_donut.emit()
 
 func _on_check_up_body_entered(_body: Node2D) -> void:
 	if (y_dir < 0):

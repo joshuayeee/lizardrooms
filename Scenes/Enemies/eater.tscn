@@ -80,7 +80,7 @@ position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_ydotr")
 
 [node name="StopPoint" type="Node2D" parent="." unique_id=42826039]
-position = Vector2(0, -24)
+position = Vector2(0, -50)
 
 [node name="GoDownTimer" type="Timer" parent="." unique_id=553741904]
 wait_time = 2.0

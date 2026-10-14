@@ -172,6 +172,7 @@ func shoot_jawbreaker() -> void:
 			jawbreaker.x_dir = 1.0
 			
 		jawbreaker.destroyed.connect(jawbreaker_destroyed)
+		jawbreaker.hit_donut.connect(collect_donut)
 		jawbreaker_manager.add_child(jawbreaker)
 		can_shoot = false
 
