@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://chtkpxe6gmto8" path="res://Scripts/level.gd" id="1_u3743"]
 [ext_resource type="PackedScene" uid="uid://dplupq4ss4nl5" path="res://Scenes/checkpoint_manager.tscn" id="2_k2f4d"]
+[ext_resource type="PackedScene" uid="uid://cylyi3qu4kvp8" path="res://Scenes/Items/item_manager.tscn" id="2_k6as0"]
 [ext_resource type="PackedScene" uid="uid://bbyn7idhdpxwu" path="res://Scenes/cam_point_manager.tscn" id="3_ljk68"]
 [ext_resource type="PackedScene" uid="uid://475khr4qaep2" path="res://Scenes/checkpoint.tscn" id="3_nccde"]
 [ext_resource type="PackedScene" uid="uid://wsvmq4k5ym0b" path="res://Scenes/Projectiles/jawbreaker_manager.tscn" id="4_3d2hb"]
@@ -15,7 +16,12 @@
 [ext_resource type="Texture2D" uid="uid://bmryriul4fqii" path="res://Assets/Sprites/WorldOneTM3.png" id="12_vg4ek"]
 [ext_resource type="Texture2D" uid="uid://bnxh1n7iafjb7" path="res://Assets/Sprites/Game Boy _ GBC - Super Mario Land - Stages - World 1-2.png" id="13_72ncj"]
 [ext_resource type="Script" uid="uid://clpre1n4oojie" path="res://Scripts/enemy_manager.gd" id="13_ehobu"]
+[ext_resource type="PackedScene" uid="uid://k6eghro3lp8i" path="res://Scenes/moving_platform.tscn" id="14_nufpl"]
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/Enemies/canny_manager.tscn" id="14_vg4ek"]
+[ext_resource type="PackedScene" uid="uid://u3b752tjrg7o" path="res://Scenes/Boxes/box_manager.tscn" id="16_l2dwp"]
+[ext_resource type="PackedScene" uid="uid://b46ns1v8q6suu" path="res://Scenes/Boxes/empty_box.tscn" id="17_nufpl"]
+[ext_resource type="PackedScene" uid="uid://nvl5vrsru0ag" path="res://Scenes/Boxes/special_box.tscn" id="18_l2dwp"]
+[ext_resource type="PackedScene" uid="uid://e1uhlkhin5yk" path="res://Scenes/door.tscn" id="20_fr1ts"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(64, 704)
@@ -73,6 +79,234 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 4099
 sources/1 = SubResource("TileSetAtlasSource_72ncj")
 
+[sub_resource type="Animation" id="Animation_25j2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5792, -120)]
+}
+
+[sub_resource type="Animation" id="Animation_j5vqx"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5792, -120), Vector2(5792, 152)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr1ts"]
+_data = {
+&"RESET": SubResource("Animation_25j2v"),
+&"move": SubResource("Animation_j5vqx")
+}
+
+[sub_resource type="Animation" id="Animation_uipsv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5952, 152)]
+}
+
+[sub_resource type="Animation" id="Animation_fxt7p"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(5952, 152), Vector2(5952, -120)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yipf2"]
+_data = {
+&"RESET": SubResource("Animation_uipsv"),
+&"move": SubResource("Animation_fxt7p")
+}
+
+[sub_resource type="Animation" id="Animation_fr1ts"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8048, 144)]
+}
+
+[sub_resource type="Animation" id="Animation_yipf2"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8048, 144), Vector2(8048, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k8e0i"]
+_data = {
+&"RESET": SubResource("Animation_fr1ts"),
+&"move": SubResource("Animation_yipf2")
+}
+
+[sub_resource type="Animation" id="Animation_mq0nr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8200, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_lft6y"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8200, -48), Vector2(8200, 144)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_au7vp"]
+_data = {
+&"RESET": SubResource("Animation_mq0nr"),
+&"move": SubResource("Animation_lft6y")
+}
+
+[sub_resource type="Animation" id="Animation_ix7cf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8352, 144)]
+}
+
+[sub_resource type="Animation" id="Animation_jht46"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(8352, 144), Vector2(8352, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ecwrn"]
+_data = {
+&"RESET": SubResource("Animation_ix7cf"),
+&"move": SubResource("Animation_jht46")
+}
+
+[sub_resource type="Animation" id="Animation_k8e0i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(9120, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_au7vp"]
+resource_name = "move"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(9120, -48), Vector2(9344, -48)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ix7cf"]
+_data = {
+&"RESET": SubResource("Animation_k8e0i"),
+&"move": SubResource("Animation_au7vp")
+}
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_acgjk"]
 texture = ExtResource("12_72ncj")
 0:0/0 = 0
@@ -100,6 +334,8 @@ metadata/_custom_type_script = "uid://chtkpxe6gmto8"
 
 [node name="FrontLayer" type="CanvasLayer" parent="." unique_id=81344873]
 follow_viewport_enabled = true
+
+[node name="ItemManager" parent="FrontLayer" unique_id=256143669 instance=ExtResource("2_k6as0")]
 
 [node name="CheckpointManager" parent="FrontLayer" unique_id=833493036 instance=ExtResource("2_k2f4d")]
 
@@ -205,12 +441,420 @@ follow_viewport_enabled = true
 
 [node name="LevelLayer" type="TileMapLayer" parent="MidLayer" unique_id=282468563]
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AAD1/wMAAQAEAAEAAAD2/wMAAQABAAAAAAD3/wMAAQABAAAAAAD4/wMAAQABAAAAAAD5/wMAAQABAAAAAAD6/wMAAQABAAAAAAD7/wMAAQABAAAAAAD8/wMAAQABAAAAAAD9/wMAAQABAAAAAAD+/wMAAQABAAAAAAD//wMAAQABAAAAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAACAAMAAQABAAAAAAADAAMAAQABAAAAAAAEAAMAAQABAAAAAAAFAAMAAQABAAAAAAAGAAMAAQABAAAAAAAHAAMAAQABAAAAAAAIAAMAAQABAAAAAAAJAAMAAQABAAAAAAAKAAMAAQACAAAAAAD1//j/AQACAAAAAAD1//n/AQACAAEAAAD1//r/AQACAAEAAAD1//v/AQACAAEAAAD1//z/AQACAAEAAAD1//3/AQACAAEAAAD1//7/AQACAAEAAAD1////AQACAAEAAAD1/wAAAQACAAEAAAD1/wEAAQACAAEAAAD1/wIAAQACAAEAAAD1/wQAAQABAAEAAAD1/wUAAQABAAEAAAD1/wYAAQABAAEAAAD1/wcAAQABAAEAAAD1/wgAAQABAAEAAAD1/wkAAQABAAEAAAD2/wQAAQABAAEAAAD2/wUAAQABAAEAAAD2/wYAAQABAAEAAAD2/wcAAQABAAEAAAD2/wgAAQABAAEAAAD2/wkAAQABAAEAAAD3/wQAAQABAAEAAAD3/wUAAQABAAEAAAD3/wYAAQABAAEAAAD3/wcAAQABAAEAAAD3/wgAAQABAAEAAAD3/wkAAQABAAEAAAD4/wQAAQABAAEAAAD4/wUAAQABAAEAAAD4/wYAAQABAAEAAAD4/wcAAQABAAEAAAD4/wgAAQABAAEAAAD4/wkAAQABAAEAAAD5/wQAAQABAAEAAAD5/wUAAQABAAEAAAD5/wYAAQABAAEAAAD5/wcAAQABAAEAAAD5/wgAAQABAAEAAAD5/wkAAQABAAEAAAD6/wQAAQABAAEAAAD6/wUAAQABAAEAAAD6/wYAAQABAAEAAAD6/wcAAQABAAEAAAD6/wgAAQABAAEAAAD6/wkAAQABAAEAAAD7/wQAAQABAAEAAAD7/wUAAQABAAEAAAD7/wYAAQABAAEAAAD7/wcAAQABAAEAAAD7/wgAAQABAAEAAAD7/wkAAQABAAEAAAD8/wQAAQABAAEAAAD8/wUAAQABAAEAAAD8/wYAAQABAAEAAAD8/wcAAQABAAEAAAD8/wgAAQABAAEAAAD8/wkAAQABAAEAAAD9/wQAAQABAAEAAAD9/wUAAQABAAEAAAD9/wYAAQABAAEAAAD9/wcAAQABAAEAAAD9/wgAAQABAAEAAAD9/wkAAQABAAEAAAD+/wQAAQABAAEAAAD+/wUAAQABAAEAAAD+/wYAAQABAAEAAAD+/wcAAQABAAEAAAD+/wgAAQABAAEAAAD+/wkAAQABAAEAAAD//wQAAQABAAEAAAD//wUAAQABAAEAAAD//wYAAQABAAEAAAD//wcAAQABAAEAAAD//wgAAQABAAEAAAD//wkAAQABAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAAAAgAAQABAAEAAAAAAAkAAQABAAEAAAABAAQAAQABAAEAAAABAAUAAQABAAEAAAABAAYAAQABAAEAAAABAAcAAQABAAEAAAABAAgAAQABAAEAAAABAAkAAQABAAEAAAACAAQAAQABAAEAAAACAAUAAQABAAEAAAACAAYAAQABAAEAAAACAAcAAQABAAEAAAACAAgAAQABAAEAAAACAAkAAQABAAEAAAADAAQAAQABAAEAAAADAAUAAQABAAEAAAADAAYAAQABAAEAAAADAAcAAQABAAEAAAADAAgAAQABAAEAAAADAAkAAQABAAEAAAAEAAQAAQABAAEAAAAEAAUAAQABAAEAAAAEAAYAAQABAAEAAAAEAAcAAQABAAEAAAAEAAgAAQABAAEAAAAEAAkAAQABAAEAAAAFAAQAAQABAAEAAAAFAAUAAQABAAEAAAAFAAYAAQABAAEAAAAFAAcAAQABAAEAAAAFAAgAAQABAAEAAAAFAAkAAQABAAEAAAAGAAQAAQABAAEAAAAGAAUAAQABAAEAAAAGAAYAAQABAAEAAAAGAAcAAQABAAEAAAAGAAgAAQABAAEAAAAGAAkAAQABAAEAAAAHAAQAAQABAAEAAAAHAAUAAQABAAEAAAAHAAYAAQABAAEAAAAHAAcAAQABAAEAAAAHAAgAAQABAAEAAAAHAAkAAQABAAEAAAAIAAQAAQABAAEAAAAIAAUAAQABAAEAAAAIAAYAAQABAAEAAAAIAAcAAQABAAEAAAAIAAgAAQABAAEAAAAIAAkAAQABAAEAAAAJAAQAAQABAAEAAAAJAAUAAQABAAEAAAAJAAYAAQABAAEAAAAJAAcAAQABAAEAAAAJAAgAAQABAAEAAAAJAAkAAQABAAEAAAAKAAQAAQACAAEAAAAKAAUAAQACAAEAAAAKAAYAAQACAAEAAAAKAAcAAQACAAEAAAAKAAgAAQACAAEAAAAKAAkAAQACAAEAAAAPAAEAAQABAAMAAAAQAAEAAQABAAMAAAARAAEAAQACAAMAAAAOAAEAAQAAAAMAAAAVAP//AQAAAAMAAAAWAP//AQABAAMAAAAXAP//AQABAAMAAAAYAP//AQABAAMAAAAZAP//AQABAAMAAAAaAP//AQABAAMAAAAbAP//AQABAAMAAAAcAP//AQABAAMAAAAdAP//AQABAAMAAAAeAP//AQABAAMAAAAfAP//AQABAAMAAAAgAP//AQABAAMAAAAhAP//AQABAAMAAAAiAP//AQABAAMAAAAjAP//AQABAAMAAAAkAP//AQABAAMAAAAlAP//AQABAAMAAAAmAP//AQABAAMAAAAnAP//AQABAAMAAAAoAP//AQABAAMAAAApAP//AQABAAMAAAAqAP//AQABAAMAAAArAP//AQABAAMAAAAsAP//AQABAAMAAAAtAP//AQABAAMAAAAuAP//AQABAAMAAAAvAP//AQABAAMAAAAwAP//AQABAAMAAAAxAP//AQABAAMAAAAyAP//AQACAAMAAAA2AAEAAQAAAAMAAAA3AAEAAQABAAMAAAA4AAEAAQABAAMAAAA5AAEAAQABAAMAAAA6AAEAAQACAAMAAAA+AAAAAQAAAAMAAAA/AAAAAQABAAMAAABAAAAAAQABAAMAAABBAAAAAQABAAMAAABCAAAAAQACAAMAAABGAP//AQAAAAMAAABHAP//AQABAAMAAABIAP//AQABAAMAAABJAP//AQABAAMAAABKAP//AQABAAMAAABLAP//AQABAAMAAABMAP//AQABAAMAAABNAP//AQABAAMAAABOAP//AQABAAMAAABPAP//AQABAAMAAABQAP//AQABAAMAAABRAP//AQABAAMAAABSAP//AQABAAMAAABTAP//AQABAAMAAABUAP//AQABAAMAAABVAP//AQABAAMAAABWAP//AQABAAMAAABXAP//AQABAAMAAABYAP//AQABAAMAAABZAP//AQABAAMAAABaAP//AQABAAMAAABbAP//AQABAAMAAABcAP//AQABAAMAAABdAP//AQABAAMAAABeAP//AQABAAMAAABfAP//AQABAAMAAABgAP//AQABAAMAAABhAP//AQABAAMAAABiAP//AQABAAMAAABjAP//AQABAAMAAABkAP//AQABAAMAAABlAP//AQABAAMAAABmAP//AQABAAMAAABnAP//AQABAAMAAABoAP//AQABAAMAAABpAP//AQABAAMAAABqAP//AQABAAMAAABrAP//AQABAAMAAABsAP//AQABAAMAAABtAP//AQABAAMAAABuAP//AQABAAMAAABvAP//AQABAAMAAABwAP//AQABAAMAAABxAP//AQABAAMAAAByAP//AQABAAMAAABzAP//AQABAAMAAAB0AP//AQACAAMAAAB4AAEAAQAAAAMAAAB5AAEAAQABAAMAAAB6AAEAAQABAAMAAAB7AAEAAQABAAMAAAB8AAEAAQABAAMAAAB9AAEAAQACAAMAAACBAAAAAQAAAAMAAACCAAAAAQABAAMAAACDAAAAAQABAAMAAACEAAAAAQABAAMAAACFAAAAAQABAAMAAACGAAAAAQACAAMAAACKAP//AQAAAAMAAACLAP//AQABAAMAAACMAP//AQABAAMAAACNAP//AQACAAMAAACPAAMAAQAAAAMAAACQAAMAAQABAAMAAACRAAMAAQABAAMAAACSAAMAAQABAAMAAACTAAMAAQABAAMAAACUAAMAAQACAAMAAACVAAAAAQAAAAMAAACWAAAAAQABAAMAAACXAAAAAQABAAMAAACYAAAAAQABAAMAAACZAAAAAQABAAMAAACaAAAAAQACAAMAAAA=")
+tile_map_data = PackedByteArray("AAD1/wMAAQAEAAEAAAD2/wMAAQABAAAAAAD3/wMAAQABAAAAAAD4/wMAAQABAAAAAAD5/wMAAQABAAAAAAD6/wMAAQABAAAAAAD7/wMAAQABAAAAAAD8/wMAAQABAAAAAAD9/wMAAQABAAAAAAD+/wMAAQABAAAAAAD//wMAAQABAAAAAAAAAAMAAQABAAAAAAABAAMAAQABAAAAAAACAAMAAQABAAAAAAADAAMAAQABAAAAAAAEAAMAAQABAAAAAAAFAAMAAQABAAAAAAAGAAMAAQABAAAAAAAHAAMAAQABAAAAAAAIAAMAAQABAAAAAAAJAAMAAQABAAAAAAAKAAMAAQACAAAAAAD1//j/AQACAAAAAAD1//n/AQACAAEAAAD1//r/AQACAAEAAAD1//v/AQACAAEAAAD1//z/AQACAAEAAAD1//3/AQACAAEAAAD1//7/AQACAAEAAAD1////AQACAAEAAAD1/wAAAQACAAEAAAD1/wEAAQACAAEAAAD1/wIAAQACAAEAAAD1/wQAAQABAAEAAAD1/wUAAQABAAEAAAD1/wYAAQABAAEAAAD1/wcAAQABAAEAAAD1/wgAAQABAAEAAAD1/wkAAQABAAEAAAD2/wQAAQABAAEAAAD2/wUAAQABAAEAAAD2/wYAAQABAAEAAAD2/wcAAQABAAEAAAD2/wgAAQABAAEAAAD2/wkAAQABAAEAAAD3/wQAAQABAAEAAAD3/wUAAQABAAEAAAD3/wYAAQABAAEAAAD3/wcAAQABAAEAAAD3/wgAAQABAAEAAAD3/wkAAQABAAEAAAD4/wQAAQABAAEAAAD4/wUAAQABAAEAAAD4/wYAAQABAAEAAAD4/wcAAQABAAEAAAD4/wgAAQABAAEAAAD4/wkAAQABAAEAAAD5/wQAAQABAAEAAAD5/wUAAQABAAEAAAD5/wYAAQABAAEAAAD5/wcAAQABAAEAAAD5/wgAAQABAAEAAAD5/wkAAQABAAEAAAD6/wQAAQABAAEAAAD6/wUAAQABAAEAAAD6/wYAAQABAAEAAAD6/wcAAQABAAEAAAD6/wgAAQABAAEAAAD6/wkAAQABAAEAAAD7/wQAAQABAAEAAAD7/wUAAQABAAEAAAD7/wYAAQABAAEAAAD7/wcAAQABAAEAAAD7/wgAAQABAAEAAAD7/wkAAQABAAEAAAD8/wQAAQABAAEAAAD8/wUAAQABAAEAAAD8/wYAAQABAAEAAAD8/wcAAQABAAEAAAD8/wgAAQABAAEAAAD8/wkAAQABAAEAAAD9/wQAAQABAAEAAAD9/wUAAQABAAEAAAD9/wYAAQABAAEAAAD9/wcAAQABAAEAAAD9/wgAAQABAAEAAAD9/wkAAQABAAEAAAD+/wQAAQABAAEAAAD+/wUAAQABAAEAAAD+/wYAAQABAAEAAAD+/wcAAQABAAEAAAD+/wgAAQABAAEAAAD+/wkAAQABAAEAAAD//wQAAQABAAEAAAD//wUAAQABAAEAAAD//wYAAQABAAEAAAD//wcAAQABAAEAAAD//wgAAQABAAEAAAD//wkAAQABAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAAAAgAAQABAAEAAAAAAAkAAQABAAEAAAABAAQAAQABAAEAAAABAAUAAQABAAEAAAABAAYAAQABAAEAAAABAAcAAQABAAEAAAABAAgAAQABAAEAAAABAAkAAQABAAEAAAACAAQAAQABAAEAAAACAAUAAQABAAEAAAACAAYAAQABAAEAAAACAAcAAQABAAEAAAACAAgAAQABAAEAAAACAAkAAQABAAEAAAADAAQAAQABAAEAAAADAAUAAQABAAEAAAADAAYAAQABAAEAAAADAAcAAQABAAEAAAADAAgAAQABAAEAAAADAAkAAQABAAEAAAAEAAQAAQABAAEAAAAEAAUAAQABAAEAAAAEAAYAAQABAAEAAAAEAAcAAQABAAEAAAAEAAgAAQABAAEAAAAEAAkAAQABAAEAAAAFAAQAAQABAAEAAAAFAAUAAQABAAEAAAAFAAYAAQABAAEAAAAFAAcAAQABAAEAAAAFAAgAAQABAAEAAAAFAAkAAQABAAEAAAAGAAQAAQABAAEAAAAGAAUAAQABAAEAAAAGAAYAAQABAAEAAAAGAAcAAQABAAEAAAAGAAgAAQABAAEAAAAGAAkAAQABAAEAAAAHAAQAAQABAAEAAAAHAAUAAQABAAEAAAAHAAYAAQABAAEAAAAHAAcAAQABAAEAAAAHAAgAAQABAAEAAAAHAAkAAQABAAEAAAAIAAQAAQABAAEAAAAIAAUAAQABAAEAAAAIAAYAAQABAAEAAAAIAAcAAQABAAEAAAAIAAgAAQABAAEAAAAIAAkAAQABAAEAAAAJAAQAAQABAAEAAAAJAAUAAQABAAEAAAAJAAYAAQABAAEAAAAJAAcAAQABAAEAAAAJAAgAAQABAAEAAAAJAAkAAQABAAEAAAAKAAQAAQACAAEAAAAKAAUAAQACAAEAAAAKAAYAAQACAAEAAAAKAAcAAQACAAEAAAAKAAgAAQACAAEAAAAKAAkAAQACAAEAAAAPAAEAAQABAAMAAAAQAAEAAQABAAMAAAARAAEAAQABAAMAAAAOAAEAAQABAAMAAAAVAP//AQAAAAMAAAAWAP//AQABAAMAAAAXAP//AQABAAMAAAAYAP//AQABAAMAAAAZAP//AQABAAMAAAAaAP//AQABAAMAAAAbAP//AQABAAMAAAAcAP//AQABAAMAAAAdAP//AQABAAMAAAAeAP//AQABAAMAAAAfAP//AQABAAMAAAAgAP//AQABAAMAAAAhAP//AQABAAMAAAAiAP//AQABAAMAAAAjAP//AQABAAMAAAAkAP//AQABAAMAAAAlAP//AQABAAMAAAAmAP//AQABAAMAAAAnAP//AQABAAMAAAAoAP//AQABAAMAAAApAP//AQABAAMAAAAqAP//AQABAAMAAAArAP//AQABAAMAAAAsAP//AQABAAMAAAAtAP//AQABAAMAAAAuAP//AQABAAMAAAAvAP//AQABAAMAAAAwAP//AQABAAMAAAAxAP//AQABAAMAAAAyAP//AQACAAMAAAA2AAEAAQAAAAMAAAA3AAEAAQABAAMAAAA4AAEAAQABAAMAAAA5AAEAAQABAAMAAAA6AAEAAQACAAMAAAA+AAAAAQAAAAMAAAA/AAAAAQABAAMAAABAAAAAAQABAAMAAABBAAAAAQABAAMAAABCAAAAAQACAAMAAABGAP//AQAAAAMAAABHAP//AQABAAMAAABIAP//AQABAAMAAABJAP//AQABAAMAAABKAP//AQABAAMAAABLAP//AQABAAMAAABMAP//AQABAAMAAABNAP//AQABAAMAAABOAP//AQABAAMAAABPAP//AQABAAMAAABQAP//AQABAAMAAABRAP//AQABAAMAAABSAP//AQABAAMAAABTAP//AQABAAMAAABUAP//AQABAAMAAABVAP//AQABAAMAAABWAP//AQABAAMAAABXAP//AQABAAMAAABYAP//AQABAAMAAABZAP//AQABAAMAAABaAP//AQABAAMAAABbAP//AQABAAMAAABcAP//AQABAAMAAABdAP//AQABAAMAAABeAP//AQABAAMAAABfAP//AQABAAMAAABgAP//AQABAAMAAABhAP//AQABAAMAAABiAP//AQABAAMAAABjAP//AQABAAMAAABkAP//AQABAAMAAABlAP//AQABAAMAAABmAP//AQABAAMAAABnAP//AQABAAMAAABoAP//AQABAAMAAABpAP//AQABAAMAAABqAP//AQABAAMAAABrAP//AQABAAMAAABsAP//AQABAAMAAABtAP//AQABAAMAAABuAP//AQABAAMAAABvAP//AQABAAMAAABwAP//AQABAAMAAABxAP//AQABAAMAAAByAP//AQABAAMAAABzAP//AQABAAMAAAB0AP//AQACAAMAAACbAP7/AQAAAAMAAACcAP7/AQABAAMAAACdAP7/AQABAAMAAACeAP7/AQABAAMAAACfAP7/AQABAAMAAACgAP7/AQABAAMAAAChAP7/AQABAAMAAACiAP7/AQABAAMAAACjAP7/AQACAAMAAACnAP7/AQAAAAMAAACoAP7/AQABAAMAAACpAP7/AQABAAMAAACqAP7/AQABAAMAAACrAP7/AQABAAMAAACsAP7/AQABAAMAAACtAP7/AQABAAMAAACuAP7/AQABAAMAAACvAP7/AQABAAMAAACwAP7/AQACAAMAAADBAP7/AQAAAAMAAADCAP7/AQABAAMAAADDAP7/AQABAAMAAADEAP7/AQABAAMAAADFAP7/AQABAAMAAADGAP7/AQABAAMAAADHAP7/AQABAAMAAADIAP7/AQABAAMAAADJAP7/AQABAAMAAADKAP7/AQABAAMAAADLAP7/AQABAAMAAADMAP7/AQABAAMAAADNAP7/AQABAAMAAADOAP7/AQABAAMAAADPAP7/AQABAAMAAADQAP7/AQABAAMAAADRAP7/AQABAAMAAADSAP7/AQABAAMAAADTAP7/AQABAAMAAADUAP7/AQABAAMAAADVAP7/AQABAAMAAADWAP7/AQABAAMAAADXAP7/AQABAAMAAADYAP7/AQABAAMAAADZAP7/AQABAAMAAADaAP7/AQABAAMAAADbAP7/AQABAAMAAADcAP7/AQABAAMAAADdAP7/AQABAAMAAADeAP7/AQACAAMAAACPAAIAAQAAAAMAAACQAAIAAQABAAMAAACRAAIAAQABAAMAAACSAAIAAQABAAMAAACTAAIAAQABAAMAAACUAAIAAQACAAMAAACVAAAAAQAAAAMAAACWAAAAAQABAAMAAACXAAAAAQABAAMAAACYAAAAAQABAAMAAACZAAAAAQABAAMAAACaAAAAAQACAAMAAACiAAMAAQAAAAMAAACjAAMAAQABAAMAAACkAAMAAQABAAMAAAClAAMAAQABAAMAAACmAAMAAQABAAMAAACnAAMAAQACAAMAAAB4AAAAAQAAAAMAAAB5AAAAAQABAAMAAAB6AAAAAQABAAMAAAB7AAAAAQABAAMAAAB8AAAAAQABAAMAAAB9AAAAAQACAAMAAACBAP//AQAAAAMAAACCAP//AQABAAMAAACDAP//AQABAAMAAACEAP//AQABAAMAAACFAP//AQABAAMAAACGAP//AQACAAMAAACKAP7/AQAAAAMAAACLAP7/AQABAAMAAACMAP7/AQABAAMAAACNAP7/AQACAAMAAADiAAQAAQAAAAMAAADjAAQAAQABAAMAAADkAAQAAQABAAMAAADlAAQAAQABAAMAAADmAAQAAQACAAMAAAAuAQUAAQAAAAAAAAAvAQUAAQABAAAAAAAwAQUAAQABAAAAAAAxAQUAAQABAAAAAAAyAQUAAQABAAAAAAAzAQUAAQABAAAAAAA0AQUAAQABAAAAAAA1AQUAAQABAAAAAAA2AQUAAQABAAAAAAA3AQUAAQABAAAAAAA4AQUAAQABAAAAAAA5AQUAAQABAAAAAAA6AQUAAQABAAAAAAA7AQUAAQABAAAAAAA8AQUAAQABAAAAAAA9AQUAAQABAAAAAAA+AQUAAQABAAAAAAA/AQUAAQABAAAAAABAAQUAAQABAAAAAABBAQUAAQABAAAAAABCAQUAAQABAAAAAAAJAf7/AQAAAAMAAAAKAf7/AQABAAMAAAALAf7/AQABAAMAAAAMAf7/AQABAAMAAAANAf7/AQABAAMAAAAOAf7/AQABAAMAAAAPAf7/AQACAAMAAAATAf7/AQAAAAMAAAAVAf7/AQABAAMAAAAUAf7/AQABAAMAAAAWAf7/AQABAAMAAAAXAf7/AQABAAMAAAAYAf7/AQABAAMAAAAZAf7/AQACAAMAAAAnAf7/AQAAAAMAAAAoAf7/AQABAAMAAAApAf7/AQABAAMAAAAqAf7/AQACAAMAAABDAQUAAQABAAAAAAAOAQMAAQAAAAMAAAAPAQMAAQABAAMAAAAQAQMAAQABAAMAAAARAQMAAQABAAMAAAASAQMAAQABAAMAAAATAQMAAQABAAMAAAAUAQMAAQACAAMAAAANAAEAAQAAAAMAAAASAAEAAQACAAMAAAA=")
 tile_set = SubResource("TileSet_ydotr")
+
+[node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=1283607896]
+
+[node name="MovingPlatform" parent="MidLayer/MovingPlatformManager" unique_id=1445135230 instance=ExtResource("14_nufpl")]
+position = Vector2(5792, -120)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform" unique_id=861499934]
+libraries/ = SubResource("AnimationLibrary_fr1ts")
+autoplay = &"move"
+
+[node name="MovingPlatform2" parent="MidLayer/MovingPlatformManager" unique_id=778345419 instance=ExtResource("14_nufpl")]
+position = Vector2(5952, 152)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform2" unique_id=1785023035]
+libraries/ = SubResource("AnimationLibrary_yipf2")
+autoplay = &"move"
+
+[node name="MovingPlatform3" parent="MidLayer/MovingPlatformManager" unique_id=292093480 instance=ExtResource("14_nufpl")]
+position = Vector2(8048, 144)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform3" unique_id=1045259122]
+libraries/ = SubResource("AnimationLibrary_k8e0i")
+autoplay = &"move"
+
+[node name="MovingPlatform4" parent="MidLayer/MovingPlatformManager" unique_id=803512599 instance=ExtResource("14_nufpl")]
+position = Vector2(8200, -48)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform4" unique_id=1002119874]
+libraries/ = SubResource("AnimationLibrary_au7vp")
+autoplay = &"move"
+
+[node name="MovingPlatform5" parent="MidLayer/MovingPlatformManager" unique_id=745281522 instance=ExtResource("14_nufpl")]
+position = Vector2(8352, 144)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform5" unique_id=70222049]
+libraries/ = SubResource("AnimationLibrary_ecwrn")
+autoplay = &"move"
+
+[node name="MovingPlatform6" parent="MidLayer/MovingPlatformManager" unique_id=1108056025 instance=ExtResource("14_nufpl")]
+position = Vector2(9120, -48)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform6" unique_id=310199258]
+libraries/ = SubResource("AnimationLibrary_ix7cf")
+autoplay = &"move"
 
 [node name="GameBoyGbcSuperMarioLandStagesWorld12" type="Sprite2D" parent="MidLayer" unique_id=1767846977]
 position = Vector2(1024, -664)
 texture = ExtResource("13_72ncj")
+
+[node name="BoxManager" parent="MidLayer" unique_id=1117362628 node_paths=PackedStringArray("item_manager") instance=ExtResource("16_l2dwp")]
+item_manager = NodePath("../../FrontLayer/ItemManager")
+
+[node name="EmptyBox" parent="MidLayer/BoxManager" unique_id=1477478737 instance=ExtResource("17_nufpl")]
+position = Vector2(6096, -16)
+
+[node name="EmptyBox2" parent="MidLayer/BoxManager" unique_id=321235262 instance=ExtResource("17_nufpl")]
+position = Vector2(6128, -16)
+
+[node name="EmptyBox3" parent="MidLayer/BoxManager" unique_id=767596625 instance=ExtResource("17_nufpl")]
+position = Vector2(6160, -16)
+
+[node name="EmptyBox4" parent="MidLayer/BoxManager" unique_id=154001622 instance=ExtResource("17_nufpl")]
+position = Vector2(7504, 144)
+
+[node name="EmptyBox5" parent="MidLayer/BoxManager" unique_id=565169132 instance=ExtResource("17_nufpl")]
+position = Vector2(7536, 112)
+
+[node name="SpecialBox" parent="MidLayer/BoxManager" unique_id=1586926890 instance=ExtResource("18_l2dwp")]
+position = Vector2(5304, 24)
+
+[node name="SpecialBox2" parent="MidLayer/BoxManager" unique_id=2047677237 instance=ExtResource("18_l2dwp")]
+position = Vector2(8768, 32)
+
+[node name="EmptyBox6" parent="MidLayer/BoxManager" unique_id=108921551 instance=ExtResource("17_nufpl")]
+position = Vector2(7568, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox7" parent="MidLayer/BoxManager" unique_id=498439090 instance=ExtResource("17_nufpl")]
+position = Vector2(7600, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox8" parent="MidLayer/BoxManager" unique_id=960262658 instance=ExtResource("17_nufpl")]
+position = Vector2(7632, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox9" parent="MidLayer/BoxManager" unique_id=1348745502 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox10" parent="MidLayer/BoxManager" unique_id=967673783 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, -48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox11" parent="MidLayer/BoxManager" unique_id=283524446 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, -48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox12" parent="MidLayer/BoxManager" unique_id=1083863627 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox14" parent="MidLayer/BoxManager" unique_id=755518811 instance=ExtResource("17_nufpl")]
+position = Vector2(7792, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox13" parent="MidLayer/BoxManager" unique_id=1888262530 instance=ExtResource("17_nufpl")]
+position = Vector2(7856, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox15" parent="MidLayer/BoxManager" unique_id=181533374 instance=ExtResource("17_nufpl")]
+position = Vector2(7888, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox16" parent="MidLayer/BoxManager" unique_id=1148719772 instance=ExtResource("17_nufpl")]
+position = Vector2(7920, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox17" parent="MidLayer/BoxManager" unique_id=1833583781 instance=ExtResource("17_nufpl")]
+position = Vector2(7536, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox18" parent="MidLayer/BoxManager" unique_id=1210217167 instance=ExtResource("17_nufpl")]
+position = Vector2(7568, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox19" parent="MidLayer/BoxManager" unique_id=1141970122 instance=ExtResource("17_nufpl")]
+position = Vector2(7600, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox20" parent="MidLayer/BoxManager" unique_id=1785214493 instance=ExtResource("17_nufpl")]
+position = Vector2(7568, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox21" parent="MidLayer/BoxManager" unique_id=1377437250 instance=ExtResource("17_nufpl")]
+position = Vector2(7792, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox22" parent="MidLayer/BoxManager" unique_id=94561550 instance=ExtResource("17_nufpl")]
+position = Vector2(7792, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox23" parent="MidLayer/BoxManager" unique_id=812637110 instance=ExtResource("17_nufpl")]
+position = Vector2(7856, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox24" parent="MidLayer/BoxManager" unique_id=1343728541 instance=ExtResource("17_nufpl")]
+position = Vector2(7792, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox25" parent="MidLayer/BoxManager" unique_id=25219059 instance=ExtResource("17_nufpl")]
+position = Vector2(7856, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox26" parent="MidLayer/BoxManager" unique_id=1454131414 instance=ExtResource("17_nufpl")]
+position = Vector2(7888, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox27" parent="MidLayer/BoxManager" unique_id=699096673 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox28" parent="MidLayer/BoxManager" unique_id=29055267 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox29" parent="MidLayer/BoxManager" unique_id=1031236314 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox30" parent="MidLayer/BoxManager" unique_id=504942450 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox31" parent="MidLayer/BoxManager" unique_id=1564084314 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox32" parent="MidLayer/BoxManager" unique_id=1214330787 instance=ExtResource("17_nufpl")]
+position = Vector2(7632, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox33" parent="MidLayer/BoxManager" unique_id=1866340698 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox34" parent="MidLayer/BoxManager" unique_id=744029530 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox35" parent="MidLayer/BoxManager" unique_id=979041144 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox56" parent="MidLayer/BoxManager" unique_id=1582322470 instance=ExtResource("17_nufpl")]
+position = Vector2(7504, 176)
+
+[node name="EmptyBox57" parent="MidLayer/BoxManager" unique_id=2137029225 instance=ExtResource("17_nufpl")]
+position = Vector2(7920, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox58" parent="MidLayer/BoxManager" unique_id=177597537 instance=ExtResource("17_nufpl")]
+position = Vector2(7536, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox59" parent="MidLayer/BoxManager" unique_id=1515606870 instance=ExtResource("17_nufpl")]
+position = Vector2(7568, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox60" parent="MidLayer/BoxManager" unique_id=23212176 instance=ExtResource("17_nufpl")]
+position = Vector2(7600, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox61" parent="MidLayer/BoxManager" unique_id=1849934277 instance=ExtResource("17_nufpl")]
+position = Vector2(7792, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox62" parent="MidLayer/BoxManager" unique_id=1861100695 instance=ExtResource("17_nufpl")]
+position = Vector2(7856, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox63" parent="MidLayer/BoxManager" unique_id=800728780 instance=ExtResource("17_nufpl")]
+position = Vector2(7888, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox64" parent="MidLayer/BoxManager" unique_id=642644791 instance=ExtResource("17_nufpl")]
+position = Vector2(7760, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox65" parent="MidLayer/BoxManager" unique_id=732234093 instance=ExtResource("17_nufpl")]
+position = Vector2(7632, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox66" parent="MidLayer/BoxManager" unique_id=907661600 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox67" parent="MidLayer/BoxManager" unique_id=589180981 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox68" parent="MidLayer/BoxManager" unique_id=292307814 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, 176)
+metadata/_scene_painted = true
+
+[node name="EmptyBox36" parent="MidLayer/BoxManager" unique_id=2095953664 instance=ExtResource("17_nufpl")]
+position = Vector2(7600, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox37" parent="MidLayer/BoxManager" unique_id=1148810498 instance=ExtResource("17_nufpl")]
+position = Vector2(7600, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox38" parent="MidLayer/BoxManager" unique_id=2043332648 instance=ExtResource("17_nufpl")]
+position = Vector2(7632, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox39" parent="MidLayer/BoxManager" unique_id=83195724 instance=ExtResource("17_nufpl")]
+position = Vector2(7632, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox40" parent="MidLayer/BoxManager" unique_id=646213906 instance=ExtResource("17_nufpl")]
+position = Vector2(7632, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox41" parent="MidLayer/BoxManager" unique_id=2021275006 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox42" parent="MidLayer/BoxManager" unique_id=1611377738 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox43" parent="MidLayer/BoxManager" unique_id=695145092 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox44" parent="MidLayer/BoxManager" unique_id=927669272 instance=ExtResource("17_nufpl")]
+position = Vector2(7664, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox45" parent="MidLayer/BoxManager" unique_id=1664812867 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox46" parent="MidLayer/BoxManager" unique_id=775113561 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox47" parent="MidLayer/BoxManager" unique_id=169584538 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox48" parent="MidLayer/BoxManager" unique_id=1720683583 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox49" parent="MidLayer/BoxManager" unique_id=998897765 instance=ExtResource("17_nufpl")]
+position = Vector2(7696, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox50" parent="MidLayer/BoxManager" unique_id=1467590783 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox51" parent="MidLayer/BoxManager" unique_id=1423651286 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox52" parent="MidLayer/BoxManager" unique_id=1630034655 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox53" parent="MidLayer/BoxManager" unique_id=746986231 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox54" parent="MidLayer/BoxManager" unique_id=123297989 instance=ExtResource("17_nufpl")]
+position = Vector2(7728, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox55" parent="MidLayer/BoxManager" unique_id=248498611 instance=ExtResource("17_nufpl")]
+position = Vector2(7792, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox73" parent="MidLayer/BoxManager" unique_id=24549394 instance=ExtResource("17_nufpl")]
+position = Vector2(10256, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox74" parent="MidLayer/BoxManager" unique_id=224717910 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox75" parent="MidLayer/BoxManager" unique_id=285535709 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox76" parent="MidLayer/BoxManager" unique_id=126624807 instance=ExtResource("17_nufpl")]
+position = Vector2(10256, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox77" parent="MidLayer/BoxManager" unique_id=692216354 instance=ExtResource("17_nufpl")]
+position = Vector2(10256, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox78" parent="MidLayer/BoxManager" unique_id=522346566 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox79" parent="MidLayer/BoxManager" unique_id=1697805671 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox80" parent="MidLayer/BoxManager" unique_id=809788933 instance=ExtResource("17_nufpl")]
+position = Vector2(10256, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox81" parent="MidLayer/BoxManager" unique_id=631872697 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox82" parent="MidLayer/BoxManager" unique_id=1982979875 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox83" parent="MidLayer/BoxManager" unique_id=475098979 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox84" parent="MidLayer/BoxManager" unique_id=35035081 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox85" parent="MidLayer/BoxManager" unique_id=2072846799 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox86" parent="MidLayer/BoxManager" unique_id=1966596414 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, -16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox87" parent="MidLayer/BoxManager" unique_id=1063502829 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, -48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox88" parent="MidLayer/BoxManager" unique_id=330927802 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, -80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox89" parent="MidLayer/BoxManager" unique_id=1170637755 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, -112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox90" parent="MidLayer/BoxManager" unique_id=785236626 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, -144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox91" parent="MidLayer/BoxManager" unique_id=535795876 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, -176)
+metadata/_scene_painted = true
+
+[node name="Door" parent="MidLayer" unique_id=1807888954 instance=ExtResource("20_fr1ts")]
+position = Vector2(10272, 128)
+next_world_level = "1-3"
+next_world_title = "THE LOBBY"
+next_level_name = "world_1_level_3"
+
+[node name="BonusDoor" parent="MidLayer" unique_id=1150625236 instance=ExtResource("20_fr1ts")]
+position = Vector2(10272, -64)
+is_bonus = true
+next_world_level = "1-3"
+next_world_title = "THE LOBBY"
+next_level_name = "world_1_level_3"
 
 [node name="BackLayer" type="CanvasLayer" parent="." unique_id=1083431968]
 layer = -2
