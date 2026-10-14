@@ -8,6 +8,8 @@ class_name BossManager
 @export var right_boss_wall: BossWall = null
 @export var enemy_manager: EnemyManager = null
 
+var started_fight: bool = false
+
 func _ready() -> void:
 	if (boss != null):
 		boss.lost_fight.connect(handle_lost_fight)
@@ -29,12 +31,17 @@ func inject_player(player: Player) -> void:
 	boss.player = player
 
 func handle_start_fight() -> void:
-	left_boss_wall.set_col_disable(false)
-	right_boss_wall.set_col_disable(false)
-	boss.start_fight()
+	if (not started_fight):
+		left_boss_wall.set_col_disable(false)
+		right_boss_wall.set_col_disable(false)
+		boss.start_fight()
+		started_fight = true
 
 func handle_lost_fight() -> void:
-	print("YOU WIN!!!")
+	right_boss_wall.set_col_disable(true)
+	cam_point.cam_leave_right = true
+	cam_point.cam_enter_left = true
+	cam_point.cam_enter_right = false
 
 func add_bolt(bolt: Bolt) -> void:
 	add_child(bolt)

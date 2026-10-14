@@ -22,6 +22,7 @@ func _process(_delta: float) -> void:
 							player = cam.target
 						cam.target = self
 						player_reached.emit()
+						
 				elif (cam_enter_left):
 					if (cam.position.x <= position.x):
 						if (cam.target is Player):
