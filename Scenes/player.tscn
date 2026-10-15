@@ -359,7 +359,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 20.0]
+"values": [0.0, 15.0]
 }
 
 [sub_resource type="Animation" id="Animation_fs7ks"]
@@ -375,7 +375,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -20.0]
+"values": [0.0, -15.0]
 }
 
 [sub_resource type="Animation" id="Animation_l6n3p"]
@@ -391,7 +391,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 20.0]
+"values": [0.0, 15.0]
 }
 
 [sub_resource type="Animation" id="Animation_olqyp"]
@@ -407,7 +407,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -20.0]
+"values": [0.0, -15.0]
 }
 
 [sub_resource type="Animation" id="Animation_fd4e3"]
@@ -585,7 +585,7 @@ max_acc = 0.12
 
 [node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("4_vgqql")]
 body = NodePath("../..")
-jump_velocity = -600.0
+jump_velocity = -700.0
 jump_release_dec = 0.5
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("5_fkybt")]

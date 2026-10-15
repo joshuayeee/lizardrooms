@@ -62,11 +62,13 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	move_and_slide()
 
-func hurt():
+func hurt() -> bool:
 	if (not is_fake_dead):
 		is_fake_dead = true
 		fake_death_timer.start()
 		wait_timer.stop()
+		return true
+	return false
 
 func _on_wait_timer_timeout() -> void:
 	can_jump = true

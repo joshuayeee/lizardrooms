@@ -1647,15 +1647,17 @@ next_level_name = "world_1_level_2"
 
 [node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]
 
-[node name="MovingPlatform" parent="MidLayer/MovingPlatformManager" unique_id=1445135230 instance=ExtResource("26_k3xx2")]
+[node name="MovingPlatform" parent="MidLayer/MovingPlatformManager" unique_id=1445135230 node_paths=PackedStringArray("anim_player") instance=ExtResource("26_k3xx2")]
 position = Vector2(9848, 56)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform" unique_id=564928218]
 libraries/ = SubResource("AnimationLibrary_v1xp2")
 autoplay = &"move"
 
-[node name="MovingPlatform2" parent="MidLayer/MovingPlatformManager" unique_id=771241396 instance=ExtResource("26_k3xx2")]
+[node name="MovingPlatform2" parent="MidLayer/MovingPlatformManager" unique_id=771241396 node_paths=PackedStringArray("anim_player") instance=ExtResource("26_k3xx2")]
 position = Vector2(10176, -48)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform2" unique_id=350590426]
 libraries/ = SubResource("AnimationLibrary_jxwn2")

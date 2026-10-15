@@ -34,9 +34,10 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func hurt() -> void:
+func hurt() -> bool:
 	is_active = false
 	animation_player.play("self_destruct")
+	return true
 
 func _on_left_check_body_entered(_body: Node2D) -> void:
 	if (direction < 0):

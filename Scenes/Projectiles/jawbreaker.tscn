@@ -8,16 +8,16 @@
 size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
-size = Vector2(22, 24)
+size = Vector2(22, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
-size = Vector2(22, 24)
+size = Vector2(22, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mbytq"]
-size = Vector2(24, 24)
+size = Vector2(9, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5iox7"]
-size = Vector2(24, 24)
+size = Vector2(9, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3m8r"]
 size = Vector2(24, 24)
@@ -42,7 +42,7 @@ collision_layer = 2048
 collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckUp" unique_id=317247295]
-position = Vector2(0, -1)
+position = Vector2(0, -8.5)
 shape = SubResource("RectangleShape2D_cp0ws")
 
 [node name="CheckDown" type="Area2D" parent="." unique_id=327944744]
@@ -50,7 +50,7 @@ collision_layer = 2048
 collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckDown" unique_id=668749136]
-position = Vector2(0, 1)
+position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_gsddi")
 
 [node name="CheckLeft" type="Area2D" parent="." unique_id=1793434159]
@@ -58,7 +58,7 @@ collision_layer = 2048
 collision_mask = 16908
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckLeft" unique_id=117773727]
-position = Vector2(-1, 0)
+position = Vector2(-8.5, 0)
 shape = SubResource("RectangleShape2D_mbytq")
 
 [node name="CheckRight" type="Area2D" parent="." unique_id=437567377]
@@ -66,7 +66,7 @@ collision_layer = 2048
 collision_mask = 82444
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckRight" unique_id=93838924]
-position = Vector2(1, 0)
+position = Vector2(8.5, 0)
 shape = SubResource("RectangleShape2D_5iox7")
 
 [node name="EnemyCheck" type="Area2D" parent="." unique_id=381134144]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bwcp84ewbj0mh"]
 
-[ext_resource type="Script" uid="uid://dpare66l36nj" path="res://Scripts/long_fall_box.gd" id="1_sebub"]
+[ext_resource type="Script" uid="uid://dpare66l36nj" path="res://Scripts/fall_box.gd" id="1_sebub"]
 [ext_resource type="Texture2D" uid="uid://dxv4co13h3rg7" path="res://Assets/Sprites/FallBox.png" id="2_sebub"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_mgy7p"]
 

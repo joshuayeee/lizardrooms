@@ -437,7 +437,7 @@ cam_enter_left = true
 cam_leave_right = true
 
 [node name="CamPoint2" parent="FrontLayer/CamPointManager" unique_id=215941473 instance=ExtResource("5_n0e5b")]
-position = Vector2(10000, 0)
+position = Vector2(10016, 0)
 cam_enter_right = true
 cam_leave_left = true
 
@@ -965,50 +965,57 @@ tile_set = SubResource("TileSet_ydotr")
 
 [node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=1283607896]
 
-[node name="MovingPlatform" parent="MidLayer/MovingPlatformManager" unique_id=1445135230 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform" parent="MidLayer/MovingPlatformManager" unique_id=1445135230 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(5792, -120)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform" unique_id=861499934]
 libraries/ = SubResource("AnimationLibrary_fr1ts")
 autoplay = &"move"
 
-[node name="MovingPlatform2" parent="MidLayer/MovingPlatformManager" unique_id=778345419 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform2" parent="MidLayer/MovingPlatformManager" unique_id=778345419 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(5952, 152)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform2" unique_id=1785023035]
 libraries/ = SubResource("AnimationLibrary_yipf2")
 autoplay = &"move"
 
-[node name="MovingPlatform3" parent="MidLayer/MovingPlatformManager" unique_id=292093480 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform3" parent="MidLayer/MovingPlatformManager" unique_id=292093480 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(8048, 144)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform3" unique_id=1045259122]
 libraries/ = SubResource("AnimationLibrary_k8e0i")
 autoplay = &"move"
 
-[node name="MovingPlatform4" parent="MidLayer/MovingPlatformManager" unique_id=803512599 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform4" parent="MidLayer/MovingPlatformManager" unique_id=803512599 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(8200, -48)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform4" unique_id=1002119874]
 libraries/ = SubResource("AnimationLibrary_au7vp")
 autoplay = &"move"
 
-[node name="MovingPlatform5" parent="MidLayer/MovingPlatformManager" unique_id=745281522 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform5" parent="MidLayer/MovingPlatformManager" unique_id=745281522 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(8352, 144)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform5" unique_id=70222049]
 libraries/ = SubResource("AnimationLibrary_ecwrn")
 autoplay = &"move"
 
-[node name="MovingPlatform6" parent="MidLayer/MovingPlatformManager" unique_id=1108056025 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform6" parent="MidLayer/MovingPlatformManager" unique_id=1108056025 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(9120, -48)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform6" unique_id=310199258]
 libraries/ = SubResource("AnimationLibrary_ix7cf")
 autoplay = &"move"
 
-[node name="MovingPlatform7" parent="MidLayer/MovingPlatformManager" unique_id=1960366861 instance=ExtResource("14_nufpl")]
+[node name="MovingPlatform7" parent="MidLayer/MovingPlatformManager" unique_id=1960366861 node_paths=PackedStringArray("anim_player") instance=ExtResource("14_nufpl")]
 position = Vector2(9856, 128)
+anim_player = NodePath("AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MidLayer/MovingPlatformManager/MovingPlatform7" unique_id=494987701]
 libraries/ = SubResource("AnimationLibrary_4ky6c")
@@ -1296,79 +1303,79 @@ position = Vector2(7792, 16)
 metadata/_scene_painted = true
 
 [node name="EmptyBox73" parent="MidLayer/BoxManager" unique_id=24549394 instance=ExtResource("17_nufpl")]
-position = Vector2(10256, -16)
-metadata/_scene_painted = true
-
-[node name="EmptyBox74" parent="MidLayer/BoxManager" unique_id=224717910 instance=ExtResource("17_nufpl")]
 position = Vector2(10288, -16)
 metadata/_scene_painted = true
 
-[node name="EmptyBox75" parent="MidLayer/BoxManager" unique_id=285535709 instance=ExtResource("17_nufpl")]
-position = Vector2(10288, 16)
-metadata/_scene_painted = true
-
-[node name="EmptyBox76" parent="MidLayer/BoxManager" unique_id=126624807 instance=ExtResource("17_nufpl")]
-position = Vector2(10256, 16)
-metadata/_scene_painted = true
-
-[node name="EmptyBox77" parent="MidLayer/BoxManager" unique_id=692216354 instance=ExtResource("17_nufpl")]
-position = Vector2(10256, 48)
-metadata/_scene_painted = true
-
-[node name="EmptyBox78" parent="MidLayer/BoxManager" unique_id=522346566 instance=ExtResource("17_nufpl")]
-position = Vector2(10288, 48)
-metadata/_scene_painted = true
-
-[node name="EmptyBox79" parent="MidLayer/BoxManager" unique_id=1697805671 instance=ExtResource("17_nufpl")]
-position = Vector2(10288, 80)
-metadata/_scene_painted = true
-
-[node name="EmptyBox80" parent="MidLayer/BoxManager" unique_id=809788933 instance=ExtResource("17_nufpl")]
-position = Vector2(10256, 80)
-metadata/_scene_painted = true
-
-[node name="EmptyBox81" parent="MidLayer/BoxManager" unique_id=631872697 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, 80)
-metadata/_scene_painted = true
-
-[node name="EmptyBox82" parent="MidLayer/BoxManager" unique_id=1982979875 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, 112)
-metadata/_scene_painted = true
-
-[node name="EmptyBox83" parent="MidLayer/BoxManager" unique_id=475098979 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, 144)
-metadata/_scene_painted = true
-
-[node name="EmptyBox84" parent="MidLayer/BoxManager" unique_id=35035081 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, 48)
-metadata/_scene_painted = true
-
-[node name="EmptyBox85" parent="MidLayer/BoxManager" unique_id=2072846799 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, 16)
-metadata/_scene_painted = true
-
-[node name="EmptyBox86" parent="MidLayer/BoxManager" unique_id=1966596414 instance=ExtResource("17_nufpl")]
+[node name="EmptyBox74" parent="MidLayer/BoxManager" unique_id=224717910 instance=ExtResource("17_nufpl")]
 position = Vector2(10320, -16)
 metadata/_scene_painted = true
 
+[node name="EmptyBox75" parent="MidLayer/BoxManager" unique_id=285535709 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox76" parent="MidLayer/BoxManager" unique_id=126624807 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox77" parent="MidLayer/BoxManager" unique_id=692216354 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox78" parent="MidLayer/BoxManager" unique_id=522346566 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox79" parent="MidLayer/BoxManager" unique_id=1697805671 instance=ExtResource("17_nufpl")]
+position = Vector2(10320, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox80" parent="MidLayer/BoxManager" unique_id=809788933 instance=ExtResource("17_nufpl")]
+position = Vector2(10288, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox81" parent="MidLayer/BoxManager" unique_id=631872697 instance=ExtResource("17_nufpl")]
+position = Vector2(10352, 80)
+metadata/_scene_painted = true
+
+[node name="EmptyBox82" parent="MidLayer/BoxManager" unique_id=1982979875 instance=ExtResource("17_nufpl")]
+position = Vector2(10352, 112)
+metadata/_scene_painted = true
+
+[node name="EmptyBox83" parent="MidLayer/BoxManager" unique_id=475098979 instance=ExtResource("17_nufpl")]
+position = Vector2(10352, 144)
+metadata/_scene_painted = true
+
+[node name="EmptyBox84" parent="MidLayer/BoxManager" unique_id=35035081 instance=ExtResource("17_nufpl")]
+position = Vector2(10352, 48)
+metadata/_scene_painted = true
+
+[node name="EmptyBox85" parent="MidLayer/BoxManager" unique_id=2072846799 instance=ExtResource("17_nufpl")]
+position = Vector2(10352, 16)
+metadata/_scene_painted = true
+
+[node name="EmptyBox86" parent="MidLayer/BoxManager" unique_id=1966596414 instance=ExtResource("17_nufpl")]
+position = Vector2(10352, -16)
+metadata/_scene_painted = true
+
 [node name="EmptyBox87" parent="MidLayer/BoxManager" unique_id=1063502829 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, -48)
+position = Vector2(10352, -48)
 metadata/_scene_painted = true
 
 [node name="EmptyBox88" parent="MidLayer/BoxManager" unique_id=330927802 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, -80)
+position = Vector2(10352, -80)
 metadata/_scene_painted = true
 
 [node name="EmptyBox89" parent="MidLayer/BoxManager" unique_id=1170637755 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, -112)
+position = Vector2(10352, -112)
 metadata/_scene_painted = true
 
 [node name="EmptyBox90" parent="MidLayer/BoxManager" unique_id=785236626 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, -144)
+position = Vector2(10352, -144)
 metadata/_scene_painted = true
 
 [node name="EmptyBox91" parent="MidLayer/BoxManager" unique_id=535795876 instance=ExtResource("17_nufpl")]
-position = Vector2(10320, -176)
+position = Vector2(10352, -176)
 metadata/_scene_painted = true
 
 [node name="SpecialBox11" parent="MidLayer/BoxManager" unique_id=83632420 instance=ExtResource("18_l2dwp")]
@@ -1418,13 +1425,13 @@ position = Vector2(1520, -112)
 metadata/_scene_painted = true
 
 [node name="Door" parent="MidLayer" unique_id=1807888954 instance=ExtResource("20_fr1ts")]
-position = Vector2(10272, 128)
+position = Vector2(10304, 128)
 next_world_level = "1-3"
 next_world_title = "THE LOBBY"
 next_level_name = "world_1_level_3"
 
 [node name="BonusDoor" parent="MidLayer" unique_id=1150625236 instance=ExtResource("20_fr1ts")]
-position = Vector2(10272, -64)
+position = Vector2(10304, -64)
 is_bonus = true
 next_world_level = "1-3"
 next_world_title = "THE LOBBY"

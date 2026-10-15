@@ -218,28 +218,29 @@ func _on_move_player_animation_finished(anim_name: StringName) -> void:
 		anim_com.reset_move_player("idle")
 
 func _on_down_check_body_entered(body: Node2D) -> void:
-	if (body is Enemy):
-		if (body is Friend):
+	if (Global.game_active):
+		if (body is Enemy):
+			if (body is Friend):
+				if (not is_on_floor() and velocity.y > 0 and body.is_active):
+					if (not body.is_fake_dead):
+						if (body.hurt()):
+							jump_com.handle_jump(true)
+							hit_invin = true
+							hit_invin_timer.start()
+			else:
+				if (not is_on_floor() and velocity.y > 0 and body.is_active):
+					if (body.hurt()):
+						jump_com.handle_jump(true)
+						hit_invin = true
+						hit_invin_timer.start()
+		elif (body is Boss):
 			if (not is_on_floor() and velocity.y > 0 and body.is_active):
-				if (not body.is_fake_dead):
+				if (body.handle_hit("stomp")):
+					hit_invin = true
+					hit_invin_timer.start()
 					jump_com.handle_jump(true)
-				hit_invin = true
-				hit_invin_timer.start()
-				body.hurt()
-		else:
-			if (not is_on_floor() and velocity.y > 0 and body.is_active):
-				jump_com.handle_jump(true)
-				hit_invin = true
-				hit_invin_timer.start()
-				body.hurt()
-	elif (body is Boss):
-		if (not is_on_floor() and velocity.y > 0 and body.is_active):
-			if (body.handle_hit("stomp")):
-				hit_invin = true
-				hit_invin_timer.start()
-				jump_com.handle_jump(true)
-	elif (body is FallBox):
-		body.start_drop_timer()
+		elif (body is FallBox):
+			body.start_drop_timer()
 
 func _on_hurt_timer_timeout() -> void:
 	turn_off_hurt_invincible()

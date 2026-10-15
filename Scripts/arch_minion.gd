@@ -76,8 +76,9 @@ func start_launch(start_pos: Vector2, dir: String) -> void:
 	
 	state = States.LAUNCH
 
-func hurt() -> void:
+func hurt() -> bool:
 	destroyed.emit(self)
+	return true
 
 func hit_by_jawbreaker() -> void:
 	destroyed.emit(self)

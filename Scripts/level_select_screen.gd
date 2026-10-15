@@ -98,7 +98,7 @@ func _input(_event: InputEvent) -> void:
 		set_unselected(all_labels[old_world_num][old_level_num])
 		set_selected(all_labels[world_num][level_num])
 	
-	if (Input.is_action_pressed("jump")):
+	if (Input.is_action_just_pressed("jump")):
 		match world_num:
 			0:
 				load_transition_request.emit("%s-%s" % [world_num + 1, level_num + 1], "THE LOBBY", "world_%s_level_%s" % [world_num + 1, level_num + 1])

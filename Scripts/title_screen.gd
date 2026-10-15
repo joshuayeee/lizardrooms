@@ -12,7 +12,7 @@ enum Options {NEW_GAME, CONTINUE, LEVEL_SELECT, SETTINGS, EXIT}
 var curr_option: Options = Options.NEW_GAME
 
 func _input(_event: InputEvent) -> void:
-	if (Input.is_action_pressed("jump")):
+	if (Input.is_action_just_pressed("jump")):
 		match curr_option:
 			Options.NEW_GAME:
 				handle_new_game()

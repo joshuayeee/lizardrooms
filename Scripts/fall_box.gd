@@ -5,6 +5,7 @@ class_name FallBox
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var drop_timer: Timer = $DropTimer
 @onready var life_timer: Timer = $LifeTimer
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 var can_drop: bool = false
 
@@ -12,6 +13,9 @@ func _physics_process(_delta: float) -> void:
 	if (Global.game_active):
 		if (can_drop):
 			move_com.handle_vert_move(1.0)
+			collision_shape_2d.one_way_collision = true
+	else:
+		velocity = Vector2.ZERO
 	
 	move_and_slide()
 

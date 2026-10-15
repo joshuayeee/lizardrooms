@@ -10,8 +10,9 @@ signal created_poof(poof: Poof)
 
 var is_active = false
 
-func hurt() -> void:
+func hurt() -> bool:
 	poof_death()
+	return true
 
 func hit_by_jawbreaker() -> void:
 	poof_death()

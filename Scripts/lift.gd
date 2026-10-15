@@ -38,13 +38,14 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 	move_and_slide()
 
-func hurt() -> void:
+func hurt() -> bool:
 	can_hurt_player = false
 	hurt_timer.start()
 	if (state == States.BOUNCING):
 		state = States.CRAWLING
 	elif (state == States.CRAWLING):
 		poof_death()
+	return true
 
 func _on_left_check_body_entered(_body: Node2D) -> void:
 	if (direction < 0):

@@ -63,7 +63,7 @@ cam_enter_left = true
 cam_leave_right = true
 
 [node name="CamPoint2" parent="FrontLayer/CamPointManager" unique_id=506716115 instance=ExtResource("4_7ik2y")]
-position = Vector2(10000, 0)
+position = Vector2(10016, 0)
 cam_enter_right = true
 cam_leave_left = true
 
