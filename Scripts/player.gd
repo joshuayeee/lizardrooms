@@ -129,6 +129,7 @@ func enter_false_wall() -> void:
 			global_position.x = enter_pos_x
 			anim_com.handle_enter_anim("enter_down")
 	Global.game_active = false
+	anim_com.play_idle("%s_idle" % state)
 
 func hurt() -> void:
 	if (state == "normal"):
@@ -184,6 +185,12 @@ func got_to_door(next_wl: String,
 					next_name: String,
 					is_bonus: bool) -> void:
 	Global.game_active = false
+	
+	if (is_on_floor()):
+		anim_com.play_idle("%s_idle" % state)
+	else:
+		anim_com.play_jump("%s_jump" % state)
+	
 	end_timer.start()
 	await end_timer.timeout
 	reached_door.emit(next_wl, next_wt, next_name, state, is_bonus)

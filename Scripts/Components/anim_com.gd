@@ -78,5 +78,8 @@ func handle_enter_anim(move_anim: String) -> void:
 func reset_move_player(move_anim: String) -> void:
 	move_player.play(move_anim)
 
-func play_idle(move_anim: String) -> void:
-	anim_player.play(move_anim)
+func play_idle(anim_name: String) -> void:
+	anim_player.play(anim_name)
+
+func play_jump(anim_name: String) -> void:
+	anim_player.play(anim_name)

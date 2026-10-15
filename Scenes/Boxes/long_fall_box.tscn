@@ -20,7 +20,7 @@ texture = ExtResource("1_gvulk")
 shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="DropTimer" type="Timer" parent="." unique_id=1523811304]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="LifeTimer" type="Timer" parent="." unique_id=2065602234]

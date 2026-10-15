@@ -18,6 +18,7 @@ const CAM = preload("uid://caj7fxc0ctv5a")
 @export var boss_manager: BossManager = null
 @export var end_manager: EndManager = null
 @export var enemy_managers: Array[EnemyManager] = []
+@export var fps_label: Label = null
 
 var checkpoint_num: int = 0
 var world_level_text: String = ""
@@ -109,3 +110,9 @@ func change_player_layer(layer_name: String) -> void:
 			player.reparent(mid_layer)
 		"back":
 			player.reparent(back_layer)
+
+
+#debug
+func _process(_delta: float) -> void:
+	if (fps_label != null):
+		fps_label.text = str(Engine.get_frames_per_second())
