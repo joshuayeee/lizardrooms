@@ -2,11 +2,14 @@ extends Node2D
 
 class_name BossManager
 
+const LESSIE_BRIDGE = preload("uid://n3lpncrnt7vm")
+
 @export var boss: Boss = null
 @export var cam_point: CamPoint = null
 @export var left_boss_wall: BossWall = null
 @export var right_boss_wall: BossWall = null
 @export var enemy_manager: EnemyManager = null
+@export var box_manager: BoxManager = null
 
 var started_fight: bool = false
 
@@ -21,6 +24,7 @@ func _ready() -> void:
 			boss.created_bolt.connect(add_bolt)
 		elif (boss is Lessie):
 			boss.connect_fire_sig.connect(handle_fire_connect)
+			boss.request_build_bridge.connect(create_lessie_bridge)
 		elif (boss is Arch):
 			boss.created_bullet.connect(add_arch_bullet)
 	
@@ -54,3 +58,9 @@ func add_drop(drop: FireDrop) -> void:
 
 func add_arch_bullet(bullet: ArchBullet) -> void:
 	add_child(bullet)
+
+func create_lessie_bridge(spawn_point: Node2D) -> void:
+	if (box_manager != null):
+		var lessie_bridge: Node2D = LESSIE_BRIDGE.instantiate()
+		lessie_bridge.global_position = spawn_point.global_position
+		box_manager.add_child(lessie_bridge)

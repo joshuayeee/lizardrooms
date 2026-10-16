@@ -9,6 +9,7 @@ signal shot_fire()
 signal stop_fire()
 signal got_hit()
 signal connect_fire_sig(fire_sig: Signal)
+signal request_build_bridge(spawn_point: Node2D)
 
 @export var left_top_point: Node2D = null
 @export var left_mid_point: Node2D = null
@@ -23,6 +24,7 @@ signal connect_fire_sig(fire_sig: Signal)
 @export var mid_min_top_point: Node2D = null
 @export var right_min_bot_point: Node2D = null
 @export var right_min_top_point: Node2D = null
+@export var bridge_point: Node2D = null
 
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var timers: Node = $Timers
@@ -260,6 +262,7 @@ func handle_death() -> void:
 	death_timer.start()
 
 func end_fight() -> void:
+	request_build_bridge.emit(bridge_point)
 	lost_fight.emit()
 	call_deferred("queue_free")
 

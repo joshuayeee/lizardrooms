@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://n3lpncrnt7vm"]
+
+[ext_resource type="PackedScene" uid="uid://b46ns1v8q6suu" path="res://Scenes/Boxes/empty_box.tscn" id="1_lk260"]
+
+[node name="LessieBridge" type="Node2D" unique_id=1265465866]
+
+[node name="EmptyBox2" parent="." unique_id=1477478737 instance=ExtResource("1_lk260")]
+position = Vector2(-112, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox" parent="." unique_id=877141227 instance=ExtResource("1_lk260")]
+position = Vector2(-80, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox3" parent="." unique_id=1170978746 instance=ExtResource("1_lk260")]
+position = Vector2(-48, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox4" parent="." unique_id=1573754144 instance=ExtResource("1_lk260")]
+position = Vector2(-16, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox5" parent="." unique_id=1135546111 instance=ExtResource("1_lk260")]
+position = Vector2(16, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox6" parent="." unique_id=1242996417 instance=ExtResource("1_lk260")]
+position = Vector2(48, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox7" parent="." unique_id=1993723343 instance=ExtResource("1_lk260")]
+position = Vector2(80, 0)
+metadata/_scene_painted = true
+
+[node name="EmptyBox8" parent="." unique_id=535940853 instance=ExtResource("1_lk260")]
+position = Vector2(112, 0)
+metadata/_scene_painted = true
