@@ -59,7 +59,7 @@ _data = {
 
 [node name="Slant" type="CharacterBody2D" unique_id=1618549213 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 script = ExtResource("1_3jgrv")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dokg8u03i7u00"
@@ -85,7 +85,7 @@ shape = SubResource("CapsuleShape2D_ydotr")
 
 [node name="BottomCheck" type="Area2D" parent="." unique_id=1307179248]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCheck" unique_id=75437741]
 position = Vector2(0, -4)

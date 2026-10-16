@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="11_pqhkq"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="12_1gwqd"]
 [ext_resource type="PackedScene" uid="uid://dbo618mia1anf" path="res://Scenes/swim_area.tscn" id="12_5li0c"]
+[ext_resource type="PackedScene" uid="uid://kuma7wwag7dt" path="res://Scenes/octo_octo.tscn" id="12_hfvlx"]
 [ext_resource type="PackedScene" uid="uid://cw7pb8x0tdpsa" path="res://Scenes/invisible_wall.tscn" id="13_5li0c"]
 [ext_resource type="PackedScene" uid="uid://u3b752tjrg7o" path="res://Scenes/Boxes/box_manager.tscn" id="13_nqxkj"]
 [ext_resource type="PackedScene" uid="uid://cs5j2ruynaag6" path="res://Scenes/Bosses/boss_manager.tscn" id="14_6im36"]
@@ -31,7 +32,6 @@
 [ext_resource type="PackedScene" uid="uid://dwv3oiprkicns" path="res://Scenes/Boxes/long_fall_box.tscn" id="20_pqhkq"]
 [ext_resource type="PackedScene" uid="uid://t3ri4py8ms78" path="res://Scenes/cutscene_text_manager.tscn" id="21_ihs2y"]
 [ext_resource type="PackedScene" uid="uid://t5rgcqv53kgn" path="res://Scenes/fake_maple_cutscene.tscn" id="22_hfvlx"]
-[ext_resource type="PackedScene" uid="uid://j4oddu1ysxhb" path="res://Scenes/enemy_death_zone.tscn" id="22_hkuti"]
 [ext_resource type="Texture2D" uid="uid://bs1die0dumxos" path="res://Assets/Sprites/NES - Super Mario Bros. - Stages - World 2-2.png" id="23_2qytp"]
 [ext_resource type="Texture2D" uid="uid://caajmecytx7bw" path="res://Assets/Sprites/Black.png" id="28_qvl3w"]
 
@@ -61,9 +61,6 @@ size = Vector2(26, 416)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0185"]
 size = Vector2(26, 384)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5iox7"]
-size = Vector2(144, 576)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_un5pd"]
 texture = ExtResource("14_vboym")
@@ -452,9 +449,6 @@ shape = SubResource("RectangleShape2D_mbytq")
 
 [node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("8_78jbj")]
 
-[node name="BigFishy" parent="FrontLayer/EnemyManager" unique_id=731216863 instance=ExtResource("11_ihs2y")]
-position = Vector2(2208, 56)
-
 [node name="BigFishy2" parent="FrontLayer/EnemyManager" unique_id=1803580466 instance=ExtResource("11_ihs2y")]
 position = Vector2(2584, -16)
 
@@ -488,6 +482,9 @@ position = Vector2(6680, -56)
 [node name="BigFishy12" parent="FrontLayer/EnemyManager" unique_id=1398431905 instance=ExtResource("11_ihs2y")]
 position = Vector2(6432, 64)
 
+[node name="BigFishy19" parent="FrontLayer/EnemyManager" unique_id=731216863 instance=ExtResource("11_ihs2y")]
+position = Vector2(7312, 80)
+
 [node name="BigFishy13" parent="FrontLayer/EnemyManager" unique_id=1257884428 instance=ExtResource("11_ihs2y")]
 position = Vector2(7120, 128)
 
@@ -505,6 +502,18 @@ position = Vector2(8488, 128)
 
 [node name="BigFishy18" parent="FrontLayer/EnemyManager" unique_id=1765515161 instance=ExtResource("11_ihs2y")]
 position = Vector2(8272, -64)
+
+[node name="OctoOcto" parent="FrontLayer/EnemyManager" unique_id=1386200506 instance=ExtResource("12_hfvlx")]
+position = Vector2(2112, 64)
+
+[node name="OctoOcto2" parent="FrontLayer/EnemyManager" unique_id=23447674 instance=ExtResource("12_hfvlx")]
+position = Vector2(3544, 56)
+
+[node name="OctoOcto3" parent="FrontLayer/EnemyManager" unique_id=92212023 instance=ExtResource("12_hfvlx")]
+position = Vector2(5112, 56)
+
+[node name="OctoOcto4" parent="FrontLayer/EnemyManager" unique_id=275301397 instance=ExtResource("12_hfvlx")]
+position = Vector2(8400, 32)
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("9_5li0c")]
 
@@ -631,13 +640,6 @@ my_label = NodePath("../EndLabel")
 
 [node name="FakeMapleCutscene" parent="FrontLayer" unique_id=531849571 instance=ExtResource("22_hfvlx")]
 position = Vector2(11680, 96)
-
-[node name="EnemyDeathZone" parent="FrontLayer" unique_id=2129874738 instance=ExtResource("22_hkuti")]
-position = Vector2(720, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/EnemyDeathZone" unique_id=2033258112]
-position = Vector2(-16, -32)
-shape = SubResource("RectangleShape2D_5iox7")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
 layer = 0

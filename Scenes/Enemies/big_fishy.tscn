@@ -36,6 +36,10 @@ shape = SubResource("RectangleShape2D_ydotr")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1719643867]
 rect = Rect2(-32, -24, 64, 48)
 
+[node name="DeathTimer" type="Timer" parent="." unique_id=1764275972]
+wait_time = 5.0
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1233528983]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_5l5ys")]
@@ -45,3 +49,5 @@ run_speed = 80.0
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

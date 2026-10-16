@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://kuma7wwag7dt"]
+
+[ext_resource type="Script" uid="uid://njjiur3u6yhg" path="res://Scripts/octo_octo.gd" id="1_4iqp6"]
+[ext_resource type="Texture2D" uid="uid://cqwgm2pid46p" path="res://Assets/Sprites/OctoOcto.png" id="2_rla54"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="3_rla54"]
+[ext_resource type="PackedScene" uid="uid://lwitvakr70ci" path="res://Scenes/Components/swim_com.tscn" id="4_6e3be"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ydotr"]
+radius = 16.0
+height = 48.0
+
+[sub_resource type="Animation" id="Animation_4iqp6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_al0qh"]
+resource_name = "swim"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7j85d"]
+_data = {
+&"RESET": SubResource("Animation_4iqp6"),
+&"swim": SubResource("Animation_al0qh")
+}
+
+[node name="OctoOcto" type="CharacterBody2D" unique_id=1386200506 node_paths=PackedStringArray("poof_point")]
+collision_layer = 1024
+collision_mask = 2097152
+script = ExtResource("1_4iqp6")
+poof_point = NodePath("PoofPoint")
+metadata/_custom_type_script = "uid://dxiq71auk7vby"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=56313131]
+scale = Vector2(4, 4)
+texture = ExtResource("2_rla54")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=227784132]
+shape = SubResource("CapsuleShape2D_jh5pk")
+
+[node name="PoofPoint" type="Node2D" parent="." unique_id=566747458]
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1008368931]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=395541088]
+shape = SubResource("CapsuleShape2D_ydotr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=987989022]
+rect = Rect2(-40, -40, 80, 80)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=814966088]
+libraries/ = SubResource("AnimationLibrary_7j85d")
+autoplay = &"swim"
+
+[node name="ChargeTimer" type="Timer" parent="." unique_id=1401146901]
+wait_time = 2.0
+one_shot = true
+
+[node name="DeathTimer" type="Timer" parent="." unique_id=1973893852]
+wait_time = 5.0
+one_shot = true
+
+[node name="Components" type="Node" parent="." unique_id=1135341866]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("3_rla54")]
+body = NodePath("../..")
+swim_grav = Vector2(0, 50)
+
+[node name="SwimCom" parent="Components" unique_id=1961788864 node_paths=PackedStringArray("body") instance=ExtResource("4_6e3be")]
+body = NodePath("../..")
+swim_velocity = -100.0
+hori_speed = 50.0
+max_hori_speed = 50.0
+hori_acc = 1.0
+hori_dec = 1.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="ChargeTimer" to="." method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

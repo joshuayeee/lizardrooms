@@ -65,7 +65,7 @@ _data = {
 
 [node name="Happy" type="CharacterBody2D" unique_id=1027631908 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 script = ExtResource("1_2kb01")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dokg8u03i7u00"
@@ -93,7 +93,7 @@ shape = SubResource("CapsuleShape2D_3gji2")
 
 [node name="LeftCheck" type="Area2D" parent="." unique_id=123576431]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=1715761550]
 position = Vector2(-4, 14)
@@ -101,7 +101,7 @@ shape = SubResource("RectangleShape2D_cp0ws")
 
 [node name="RightCheck" type="Area2D" parent="." unique_id=1372559401]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=332084035]
 position = Vector2(4, 14)
@@ -109,7 +109,7 @@ shape = SubResource("RectangleShape2D_gsddi")
 
 [node name="LeftGroundCheck" type="Area2D" parent="." unique_id=59399428]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGroundCheck" unique_id=359216431]
 position = Vector2(-14, 34)
@@ -117,7 +117,7 @@ shape = SubResource("RectangleShape2D_mbytq")
 
 [node name="RightGroundCheck" type="Area2D" parent="." unique_id=515136413]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightGroundCheck" unique_id=583279809]
 position = Vector2(14, 34)

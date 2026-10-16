@@ -3,6 +3,7 @@ extends Enemy
 class_name BigFishy
 
 @onready var move_com: MoveCom = $Components/MoveCom
+@onready var death_timer: Timer = $DeathTimer
 
 func _physics_process(_delta: float) -> void:
 	if (Global.game_active):
@@ -29,3 +30,12 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	is_active = true
+	
+	death_timer.stop()
+
+func _on_death_timer_timeout() -> void:
+	poof_death()
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if (is_active):
+		death_timer.start()

@@ -567,7 +567,7 @@ height = 40.0
 [node name="Player" type="CharacterBody2D" unique_id=1791348002]
 z_index = 2
 collision_layer = 2
-collision_mask = 606732
+collision_mask = 2703884
 platform_on_leave = 2
 script = ExtResource("1_cvnsp")
 
@@ -652,8 +652,8 @@ move_player = NodePath("../../MovePlayer")
 [node name="SwimCom" parent="Components" unique_id=1961788864 node_paths=PackedStringArray("body") instance=ExtResource("7_3smsa")]
 body = NodePath("../..")
 swim_velocity = -300.0
-hori_speed = 125.0
-max_hori_speed = 175.0
+hori_speed = 100.0
+max_hori_speed = 125.0
 hori_acc = 0.1
 hori_dec = 0.1
 

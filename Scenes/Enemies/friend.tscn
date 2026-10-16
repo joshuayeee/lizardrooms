@@ -86,7 +86,7 @@ height = 48.0
 
 [node name="Friend" type="CharacterBody2D" unique_id=859334994 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 script = ExtResource("1_f701x")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dxiq71auk7vby"

@@ -49,7 +49,7 @@ _data = {
 [node name="Bullet" type="CharacterBody2D" unique_id=770135349 node_paths=PackedStringArray("poof_point")]
 z_index = -1
 collision_layer = 1024
-collision_mask = 16908
+collision_mask = 2638348
 script = ExtResource("1_ycag2")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dokg8u03i7u00"

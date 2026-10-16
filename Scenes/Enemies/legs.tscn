@@ -71,7 +71,7 @@ _data = {
 
 [node name="Legs" type="CharacterBody2D" unique_id=1165074867 node_paths=PackedStringArray("poof_point")]
 collision_layer = 1024
-collision_mask = 82444
+collision_mask = 2703884
 script = ExtResource("1_3hqk3")
 poof_point = NodePath("PoofPoint")
 metadata/_custom_type_script = "uid://dxiq71auk7vby"
