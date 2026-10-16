@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://j4oddu1ysxhb"]
+
+[ext_resource type="Script" uid="uid://bfc48n817kptn" path="res://Scripts/enemy_death_zone.gd" id="1_wll7w"]
+
+[node name="EnemyDeathZone" type="Area2D" unique_id=2129874738]
+collision_layer = 128
+collision_mask = 1024
+script = ExtResource("1_wll7w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
