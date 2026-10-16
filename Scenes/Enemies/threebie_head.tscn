@@ -27,19 +27,19 @@ shape = SubResource("CircleShape2D_jh5pk")
 position = Vector2(-2, 2)
 
 [node name="LeftPoint1" type="Node2D" parent="." unique_id=1420341178]
-position = Vector2(-64, -32)
+position = Vector2(-64, -96)
 
 [node name="LeftPoint2" type="Node2D" parent="." unique_id=1131974115]
-position = Vector2(-128, -32)
+position = Vector2(-128, -96)
 
 [node name="LeftPoint3" type="Node2D" parent="." unique_id=1274835514]
 position = Vector2(-192, 0)
 
 [node name="RightPoint1" type="Node2D" parent="." unique_id=167832699]
-position = Vector2(64, -32)
+position = Vector2(64, -96)
 
 [node name="RightPoint2" type="Node2D" parent="." unique_id=754607014]
-position = Vector2(128, -32)
+position = Vector2(128, -96)
 
 [node name="RightPoint3" type="Node2D" parent="." unique_id=1843266610]
 position = Vector2(192, 0)

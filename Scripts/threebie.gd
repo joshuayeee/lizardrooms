@@ -16,6 +16,8 @@ signal created_head(head: ThreebieHead)
 @onready var headless_check_col: CollisionShape2D = $HeadlessPlayerCheck/HeadlessCheckCol
 @onready var head_start_point: Node2D = $HeadStartPoint
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var left_ground_check: Area2D = $LeftGroundCheck
+@onready var right_ground_check: Area2D = $RightGroundCheck
 
 var has_activated: bool = false
 
@@ -25,16 +27,22 @@ var state: States = States.MOVE
 enum Directions {RIGHT, LEFT}
 var direction: Directions = Directions.LEFT
 
+var check_dir: Directions = Directions.LEFT
+
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		gravity_com.handle_gravity(delta)
 		if (is_active):
 			
 			if (player != null):
-				if (player.global_position.x > global_position.x):
-					direction = Directions.RIGHT
-				else:
-					direction = Directions.LEFT
+				if (check_dir == Directions.RIGHT):
+					if (player.global_position.x < global_position.x):
+						direction = Directions.LEFT
+						check_dir = Directions.LEFT
+				elif (check_dir == Directions.LEFT):
+					if (player.global_position.x > global_position.x):
+						direction = Directions.RIGHT
+						check_dir = Directions.RIGHT
 			
 			sprite_2d.flip_h = (direction == Directions.RIGHT)
 			
@@ -119,3 +127,13 @@ func _on_headless_player_check_body_entered(body: Node2D) -> void:
 				body.hurt()
 			else:
 				poof_death()
+
+func _on_left_ground_check_body_exited(_body: Node2D) -> void:
+	if (not left_ground_check.has_overlapping_bodies()):
+		if (direction == Directions.LEFT):
+			direction = Directions.RIGHT
+
+func _on_right_ground_check_body_exited(_body: Node2D) -> void:
+	if (not right_ground_check.has_overlapping_bodies()):
+		if (direction == Directions.RIGHT):
+			direction = Directions.LEFT

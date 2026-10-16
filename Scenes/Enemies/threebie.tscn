@@ -27,6 +27,9 @@ size = Vector2(20, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
 size = Vector2(20, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(4, 4)
+
 [sub_resource type="Animation" id="Animation_to2lr"]
 length = 0.001
 tracks/0/type = "value"
@@ -139,6 +142,22 @@ collision_mask = 82444
 position = Vector2(2, 12)
 shape = SubResource("RectangleShape2D_cp0ws")
 
+[node name="LeftGroundCheck" type="Area2D" parent="." unique_id=1192032172]
+position = Vector2(-10, 30)
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGroundCheck" unique_id=1944342501]
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="RightGroundCheck" type="Area2D" parent="." unique_id=366766365]
+position = Vector2(10, 30)
+collision_layer = 1024
+collision_mask = 82444
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGroundCheck" unique_id=997840348]
+shape = SubResource("RectangleShape2D_jh5pk")
+
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1578907672]
 position = Vector2(-6, 2)
 rect = Rect2(-26, -26, 64, 72)
@@ -158,8 +177,8 @@ one_shot = true
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_523b3")]
 body = NodePath("../..")
-walk_speed = 100.0
-run_speed = 100.0
+walk_speed = 45.0
+run_speed = 45.0
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_wqi70")]
 body = NodePath("../..")
@@ -168,5 +187,7 @@ body = NodePath("../..")
 [connection signal="body_entered" from="HeadlessPlayerCheck" to="." method="_on_headless_player_check_body_entered"]
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
+[connection signal="body_exited" from="LeftGroundCheck" to="." method="_on_left_ground_check_body_exited"]
+[connection signal="body_exited" from="RightGroundCheck" to="." method="_on_right_ground_check_body_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
