@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://lwitvakr70ci"]
+
+[ext_resource type="Script" uid="uid://d3y8g1t3is0uc" path="res://Scripts/Components/swim_com.gd" id="1_flk4c"]
+
+[node name="SwimCom" type="Node" unique_id=1961788864]
+script = ExtResource("1_flk4c")

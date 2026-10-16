@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://b7nu3em0ku77g"]
 
 [ext_resource type="Script" uid="uid://cmamkh1obi5h5" path="res://Scripts/player.gd" id="1_cvnsp"]
-[ext_resource type="Texture2D" uid="uid://bd0mw526glito" path="res://Assets/Sprites/Waffle.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://b02tohk3duep5" path="res://Assets/Sprites/Waffle.png" id="1_v0iea"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_6t5aa"]
 [ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="4_vgqql"]
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="5_fkybt"]
 [ext_resource type="PackedScene" uid="uid://c2v66c3ej22aj" path="res://Scenes/Components/anim_com.tscn" id="6_x3wgy"]
+[ext_resource type="PackedScene" uid="uid://lwitvakr70ci" path="res://Scenes/Components/swim_com.tscn" id="7_3smsa"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
 radius = 8.0
@@ -56,6 +57,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [11]
+}
+
+[sub_resource type="Animation" id="Animation_83xs0"]
+resource_name = "candy_swim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [29, 30, 28]
 }
 
 [sub_resource type="Animation" id="Animation_p1odr"]
@@ -137,6 +154,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_y6uwr"]
+resource_name = "normal_swim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [21, 22, 20]
 }
 
 [sub_resource type="Animation" id="Animation_ukyrk"]
@@ -234,6 +267,22 @@ tracks/0/keys = {
 "values": [7]
 }
 
+[sub_resource type="Animation" id="Animation_ypfnu"]
+resource_name = "sandwich_swim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [25, 26, 24]
+}
+
 [sub_resource type="Animation" id="Animation_7dp3o"]
 resource_name = "sandwich_to_candy"
 tracks/0/type = "value"
@@ -287,17 +336,20 @@ _data = {
 &"RESET": SubResource("Animation_v0iea"),
 &"candy_idle": SubResource("Animation_cvnsp"),
 &"candy_jump": SubResource("Animation_6t5aa"),
+&"candy_swim": SubResource("Animation_83xs0"),
 &"candy_turn": SubResource("Animation_p1odr"),
 &"candy_walk": SubResource("Animation_vgqql"),
 &"death": SubResource("Animation_fkybt"),
 &"normal_idle": SubResource("Animation_x3wgy"),
 &"normal_jump": SubResource("Animation_3smsa"),
+&"normal_swim": SubResource("Animation_y6uwr"),
 &"normal_to_candy": SubResource("Animation_ukyrk"),
 &"normal_to_sandwich": SubResource("Animation_pu2lt"),
 &"normal_turn": SubResource("Animation_0gysh"),
 &"normal_walk": SubResource("Animation_8erm5"),
 &"sandwich_idle": SubResource("Animation_f1ek2"),
 &"sandwich_jump": SubResource("Animation_tx1dd"),
+&"sandwich_swim": SubResource("Animation_ypfnu"),
 &"sandwich_to_candy": SubResource("Animation_7dp3o"),
 &"sandwich_turn": SubResource("Animation_vfarp"),
 &"sandwich_walk": SubResource("Animation_gymyn")
@@ -523,7 +575,7 @@ script = ExtResource("1_cvnsp")
 scale = Vector2(4, 4)
 texture = ExtResource("1_v0iea")
 hframes = 4
-vframes = 5
+vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1976793151]
 position = Vector2(0, 12)
@@ -590,11 +642,20 @@ jump_release_dec = 0.5
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("5_fkybt")]
 body = NodePath("../..")
+swim_grav = Vector2(0, 900)
 
 [node name="AnimCom" parent="Components" unique_id=1687221079 node_paths=PackedStringArray("sprite", "anim_player", "move_player") instance=ExtResource("6_x3wgy")]
 sprite = NodePath("../../Sprite2D")
 anim_player = NodePath("../../AnimationPlayer")
 move_player = NodePath("../../MovePlayer")
+
+[node name="SwimCom" parent="Components" unique_id=1961788864 node_paths=PackedStringArray("body") instance=ExtResource("7_3smsa")]
+body = NodePath("../..")
+swim_velocity = -300.0
+hori_speed = 125.0
+max_hori_speed = 175.0
+hori_acc = 0.1
+hori_dec = 0.1
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]

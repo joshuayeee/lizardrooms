@@ -43,6 +43,13 @@ func handle_player_animation(direction: float,
 		else:
 			anim_player.play(idle_anim)
 
+func handle_player_swim_animation(direction: float, swim_anim: String, play_swim_query: bool) -> void:
+	if (direction):
+		sprite.flip_h = (direction < 0)
+	
+	if (play_swim_query):
+		anim_player.play(swim_anim)
+
 func handle_anim_change(old_state, 
 							new_state, 
 							norm_sand, 

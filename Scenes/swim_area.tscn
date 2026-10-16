@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dbo618mia1anf"]
+
+[ext_resource type="Script" uid="uid://0i60d48hum72" path="res://Scripts/swim_area.gd" id="1_p4sul"]
+
+[node name="SwimArea" type="Area2D" unique_id=617277854]
+collision_layer = 1048576
+collision_mask = 4099
+script = ExtResource("1_p4sul")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -19,6 +19,7 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 @onready var jump_com: JumpCom = $Components/JumpCom
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var anim_com: AnimCom = $Components/AnimCom
+@onready var swim_com: SwimCom = $Components/SwimCom
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var blink_player: AnimationPlayer = $BlinkPlayer
 @onready var cupcake_timer: Timer = $CupcakeTimer
@@ -47,22 +48,34 @@ var inf_cupcake_on: bool = false
 func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
 	if (Global.game_active):
-		gravity_com.handle_gravity(delta)
-		
-		jump_com.handle_jump(Input.is_action_just_pressed("jump") and is_on_floor())
-		jump_com.handle_jump_release(Input.is_action_just_released("jump") and velocity.y < 0)
-		
-		move_com.handle_speed_change(Input.is_action_pressed("run"))
-		
-		move_com.handle_hori_move(direction)
-		
-		anim_com.handle_player_animation(direction, 
+		match move_mode:
+			MoveModes.NORMAL:
+				gravity_com.handle_gravity(delta)
+				
+				jump_com.handle_jump(Input.is_action_just_pressed("jump") and is_on_floor())
+				jump_com.handle_jump_release(Input.is_action_just_released("jump") and velocity.y < 0)
+				
+				move_com.handle_speed_change(Input.is_action_pressed("run"))
+				move_com.handle_hori_move(direction)
+				
+				anim_com.handle_player_animation(direction, 
 									velocity,
 									not is_on_floor(), 
 									"%s_jump" % state, 
 									"%s_walk" % state,
 									"%s_turn" % state, 
 									"%s_idle" % state)
+				
+			MoveModes.SWIM:
+				gravity_com.handle_swim_gravity(delta)
+				
+				swim_com.handle_swim(Input.is_action_just_pressed("jump"))
+				
+				swim_com.handle_hori_speed_change(Input.is_action_pressed("run"))
+				swim_com.handle_hori_swim(direction)
+				
+				anim_com.handle_player_swim_animation(direction, "%s_swim" % state, velocity != Vector2.ZERO)
+		
 		
 		if (state == "candy"):
 			if (Input.is_action_just_pressed("run") and can_shoot):
@@ -201,6 +214,12 @@ func got_to_door(next_wl: String,
 func got_to_end() -> void:
 	anim_com.play_idle("%s_idle" % state)
 
+func set_move_mode(mode: MoveModes) -> void:
+	if (mode == MoveModes.SWIM):
+		anim_com.handle_player_swim_animation(1.0, "%s_swim" % state, true)
+	
+	move_mode = mode
+
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (can_check_up):
 		if (body.has_method("player_hit")):
@@ -212,6 +231,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		anim_name == "sandwich_to_candy" or 
 		anim_name == "normal_to_candy"):
 			Global.game_active = true
+			
+			if (move_mode == MoveModes.SWIM):
+				anim_com.handle_player_swim_animation(1.0, "%s_swim" % state, true)
 			
 			if (was_hurt):
 				turn_on_hurt_invincible()
@@ -260,13 +282,6 @@ func _on_cupcake_timer_timeout() -> void:
 
 func _on_hit_invin_timer_timeout() -> void:
 	hit_invin = false
-
-func set_move_mode(mode_name: String) -> void:
-	match mode_name:
-		"swim":
-			move_mode = MoveModes.SWIM
-		_:
-			move_mode = MoveModes.NORMAL
 
 #debug
 func turn_on_inf_cupcake_power() -> void:
