@@ -23,6 +23,7 @@ Global="*uid://ckg5v6dihwtae"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
+window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
@@ -124,6 +125,7 @@ debug_num_4={
 2d_physics/layer_18="EnemyProjectile"
 2d_physics/layer_19="Boss"
 2d_physics/layer_20="FallBox"
+2d_physics/layer_21="SwimArea"
 
 [physics]
 

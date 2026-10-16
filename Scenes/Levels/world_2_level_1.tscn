@@ -622,6 +622,18 @@ metadata/_scene_painted = true
 position = Vector2(872, -112)
 metadata/_scene_painted = true
 
+[node name="Donut43" parent="FrontLayer/DonutManager" unique_id=1681365992 instance=ExtResource("8_k73y4")]
+position = Vector2(304, -80)
+metadata/_scene_painted = true
+
+[node name="Donut44" parent="FrontLayer/DonutManager" unique_id=1205602687 instance=ExtResource("8_k73y4")]
+position = Vector2(355, -79)
+metadata/_scene_painted = true
+
+[node name="Donut55" parent="FrontLayer/DonutManager" unique_id=312098575 instance=ExtResource("8_k73y4")]
+position = Vector2(408, -80)
+metadata/_scene_painted = true
+
 [node name="Donut7" parent="FrontLayer/DonutManager" unique_id=374783377 instance=ExtResource("8_k73y4")]
 position = Vector2(1616, -80)
 metadata/_scene_painted = true
@@ -1402,9 +1414,6 @@ metadata/_scene_painted = true
 
 [node name="Stubby" parent="FrontLayer/EnemyManager" unique_id=632371933 instance=ExtResource("9_dyt38")]
 position = Vector2(1040, 0)
-
-[node name="Stubby6" parent="FrontLayer/EnemyManager" unique_id=889291523 instance=ExtResource("9_dyt38")]
-position = Vector2(336, -96)
 
 [node name="Stubby2" parent="FrontLayer/EnemyManager" unique_id=1348024652 instance=ExtResource("9_dyt38")]
 position = Vector2(1176, -96)

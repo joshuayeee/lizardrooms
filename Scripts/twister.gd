@@ -55,6 +55,7 @@ func _on_stop_timer_timeout() -> void:
 	state = States.MOVE
 
 func _on_move_timer_timeout() -> void:
-	drop_head()
+	if (Global.game_active):
+		drop_head()
 	stop_timer.start()
 	state = States.STOP

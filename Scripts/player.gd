@@ -24,6 +24,9 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 @onready var cupcake_timer: Timer = $CupcakeTimer
 @onready var end_timer: Timer = $EndTimer
 
+enum MoveModes {NORMAL, SWIM}
+var move_mode: MoveModes = MoveModes.NORMAL
+
 var state: String = "normal"
 var can_check_up: bool = true
 var can_enter: bool = false
@@ -255,6 +258,17 @@ func _on_hurt_timer_timeout() -> void:
 func _on_cupcake_timer_timeout() -> void:
 	turn_off_cupcake_power()
 
+func _on_hit_invin_timer_timeout() -> void:
+	hit_invin = false
+
+func set_move_mode(mode_name: String) -> void:
+	match mode_name:
+		"swim":
+			move_mode = MoveModes.SWIM
+		_:
+			move_mode = MoveModes.NORMAL
+
+#debug
 func turn_on_inf_cupcake_power() -> void:
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(13, true)
@@ -270,6 +284,3 @@ func _input(_event: InputEvent) -> void:
 			turn_on_inf_cupcake_power()
 			print("inf on")
 			inf_cupcake_on = true
-
-func _on_hit_invin_timer_timeout() -> void:
-	hit_invin = false
