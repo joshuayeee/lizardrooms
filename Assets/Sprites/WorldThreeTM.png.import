@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7pdiler6xjf"
-path="res://.godot/imported/Game Boy _ GBC - Super Mario Land - Stages - World 2-2.png-2761a82838c9c607c81f55b003a1d466.ctex"
+uid="uid://b3rkjfr884kjk"
+path="res://.godot/imported/WorldThreeTM.png-72c1ad14d15b4e0a853ec0d15cd019e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Game Boy _ GBC - Super Mario Land - Stages - World 2-2.png"
-dest_files=["res://.godot/imported/Game Boy _ GBC - Super Mario Land - Stages - World 2-2.png-2761a82838c9c607c81f55b003a1d466.ctex"]
+source_file="res://Assets/Sprites/WorldThreeTM.png"
+dest_files=["res://.godot/imported/WorldThreeTM.png-72c1ad14d15b4e0a853ec0d15cd019e5.ctex"]
 
 [params]
 

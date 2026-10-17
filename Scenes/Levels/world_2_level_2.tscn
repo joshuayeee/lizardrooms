@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://c8v2f33j51nvl" path="res://Scenes/Enemies/stubby.tscn" id="18_6cjmi"]
 [ext_resource type="PackedScene" uid="uid://k6eghro3lp8i" path="res://Scenes/moving_platform.tscn" id="18_a2xd7"]
 [ext_resource type="PackedScene" uid="uid://dxgnoy3dt6xa3" path="res://Scenes/Boxes/normal_box.tscn" id="18_n1ywo"]
-[ext_resource type="Texture2D" uid="uid://7pdiler6xjf" path="res://Assets/Game Boy _ GBC - Super Mario Land - Stages - World 2-2.png" id="18_yny2a"]
+[ext_resource type="Texture2D" uid="uid://7pdiler6xjf" path="res://Assets/Sprites/Game Boy _ GBC - Super Mario Land - Stages - World 2-2.png" id="18_yny2a"]
 [ext_resource type="PackedScene" uid="uid://c84syn288em4o" path="res://Scenes/Enemies/legs.tscn" id="19_7oyp7"]
 [ext_resource type="Texture2D" uid="uid://dibh88c5wkc6o" path="res://Assets/Sprites/WorldTwoBG.png" id="19_n1ywo"]
 [ext_resource type="PackedScene" uid="uid://dwv3oiprkicns" path="res://Scenes/Boxes/long_fall_box.tscn" id="20_d14hy"]
