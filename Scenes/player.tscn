@@ -646,7 +646,7 @@ jump_release_dec = 0.5
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("5_fkybt")]
 body = NodePath("../..")
-swim_grav = Vector2(0, 900)
+swim_grav = Vector2(0, 600)
 
 [node name="AnimCom" parent="Components" unique_id=1687221079 node_paths=PackedStringArray("sprite", "anim_player", "move_player") instance=ExtResource("6_x3wgy")]
 sprite = NodePath("../../Sprite2D")
@@ -655,8 +655,8 @@ move_player = NodePath("../../MovePlayer")
 
 [node name="SwimCom" parent="Components" unique_id=1961788864 node_paths=PackedStringArray("body") instance=ExtResource("7_3smsa")]
 body = NodePath("../..")
-swim_velocity = -300.0
-hori_speed = 100.0
+swim_velocity = -250.0
+hori_speed = 125.0
 max_hori_speed = 125.0
 hori_acc = 0.1
 hori_dec = 0.1

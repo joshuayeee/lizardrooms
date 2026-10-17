@@ -92,15 +92,25 @@ func start_fight() -> void:
 
 func switch_sides() -> void:
 	state = States.SWITCH
-	match side:
-		Sides.LEFT:
-			global_position = right_bot_point.global_position
-			side = Sides.RIGHT
-			sprite_2d.flip_h = false
-		Sides.RIGHT:
+	if (player != null):
+		if (player.global_position.x > global_position.x):
 			global_position = left_bot_point.global_position
 			side = Sides.LEFT
 			sprite_2d.flip_h = true
+		else:
+			global_position = right_bot_point.global_position
+			side = Sides.RIGHT
+			sprite_2d.flip_h = false
+	else:
+		match side:
+			Sides.LEFT:
+				global_position = right_bot_point.global_position
+				side = Sides.RIGHT
+				sprite_2d.flip_h = false
+			Sides.RIGHT:
+				global_position = left_bot_point.global_position
+				side = Sides.LEFT
+				sprite_2d.flip_h = true
 	handle_move_top()
 
 func spawn_minions() -> void:
