@@ -24,6 +24,7 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 @onready var blink_player: AnimationPlayer = $BlinkPlayer
 @onready var cupcake_timer: Timer = $CupcakeTimer
 @onready var end_timer: Timer = $EndTimer
+@onready var swim_check_timer: Timer = $SwimCheckTimer
 
 enum MoveModes {NORMAL, SWIM}
 var move_mode: MoveModes = MoveModes.NORMAL
@@ -66,6 +67,9 @@ func _physics_process(delta: float) -> void:
 									"%s_turn" % state, 
 									"%s_idle" % state)
 				
+				if (is_on_floor() and not can_check_up):
+					can_check_up = true
+				
 			MoveModes.SWIM:
 				gravity_com.handle_swim_gravity(delta)
 				
@@ -97,9 +101,6 @@ func _physics_process(delta: float) -> void:
 						enter_false_wall()
 	else:
 		velocity = Vector2.ZERO
-	
-	if (is_on_floor() and not can_check_up):
-		can_check_up = true
 	
 	move_and_slide()
 
@@ -225,6 +226,9 @@ func _on_up_check_body_entered(body: Node2D) -> void:
 		if (body.has_method("player_hit")):
 			body.player_hit(self)
 			can_check_up = false
+			
+			if (move_mode == MoveModes.SWIM):
+				swim_check_timer.start()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (anim_name == "normal_to_sandwich" or
@@ -282,6 +286,10 @@ func _on_cupcake_timer_timeout() -> void:
 
 func _on_hit_invin_timer_timeout() -> void:
 	hit_invin = false
+
+func _on_swim_check_timer_timeout() -> void:
+	if (move_mode == MoveModes.SWIM):
+		can_check_up = true
 
 #debug
 func turn_on_inf_cupcake_power() -> void:

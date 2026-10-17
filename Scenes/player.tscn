@@ -625,6 +625,10 @@ one_shot = true
 wait_time = 0.5
 one_shot = true
 
+[node name="SwimCheckTimer" type="Timer" parent="." unique_id=201013863]
+wait_time = 0.1
+one_shot = true
+
 [node name="Components" type="Node" parent="." unique_id=1656433539]
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_6t5aa")]
@@ -664,3 +668,4 @@ hori_dec = 0.1
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="timeout" from="CupcakeTimer" to="." method="_on_cupcake_timer_timeout"]
 [connection signal="timeout" from="HitInvinTimer" to="." method="_on_hit_invin_timer_timeout"]
+[connection signal="timeout" from="SwimCheckTimer" to="." method="_on_swim_check_timer_timeout"]

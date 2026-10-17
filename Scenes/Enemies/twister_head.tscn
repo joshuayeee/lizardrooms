@@ -32,10 +32,8 @@ collision_mask = 2
 position = Vector2(2, 6)
 shape = SubResource("RectangleShape2D_ydotr")
 
-[node name="LifeTimer" type="Timer" parent="." unique_id=1555596996]
-wait_time = 2.0
-one_shot = true
-autostart = true
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1119173656]
+rect = Rect2(-12, -8, 28, 28)
 
 [node name="Components" type="Node" parent="." unique_id=984168268]
 
@@ -45,4 +43,4 @@ walk_speed = 200.0
 run_speed = 200.0
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
-[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

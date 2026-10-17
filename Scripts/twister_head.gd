@@ -19,5 +19,5 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 		if (Global.game_active):
 			body.hurt()
 
-func _on_life_timer_timeout() -> void:
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	call_deferred("queue_free")
