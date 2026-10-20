@@ -21,7 +21,7 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_jh5pk")
 
 [node name="StopPoint" type="Node2D" parent="." unique_id=621606520]
-position = Vector2(-1, -28)
+position = Vector2(0, -60)
 
 [node name="GoUpTimer" type="Timer" parent="." unique_id=1301717585]
 wait_time = 2.0
@@ -44,8 +44,6 @@ script = ExtResource("3_e16p5")
 body = NodePath("../..")
 walk_speed = 75.0
 run_speed = 75.0
-acc = 1.0
-dec = 1.0
 metadata/_custom_type_script = "uid://bclth0n42rvjc"
 
 [connection signal="timeout" from="GoUpTimer" to="." method="_on_go_up_timer_timeout"]

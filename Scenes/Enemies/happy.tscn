@@ -19,12 +19,6 @@ size = Vector2(24, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
 size = Vector2(24, 12)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbytq"]
-size = Vector2(4, 4)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5iox7"]
-size = Vector2(4, 4)
-
 [sub_resource type="Animation" id="Animation_l1rcc"]
 length = 0.001
 tracks/0/type = "value"
@@ -107,22 +101,6 @@ collision_mask = 2703884
 position = Vector2(4, 14)
 shape = SubResource("RectangleShape2D_gsddi")
 
-[node name="LeftGroundCheck" type="Area2D" parent="." unique_id=59399428]
-collision_layer = 1024
-collision_mask = 2703884
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGroundCheck" unique_id=359216431]
-position = Vector2(-14, 34)
-shape = SubResource("RectangleShape2D_mbytq")
-
-[node name="RightGroundCheck" type="Area2D" parent="." unique_id=515136413]
-collision_layer = 1024
-collision_mask = 2703884
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGroundCheck" unique_id=583279809]
-position = Vector2(14, 34)
-shape = SubResource("RectangleShape2D_5iox7")
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1209802459]
 position = Vector2(-10, 6)
 rect = Rect2(-22, -22, 64, 64)
@@ -144,6 +122,4 @@ body = NodePath("../..")
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
 [connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
-[connection signal="body_exited" from="LeftGroundCheck" to="." method="_on_left_ground_check_body_exited"]
-[connection signal="body_exited" from="RightGroundCheck" to="." method="_on_right_ground_check_body_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -11,8 +11,8 @@ const BULLET = preload("uid://b4qltgag5er64")
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var bullet_spawn_point: Node2D = $BulletSpawnPoint
 
-@onready var stop_point_y: float = stop_point.position.y
-@onready var init_point_y: float = position.y
+@onready var stop_point_y: float = stop_point.global_position.y
+@onready var init_point_y: float = global_position.y
 
 var enemy_manager: EnemyManager = null
 var player: Player = null

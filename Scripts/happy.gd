@@ -3,8 +3,6 @@ extends Enemy
 class_name Happy
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var left_ground_check: Area2D = $LeftGroundCheck
-@onready var right_ground_check: Area2D = $RightGroundCheck
 @onready var move_com: MoveCom = $Components/MoveCom
 @onready var gravity_com: GravityCom = $Components/GravityCom
 
@@ -35,18 +33,6 @@ func _on_right_check_body_entered(_body: Node2D) -> void:
 	if (direction == Directions.RIGHT):
 		direction = Directions.LEFT
 		sprite_2d.flip_h = false
-
-func _on_left_ground_check_body_exited(_body: Node2D) -> void:
-	if (not left_ground_check.has_overlapping_bodies()):
-		if (direction == Directions.LEFT):
-			direction = Directions.RIGHT
-			sprite_2d.flip_h = true
-
-func _on_right_ground_check_body_exited(_body: Node2D) -> void:
-	if (not right_ground_check.has_overlapping_bodies()):
-		if (direction == Directions.RIGHT):
-			direction = Directions.LEFT
-			sprite_2d.flip_h = false
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
