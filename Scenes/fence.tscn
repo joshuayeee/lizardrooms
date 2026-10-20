@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://b6i8xsreokir"]
+
+[ext_resource type="Script" uid="uid://0h1hswqb5xlq" path="res://Scripts/fence.gd" id="1_3vuvy"]
+[ext_resource type="Texture2D" uid="uid://dhq8d07cvttow" path="res://Assets/Sprites/Fence.png" id="1_on2qe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(64, 50)
+
+[node name="Fence" type="StaticBody2D" unique_id=1298402021]
+collision_layer = 4
+collision_mask = 4099
+script = ExtResource("1_3vuvy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2147212575]
+scale = Vector2(4, 4)
+texture = ExtResource("1_on2qe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2124726293]
+shape = SubResource("RectangleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=1804412340]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=153158587]
+position = Vector2(0, -15)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]

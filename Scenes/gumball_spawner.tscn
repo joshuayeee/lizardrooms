@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cp7nqsc6uwxr8"]
+
+[ext_resource type="Script" uid="uid://cevvuajgewutx" path="res://Scripts/gumball_spawner.gd" id="1_83ywp"]
+
+[node name="GumballSpawner" type="Node2D" unique_id=104986652]
+script = ExtResource("1_83ywp")
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1794789170]
+wait_time = 5.0
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1349153581]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

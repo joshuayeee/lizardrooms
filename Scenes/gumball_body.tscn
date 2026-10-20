@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bil4h5dh2ujyt"]
+
+[ext_resource type="Script" uid="uid://bb1edof13wkji" path="res://Scripts/gumball_body.gd" id="1_vyqwb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(64, 64)
+
+[node name="GumballBody" type="AnimatableBody2D" unique_id=902529291]
+collision_layer = 16384
+collision_mask = 4099
+script = ExtResource("1_vyqwb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1219466980]
+shape = SubResource("RectangleShape2D_jh5pk")

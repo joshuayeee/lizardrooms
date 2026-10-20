@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://ys1stw2evkc6"]
+
+[ext_resource type="Script" uid="uid://bmwrm3nyhkd8r" path="res://Scripts/gumball.gd" id="1_gbtk0"]
+[ext_resource type="Texture2D" uid="uid://hfsjm1r4qngx" path="res://Assets/Sprites/Gumball.png" id="1_k7wv6"]
+[ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="2_fqv2f"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="3_gbtk0"]
+[ext_resource type="PackedScene" uid="uid://bric1hanqaxov" path="res://Scenes/Components/jump_com.tscn" id="4_maftn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
+size = Vector2(20, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
+size = Vector2(20, 48)
+
+[node name="Gumball" type="CharacterBody2D" unique_id=1304079477]
+collision_layer = 16384
+collision_mask = 2687500
+script = ExtResource("1_gbtk0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1936160721]
+scale = Vector2(4, 4)
+texture = ExtResource("1_k7wv6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2131006196]
+shape = SubResource("RectangleShape2D_gsddi")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2059948003]
+rect = Rect2(-32, -32, 64, 64)
+
+[node name="BottomCheck" type="Area2D" parent="." unique_id=2133141606]
+collision_layer = 16384
+collision_mask = 2707983
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomCheck" unique_id=990641257]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="LeftCheck" type="Area2D" parent="." unique_id=1213082652]
+collision_layer = 16384
+collision_mask = 2703884
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftCheck" unique_id=858612671]
+position = Vector2(-24, 0)
+shape = SubResource("RectangleShape2D_3gji2")
+
+[node name="RightCheck" type="Area2D" parent="." unique_id=194999885]
+collision_layer = 16384
+collision_mask = 2703884
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightCheck" unique_id=156363964]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_cp0ws")
+
+[node name="Components" type="Node" parent="." unique_id=560675566]
+
+[node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("2_fqv2f")]
+body = NodePath("../..")
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_gbtk0")]
+body = NodePath("../..")
+walk_speed = 100.0
+run_speed = 100.0
+
+[node name="JumpCom" parent="Components" unique_id=433840986 node_paths=PackedStringArray("body") instance=ExtResource("4_maftn")]
+body = NodePath("../..")
+jump_velocity = -500.0
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="BottomCheck" to="." method="_on_bottom_check_body_entered"]
+[connection signal="body_entered" from="LeftCheck" to="." method="_on_left_check_body_entered"]
+[connection signal="body_entered" from="RightCheck" to="." method="_on_right_check_body_entered"]
