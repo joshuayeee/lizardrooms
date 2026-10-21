@@ -593,7 +593,7 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 sources/1 = SubResource("TileSetAtlasSource_ocpai")
 
-[node name="BaseLevel" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "enemy_managers")]
+[node name="World3Level1" type="Node2D" unique_id=248375851 node_paths=PackedStringArray("front_layer", "mid_layer", "UI_layer", "back_layer", "checkpoint_manager", "cam_point_manager", "jawbreaker_manager", "canny_manager", "lives_label", "donuts_label", "enemy_managers")]
 script = ExtResource("1_on4wa")
 front_layer = NodePath("FrontLayer")
 mid_layer = NodePath("MidLayer")
@@ -694,6 +694,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_2a4j4")
 
 [node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint" unique_id=1662536646]
+position = Vector2(0, 136)
 
 [node name="Checkpoint2" parent="FrontLayer/CheckpointManager" unique_id=2084959242 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_ocpai")]
 position = Vector2(2504, 0)
