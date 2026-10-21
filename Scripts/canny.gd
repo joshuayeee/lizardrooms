@@ -30,7 +30,7 @@ func _physics_process(_delta: float) -> void:
 		if (is_active):
 			
 			if (player != null):
-				if (player.position.x > position.x):
+				if (player.global_position.x > global_position.x):
 					direction = Directions.RIGHT
 					sprite_2d.flip_h = true
 				else:
@@ -41,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 				States.MOVE_UP:
 					move_com.handle_vert_move(-1.0)
 					
-					if (position.y <= stop_point_y):
+					if (global_position.y <= stop_point_y):
 						fire_bullet()
 						go_down_timer.start()
 						state = States.STOP
@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 				States.MOVE_DOWN:
 					move_com.handle_vert_move(1.0)
 					
-					if (position.y >= init_point_y):
+					if (global_position.y >= init_point_y):
 						go_up_timer.start()
 						state = States.STOP
 		else:
