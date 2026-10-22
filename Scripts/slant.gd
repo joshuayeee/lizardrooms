@@ -3,21 +3,22 @@ extends Enemy
 class_name Slant
 
 @onready var move_com: MoveCom = $Components/MoveCom
-@onready var cool_down_timer: Timer = $CoolDownTimer
 @onready var stop_timer: Timer = $StopTimer
+@onready var attack_timer: Timer = $AttackTimer
 @onready var range_check: Area2D = $RangeCheck
-
-@onready var init_y: float = global_position.y
 
 enum States {STOP, DROP, RISE}
 var state: States = States.STOP
 
 var can_attack: bool = true
 
+var init_pos: Vector2 = Vector2.ZERO
+
 func _ready():
 	is_active = true
+	init_pos = global_position
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		if (is_active):
 			match state:
@@ -27,14 +28,13 @@ func _physics_process(_delta: float) -> void:
 					if (can_attack and range_check.has_overlapping_bodies()):
 						state = States.DROP
 						can_attack = false
-						cool_down_timer.start()
 				States.DROP:
 					move_com.handle_vert_move(1.0)
 				States.RISE:
-					move_com.handle_vert_move(-1.0)
-					
-					if (global_position.y <= init_y):
+					if (move_com.handle_move_to(init_pos, delta)):
+						global_position = init_pos
 						state = States.STOP
+						attack_timer.start()
 		else:
 			velocity = Vector2.ZERO
 	else:
@@ -51,7 +51,7 @@ func _on_stop_timer_timeout() -> void:
 	if (state == States.STOP):
 		state = States.RISE
 
-func _on_cool_down_timer_timeout() -> void:
+func _on_attack_timer_timeout() -> void:
 	can_attack = true
 
 func _on_player_check_body_entered(body: Node2D) -> void:

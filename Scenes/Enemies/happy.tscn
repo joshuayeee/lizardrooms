@@ -113,8 +113,8 @@ autoplay = &"move"
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_2kb01")]
 body = NodePath("../..")
-walk_speed = 300.0
-run_speed = 300.0
+walk_speed = 250.0
+run_speed = 250.0
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_l1rcc")]
 body = NodePath("../..")
