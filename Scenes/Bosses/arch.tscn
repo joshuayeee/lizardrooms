@@ -142,6 +142,7 @@ one_shot = true
 one_shot = true
 
 [node name="ShootTimer" type="Timer" parent="Timers" unique_id=1071349553]
+wait_time = 0.7
 one_shot = true
 
 [node name="PreSwoopTimer" type="Timer" parent="Timers" unique_id=518155906]
@@ -151,7 +152,6 @@ one_shot = true
 one_shot = true
 
 [node name="LaunchTimer" type="Timer" parent="Timers" unique_id=1583599018]
-wait_time = 5.0
 one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=1468712320]

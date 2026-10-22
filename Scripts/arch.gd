@@ -46,6 +46,9 @@ var minion_amount: int = 9
 
 var beam: ArchBeam = null
 
+func _ready() -> void:
+	randomize()
+
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		if (is_active):
@@ -160,7 +163,6 @@ func create_minions() -> void:
 		minions.append(minion)
 
 func launch_minion() -> void:
-	randomize()
 	if (not minions.is_empty()):
 		var rand_num: int = randi_range(0, len(minions) - 1)
 		var minion: ArchMinion = minions[rand_num]
