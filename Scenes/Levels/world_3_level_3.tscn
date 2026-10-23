@@ -1721,9 +1721,6 @@ position = Vector2(3392, -136)
 [node name="Twister6" parent="FrontLayer/EnemyManager" unique_id=1480658584 instance=ExtResource("15_mdwcy")]
 position = Vector2(3328, -136)
 
-[node name="Twister2" parent="FrontLayer/EnemyManager" unique_id=402908822 instance=ExtResource("15_mdwcy")]
-position = Vector2(4872, -128)
-
 [node name="Twister3" parent="FrontLayer/EnemyManager" unique_id=781287776 instance=ExtResource("15_mdwcy")]
 position = Vector2(6208, -128)
 
