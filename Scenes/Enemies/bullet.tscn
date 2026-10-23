@@ -87,8 +87,8 @@ autoplay = &"move"
 [node name="MoveCom" type="Node" parent="Components" unique_id=1025196829 node_paths=PackedStringArray("body")]
 script = ExtResource("3_ycag2")
 body = NodePath("../..")
-walk_speed = 450.0
-run_speed = 450.0
+walk_speed = 300.0
+run_speed = 300.0
 metadata/_custom_type_script = "uid://bclth0n42rvjc"
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]

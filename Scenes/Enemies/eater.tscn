@@ -90,9 +90,6 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=466633587]
-rect = Rect2(-32, -40, 64, 88)
-
 [node name="PoofPoint" type="Node2D" parent="." unique_id=992871937]
 position = Vector2(0, 8)
 
@@ -114,6 +111,5 @@ run_speed = 75.0
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="timeout" from="GoDownTimer" to="." method="_on_go_down_timer_timeout"]
 [connection signal="timeout" from="GoUpTimer" to="." method="_on_go_up_timer_timeout"]
-[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="body_entered" from="UpCheck" to="." method="_on_up_check_body_entered"]
 [connection signal="body_exited" from="UpCheck" to="." method="_on_up_check_body_exited"]

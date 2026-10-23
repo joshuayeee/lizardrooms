@@ -5,30 +5,29 @@ extends Enemy
 @onready var go_down_timer: Timer = $GoDownTimer
 @onready var go_up_timer: Timer = $GoUpTimer
 
-@onready var stop_point_y: float = stop_point.global_position.y
-@onready var init_point_y: float = global_position.y
+@onready var init_stop_point: Vector2 = stop_point.global_position
+@onready var init_point: Vector2 = global_position
 
-enum States {MOVE_UP, STOP, MOVE_DOWN}
-var state: States = States.MOVE_UP
+enum States {MOVE_TO_STOP, STOP, MOVE_TO_INIT}
+var state: States = States.MOVE_TO_STOP
 
 var player_above: bool = false
 
-func _physics_process(_delta: float) -> void:
+func _ready() -> void:
+	is_active = true
+
+func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		if (is_active):
 			match state:
-				States.MOVE_UP:
-					move_com.handle_vert_move(-1.0)
-					
-					if (position.y <= stop_point_y):
+				States.MOVE_TO_STOP:
+					if (move_com.handle_move_to(init_stop_point, delta)):
 						go_down_timer.start()
 						state = States.STOP
 				States.STOP:
 					velocity = Vector2.ZERO
-				States.MOVE_DOWN:
-					move_com.handle_vert_move(1.0)
-					
-					if (position.y >= init_point_y):
+				States.MOVE_TO_INIT:
+					if (move_com.handle_move_to(init_point, delta)):
 						go_up_timer.start()
 						state = States.STOP
 		else:
@@ -52,15 +51,12 @@ func _on_player_check_body_entered(body: Node2D) -> void:
 
 func _on_go_up_timer_timeout() -> void:
 	if (not player_above):
-		state = States.MOVE_UP
+		state = States.MOVE_TO_STOP
 	else:
 		go_up_timer.start()
 
 func _on_go_down_timer_timeout() -> void:
-	state = States.MOVE_DOWN
-
-func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	is_active = true
+	state = States.MOVE_TO_INIT
 
 func _on_up_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
