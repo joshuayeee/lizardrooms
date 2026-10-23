@@ -6,8 +6,11 @@ const GUMBALL = preload("uid://ys1stw2evkc6")
 const GUMBALL_BODY = preload("uid://bil4h5dh2ujyt")
 
 @export var my_layer: CanvasLayer = null
+@export var spawn_once: bool = false
 
 @onready var spawn_timer: Timer = $SpawnTimer
+
+
 
 func spawn_gumball() -> void:
 	var gumball: Gumball = GUMBALL.instantiate()
@@ -20,10 +23,10 @@ func spawn_gumball() -> void:
 	my_layer.add_child(gumball_body)
 	my_layer.add_child(gumball)
 
-
 func _on_spawn_timer_timeout() -> void:
 	spawn_gumball()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	spawn_gumball()
-	spawn_timer.start()
+	if (not spawn_once):
+		spawn_timer.start()

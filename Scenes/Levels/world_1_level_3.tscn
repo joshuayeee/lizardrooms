@@ -41,16 +41,16 @@
 [ext_resource type="PackedScene" uid="uid://ch8jhusf3twmu" path="res://Scenes/Enemies/eater.tscn" id="33_h21y4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
-size = Vector2(64, 20)
+size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
-size = Vector2(20, 64)
+size = Vector2(20, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
-size = Vector2(64, 20)
+size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
-size = Vector2(20, 64)
+size = Vector2(20, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a4j4"]
 size = Vector2(50, 522)

@@ -46,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_l63ls")
 text = "THE LOBBY"
+horizontal_alignment = 1
 
 [node name="Timer" type="Timer" parent="." unique_id=872840828]
 wait_time = 2.0

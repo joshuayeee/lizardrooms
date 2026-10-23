@@ -41,16 +41,16 @@
 [ext_resource type="PackedScene" uid="uid://dhwllct0rb7by" path="res://Scenes/Enemies/canny.tscn" id="29_xhdeu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
-size = Vector2(64, 20)
+size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
-size = Vector2(20, 64)
+size = Vector2(20, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
-size = Vector2(64, 20)
+size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
-size = Vector2(20, 64)
+size = Vector2(20, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a4j4"]
 size = Vector2(50, 522)

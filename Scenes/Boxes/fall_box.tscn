@@ -19,12 +19,11 @@ texture = ExtResource("2_sebub")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=853745687]
 shape = SubResource("RectangleShape2D_jh5pk")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1232722670]
+rect = Rect2(-16, -16, 32, 32)
+
 [node name="DropTimer" type="Timer" parent="." unique_id=1523811304]
 wait_time = 0.2
-one_shot = true
-
-[node name="LifeTimer" type="Timer" parent="." unique_id=2065602234]
-wait_time = 10.0
 one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=1438551752]
@@ -34,5 +33,5 @@ body = NodePath("../..")
 walk_speed = 200.0
 run_speed = 200.0
 
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
-[connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]

@@ -39,16 +39,16 @@
 [ext_resource type="Texture2D" uid="uid://dueaj0lc47nwk" path="res://Assets/Sprites/WaterTM.png" id="25_c4rhk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
-size = Vector2(64, 20)
+size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gji2"]
-size = Vector2(20, 64)
+size = Vector2(20, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cp0ws"]
-size = Vector2(64, 20)
+size = Vector2(48, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gsddi"]
-size = Vector2(20, 64)
+size = Vector2(20, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2a4j4"]
 size = Vector2(50, 522)
@@ -1189,66 +1189,6 @@ metadata/_scene_painted = true
 
 [node name="Donut129" parent="FrontLayer/DonutManager" unique_id=305560951 instance=ExtResource("10_w76vr")]
 position = Vector2(4520, 80)
-metadata/_scene_painted = true
-
-[node name="Donut131" parent="FrontLayer/DonutManager" unique_id=1839637623 instance=ExtResource("10_w76vr")]
-position = Vector2(4192, -160)
-metadata/_scene_painted = true
-
-[node name="Donut132" parent="FrontLayer/DonutManager" unique_id=1519245243 instance=ExtResource("10_w76vr")]
-position = Vector2(4248, -160)
-metadata/_scene_painted = true
-
-[node name="Donut133" parent="FrontLayer/DonutManager" unique_id=109533778 instance=ExtResource("10_w76vr")]
-position = Vector2(4304, -160)
-metadata/_scene_painted = true
-
-[node name="Donut134" parent="FrontLayer/DonutManager" unique_id=730288028 instance=ExtResource("10_w76vr")]
-position = Vector2(4848, -160)
-metadata/_scene_painted = true
-
-[node name="Donut135" parent="FrontLayer/DonutManager" unique_id=1953399214 instance=ExtResource("10_w76vr")]
-position = Vector2(4968, -160)
-metadata/_scene_painted = true
-
-[node name="Donut136" parent="FrontLayer/DonutManager" unique_id=1061819765 instance=ExtResource("10_w76vr")]
-position = Vector2(4912, -160)
-metadata/_scene_painted = true
-
-[node name="Donut137" parent="FrontLayer/DonutManager" unique_id=405394950 instance=ExtResource("10_w76vr")]
-position = Vector2(3512, -168)
-metadata/_scene_painted = true
-
-[node name="Donut139" parent="FrontLayer/DonutManager" unique_id=1900823042 instance=ExtResource("10_w76vr")]
-position = Vector2(3656, -168)
-metadata/_scene_painted = true
-
-[node name="Donut138" parent="FrontLayer/DonutManager" unique_id=741545432 instance=ExtResource("10_w76vr")]
-position = Vector2(3584, -168)
-metadata/_scene_painted = true
-
-[node name="Donut140" parent="FrontLayer/DonutManager" unique_id=378709090 instance=ExtResource("10_w76vr")]
-position = Vector2(2824, -144)
-metadata/_scene_painted = true
-
-[node name="Donut141" parent="FrontLayer/DonutManager" unique_id=830842323 instance=ExtResource("10_w76vr")]
-position = Vector2(2872, -144)
-metadata/_scene_painted = true
-
-[node name="Donut142" parent="FrontLayer/DonutManager" unique_id=1147141349 instance=ExtResource("10_w76vr")]
-position = Vector2(2920, -144)
-metadata/_scene_painted = true
-
-[node name="Donut143" parent="FrontLayer/DonutManager" unique_id=597118028 instance=ExtResource("10_w76vr")]
-position = Vector2(5520, -152)
-metadata/_scene_painted = true
-
-[node name="Donut144" parent="FrontLayer/DonutManager" unique_id=1594526322 instance=ExtResource("10_w76vr")]
-position = Vector2(5568, -152)
-metadata/_scene_painted = true
-
-[node name="Donut145" parent="FrontLayer/DonutManager" unique_id=1969228586 instance=ExtResource("10_w76vr")]
-position = Vector2(5616, -152)
 metadata/_scene_painted = true
 
 [node name="Donut146" parent="FrontLayer/DonutManager" unique_id=808034849 instance=ExtResource("10_w76vr")]
