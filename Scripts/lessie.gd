@@ -234,7 +234,7 @@ func handle_jawbreaker_hurt(lives_amount: int) -> void:
 
 func handle_weak_fire() -> void:
 	state = States.WEAK_FIRE
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("fire")
 	shoot_weak_fire()
@@ -242,7 +242,7 @@ func handle_weak_fire() -> void:
 
 func handle_strong_fire() -> void:
 	state = States.STRONG_FIRE
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("fire")
 	shoot_strong_fire()
@@ -251,7 +251,7 @@ func handle_strong_fire() -> void:
 
 func handle_short_charge() -> void:
 	state = States.SHORT_CHARGE
-	is_vulnerable = false
+	is_vulnerable = true
 	can_attack = true
 	animation_player.play("charge")
 	short_charge_timer.start()

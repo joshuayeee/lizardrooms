@@ -17,8 +17,10 @@
 [ext_resource type="PackedScene" uid="uid://grdglvdkkcx" path="res://Scenes/Items/donut.tscn" id="11_a1651"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="12_daktq"]
 [ext_resource type="PackedScene" uid="uid://u3b752tjrg7o" path="res://Scenes/Boxes/box_manager.tscn" id="13_3oy6a"]
+[ext_resource type="PackedScene" uid="uid://c0gf30ymvsbxm" path="res://Scenes/Enemies/friend.tscn" id="13_5g57h"]
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/Enemies/canny_manager.tscn" id="14_4k66p"]
 [ext_resource type="Texture2D" uid="uid://b2uqrq2a3xkm" path="res://Assets/Sprites/FalseWallTM2.png" id="14_gbq37"]
+[ext_resource type="PackedScene" uid="uid://bptikr8blocel" path="res://Scenes/Enemies/kaboom.tscn" id="14_j54ki"]
 [ext_resource type="Texture2D" uid="uid://tn1famygscw" path="res://Assets/Sprites/WorldTwoTM.png" id="14_phsn2"]
 [ext_resource type="Texture2D" uid="uid://caajmecytx7bw" path="res://Assets/Sprites/Black.png" id="15_owg44"]
 [ext_resource type="PackedScene" uid="uid://b46ns1v8q6suu" path="res://Scenes/Boxes/empty_box.tscn" id="16_wb55i"]
@@ -959,6 +961,33 @@ metadata/_scene_painted = true
 
 [node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("8_proun")]
 
+[node name="Friend" parent="FrontLayer/EnemyManager" unique_id=859334994 instance=ExtResource("13_5g57h")]
+position = Vector2(3928, 96)
+
+[node name="Friend2" parent="FrontLayer/EnemyManager" unique_id=561709200 instance=ExtResource("13_5g57h")]
+position = Vector2(4600, 96)
+
+[node name="Friend3" parent="FrontLayer/EnemyManager" unique_id=148569545 instance=ExtResource("13_5g57h")]
+position = Vector2(8688, -72)
+
+[node name="Friend4" parent="FrontLayer/EnemyManager" unique_id=159640347 instance=ExtResource("13_5g57h")]
+position = Vector2(8688, -176)
+
+[node name="Friend5" parent="FrontLayer/EnemyManager" unique_id=31471881 instance=ExtResource("13_5g57h")]
+position = Vector2(8688, 32)
+
+[node name="Friend6" parent="FrontLayer/EnemyManager" unique_id=986753386 instance=ExtResource("13_5g57h")]
+position = Vector2(8792, 32)
+
+[node name="Friend7" parent="FrontLayer/EnemyManager" unique_id=273148388 instance=ExtResource("13_5g57h")]
+position = Vector2(8888, 32)
+
+[node name="Kaboom" parent="FrontLayer/EnemyManager" unique_id=1865198512 instance=ExtResource("14_j54ki")]
+position = Vector2(3760, 0)
+
+[node name="Kaboom2" parent="FrontLayer/EnemyManager" unique_id=2064139227 instance=ExtResource("14_j54ki")]
+position = Vector2(4400, -8)
+
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("9_wb55i")]
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
@@ -1097,6 +1126,7 @@ metadata/_scene_painted = true
 
 [node name="NormalBox6" parent="MidLayer/BoxManager" unique_id=894242568 instance=ExtResource("17_daktq")]
 position = Vector2(1232, 80)
+contains = 2
 metadata/_scene_painted = true
 
 [node name="NormalBox7" parent="MidLayer/BoxManager" unique_id=517026384 instance=ExtResource("17_daktq")]
@@ -1125,6 +1155,7 @@ metadata/_scene_painted = true
 
 [node name="NormalBox13" parent="MidLayer/BoxManager" unique_id=1017521456 instance=ExtResource("17_daktq")]
 position = Vector2(6736, 48)
+contains = 5
 metadata/_scene_painted = true
 
 [node name="NormalBox14" parent="MidLayer/BoxManager" unique_id=491898984 instance=ExtResource("17_daktq")]
@@ -1153,6 +1184,7 @@ metadata/_scene_painted = true
 
 [node name="NormalBox20" parent="MidLayer/BoxManager" unique_id=735291925 instance=ExtResource("17_daktq")]
 position = Vector2(7376, 48)
+contains = 2
 metadata/_scene_painted = true
 
 [node name="EmptyBox9" parent="MidLayer/BoxManager" unique_id=463543730 instance=ExtResource("16_wb55i")]
@@ -1313,6 +1345,7 @@ metadata/_scene_painted = true
 
 [node name="SpecialBox10" parent="MidLayer/BoxManager" unique_id=1161915950 instance=ExtResource("18_heulj")]
 position = Vector2(3112, 72)
+contains = 1
 metadata/_scene_painted = true
 
 [node name="NormalBox21" parent="MidLayer/BoxManager" unique_id=869552679 instance=ExtResource("17_daktq")]
@@ -1756,19 +1789,20 @@ position = Vector2(9136, 784)
 metadata/_scene_painted = true
 
 [node name="NormalBox35" parent="MidLayer/BoxManager" unique_id=36631107 instance=ExtResource("17_daktq")]
-position = Vector2(8656, -40)
+position = Vector2(8656, -24)
 metadata/_scene_painted = true
 
 [node name="NormalBox36" parent="MidLayer/BoxManager" unique_id=659231640 instance=ExtResource("17_daktq")]
-position = Vector2(8688, -40)
+position = Vector2(8688, -24)
 metadata/_scene_painted = true
 
 [node name="NormalBox37" parent="MidLayer/BoxManager" unique_id=1197305858 instance=ExtResource("17_daktq")]
-position = Vector2(8720, -40)
+position = Vector2(8720, -24)
 metadata/_scene_painted = true
 
 [node name="SpecialBox15" parent="MidLayer/BoxManager" unique_id=1586926890 instance=ExtResource("18_heulj")]
-position = Vector2(8688, -160)
+position = Vector2(8688, -128)
+contains = 1
 metadata/_scene_painted = true
 
 [node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]

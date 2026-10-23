@@ -1830,10 +1830,15 @@ offset_right = 12032.0
 my_label = NodePath("../EndLabel")
 
 [node name="EndLabel" type="Label" parent="FrontLayer" unique_id=923753925]
-offset_left = 11776.0
-offset_top = -64.0
-offset_right = 11816.0
-offset_bottom = -41.0
+anchors_preset = -1
+anchor_left = 18.431002
+anchor_top = -0.14600001
+anchor_right = 18.431002
+anchor_bottom = -0.14600001
+offset_left = -19.84082
+offset_top = -11.439995
+offset_right = 20.15918
+offset_bottom = 11.560005
 theme_override_fonts/font = ExtResource("11_3p68b")
 
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
@@ -2344,7 +2349,7 @@ tile_set = SubResource("TileSet_3gji2")
 [node name="CloudLayer" type="TileMapLayer" parent="BackLayer" unique_id=1891361693]
 z_index = -1
 scale = Vector2(4, 4)
-tile_map_data = PackedByteArray("AACAAP3/AAAAAAAAAACAAP7/AAAAAAEAAACBAP3/AAABAAAAAACBAP7/AAABAAEAAACLAP7/AAAAAAAAAACLAP//AAAAAAEAAACMAP7/AAABAAAAAACMAP//AAABAAEAAACXAP3/AAAAAAAAAACXAP7/AAAAAAEAAACYAP3/AAABAAAAAACYAP7/AAABAAEAAACiAP7/AAAAAAAAAACiAP//AAAAAAEAAACjAP7/AAABAAAAAACjAP//AAABAAEAAAA=")
+tile_map_data = PackedByteArray("AACAAP3/AAAAAAAAAACAAP7/AAAAAAEAAACBAP3/AAABAAAAAACBAP7/AAABAAEAAACiAP7/AAAAAAAAAACiAP//AAAAAAEAAACjAP7/AAABAAAAAACjAP//AAABAAEAAACeAP//AAAAAAAAAACeAAAAAAAAAAEAAACfAP//AAABAAAAAACfAAAAAAABAAEAAACZAP7/AAAAAAAAAACZAP//AAAAAAEAAACaAP7/AAABAAAAAACaAP//AAABAAEAAACqAP//AAAAAAAAAACqAAAAAAAAAAEAAACrAP//AAABAAAAAACrAAAAAAABAAEAAACLAP//AAAAAAAAAACLAAAAAAAAAAEAAACMAP//AAABAAAAAACMAAAAAAABAAEAAACSAP7/AAAAAAAAAACSAP//AAAAAAEAAACTAP7/AAABAAAAAACTAP//AAABAAEAAAA=")
 tile_set = SubResource("TileSet_cp0ws")
 
 [node name="HouseLayer" type="TileMapLayer" parent="BackLayer" unique_id=321721495]

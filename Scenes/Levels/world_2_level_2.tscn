@@ -2107,6 +2107,7 @@ metadata/_scene_painted = true
 
 [node name="NormalBox64" parent="MidLayer/BoxManager" unique_id=815770019 instance=ExtResource("18_n1ywo")]
 position = Vector2(1232, 1040)
+contains = 2
 metadata/_scene_painted = true
 
 [node name="NormalBox65" parent="MidLayer/BoxManager" unique_id=1481613459 instance=ExtResource("18_n1ywo")]
@@ -2147,12 +2148,10 @@ metadata/_scene_painted = true
 
 [node name="NormalBox68" parent="MidLayer/BoxManager" unique_id=927753500 instance=ExtResource("18_n1ywo")]
 position = Vector2(1008, 1040)
-contains = 5
 metadata/_scene_painted = true
 
 [node name="NormalBox69" parent="MidLayer/BoxManager" unique_id=39808187 instance=ExtResource("18_n1ywo")]
 position = Vector2(944, 1040)
-contains = 2
 metadata/_scene_painted = true
 
 [node name="NormalBox70" parent="MidLayer/BoxManager" unique_id=1355446233 instance=ExtResource("18_n1ywo")]
