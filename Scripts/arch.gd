@@ -314,6 +314,7 @@ func handle_hurt(life_amount: int) -> void:
 	lives -= life_amount
 	
 	if (lives > 0):
+		stop_timers()
 		state = States.HURT
 		remove_all_minions()
 		is_vulnerable = false
