@@ -119,11 +119,10 @@ shape = SubResource("CapsuleShape2D_ydotr")
 rect = Rect2(-32, -32, 64, 80)
 
 [node name="WaitTimer" type="Timer" parent="." unique_id=919387983]
-wait_time = 1.5
 one_shot = true
 
 [node name="FakeDeathTimer" type="Timer" parent="." unique_id=1991398071]
-wait_time = 1.5
+wait_time = 2.0
 one_shot = true
 
 [node name="Components" type="Node" parent="." unique_id=1117672444]
