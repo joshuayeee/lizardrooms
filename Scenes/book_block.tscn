@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cefmnb2iwt1wy"]
+
+[ext_resource type="Texture2D" uid="uid://dkfi4uplqriho" path="res://Assets/Sprites/BookBlock.png" id="1_g1lsc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
+size = Vector2(32, 32)
+
+[node name="BookBlock" type="StaticBody2D" unique_id=207932175]
+collision_layer = 4
+collision_mask = 4099
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1700302675]
+scale = Vector2(4, 4)
+texture = ExtResource("1_g1lsc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1940954522]
+shape = SubResource("RectangleShape2D_jh5pk")

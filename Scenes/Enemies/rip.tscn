@@ -158,8 +158,8 @@ one_shot = true
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("3_p82ck")]
 body = NodePath("../..")
-walk_speed = 150.0
-run_speed = 150.0
+walk_speed = 100.0
+run_speed = 100.0
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("4_nk8wb")]
 body = NodePath("../..")

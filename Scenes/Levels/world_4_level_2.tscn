@@ -16,11 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://bcrilb0pd02wc" path="res://Assets/Sprites/Heart.png" id="10_yartp"]
 [ext_resource type="FontFile" uid="uid://bgjo2rmcnvcgr" path="res://Assets/Fonts/PressStart2P-Regular.ttf" id="11_vud3f"]
 [ext_resource type="Texture2D" uid="uid://2vppd2iares3" path="res://Assets/Sprites/Donut.png" id="12_0ckyr"]
+[ext_resource type="PackedScene" uid="uid://c7lobwkba2ymp" path="res://Scenes/Enemies/rip.tscn" id="13_0cgi2"]
 [ext_resource type="PackedScene" uid="uid://u3b752tjrg7o" path="res://Scenes/Boxes/box_manager.tscn" id="13_favjy"]
+[ext_resource type="PackedScene" uid="uid://bptikr8blocel" path="res://Scenes/Enemies/kaboom.tscn" id="14_2yt02"]
 [ext_resource type="Texture2D" uid="uid://b2uqrq2a3xkm" path="res://Assets/Sprites/FalseWallTM2.png" id="14_51f0g"]
 [ext_resource type="Texture2D" uid="uid://tn1famygscw" path="res://Assets/Sprites/WorldTwoTM.png" id="14_ln135"]
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/Enemies/canny_manager.tscn" id="14_toq7b"]
 [ext_resource type="Texture2D" uid="uid://caajmecytx7bw" path="res://Assets/Sprites/Black.png" id="15_51f0g"]
+[ext_resource type="PackedScene" uid="uid://c8v2f33j51nvl" path="res://Scenes/Enemies/stubby.tscn" id="15_hpomg"]
 [ext_resource type="PackedScene" uid="uid://b46ns1v8q6suu" path="res://Scenes/Boxes/empty_box.tscn" id="16_7nw56"]
 [ext_resource type="Texture2D" uid="uid://duch7kpmvljcb" path="res://Assets/Sprites/WorldFourShelves1.png" id="16_hcu1w"]
 [ext_resource type="Texture2D" uid="uid://bkvoj0s8xvs5b" path="res://Assets/Sprites/Gray.png" id="17_7nw56"]
@@ -603,6 +606,51 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_2a4j4")
 
 [node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint" unique_id=1662536646]
+position = Vector2(0, 120)
+
+[node name="Checkpoint2" parent="FrontLayer/CheckpointManager" unique_id=1906910189 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_ln135")]
+position = Vector2(1840, 0)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint2" unique_id=53759847]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2a4j4")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint2" unique_id=2147422263]
+position = Vector2(0, -136)
+
+[node name="Checkpoint3" parent="FrontLayer/CheckpointManager" unique_id=1721015579 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_ln135")]
+position = Vector2(3296, 0)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint3" unique_id=1550168865]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2a4j4")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint3" unique_id=15489630]
+position = Vector2(0, 104)
+
+[node name="Checkpoint4" parent="FrontLayer/CheckpointManager" unique_id=1469713484 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_ln135")]
+position = Vector2(4848, 0)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint4" unique_id=24471034]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2a4j4")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint4" unique_id=1121698935]
+position = Vector2(0, 64)
+
+[node name="Checkpoint5" parent="FrontLayer/CheckpointManager" unique_id=1808580455 node_paths=PackedStringArray("spawn_point") instance=ExtResource("6_ln135")]
+position = Vector2(6032, 16)
+spawn_point = NodePath("Marker2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FrontLayer/CheckpointManager/Checkpoint5" unique_id=1026528222]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_2a4j4")
+
+[node name="Marker2D" type="Marker2D" parent="FrontLayer/CheckpointManager/Checkpoint5" unique_id=1363794]
+position = Vector2(0, -96)
 
 [node name="DeathZone" parent="FrontLayer" unique_id=291712876 instance=ExtResource("7_51f0g")]
 position = Vector2(0, 320)
@@ -1957,7 +2005,248 @@ metadata/_scene_painted = true
 position = Vector2(7728, 1168)
 metadata/_scene_painted = true
 
+[node name="Donut337" parent="FrontLayer/DonutManager" unique_id=1036932289 instance=ExtResource("9_favjy")]
+position = Vector2(2736, 112)
+metadata/_scene_painted = true
+
+[node name="Donut338" parent="FrontLayer/DonutManager" unique_id=802535624 instance=ExtResource("9_favjy")]
+position = Vector2(2768, 112)
+metadata/_scene_painted = true
+
+[node name="Donut339" parent="FrontLayer/DonutManager" unique_id=1619378874 instance=ExtResource("9_favjy")]
+position = Vector2(2800, 112)
+metadata/_scene_painted = true
+
+[node name="Donut340" parent="FrontLayer/DonutManager" unique_id=2100668409 instance=ExtResource("9_favjy")]
+position = Vector2(2832, 112)
+metadata/_scene_painted = true
+
+[node name="Donut341" parent="FrontLayer/DonutManager" unique_id=2111636466 instance=ExtResource("9_favjy")]
+position = Vector2(2864, 112)
+metadata/_scene_painted = true
+
+[node name="Donut342" parent="FrontLayer/DonutManager" unique_id=1647638142 instance=ExtResource("9_favjy")]
+position = Vector2(2992, 80)
+metadata/_scene_painted = true
+
+[node name="Donut343" parent="FrontLayer/DonutManager" unique_id=849652278 instance=ExtResource("9_favjy")]
+position = Vector2(3024, 80)
+metadata/_scene_painted = true
+
+[node name="Donut344" parent="FrontLayer/DonutManager" unique_id=2118999633 instance=ExtResource("9_favjy")]
+position = Vector2(3056, 80)
+metadata/_scene_painted = true
+
+[node name="Donut345" parent="FrontLayer/DonutManager" unique_id=1272774396 instance=ExtResource("9_favjy")]
+position = Vector2(3088, 80)
+metadata/_scene_painted = true
+
+[node name="Donut346" parent="FrontLayer/DonutManager" unique_id=801676951 instance=ExtResource("9_favjy")]
+position = Vector2(3120, 80)
+metadata/_scene_painted = true
+
+[node name="Donut347" parent="FrontLayer/DonutManager" unique_id=1327320011 instance=ExtResource("9_favjy")]
+position = Vector2(2024, -48)
+metadata/_scene_painted = true
+
+[node name="Donut348" parent="FrontLayer/DonutManager" unique_id=791147521 instance=ExtResource("9_favjy")]
+position = Vector2(2168, -48)
+metadata/_scene_painted = true
+
+[node name="Donut349" parent="FrontLayer/DonutManager" unique_id=535050203 instance=ExtResource("9_favjy")]
+position = Vector2(2072, -48)
+metadata/_scene_painted = true
+
+[node name="Donut350" parent="FrontLayer/DonutManager" unique_id=1457034485 instance=ExtResource("9_favjy")]
+position = Vector2(2120, -48)
+metadata/_scene_painted = true
+
+[node name="Donut351" parent="FrontLayer/DonutManager" unique_id=191093313 instance=ExtResource("9_favjy")]
+position = Vector2(1512, -48)
+metadata/_scene_painted = true
+
+[node name="Donut352" parent="FrontLayer/DonutManager" unique_id=1931753864 instance=ExtResource("9_favjy")]
+position = Vector2(1656, -48)
+metadata/_scene_painted = true
+
+[node name="Donut353" parent="FrontLayer/DonutManager" unique_id=1790566040 instance=ExtResource("9_favjy")]
+position = Vector2(1560, -48)
+metadata/_scene_painted = true
+
+[node name="Donut354" parent="FrontLayer/DonutManager" unique_id=1544689183 instance=ExtResource("9_favjy")]
+position = Vector2(1608, -48)
+metadata/_scene_painted = true
+
+[node name="Donut355" parent="FrontLayer/DonutManager" unique_id=368355133 instance=ExtResource("9_favjy")]
+position = Vector2(1192, -48)
+metadata/_scene_painted = true
+
+[node name="Donut356" parent="FrontLayer/DonutManager" unique_id=981074397 instance=ExtResource("9_favjy")]
+position = Vector2(1336, -48)
+metadata/_scene_painted = true
+
+[node name="Donut358" parent="FrontLayer/DonutManager" unique_id=587003704 instance=ExtResource("9_favjy")]
+position = Vector2(1288, -48)
+metadata/_scene_painted = true
+
+[node name="Donut357" parent="FrontLayer/DonutManager" unique_id=1422755688 instance=ExtResource("9_favjy")]
+position = Vector2(1240, -48)
+metadata/_scene_painted = true
+
+[node name="Donut359" parent="FrontLayer/DonutManager" unique_id=776904014 instance=ExtResource("9_favjy")]
+position = Vector2(680, -48)
+metadata/_scene_painted = true
+
+[node name="Donut360" parent="FrontLayer/DonutManager" unique_id=1959562866 instance=ExtResource("9_favjy")]
+position = Vector2(824, -48)
+metadata/_scene_painted = true
+
+[node name="Donut361" parent="FrontLayer/DonutManager" unique_id=1736771386 instance=ExtResource("9_favjy")]
+position = Vector2(728, -48)
+metadata/_scene_painted = true
+
+[node name="Donut362" parent="FrontLayer/DonutManager" unique_id=785813422 instance=ExtResource("9_favjy")]
+position = Vector2(776, -48)
+metadata/_scene_painted = true
+
+[node name="Donut363" parent="FrontLayer/DonutManager" unique_id=1362439764 instance=ExtResource("9_favjy")]
+position = Vector2(240, 112)
+metadata/_scene_painted = true
+
+[node name="Donut364" parent="FrontLayer/DonutManager" unique_id=1589009941 instance=ExtResource("9_favjy")]
+position = Vector2(272, 112)
+metadata/_scene_painted = true
+
+[node name="Donut365" parent="FrontLayer/DonutManager" unique_id=1288315458 instance=ExtResource("9_favjy")]
+position = Vector2(304, 112)
+metadata/_scene_painted = true
+
+[node name="Donut366" parent="FrontLayer/DonutManager" unique_id=641967843 instance=ExtResource("9_favjy")]
+position = Vector2(448, 80)
+metadata/_scene_painted = true
+
+[node name="Donut367" parent="FrontLayer/DonutManager" unique_id=720193625 instance=ExtResource("9_favjy")]
+position = Vector2(480, 80)
+metadata/_scene_painted = true
+
+[node name="Donut368" parent="FrontLayer/DonutManager" unique_id=693865347 instance=ExtResource("9_favjy")]
+position = Vector2(512, 80)
+metadata/_scene_painted = true
+
+[node name="Donut369" parent="FrontLayer/DonutManager" unique_id=1782341373 instance=ExtResource("9_favjy")]
+position = Vector2(3696, 112)
+metadata/_scene_painted = true
+
+[node name="Donut370" parent="FrontLayer/DonutManager" unique_id=1613890898 instance=ExtResource("9_favjy")]
+position = Vector2(3664, 112)
+metadata/_scene_painted = true
+
+[node name="Donut371" parent="FrontLayer/DonutManager" unique_id=677613916 instance=ExtResource("9_favjy")]
+position = Vector2(3728, 112)
+metadata/_scene_painted = true
+
+[node name="Donut372" parent="FrontLayer/DonutManager" unique_id=1204534692 instance=ExtResource("9_favjy")]
+position = Vector2(3632, 112)
+metadata/_scene_painted = true
+
+[node name="Donut373" parent="FrontLayer/DonutManager" unique_id=109441163 instance=ExtResource("9_favjy")]
+position = Vector2(3760, 112)
+metadata/_scene_painted = true
+
 [node name="EnemyManager" parent="FrontLayer" unique_id=1877206157 instance=ExtResource("8_hcu1w")]
+
+[node name="Rip" parent="FrontLayer/EnemyManager" unique_id=755039988 instance=ExtResource("13_0cgi2")]
+position = Vector2(1272, 64)
+
+[node name="Rip2" parent="FrontLayer/EnemyManager" unique_id=250019914 instance=ExtResource("13_0cgi2")]
+position = Vector2(2096, 64)
+
+[node name="Rip6" parent="FrontLayer/EnemyManager" unique_id=1539108737 instance=ExtResource("13_0cgi2")]
+position = Vector2(2600, 128)
+
+[node name="Rip7" parent="FrontLayer/EnemyManager" unique_id=1429164447 instance=ExtResource("13_0cgi2")]
+position = Vector2(3496, 128)
+
+[node name="Rip3" parent="FrontLayer/EnemyManager" unique_id=391991316 instance=ExtResource("13_0cgi2")]
+position = Vector2(4648, -32)
+
+[node name="Rip4" parent="FrontLayer/EnemyManager" unique_id=1688325224 instance=ExtResource("13_0cgi2")]
+position = Vector2(5440, -32)
+
+[node name="Rip5" parent="FrontLayer/EnemyManager" unique_id=1570064882 instance=ExtResource("13_0cgi2")]
+position = Vector2(6312, 128)
+
+[node name="Rip8" parent="FrontLayer/EnemyManager" unique_id=990436360 instance=ExtResource("13_0cgi2")]
+position = Vector2(6208, 128)
+
+[node name="Kaboom" parent="FrontLayer/EnemyManager" unique_id=1865198512 instance=ExtResource("14_2yt02")]
+position = Vector2(296, 96)
+
+[node name="Kaboom2" parent="FrontLayer/EnemyManager" unique_id=1180506574 instance=ExtResource("14_2yt02")]
+position = Vector2(520, 64)
+
+[node name="Kaboom3" parent="FrontLayer/EnemyManager" unique_id=520915724 instance=ExtResource("14_2yt02")]
+position = Vector2(816, -64)
+
+[node name="Kaboom4" parent="FrontLayer/EnemyManager" unique_id=1565468302 instance=ExtResource("14_2yt02")]
+position = Vector2(1328, -64)
+
+[node name="Kaboom6" parent="FrontLayer/EnemyManager" unique_id=2011645128 instance=ExtResource("14_2yt02")]
+position = Vector2(1640, -64)
+
+[node name="Kaboom7" parent="FrontLayer/EnemyManager" unique_id=1609812558 instance=ExtResource("14_2yt02")]
+position = Vector2(2160, -64)
+
+[node name="Kaboom8" parent="FrontLayer/EnemyManager" unique_id=177532442 instance=ExtResource("14_2yt02")]
+position = Vector2(2856, 96)
+
+[node name="Kaboom9" parent="FrontLayer/EnemyManager" unique_id=948716555 instance=ExtResource("14_2yt02")]
+position = Vector2(3120, 64)
+
+[node name="Kaboom10" parent="FrontLayer/EnemyManager" unique_id=130787138 instance=ExtResource("14_2yt02")]
+position = Vector2(3760, 96)
+
+[node name="Kaboom11" parent="FrontLayer/EnemyManager" unique_id=1315786919 instance=ExtResource("14_2yt02")]
+position = Vector2(4112, -120)
+
+[node name="Kaboom13" parent="FrontLayer/EnemyManager" unique_id=1437307519 instance=ExtResource("14_2yt02")]
+position = Vector2(5840, 0)
+
+[node name="Kaboom14" parent="FrontLayer/EnemyManager" unique_id=662004495 instance=ExtResource("14_2yt02")]
+position = Vector2(6384, 0)
+
+[node name="Kaboom12" parent="FrontLayer/EnemyManager" unique_id=1573440915 instance=ExtResource("14_2yt02")]
+position = Vector2(4960, -120)
+
+[node name="Stubby" parent="FrontLayer/EnemyManager" unique_id=632371933 instance=ExtResource("15_hpomg")]
+position = Vector2(976, -32)
+
+[node name="Stubby2" parent="FrontLayer/EnemyManager" unique_id=661146993 instance=ExtResource("15_hpomg")]
+position = Vector2(1808, -32)
+
+[node name="Stubby3" parent="FrontLayer/EnemyManager" unique_id=540588749 instance=ExtResource("15_hpomg")]
+position = Vector2(4264, 128)
+
+[node name="Stubby4" parent="FrontLayer/EnemyManager" unique_id=2007629357 instance=ExtResource("15_hpomg")]
+position = Vector2(4520, 128)
+
+[node name="Stubby5" parent="FrontLayer/EnemyManager" unique_id=439641525 instance=ExtResource("15_hpomg")]
+position = Vector2(4776, 128)
+
+[node name="Stubby6" parent="FrontLayer/EnemyManager" unique_id=1101100108 instance=ExtResource("15_hpomg")]
+position = Vector2(5056, 128)
+
+[node name="Stubby7" parent="FrontLayer/EnemyManager" unique_id=833539520 instance=ExtResource("15_hpomg")]
+position = Vector2(5320, 128)
+
+[node name="Stubby8" parent="FrontLayer/EnemyManager" unique_id=1564512943 instance=ExtResource("15_hpomg")]
+position = Vector2(5984, 32)
+
+[node name="Stubby9" parent="FrontLayer/EnemyManager" unique_id=533533495 instance=ExtResource("15_hpomg")]
+position = Vector2(6024, 32)
+
+[node name="Stubby10" parent="FrontLayer/EnemyManager" unique_id=1426591249 instance=ExtResource("15_hpomg")]
+position = Vector2(6064, 32)
 
 [node name="JawbreakerManager" parent="FrontLayer" unique_id=1158831527 instance=ExtResource("9_7nw56")]
 

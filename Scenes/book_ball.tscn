@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dcj5ejy6bqu5i"]
+
+[ext_resource type="Texture2D" uid="uid://tc472s6p1xut" path="res://Assets/Sprites/BookBall.png" id="1_p2rsg"]
+[ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="2_wlo5v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jh5pk"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ydotr"]
+radius = 16.0
+
+[node name="BookBall" type="CharacterBody2D" unique_id=714988620]
+collision_layer = 131072
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1263804085]
+scale = Vector2(4, 4)
+texture = ExtResource("1_p2rsg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=334226240]
+shape = SubResource("CircleShape2D_jh5pk")
+
+[node name="PlayerCheck" type="Area2D" parent="." unique_id=327722034]
+collision_layer = 131072
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCheck" unique_id=1849523618]
+shape = SubResource("CircleShape2D_ydotr")
+
+[node name="Components" type="Node" parent="." unique_id=937156069]
+
+[node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("2_wlo5v")]
+body = NodePath("../..")
+angular_speed = 1.0
