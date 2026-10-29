@@ -51,7 +51,7 @@ func handle_move_to(pos: Vector2, delta: float) -> bool:
 		body.velocity = (pos - body.global_position).normalized() * speed
 		return false
 
-func set_angle(new_angle) -> void:
+func set_angle(new_angle: float) -> void:
 	angle = new_angle
 
 func handle_orbit_move(center: Node2D, radius: float, delta: float) -> void:

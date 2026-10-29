@@ -86,7 +86,8 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 func _on_move_timer_timeout() -> void:
 	if (state == States.MOVE):
 		animation_player.play("shoot")
-		shoot_mouthbreaker()
+		if (Global.game_active):
+			shoot_mouthbreaker()
 		state = States.SHOOT
 		shoot_timer.start()
 

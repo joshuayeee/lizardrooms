@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dcj5ejy6bqu5i"]
 
+[ext_resource type="Script" uid="uid://bbmkhe7f41dlp" path="res://Scenes/book_ball.gd" id="1_ehour"]
 [ext_resource type="Texture2D" uid="uid://tc472s6p1xut" path="res://Assets/Sprites/BookBall.png" id="1_p2rsg"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="2_wlo5v"]
 
@@ -12,6 +13,7 @@ radius = 16.0
 [node name="BookBall" type="CharacterBody2D" unique_id=714988620]
 collision_layer = 131072
 collision_mask = 0
+script = ExtResource("1_ehour")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1263804085]
 scale = Vector2(4, 4)
@@ -31,4 +33,6 @@ shape = SubResource("CircleShape2D_ydotr")
 
 [node name="MoveCom" parent="Components" unique_id=1521510 node_paths=PackedStringArray("body") instance=ExtResource("2_wlo5v")]
 body = NodePath("../..")
-angular_speed = 1.0
+angular_speed = 2.0
+
+[connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
