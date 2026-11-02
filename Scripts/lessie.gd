@@ -268,6 +268,10 @@ func handle_death() -> void:
 	state = States.DEAD
 	is_vulnerable = false
 	can_attack = false
+	
+	if (fire != null):
+		fire.handle_destroy()
+	
 	animation_player.play("death")
 	death_timer.start()
 

@@ -5,6 +5,7 @@ class_name Fire
 const FIRE_DROP = preload("uid://drxj8iald2kkp")
 
 signal created_drop(drop: FireDrop)
+signal fire_stopped()
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var drop_timer: Timer = $DropTimer
@@ -33,7 +34,13 @@ func create_fire_drop() -> void:
 		Directions.RIGHT:
 			drop.global_position.x = randf_range(right_min_point.global_position.x, right_max_point.global_position.x)
 	
+	fire_stopped.connect(drop.handle_destroy)
+	
 	created_drop.emit(drop)
+
+func handle_destroy() -> void:
+	fire_stopped.emit()
+	call_deferred("queue_free")
 
 func _on_drop_timer_timeout() -> void:
 	if (Global.game_active):

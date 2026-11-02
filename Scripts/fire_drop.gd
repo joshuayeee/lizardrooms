@@ -12,8 +12,11 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+func handle_destroy() -> void:
 	call_deferred("queue_free")
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	handle_destroy()
 
 func _on_player_check_body_entered(body: Node2D) -> void:
 	if (body is Player):
