@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://b6i8xsreokir" path="res://Scenes/fence.tscn" id="21_q4uo7"]
 [ext_resource type="PackedScene" uid="uid://cp7nqsc6uwxr8" path="res://Scenes/gumball_spawner.tscn" id="22_i28fy"]
 [ext_resource type="PackedScene" uid="uid://dhwllct0rb7by" path="res://Scenes/Enemies/canny.tscn" id="29_xhdeu"]
+[ext_resource type="PackedScene" uid="uid://ch8jhusf3twmu" path="res://Scenes/Enemies/eater.tscn" id="37_tpgbg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
 size = Vector2(48, 20)
@@ -2114,6 +2115,9 @@ tile_map_data = PackedByteArray("AAD4/wIAAQAAAAAAAAD4/wMAAQAAAAEAAAD5/wIAAQABAAA
 tile_set = SubResource("TileSet_3gji2")
 
 [node name="BackEnemyManager" parent="BackLayer" unique_id=1282240525 instance=ExtResource("8_djdyc")]
+
+[node name="Eater" parent="BackLayer/BackEnemyManager" unique_id=507289424 instance=ExtResource("37_tpgbg")]
+position = Vector2(3968, 88)
 
 [node name="CannyManager" parent="BackLayer" unique_id=1726914308 node_paths=PackedStringArray("enemy_manager") instance=ExtResource("14_q4uo7")]
 enemy_manager = NodePath("../BackEnemyManager")
