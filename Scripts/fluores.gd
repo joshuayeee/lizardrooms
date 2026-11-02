@@ -27,6 +27,8 @@ var direction: Directions = Directions.LEFT
 
 enum ShockDirections {LEFT, RIGHT, UP, UP_RIGHT, UP_LEFT}
 
+var jawbreaker_hurt_override: bool = false
+
 func _physics_process(delta: float) -> void:
 	if (Global.game_active):
 		gravity_com.handle_gravity(delta)
@@ -52,13 +54,18 @@ func start_fight() -> void:
 
 func handle_hit(attack_type: String) -> bool:
 	var success: bool = false
-	if (is_vulnerable):
-		success = true
-		match attack_type:
-			"stomp":
-				handle_hurt(2)
-			"jawbreaker":
-				handle_jawbreaker_hurt(1)
+	if (jawbreaker_hurt_override):
+		if (attack_type == "jawbreaker"):
+			success = true
+			handle_jawbreaker_hurt(1)
+	else:
+		if (is_vulnerable):
+			success = true
+			match attack_type:
+				"stomp":
+					handle_hurt(2)
+				"jawbreaker":
+					handle_jawbreaker_hurt(1)
 	return success
 
 func shock_attack() -> void:
@@ -88,6 +95,7 @@ func handle_appear() -> void:
 	sprite_2d.visible = true
 	is_vulnerable = false
 	can_attack = false
+	jawbreaker_hurt_override = false
 	teleport_to_player()
 	appear_timer.start()
 
@@ -96,6 +104,7 @@ func handle_shock() -> void:
 	animation_player.play("shock")
 	is_vulnerable = true
 	can_attack = true
+	jawbreaker_hurt_override = false
 	shock_attack()
 	shock_timer.start()
 
@@ -104,6 +113,7 @@ func handle_move() -> void:
 	animation_player.play("electric_move")
 	is_vulnerable = false
 	can_attack = true
+	jawbreaker_hurt_override = true
 	move_timer.start()
 
 func handle_init_disappear() -> void:
@@ -111,6 +121,7 @@ func handle_init_disappear() -> void:
 	animation_player.play("appear")
 	is_vulnerable = false
 	can_attack = false
+	jawbreaker_hurt_override = false
 	init_disappear_timer.start()
 
 func handle_disappear() -> void:
@@ -118,6 +129,7 @@ func handle_disappear() -> void:
 	sprite_2d.visible = false
 	is_vulnerable = false
 	can_attack = false
+	jawbreaker_hurt_override = false
 	disappear_timer.start()
 
 func handle_hurt(lives_amount: int) -> void:
@@ -143,6 +155,7 @@ func handle_death() -> void:
 	animation_player.play("death")
 	is_vulnerable = false
 	can_attack = false
+	jawbreaker_hurt_override = false
 	death_timer.start()
 
 func end_fight() -> void:
