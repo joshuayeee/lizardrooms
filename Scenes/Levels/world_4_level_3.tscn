@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://brqkuxujrqyep" path="res://Scenes/Enemies/canny_manager.tscn" id="14_ebawd"]
 [ext_resource type="Texture2D" uid="uid://b2uqrq2a3xkm" path="res://Assets/Sprites/FalseWallTM2.png" id="14_gg3u0"]
 [ext_resource type="Texture2D" uid="uid://tn1famygscw" path="res://Assets/Sprites/WorldTwoTM.png" id="14_gntw0"]
+[ext_resource type="PackedScene" uid="uid://cefmnb2iwt1wy" path="res://Scenes/book_block.tscn" id="14_xwa8o"]
+[ext_resource type="PackedScene" uid="uid://dcj5ejy6bqu5i" path="res://Scenes/book_ball.tscn" id="15_0ewvx"]
 [ext_resource type="Texture2D" uid="uid://caajmecytx7bw" path="res://Assets/Sprites/Black.png" id="15_i4pkf"]
 [ext_resource type="Texture2D" uid="uid://duch7kpmvljcb" path="res://Assets/Sprites/WorldFourShelves1.png" id="16_gntw0"]
 [ext_resource type="Texture2D" uid="uid://bkvoj0s8xvs5b" path="res://Assets/Sprites/Gray.png" id="17_6ap4e"]
@@ -27,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://c7gn64vo58g6e" path="res://Assets/Sprites/NES - Super Mario Bros. - Stages - World 6-4.png" id="20_6ap4e"]
 [ext_resource type="Texture2D" uid="uid://dueaj0lc47nwk" path="res://Assets/Sprites/WaterTM.png" id="20_rho7x"]
 [ext_resource type="Texture2D" uid="uid://tvq6h7gbd48t" path="res://Assets/Sprites/NES - Super Mario Bros. - Stages - World 8-4.png" id="21_gg3u0"]
+[ext_resource type="PackedScene" uid="uid://nvl5vrsru0ag" path="res://Scenes/Boxes/special_box.tscn" id="22_6s8n4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ydotr"]
 size = Vector2(48, 20)
@@ -472,6 +475,323 @@ position = Vector2(6136, -136)
 position = Vector2(-124, 15)
 shape = SubResource("RectangleShape2D_cp0ws")
 
+[node name="Books" type="Node2D" parent="FrontLayer" unique_id=979911320]
+
+[node name="Book" type="Node2D" parent="FrontLayer/Books" unique_id=404204238]
+position = Vector2(624, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book" unique_id=207932175 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book" unique_id=714988620 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, 96)
+center = NodePath("../BookBlock")
+
+[node name="Book2" type="Node2D" parent="FrontLayer/Books" unique_id=464816595]
+position = Vector2(880, 144)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book2" unique_id=1235630233 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book2" unique_id=1199555379 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, -128)
+center = NodePath("../BookBlock")
+
+[node name="Book3" type="Node2D" parent="FrontLayer/Books" unique_id=416674497]
+position = Vector2(1136, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book3" unique_id=1978084826 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book3" unique_id=527515652 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, 96)
+center = NodePath("../BookBlock")
+
+[node name="Book4" type="Node2D" parent="FrontLayer/Books" unique_id=645694926]
+position = Vector2(1400, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book4" unique_id=7575853 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book4" unique_id=1427066674 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(-96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book5" type="Node2D" parent="FrontLayer/Books" unique_id=1551863443]
+position = Vector2(1672, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book5" unique_id=855052904 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book5" unique_id=1672810174 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, -96)
+center = NodePath("../BookBlock")
+
+[node name="Book6" type="Node2D" parent="FrontLayer/Books" unique_id=1092657195]
+position = Vector2(1960, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book6" unique_id=2538316 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book6" unique_id=73751140 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book7" type="Node2D" parent="FrontLayer/Books" unique_id=791750385]
+position = Vector2(2288, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book7" unique_id=610044305 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book7" unique_id=177728978 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, 96)
+center = NodePath("../BookBlock")
+
+[node name="Book8" type="Node2D" parent="FrontLayer/Books" unique_id=2140303943]
+position = Vector2(2592, 144)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book8" unique_id=1601105626 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book8" unique_id=1037646435 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(-96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book9" type="Node2D" parent="FrontLayer/Books" unique_id=1501421923]
+position = Vector2(2680, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book9" unique_id=140434634 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book9" unique_id=156127277 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, 96)
+center = NodePath("../BookBlock")
+
+[node name="Book10" type="Node2D" parent="FrontLayer/Books" unique_id=49020688]
+position = Vector2(2768, 144)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book10" unique_id=1296652895 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book10" unique_id=359380743 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, -96)
+center = NodePath("../BookBlock")
+
+[node name="Book11" type="Node2D" parent="FrontLayer/Books" unique_id=550217530]
+position = Vector2(2856, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book11" unique_id=1342935133 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book11" unique_id=96434668 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(0, -96)
+center = NodePath("../BookBlock")
+
+[node name="Book12" type="Node2D" parent="FrontLayer/Books" unique_id=2082932703]
+position = Vector2(2936, 144)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book12" unique_id=2062852883 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book12" unique_id=162065311 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book13" type="Node2D" parent="FrontLayer/Books" unique_id=835772142]
+position = Vector2(5120, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book13" unique_id=216410545 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book13" unique_id=1158491091 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book14" type="Node2D" parent="FrontLayer/Books" unique_id=793368080]
+position = Vector2(5312, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book14" unique_id=1025486110 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book14" unique_id=993617272 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book15" type="Node2D" parent="FrontLayer/Books" unique_id=317917632]
+position = Vector2(5312, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book15" unique_id=1516934853 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book15" unique_id=440385630 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book16" type="Node2D" parent="FrontLayer/Books" unique_id=971805930]
+position = Vector2(5120, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book16" unique_id=855701406 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book16" unique_id=605976512 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book17" type="Node2D" parent="FrontLayer/Books" unique_id=2046279032]
+position = Vector2(5640, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book17" unique_id=1896479104 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book17" unique_id=1366667504 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book18" type="Node2D" parent="FrontLayer/Books" unique_id=1815183576]
+position = Vector2(5832, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book18" unique_id=1441366237 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book18" unique_id=203918655 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book19" type="Node2D" parent="FrontLayer/Books" unique_id=916812648]
+position = Vector2(5832, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book19" unique_id=638300367 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book19" unique_id=287280441 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book21" type="Node2D" parent="FrontLayer/Books" unique_id=1653734850]
+position = Vector2(6016, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book21" unique_id=509038342 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book21" unique_id=1249199300 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book22" type="Node2D" parent="FrontLayer/Books" unique_id=999451497]
+position = Vector2(6016, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book22" unique_id=838970168 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book22" unique_id=1459456246 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book20" type="Node2D" parent="FrontLayer/Books" unique_id=1050519647]
+position = Vector2(5640, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book20" unique_id=311794543 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book20" unique_id=1594603459 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book23" type="Node2D" parent="FrontLayer/Books" unique_id=2078610661]
+position = Vector2(6248, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book23" unique_id=1058597309 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book23" unique_id=1460291954 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book24" type="Node2D" parent="FrontLayer/Books" unique_id=829485888]
+position = Vector2(6440, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book24" unique_id=2031457511 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book24" unique_id=1814399872 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book25" type="Node2D" parent="FrontLayer/Books" unique_id=1901027191]
+position = Vector2(6440, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book25" unique_id=265248077 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book25" unique_id=651659345 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book26" type="Node2D" parent="FrontLayer/Books" unique_id=525052899]
+position = Vector2(6624, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book26" unique_id=1461689489 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book26" unique_id=420730948 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book27" type="Node2D" parent="FrontLayer/Books" unique_id=632796003]
+position = Vector2(6624, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book27" unique_id=1129623764 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book27" unique_id=1699231796 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book34" type="Node2D" parent="FrontLayer/Books" unique_id=238546692]
+position = Vector2(6888, -16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book34" unique_id=1334651344 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book34" unique_id=526632474 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book35" type="Node2D" parent="FrontLayer/Books" unique_id=1089605876]
+position = Vector2(6888, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book35" unique_id=2033172542 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book35" unique_id=16397988 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book28" type="Node2D" parent="FrontLayer/Books" unique_id=691380726]
+position = Vector2(6248, 96)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book28" unique_id=132473410 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book28" unique_id=2055381010 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(80, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book29" type="Node2D" parent="FrontLayer/Books" unique_id=1226465506]
+position = Vector2(7056, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book29" unique_id=1033393788 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book29" unique_id=1918645447 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book30" type="Node2D" parent="FrontLayer/Books" unique_id=569698170]
+position = Vector2(7192, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book30" unique_id=1980654648 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book30" unique_id=1701836689 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book31" type="Node2D" parent="FrontLayer/Books" unique_id=756297253]
+position = Vector2(7336, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book31" unique_id=1092230387 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book31" unique_id=2064329913 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book32" type="Node2D" parent="FrontLayer/Books" unique_id=579471463]
+position = Vector2(7480, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book32" unique_id=416900052 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book32" unique_id=675315486 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
+[node name="Book33" type="Node2D" parent="FrontLayer/Books" unique_id=1916398956]
+position = Vector2(7632, 16)
+
+[node name="BookBlock" parent="FrontLayer/Books/Book33" unique_id=1392335740 instance=ExtResource("14_xwa8o")]
+
+[node name="BookBall" parent="FrontLayer/Books/Book33" unique_id=1877778725 node_paths=PackedStringArray("center") instance=ExtResource("15_0ewvx")]
+position = Vector2(96, 0)
+center = NodePath("../BookBlock")
+
 [node name="UILayer" type="CanvasLayer" parent="." unique_id=187598264]
 layer = 0
 
@@ -553,6 +873,10 @@ tile_set = SubResource("TileSet_7ik2y")
 
 [node name="BoxManager" parent="MidLayer" unique_id=1117362628 node_paths=PackedStringArray("item_manager") instance=ExtResource("13_pdjll")]
 item_manager = NodePath("../../FrontLayer/ItemManager")
+
+[node name="SpecialBox" parent="MidLayer/BoxManager" unique_id=1586926890 instance=ExtResource("22_6s8n4")]
+position = Vector2(880, 56)
+contains = 1
 
 [node name="MovingPlatformManager" type="Node2D" parent="MidLayer" unique_id=261416985]
 
