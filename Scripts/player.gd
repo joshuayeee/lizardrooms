@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Player
 
 const JAWBREAKER = preload("uid://bcln7bcxc0shr")
+const JUMP_16 = preload("uid://y2cwbpodyud8")
 
 signal player_loses()
 signal collected_donut()
@@ -12,7 +13,6 @@ signal player_entered(false_wall_exit: FalseWallExit, special_cam_point: Special
 signal player_returned(false_wall_exit: FalseWallExit)
 signal request_layer_change(layer_name: String)
 signal reached_door(next_wl: String, next_wt: String, next_name: String, my_state: String, is_bonus: bool)
-@onready var hit_invin_timer: Timer = $HitInvinTimer
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var move_com: MoveCom = $Components/MoveCom
@@ -20,10 +20,12 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var anim_com: AnimCom = $Components/AnimCom
 @onready var swim_com: SwimCom = $Components/SwimCom
+@onready var play_sound_com: PlaySoundCom = $Components/PlaySoundCom
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var blink_player: AnimationPlayer = $BlinkPlayer
 @onready var cupcake_timer: Timer = $CupcakeTimer
 @onready var end_timer: Timer = $EndTimer
+@onready var hit_invin_timer: Timer = $HitInvinTimer
 @onready var swim_check_timer: Timer = $SwimCheckTimer
 
 enum MoveModes {NORMAL, SWIM}
@@ -55,6 +57,8 @@ func _physics_process(delta: float) -> void:
 				
 				jump_com.handle_jump(Input.is_action_just_pressed("jump") and is_on_floor())
 				jump_com.handle_jump_release(Input.is_action_just_released("jump") and velocity.y < 0)
+				
+				play_sound_com.handle_play_sound(JUMP_16, Input.is_action_just_pressed("jump") and is_on_floor())
 				
 				move_com.handle_speed_change(Input.is_action_pressed("run"))
 				move_com.handle_hori_move(direction)

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dtkysxhhe2uop"]
+
+[ext_resource type="Script" uid="uid://dckq7b2hhb1ny" path="res://Scripts/Components/play_sound_com.gd" id="1_gamfu"]
+
+[node name="PlaySoundCom" type="Node" unique_id=1224491225]
+script = ExtResource("1_gamfu")

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="5_fkybt"]
 [ext_resource type="PackedScene" uid="uid://c2v66c3ej22aj" path="res://Scenes/Components/anim_com.tscn" id="6_x3wgy"]
 [ext_resource type="PackedScene" uid="uid://lwitvakr70ci" path="res://Scenes/Components/swim_com.tscn" id="7_3smsa"]
+[ext_resource type="PackedScene" uid="uid://dtkysxhhe2uop" path="res://Scenes/Components/play_sound_com.tscn" id="8_8erm5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jh5pk"]
 radius = 8.0
@@ -660,6 +661,8 @@ hori_speed = 125.0
 max_hori_speed = 125.0
 hori_acc = 0.1
 hori_dec = 0.1
+
+[node name="PlaySoundCom" parent="Components" unique_id=1224491225 instance=ExtResource("8_8erm5")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]

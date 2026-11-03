@@ -28,6 +28,8 @@ var player: Player = null
 var cam: Cam = null
 
 func _ready() -> void:
+	set_up_sound_player()
+	
 	Global.game_active = true
 	
 	var checkpoint: Checkpoint = checkpoint_manager.get_child(checkpoint_num)
