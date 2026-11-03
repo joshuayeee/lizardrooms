@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Enemy
 
 const POOF = preload("uid://c1gscfcr3ieqr")
+const HIT_2 = preload("uid://cycxhbd8u3q2f")
 
 signal created_poof(poof: Poof)
 
@@ -21,4 +22,5 @@ func poof_death() -> void:
 	var poof: Poof = POOF.instantiate()
 	poof.global_position = poof_point.global_position
 	created_poof.emit(poof)
+	EventsBus.play_sound_request.emit(HIT_2)
 	call_deferred("queue_free")

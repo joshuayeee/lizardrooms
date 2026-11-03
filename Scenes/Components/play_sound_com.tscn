@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://dtkysxhhe2uop"]
 
-[ext_resource type="Script" uid="uid://dckq7b2hhb1ny" path="res://Scripts/Components/play_sound_com.gd" id="1_gamfu"]
+[sub_resource type="GDScript" id="GDScript_jc4ho"]
+script/source = "extends Node
+
+class_name PlaySoundCom
+
+func handle_play_sound(stream: AudioStream, query: bool) -> void:
+	if (query):
+		EventsBus.play_sound_request.emit(stream)
+"
 
 [node name="PlaySoundCom" type="Node" unique_id=1224491225]
-script = ExtResource("1_gamfu")
+script = SubResource("GDScript_jc4ho")

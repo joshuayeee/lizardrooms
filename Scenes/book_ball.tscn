@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcj5ejy6bqu5i"]
 
-[ext_resource type="Script" uid="uid://bbmkhe7f41dlp" path="res://Scenes/book_ball.gd" id="1_ehour"]
+[ext_resource type="Script" uid="uid://bbmkhe7f41dlp" path="res://Scripts/book_ball.gd" id="1_ehour"]
 [ext_resource type="Texture2D" uid="uid://tc472s6p1xut" path="res://Assets/Sprites/BookBall.png" id="1_p2rsg"]
 [ext_resource type="PackedScene" uid="uid://cqf7ow0btb3ou" path="res://Scenes/Components/move_com.tscn" id="2_wlo5v"]
 

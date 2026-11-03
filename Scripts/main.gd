@@ -4,6 +4,8 @@ class_name Main
 
 const MAX_DONUTS: int = 100
 
+@onready var sound_player: AudioStreamPlayer = $SoundPlayer
+
 var screen: Screen = null
 
 var lives: int = 2
@@ -12,6 +14,7 @@ var checkpoint_num: int = 0
 var player_state: String = "normal"
 
 func _ready() -> void:
+	EventsBus.play_sound_request.connect(play_sound)
 	load_screen("title_screen")
 
 func unload_screen() -> void:
@@ -150,6 +153,10 @@ func check_max_donuts() -> void:
 		donuts = 0
 		lives += 1
 		update_level_labels()
+
+func play_sound(stream: AudioStream) -> void:
+	sound_player.stream = stream
+	sound_player.play()
 
 #debug
 func _input(_event: InputEvent) -> void:

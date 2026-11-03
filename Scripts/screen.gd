@@ -13,18 +13,3 @@ signal update_labels_request()
 signal connect_end_manager_request(end_manager: EndManager)
 
 var player_state: String = "normal"
-
-var sound_player: AudioStreamPlayer = null
-
-func _ready() -> void:
-	set_up_sound_player()
-
-func set_up_sound_player() -> void:
-	sound_player = AudioStreamPlayer.new()
-	add_child(sound_player)
-	EventsBus.play_sound_request.connect(play_sound)
-
-func play_sound(stream: AudioStream) -> void:
-	if (sound_player.stream != stream):
-		sound_player.stream = stream
-	sound_player.play()

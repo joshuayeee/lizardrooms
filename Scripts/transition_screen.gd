@@ -10,7 +10,6 @@ var world_title_text: String = ""
 var level_name: String = ""
 
 func _ready() -> void:
-	set_up_sound_player()
 	world_level_label.text = world_level_text
 	world_title_label.text = world_title_text
 

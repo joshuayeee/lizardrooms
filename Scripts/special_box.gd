@@ -7,6 +7,8 @@ const SANDWICH = preload("uid://bvdjxn5x33uwa")
 const CANDY = preload("uid://bqisoxfiesbp6")
 const HEART = preload("uid://cllnwd3ojlofg")
 const CUPCAKE = preload("uid://kp1omc8ktlfw")
+const PICKUP = preload("uid://1tlxry6mbhrm")
+const PICKUP_1 = preload("uid://cj8fksae0wj8g")
 
 enum Contains {DONUT, ITEM, HEART, CUPCAKE, MULTI_DONUT}
 @export var contains: Contains
@@ -38,6 +40,7 @@ func player_hit(player: Player) -> void:
 					donut.global_position = spawn_point.global_position
 					donut.from_box = true
 					item_manager.spawn_item_front(donut)
+					EventsBus.play_sound_request.emit(PICKUP)
 				Contains.ITEM:
 					if (state == "normal"):
 						var sandwich: Sandwich = SANDWICH.instantiate()
@@ -47,18 +50,22 @@ func player_hit(player: Player) -> void:
 						var candy: Candy = CANDY.instantiate()
 						candy.global_position = spawn_point.global_position
 						item_manager.spawn_item_back(candy)
+					EventsBus.play_sound_request.emit(PICKUP_1)
 				Contains.HEART:
 					var heart: Heart = HEART.instantiate()
 					heart.global_position = spawn_point.global_position
 					item_manager.spawn_item_back(heart)
+					EventsBus.play_sound_request.emit(PICKUP_1)
 				Contains.CUPCAKE:
 					var cupcake: Cupcake = CUPCAKE.instantiate()
 					cupcake.global_position = spawn_point.global_position
 					item_manager.spawn_item_back(cupcake)
+					EventsBus.play_sound_request.emit(PICKUP_1)
 			move_player.play("move")
 			animation_player.play("empty")
 			is_empty = true
 		else:
+			EventsBus.play_sound_request.emit(PICKUP)
 			player.collect_donut()
 			var donut: Donut = DONUT.instantiate()
 			donut.global_position = spawn_point.global_position

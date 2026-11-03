@@ -4,3 +4,5 @@
 
 [node name="Main" type="Node" unique_id=1939467633]
 script = ExtResource("1_jjgbg")
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=488739748]
