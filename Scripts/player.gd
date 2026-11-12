@@ -166,6 +166,7 @@ func turn_on_hurt_invincible() -> void:
 	hurt_timer.start()
 
 func turn_on_cupcake_power() -> void:
+	set_collision_layer_value(1, false)
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(13, true)
 	blink_player.play("blink")
@@ -173,9 +174,10 @@ func turn_on_cupcake_power() -> void:
 	cupcake_timer.start()
 
 func turn_off_hurt_invincible() -> void:
-	set_collision_layer_value(2, true)
-	set_collision_layer_value(1, false)
-	blink_player.play("normal")
+	if (not has_cupcake):
+		set_collision_layer_value(2, true)
+		set_collision_layer_value(1, false)
+		blink_player.play("normal")
 
 func turn_off_cupcake_power() -> void:
 	set_collision_layer_value(2, true)
