@@ -59,14 +59,8 @@ func _input(_event: InputEvent) -> void:
 				set_selected(new_game_label, Options.NEW_GAME)
 				set_unselected(exit_label)
 	
-	if (Input.is_action_pressed("debug_num_1")):
-		load_transition_request.emit("ENEMIES", "", "debug_level")
-	elif (Input.is_action_pressed("debug_num_2")):
-		load_transition_request.emit("FLUORES", "", "fluores_debug_level")
-	elif (Input.is_action_pressed("debug_num_3")):
-		load_transition_request.emit("LESSIE", "", "lessie_debug_level")
-	elif (Input.is_action_pressed("debug_num_4")):
-		load_transition_request.emit("ARCH", "", "arch_debug_level")
+	# debug
+	load_debug_levels()
 
 func set_selected(my_label: Label, my_option: Options) -> void:
 	my_label.set("theme_override_colors/font_color", Color.WHITE)
@@ -92,3 +86,16 @@ func handle_settings() -> void:
 
 func handle_exit() -> void:
 	pass
+
+# debug
+func load_debug_levels() -> void:
+	if (Input.is_action_pressed("debug_num_1")):
+		load_transition_request.emit("ENEMIES", "", "debug_level")
+	elif (Input.is_action_pressed("debug_num_2")):
+		load_transition_request.emit("FLUORES", "", "fluores_debug_level")
+	elif (Input.is_action_pressed("debug_num_3")):
+		load_transition_request.emit("LESSIE", "", "lessie_debug_level")
+	elif (Input.is_action_pressed("debug_num_4")):
+		load_transition_request.emit("ARCH", "", "arch_debug_level")
+	elif (Input.is_action_just_pressed("debug_num_5")):
+		load_transition_request.emit("?", "", "mark_debug_level")
