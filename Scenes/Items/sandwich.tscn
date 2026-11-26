@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dugcx082dr5ba" path="res://Assets/Sprites/Sandwich.png" id="1_djf1a"]
 [ext_resource type="Script" uid="uid://fv5lhwsgwtli" path="res://Scripts/sandwich.gd" id="1_xgfno"]
 [ext_resource type="PackedScene" uid="uid://2q8asats5wdb" path="res://Scenes/Components/gravity_com.tscn" id="2_xbpk7"]
+[ext_resource type="PackedScene" uid="uid://n8sjlmhmstnf" path="res://Scenes/Components/player_state_com.tscn" id="4_x8fqw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(40, 36)
@@ -27,7 +28,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_yjxuq"]
 resource_name = "blink"
-length = 0.19999999999999998
+length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -102,6 +103,8 @@ one_shot = true
 
 [node name="GravityCom" parent="Components" unique_id=1670085568 node_paths=PackedStringArray("body") instance=ExtResource("2_xbpk7")]
 body = NodePath("../..")
+
+[node name="PlayerStateCom" parent="Components" unique_id=2032708199 instance=ExtResource("4_x8fqw")]
 
 [connection signal="body_entered" from="PlayerCheck" to="." method="_on_player_check_body_entered"]
 [connection signal="timeout" from="StartBlinkTimer" to="." method="_on_start_blink_timer_timeout"]

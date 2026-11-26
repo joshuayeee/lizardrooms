@@ -12,4 +12,4 @@ signal connect_player_request(player: Player)
 signal update_labels_request()
 signal connect_end_manager_request(end_manager: EndManager)
 
-var player_state: String = "normal"
+var player_state: PlayerStateCom.States

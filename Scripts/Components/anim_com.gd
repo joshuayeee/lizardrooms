@@ -6,6 +6,8 @@ class_name AnimCom
 @export var anim_player: AnimationPlayer = null
 @export var move_player: AnimationPlayer = null
 
+@onready var player_state_com: PlayerStateCom = $PlayerStateCom
+
 func handle_animation(direction: float, 
 						in_air: bool,
 						jump_anim: String,
@@ -50,29 +52,29 @@ func handle_player_swim_animation(direction: float, swim_anim: String, play_swim
 	if (play_swim_query):
 		anim_player.play(swim_anim)
 
-func handle_anim_change(old_state, 
-							new_state, 
-							norm_sand, 
-							sand_candy, 
-							norm_candy) -> void:
+func handle_anim_change(old_state: PlayerStateCom.States, 
+							new_state: PlayerStateCom.States, 
+							norm_sand: String, 
+							sand_candy: String, 
+							norm_candy: String) -> void:
 	match old_state:
-		"normal":
+		player_state_com.States.NORMAL:
 			match new_state:
-				"sandwich":
+				player_state_com.States.SANDWICH:
 					anim_player.play(norm_sand)
-				"candy":
+				player_state_com.States.CANDY:
 					anim_player.play(norm_candy)
-		"sandwich":
+		player_state_com.States.SANDWICH:
 			match new_state:
-				"normal":
+				player_state_com.States.NORMAL:
 					anim_player.play(norm_sand)
-				"candy":
+				player_state_com.States.CANDY:
 					anim_player.play(sand_candy)
-		"candy":
+		player_state_com.States.CANDY:
 			match new_state:
-				"normal":
+				player_state_com.States.NORMAL:
 					anim_player.play(norm_candy)
-				"sandwich":
+				player_state_com.States.SANDWICH:
 					anim_player.play(sand_candy)
 
 func handle_death_anim(death_anim: String, move_anim: String) -> void:

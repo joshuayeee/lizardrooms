@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://cclvgnjglne5t"]
 
 [ext_resource type="Script" uid="uid://cb3nct5xvfsvj" path="res://Scripts/main.gd" id="1_jjgbg"]
+[ext_resource type="PackedScene" uid="uid://n8sjlmhmstnf" path="res://Scenes/Components/player_state_com.tscn" id="2_bo1nx"]
 
 [node name="Main" type="Node" unique_id=1939467633]
 script = ExtResource("1_jjgbg")
 
 [node name="SoundPlayer" type="AudioStreamPlayer" parent="." unique_id=488739748]
+
+[node name="PlayerStateCom" parent="." unique_id=2032708199 instance=ExtResource("2_bo1nx")]

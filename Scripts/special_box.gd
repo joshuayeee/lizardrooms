@@ -17,6 +17,7 @@ enum Contains {DONUT, ITEM, HEART, CUPCAKE, MULTI_DONUT}
 @onready var move_player: AnimationPlayer = $MovePlayer
 @onready var spawn_point: Marker2D = $SpawnPoint
 @onready var multi_timer: Timer = $MultiTimer
+@onready var player_state_com: PlayerStateCom = $PlayerStateCom
 
 var item_manager: ItemManager = null
 var is_empty: bool = false
@@ -24,7 +25,7 @@ var last_donut: bool = false
 var my_enemy: Enemy = null
 
 func player_hit(player: Player) -> void:
-	var state: String = player.state
+	var state: PlayerStateCom.States = player.state
 	
 	if (not is_empty):
 		
@@ -42,7 +43,7 @@ func player_hit(player: Player) -> void:
 					item_manager.spawn_item_front(donut)
 					EventsBus.play_sound_request.emit(PICKUP)
 				Contains.ITEM:
-					if (state == "normal"):
+					if (state == player_state_com.States.NORMAL):
 						var sandwich: Sandwich = SANDWICH.instantiate()
 						sandwich.global_position = spawn_point.global_position
 						item_manager.spawn_item_back(sandwich)

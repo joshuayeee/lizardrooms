@@ -5,13 +5,14 @@ class_name Main
 const MAX_DONUTS: int = 100
 
 @onready var sound_player: AudioStreamPlayer = $SoundPlayer
+@onready var player_state_com: PlayerStateCom = $PlayerStateCom
+@onready var player_state: PlayerStateCom.States = player_state_com.States.NORMAL
 
 var screen: Screen = null
 
 var lives: int = 2
 var donuts: int = 0
 var checkpoint_num: int = 0
-var player_state: String = "normal"
 
 func _ready() -> void:
 	EventsBus.play_sound_request.connect(play_sound)
@@ -117,7 +118,7 @@ func player_collected_heart(lives_amount: int) -> void:
 	screen.update_lives_label(lives)
 
 func handle_player_loss() -> void:
-	player_state = "normal"
+	player_state = player_state_com.States.NORMAL
 	lives -= 1
 	
 	if (lives < 0):
@@ -134,7 +135,7 @@ func player_reached_checkpoint(my_num: int) -> void:
 func go_to_next_level(next_wl: String,
 							next_wt: String,
 							next_name: String,
-							my_state: String,
+							my_state: PlayerStateCom.States,
 							is_bonus: bool) -> void:
 	checkpoint_num = 0
 	player_state = my_state

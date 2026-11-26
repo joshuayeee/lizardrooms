@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y30u32fd0jw0" path="res://Scripts/normal_box.gd" id="1_aven3"]
 [ext_resource type="Texture2D" uid="uid://ca6rlmjo0cv38" path="res://Assets/Sprites/NormalBox.png" id="1_qtu2f"]
+[ext_resource type="PackedScene" uid="uid://n8sjlmhmstnf" path="res://Scenes/Components/player_state_com.tscn" id="3_qw81h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jh5pk"]
 size = Vector2(32, 32)
@@ -153,6 +154,8 @@ collision_mask = 1024
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpCheck" unique_id=518212603]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ydotr")
+
+[node name="PlayerStateCom" parent="." unique_id=2032708199 instance=ExtResource("3_qw81h")]
 
 [connection signal="animation_finished" from="MovePlayer" to="." method="_on_move_player_animation_finished"]
 [connection signal="timeout" from="MultiTimer" to="." method="_on_multi_timer_timeout"]

@@ -20,6 +20,7 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 @onready var gravity_com: GravityCom = $Components/GravityCom
 @onready var anim_com: AnimCom = $Components/AnimCom
 @onready var swim_com: SwimCom = $Components/SwimCom
+@onready var player_state_com: PlayerStateCom = $Components/PlayerStateCom
 @onready var hurt_timer: Timer = $HurtTimer
 @onready var blink_player: AnimationPlayer = $BlinkPlayer
 @onready var cupcake_timer: Timer = $CupcakeTimer
@@ -30,7 +31,8 @@ signal reached_door(next_wl: String, next_wt: String, next_name: String, my_stat
 enum MoveModes {NORMAL, SWIM}
 var move_mode: MoveModes = MoveModes.NORMAL
 
-var state: String = "normal"
+var state: PlayerStateCom.States
+var state_name: String = "normal"
 var can_check_up: bool = true
 var can_enter: bool = false
 var enter_dir: String = ""
@@ -48,6 +50,7 @@ var hit_invin: bool = false
 var inf_cupcake_on: bool = false
 
 func _physics_process(delta: float) -> void:
+	state_name = player_state_com.get_state_name(state)
 	var direction: float = Input.get_axis("left", "right")
 	if (Global.game_active):
 		match move_mode:
@@ -66,10 +69,10 @@ func _physics_process(delta: float) -> void:
 				anim_com.handle_player_animation(direction, 
 									velocity,
 									not is_on_floor(), 
-									"%s_jump" % state, 
-									"%s_walk" % state,
-									"%s_turn" % state, 
-									"%s_idle" % state)
+									"%s_jump" % state_name, 
+									"%s_walk" % state_name,
+									"%s_turn" % state_name, 
+									"%s_idle" % state_name)
 				
 				if (is_on_floor() and not can_check_up):
 					can_check_up = true
@@ -82,10 +85,10 @@ func _physics_process(delta: float) -> void:
 				swim_com.handle_hori_speed_change(Input.is_action_pressed("run"))
 				swim_com.handle_hori_swim(direction)
 				
-				anim_com.handle_player_swim_animation(direction, "%s_swim" % state, velocity != Vector2.ZERO)
+				anim_com.handle_player_swim_animation(direction, "%s_swim" % state_name, velocity != Vector2.ZERO)
 		
 		
-		if (state == "candy"):
+		if (state == player_state_com.States.CANDY):
 			if (Input.is_action_just_pressed("run") and can_shoot):
 				shoot_jawbreaker()
 		
@@ -108,7 +111,7 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func change_state(new_state: String) -> void:
+func change_state(new_state: PlayerStateCom.States) -> void:
 	if (state != new_state):
 		Global.game_active = false
 		anim_com.handle_anim_change(state,
@@ -150,14 +153,14 @@ func enter_false_wall() -> void:
 			global_position.x = enter_pos_x
 			anim_com.handle_enter_anim("enter_down")
 	Global.game_active = false
-	anim_com.play_idle("%s_idle" % state)
+	anim_com.play_idle("%s_idle" % state_name)
 
 func hurt() -> void:
-	if (state == "normal"):
+	if (state == player_state_com.States.NORMAL):
 		handle_death()
 	else:
 		was_hurt = true
-		change_state("normal")
+		change_state(player_state_com.States.NORMAL)
 
 func turn_on_hurt_invincible() -> void:
 	set_collision_layer_value(2, false)
@@ -210,20 +213,20 @@ func got_to_door(next_wl: String,
 	Global.game_active = false
 	
 	if (is_on_floor()):
-		anim_com.play_idle("%s_idle" % state)
+		anim_com.play_idle("%s_idle" % state_name)
 	else:
-		anim_com.play_jump("%s_jump" % state)
+		anim_com.play_jump("%s_jump" % state_name)
 	
 	end_timer.start()
 	await end_timer.timeout
 	reached_door.emit(next_wl, next_wt, next_name, state, is_bonus)
 
 func got_to_end() -> void:
-	anim_com.play_idle("%s_idle" % state)
+	anim_com.play_idle("%s_idle" % state_name)
 
 func set_move_mode(mode: MoveModes) -> void:
 	if (mode == MoveModes.SWIM):
-		anim_com.handle_player_swim_animation(1.0, "%s_swim" % state, true)
+		anim_com.handle_player_swim_animation(1.0, "%s_swim" % state_name, true)
 	
 	move_mode = mode
 
@@ -243,7 +246,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 			Global.game_active = true
 			
 			if (move_mode == MoveModes.SWIM):
-				anim_com.handle_player_swim_animation(1.0, "%s_swim" % state, true)
+				anim_com.handle_player_swim_animation(1.0, "%s_swim" % state_name, true)
 			
 			if (was_hurt):
 				turn_on_hurt_invincible()
